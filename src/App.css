@@ -10,7 +10,8 @@ body {
 h1 {
   text-align: center;
   font-weight: bold;
-  font-size: 45px;
+  font-size: 36px;
+  margin: 0;
 }
 
 .container {
@@ -23,11 +24,24 @@ h1 {
 }
 
 .bodyText {
-  font-size: 24px;
+  font-size: 18px;
   max-width: 75ch;
   text-align: center;
 }
 
 .visualPanel {
   margin: 0;
+}
+
+.imgWrapper {
+  width: 20%;
+  height: auto;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.designs {
+  width: 50%;
+  height: auto;
+  margin-bottom: 20px;
 }
