@@ -1,0 +1,34 @@
+[
+    {
+        "id": 1,
+        "name": "Example Project",
+        "time": "1-3 Months",
+        "size": "small",
+        "location": "HUB 238",
+        "interests": ["Healthcare", "Medicine", "Informatics", "Data Science"],
+        "positions": [
+            {
+                "type": "UX Designers",
+                "skills": [
+                    "Sketch",
+                    "Mockup",
+                    "Wireframe",
+                    "Test 1",
+                    "Test 2",
+                    "Test 3"
+                ]
+            },
+            {
+                "type": "Software Developers",
+                "skills": [
+                    "React",
+                    "Agile",
+                    "Python",
+                    "Test 1",
+                    "Test 2",
+                    "Test 3"
+                ]
+            }
+        ]
+    }
+]

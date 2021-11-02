@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# UW Nexus Web
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -6,7 +6,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
-### `yarn start`
+### `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -14,12 +14,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
+### `npm build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -29,42 +24,37 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+## Best Practices/Styling
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### New Features
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Create a new branch with `git checkout -b YOUR_BRANCH_NAME`
+2. Naming convention for branches for this project should be `name_feature`, eg `jane_filled_button`
+3. Once you are satisfied with your work, raise a pull request [here](https://github.com/CocoaCommander/uw-nexus-web/pulls) by clicking new pull request and asking to merge your branch into main
+4. Pull requests should briefly detail what was changed / implemented
+5. Assign somebody to review your branch for approval before merging (this is just a school project though so it doesn't really matter)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Code Style Best Practices
+- Whatever style we choose, we need to remain consistent
+- Use arrow functions when possible eg `const my_func = () => return (<p>So true<p>)`
+- Break down props in the parameters of each functional component eg
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
+<MyComponent isOn={true} onClick={onClickHandler} />
 
-## Learn More
+/**/
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+export const MyComponent = ({
+	isOn,
+	onClick
+	}) => { ... }
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Try to use functional components if possible, they're a lot easier to read and write
 
-### Code Splitting
+### File Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Pages are located in the `Pages` folder in `src`
+- The components that make up each page are located in the `Components` folder in `src`
+- Components and pages should be named with the `.jsx` extension to denote that they contain UI elements
+- Any helper functions should be declared in files with the `.js` extension to denote that they contain logical/control functions
