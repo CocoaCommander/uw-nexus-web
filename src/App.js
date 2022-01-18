@@ -2,11 +2,13 @@ import PropTypes from 'prop-types';
 import ProjectListPage from './pages/ProjectListPage';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
+import useToken from './components/Login/useToken';
 import './App.css';
-import { useState } from 'react';
 
 const App = () => {
-  const [token, setToken] = useState();
+  const {token, setToken} = useToken();
+
+  console.log(token);
 
   if (!token) return <LoginPage setToken={setToken} />;
 
