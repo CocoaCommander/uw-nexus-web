@@ -1,3 +1,10 @@
+const handleErrors = response => {
+    if (!response.ok) {
+        console.log(response)
+        throw Error(response.message);
+    }
+    return response;
+}
 export const loginUser = async credentials => {
     console.log(JSON.stringify(credentials));
     return fetch('http://localhost:3100/api/auth/signIn', {
@@ -7,5 +14,6 @@ export const loginUser = async credentials => {
       },
       body: JSON.stringify(credentials)
     })
-      .then(data => data.json())
+    .catch(res => handleErrors(res))
+    .then(data => data.json())
 }

@@ -7,6 +7,8 @@ const LoginPage = ({
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
 
+    const [passwordIsValid, setPasswordIsValid] = useState(true);
+
     const handleSubmit = async e => {
         e.preventDefault();
         const email = username;
@@ -14,6 +16,7 @@ const LoginPage = ({
           email,
           password
         });
+        if (token.message) { setPasswordIsValid(false) };
         setToken(token.accessToken);
     }
 
@@ -25,6 +28,10 @@ const LoginPage = ({
         </label>
         <label>
           <p>Password</p>
+          {
+          !passwordIsValid ? 
+            <p>The password does not match the given account</p> : <></>
+          }
           <input type="password" onChange={e => setPassword(e.target.value)}/>
         </label>
         <div>
