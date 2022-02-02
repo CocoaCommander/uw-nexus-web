@@ -1,6 +1,11 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.app-colors {
+  background-color: #F6F6F8;
 }
 
 .margin-styles {
@@ -14,4 +19,58 @@
   border-radius: 5px;
   border: none;
   padding: 10px;
+}
+
+.project-list-item-container {
+  background-color: white;
+  border-radius: 10px;
+  margin-bottom: 35px;
+  box-shadow: 0px, 4px, 20px, rgba(0, 0, 0, 0.09);
+  padding: 25px;
+}
+
+.project-list-item-stats {
+  display: flex;
+}
+
+.stat-item {
+  color: #757575;
+  margin-left: 20px;
+  font-size: 12;
+}
+
+.align-to-right {
+  margin-left: auto;
+}
+
+h3 {
+  font-size: 24;
+
+}
+
+.project-list-item-interests {
+  margin-top: 30px;
+}
+
+.role-container {
+  display: flex;
+  align-items: center;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 15px;
+  border-color: #E8E6E6;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.role-title {
+  color: #F05A28;
+  margin-right: 10px;
+}
+
+.skill-container {
+  border-radius: 5px;
+  background-color: rgba(249, 130, 44, 0.4);
+  padding: 10px;
+
 }
