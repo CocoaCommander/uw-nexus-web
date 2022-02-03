@@ -9,15 +9,31 @@ const ProjectListItem = ({
             <></>
         )
     }
-    console.log(project.categories)
-    const roleElements = project.roles.map(role => {
-        const roleSkillElements = role.skill.map(skill => {
+
+    let projectSize = "";
+
+    switch(project.size) {
+        case 'Small':
+            projectSize = 'Small (6-10)'
+            break;
+        case 'Medium':
+            projectSize = 'Medium (11-20)'
+            break;
+        case 'Large':
+            projectSize = 'Large (20+)'
+            break;
+        default:
+            console.log(project.size)
+            break;
+    }
+    const roleElements = project.roles.map((role, i) => {
+        const roleSkillElements = role.skill.map((skill, i) => {
             return (
-                <div className='skill-container'>{skill}</div>
+                <div className='skill-container' key={i}>{skill}</div>
             )
         });
         return (
-            <div className='role-container'>
+            <div className='role-container' key={i}>
                 <p className='role-title'>{role.title}</p>
                 {roleSkillElements}
             </div>
@@ -28,7 +44,7 @@ const ProjectListItem = ({
         <div className={"project-list-item-container"}>
             <div className={"project-list-item-stats"}>
                 <p className='stat-item align-to-right'>{project.duration.length}</p>
-                <p className='stat-item'>{project.size}</p>
+                <p className='stat-item'>{projectSize}</p>
                 <p className='stat-item'>{project.location}</p>
             </div>
             <div className="project-list-item-header">

@@ -14,8 +14,6 @@ const ProjectList = () => {
             .finally(() => setIsLoading(false));
     }, []);
 
-    console.log(listOfProjectData)
-
     if (isLoading) {
         return <p>Loading...</p>
     }

@@ -1,4 +1,5 @@
 import { useEffect } from "react"
+import { ReactComponent as FilterIcon } from '../../../assets/filter-icon.svg'
 
 const SearchBar = ({
     setQuery
@@ -14,7 +15,14 @@ const SearchBar = ({
 
     return (
         <>
-            <input id="SearchBar" placeholder="Search projects..." />
+            <input 
+            id="SearchBar" 
+            placeholder="Search projects..." 
+            className="search-bar"/>
+            <div className="search-filter-icon">
+                <FilterIcon />
+            </div>
+            
         </>
     )
 }

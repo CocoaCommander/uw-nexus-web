@@ -4,8 +4,10 @@ const CreateProjectButton = () => {
     return (
         <>
             <button className="create-project-button">
-                <PlusIcon />
-                Create a Project
+                <div className="create-project-button-content">
+                    <PlusIcon className='.create-project-button-icon'/>
+                    Create a Project
+                </div>
             </button>
         </>
     )
