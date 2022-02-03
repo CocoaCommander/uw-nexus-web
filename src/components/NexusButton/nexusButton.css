@@ -1,0 +1,16 @@
+.button-container {
+    display: flex;
+    flex-direction: row;
+    border-radius: 5px;
+    border-color: #F05A28;
+    padding: 10px;
+    background-color: #F05A28;
+    color: white;
+}
+
+.button-container:hover {
+    border-radius: 5px;
+    border-color: #E35A28;
+    padding: 10px;
+    background-color: #E35A28;
+}
