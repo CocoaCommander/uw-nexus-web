@@ -10,17 +10,17 @@ const ProjectListPage = () => {
 
     return (
         <div className="project-list-page">
-            <div className="create-project-btn-project-filters-container">
+            <div className="create-project-btn-project-search-container">
                 <div className="container-item">
                     <CreateProjectButton />
                 </div>
-                <div className="container-item">
-                    <ProjectFilters />
-                </div>
-            </div>
-            <div className="search-and-project-list-container">
                 <div className="container-item search-bar-container">
                     <SearchBar query={query} setQuery={setQuery} />
+                </div>
+            </div>
+            <div className="project-list-and-filter-container">
+                <div className="container-item">
+                    <ProjectFilters />
                 </div>
                 <div className="container-item">
                     <ProjectList />     

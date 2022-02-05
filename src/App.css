@@ -4,12 +4,20 @@
   font-family: 'Open Sans', sans-serif;
 }
 
+html {
+  height: 100%;
+  width: auto;
+  background-color: #F6F6F8;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
 h3 {
-  font-size: 24;
+  font-size: 32px;
 }
 
 h4 {
-  font-size: 20;
+  font-size: 20px;
   font-weight: 400;
 }
 
@@ -31,27 +39,21 @@ li:hover {
   color: #F05A28;
 }
 
-.app-colors {
-  background-color: #F6F6F8;
-}
-
-.margin-styles {
-  margin-left: 10%;
-  margin-right: 10%;
-}
-
 .project-list-page {
-  display: flex;
-  justify-content: space-between;
   padding-top: 50px;
 }
 
-.search-and-project-list-container {
-  flex-grow: 2;
+.create-project-btn-project-search-container, .project-list-and-filter-container {
+  display: flex;
+  justify-content: space-between;
 }
 
 .container-item {
-  margin-bottom: 48px;
+  margin-bottom: 16px;
+}
+
+.project-list-and-filter-container {
+  flex-grow: 2;
 }
 
 .create-project-button {
@@ -60,9 +62,15 @@ li:hover {
   color: white;
   border-radius: 5px;
   border: none;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-right: 32px;
+  padding: 10px;
+  width: 13vw;
+}
+
+.create-project-btn-icon {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  background-image: url(/src/assets/akar-icons_plus.svg);
 }
 
 .create-project-button-content {
@@ -88,7 +96,7 @@ li:hover {
 }
 
 .search-bar {
-  width: 90%;
+  width: 60vw;
 }
 
 .search-filter-icon {
@@ -100,13 +108,17 @@ li:hover {
 .project-list-item-container, .filter-container {
   background-color: white;
   border-radius: 10px;
-  margin-bottom: 35px;
-  box-shadow: 0px, 4px, 20px, rgba(0, 0, 0, 0.09);
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.09);
   padding: 25px;
 }
 
-.filter-container {
-  margin-right: 32px;
+.filter-container, .create-project-button-content {
+  width: 10vw;
+}
+
+.project-list-item-container {
+  width: 60vw;
+  margin-bottom: 3vh;
 }
 
 .project-list-item-stats {
@@ -117,13 +129,16 @@ li:hover {
   color: #757575;
   margin-left: 20px;
   font-size: 12px;
+  display: flex;
 }
 
 .align-to-right {
   margin-left: auto;
 }
 
-
+.stat-item-icon {
+  margin-right: 5px;
+}
 
 .project-list-item-interests {
   margin-top: 30px;
@@ -136,7 +151,7 @@ li:hover {
   border-width: 1px;
   border-radius: 15px;
   border-color: #E8E6E6;
-  padding: 20px;
+  padding: 10px;
   margin-top: 20px;
 }
 
@@ -148,6 +163,5 @@ li:hover {
 .skill-container {
   border-radius: 5px;
   background-color: rgba(249, 130, 44, 0.4);
-  padding: 10px;
-
+  padding: 7px;
 }

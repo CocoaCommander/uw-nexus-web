@@ -1,16 +1,10 @@
-import NexusButton from './components/NexusButton/NexusButton';
-import { ReactComponent as PlusIcon } from './assets/icons/plus.svg'
+import ProjectListPage from './pages/ProjectListPage'
 import './App.css';
 
 const App = () => {
 
   return (
-    <div className='app-colors'>
-      <div className='margin-styles'>
-        <ProjectListPage />
-      </div>
-    </div>
-
+    <ProjectListPage />
   );
 }
 

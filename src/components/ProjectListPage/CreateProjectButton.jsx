@@ -1,4 +1,4 @@
-import { ReactComponent as PlusIcon} from '../../assets/akar-icons_plus.svg'
+import { ReactComponent as PlusIcon } from '../../assets/akar-icons_plus.svg'
 
 const CreateProjectButton = () => {
     return (
