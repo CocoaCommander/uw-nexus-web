@@ -106,7 +106,7 @@ form {
 .forgot-pass {
   font-size: 7px;
   align-self: flex-end;
-  margin-top: 2%;
+  margin-top: 15%;
   color: #bbbbbb;
 }
 
@@ -149,6 +149,13 @@ form {
   margin-right: auto;
   font-size: 10px;
   color: #757575;
+}
+
+.error-msg {
+  font-size: 12px;
+  color: red;
+  text-align: center;
+  margin-top: 5%;
 }
 
 /*
