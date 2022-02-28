@@ -1,15 +1,20 @@
-import NexusButton from './components/NexusButton/NexusButton';
-import { ReactComponent as PlusIcon } from './assets/icons/plus.svg'
+import ProjectListPage from './pages/ProjectListPage'
 import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import Header from './components/Global/Header';
+import ProjectListDetail from './pages/ProjectListDetail';
 
 const App = () => {
 
   return (
-    <div className={"dev-test"}>
-      <NexusButton icon={PlusIcon}>
-        Create a project
-      </NexusButton>
-    </div>
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" element={<ProjectListPage />} />
+        <Route path=':projectId' element={<ProjectListDetail />} />
+      </Routes>
+    </>
+
   );
 }
 
