@@ -29,18 +29,18 @@ const ProjectListDetail = () => {
 
     return (
         <div className="project-list-detail-page">
-            <h2>{project.title}</h2>
-            <p>{project.categories ? "Key Words: " + project.categories.join(", ") : ""}</p>
-            <div className="project-list-detail-logistics">
+            <h2 className="project-list-detail-page-element">{project.title}</h2>
+            <p className="project-list-detail-page-element">{project.categories ? "Key Words: " + project.categories.join(", ") : ""}</p>
+            <div className="project-list-detail-logistics project-list-detail-page-element">
                 <PersonIcon />
-                <p>{project.size ? project.size : ""}</p>
+                <p className="project-list-detail-logistics-inner-text">{project.size ? project.size : ""}</p>
                 <LocationIcon />
-                <p>{project.location}</p>
+                <p className="project-list-detail-logistics-inner-text">{project.location}</p>
                 <TimeIcon />
-                <p>{project.duration ? project.duration.length : ""}</p>
+                <p className="project-list-detail-logistics-inner-text">{project.duration ? project.duration.length : ""}</p>
             </div>
-            <p>{project.description}</p>
-            <h4>Open Roles</h4>
+            <p className="project-list-detail-page-element">{project.description}</p>
+            <h4 className="project-list-detail-page-element">Open Roles</h4>
             {projectRoles}
         </div>
     )
