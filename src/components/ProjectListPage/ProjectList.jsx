@@ -1,17 +1,15 @@
 import { useEffect, useState } from "react";
+import getData from "../../logic/getData";
 import ProjectListItem from "./ProjectListItem";
 
 const ProjectList = () => {
     const [listOfProjectData, setListOfProjectData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
+    const ALL_PROJECTS = "http://localhost:3100/api/project/allProjects"
+
     useEffect(() => {
-        setIsLoading(true);
-        fetch("http://localhost:3100/api/project/allProjects")
-            .then(res => res.json())
-            .then(data => setListOfProjectData(data))
-            .catch(err => console.log(err))
-            .finally(() => setIsLoading(false));
+        getData(setIsLoading, ALL_PROJECTS, setListOfProjectData);
     }, []);
 
     if (isLoading) {

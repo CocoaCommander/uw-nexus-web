@@ -21,13 +21,22 @@ h4 {
   font-weight: 400;
 }
 
+h5 {
+  color: #F05A28;
+}
+
+a:link, a:visited, a:hover, a:active{ 
+  text-decoration: none; 
+  color: black;
+}
+
 ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
-li {
+ul > li {
   padding-bottom: 5px;
   padding-top: 5px;
   border-bottom-style: solid;
@@ -35,7 +44,12 @@ li {
   border-bottom-width: 1px;
 }
 
-li:hover {
+ol {
+  list-style: inside;
+  list-style-type: decimal;
+}
+
+ul > li:hover {
   color: #F05A28;
 }
 
@@ -105,7 +119,9 @@ li:hover {
   padding: 2px 8px 0px 8px;
 }
 
-.project-list-item-container, .filter-container {
+.project-list-item-container, 
+.filter-container, 
+.project-list-detail-page {
   background-color: white;
   border-radius: 10px;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.09);
@@ -164,4 +180,20 @@ li:hover {
   border-radius: 5px;
   background-color: rgba(249, 130, 44, 0.4);
   padding: 7px;
+}
+
+.project-list-detail-logistics {
+  display: flex;
+}
+
+.project-list-detail-role-container {
+  border-color: #E8E6E6;
+  border-style: solid;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  border-width: 1px;
+}
+
+.no-border {
+  border: none;
 }

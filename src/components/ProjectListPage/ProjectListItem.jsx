@@ -2,6 +2,7 @@ import '../../App.css';
 import { ReactComponent as TimeIcon } from '../../assets/time-icon.svg';
 import { ReactComponent as PersonIcon } from '../../assets/person-icon.svg';
 import { ReactComponent as LocationIcon } from '../../assets/location-icon.svg';
+import { Link } from 'react-router-dom';
 
 const ProjectListItem = ({
     project,
@@ -41,32 +42,34 @@ const ProjectListItem = ({
     });
     
     return (
-        <div className={"project-list-item-container"}>
-            <div className={"project-list-item-stats"}>
-                <div className='stat-item align-to-right'>
-                    <TimeIcon className='stat-item-icon'/>
-                    <p>{project.duration.length}</p>
+        <Link to={`/${project._id}`}>
+            <div className={"project-list-item-container"}>
+                <div className={"project-list-item-stats"}>
+                    <div className='stat-item align-to-right'>
+                        <TimeIcon className='stat-item-icon'/>
+                        <p>{project.duration.length}</p>
+                    </div>
+                    <div className='stat-item'>
+                        <PersonIcon className='stat-item-icon'/>
+                        <p>{projectSize}</p>
+                    </div>
+                    <div className='stat-item'>
+                        <LocationIcon className='stat-item-icon'/>
+                        <p>{project.location}</p>
+                    </div>
                 </div>
-                <div className='stat-item'>
-                    <PersonIcon className='stat-item-icon'/>
-                    <p>{projectSize}</p>
+                <div className="project-list-item-header">
+                    <h3>{project.title}</h3>
                 </div>
-                <div className='stat-item'>
-                    <LocationIcon className='stat-item-icon'/>
-                    <p>{project.location}</p>
+                <div className="project-list-item-interests">
+                    <p>Project Interests:</p>
+                    {/* TODO: implement project interests */}
+                </div>
+                <div className="project-list-item-role-container">
+                    {roleElements}
                 </div>
             </div>
-            <div className="project-list-item-header">
-                <h3>{project.title}</h3>
-            </div>
-            <div className="project-list-item-interests">
-                <p>Project Interests:</p>
-                {/* TODO: implement project interests */}
-            </div>
-            <div className="project-list-item-role-container">
-                {roleElements}
-            </div>
-        </div>
+        </Link>
     )
 }
 
