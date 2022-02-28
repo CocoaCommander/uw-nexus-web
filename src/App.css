@@ -25,6 +25,10 @@ h5 {
   color: #F05A28;
 }
 
+h6 {
+  margin-left: 10px;
+}
+
 a:link, a:visited, a:hover, a:active{ 
   text-decoration: none; 
   color: black;
@@ -47,6 +51,7 @@ ul > li {
 ol {
   list-style: inside;
   list-style-type: decimal;
+  font-size: small;
 }
 
 ul > li:hover {
@@ -182,8 +187,18 @@ ul > li:hover {
   padding: 7px;
 }
 
+.small-skill-container {
+  font-size: small;
+  padding: 4px;
+}
+
 .project-list-detail-logistics {
   display: flex;
+}
+
+.project-list-detail-logistics-inner-text {
+  margin-left: 5px;
+  margin-right: 10px;
 }
 
 .project-list-detail-role-container {
@@ -192,8 +207,14 @@ ul > li:hover {
   border-radius: 15px;
   margin-bottom: 15px;
   border-width: 1px;
+  padding: 10px;
+}
+
+.project-list-detail-page-element {
+  margin-bottom: 10px;
 }
 
 .no-border {
   border: none;
+  margin-top: 5px;
 }
