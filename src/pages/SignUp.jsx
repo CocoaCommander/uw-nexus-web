@@ -1,30 +1,36 @@
-import { useEffect, useRef, useState } from "react";
-import ProjectListItem from "../components/ProjectListItem";
+import { useDispatch } from "react-redux";
 import logo from "../assets/Logo.png";
 import StepProgressBar from 'react-step-progress';
 // import the stylesheets
 import '../custom-react-step-progress.css';
 import "../SignUp.css";
 import InfoForm from "../components/InfoForm/InfoForm";
+import { setCampus, setFullName, setMajor, setYear } from "../redux/signUp/signUpActions";
 
 
 
 const SignUp = (props) => {
 
-  const [fullName, setFullName] = useState("");
-  const [year, setYear] = useState("");
-  const [major, setMajor] = useState("");
-  const [campus, setCampus] = useState("");
-
-  const progressBar = useRef(null);
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
-    console.log(e.target.value);
-    setFullName(e.target.value);
+    let value = e.target.value;
+    switch (e.target.name) {
+      case "fullName":
+        dispatch(setFullName(value));
+        break;
+      case "year":
+        dispatch(setYear(value));
+        break;
+      case "major":
+        dispatch(setMajor(value));
+        break;
+      case "campus":
+        dispatch(setCampus(value));
+    }
   }
 
   const step1Content = (
-
     <div className="center-pane">
       <div className="sign-up-pane">
           <div className="form-field">
@@ -33,7 +39,8 @@ const SignUp = (props) => {
           </div>
       </div>
     </div>
-);
+    )
+  
   const step2Content = <h1>Step 2 Content</h1>;
   const step3Content = <h1>Step 3 Content</h1>;
   
@@ -56,7 +63,6 @@ const SignUp = (props) => {
       <div className="desktop-container">
         <img className="logo" src={logo}></img>
         <StepProgressBar
-              ref={progressBar}
               startingStep={0}
               onSubmit={onFormSubmit}
               stepClass="step-indicator-wrapper"
@@ -64,7 +70,6 @@ const SignUp = (props) => {
               secondaryBtnClass="login-button"
               buttonWrapperClass="buttonsWrapper"
               labelClass="progress-labels"
-              name={fullName}
 
               steps={[
                 {

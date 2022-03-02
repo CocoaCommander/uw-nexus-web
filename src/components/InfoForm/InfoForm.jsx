@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import "./InfoForm.css";
+
+
 
 
 const InfoForm = (props) => {
@@ -8,6 +11,11 @@ const InfoForm = (props) => {
     props.onChange(e);
   }
 
+  const fullName = useSelector((state) => state.signUp.fullName);
+  const year = useSelector((state) => state.signUp.year);
+  const major = useSelector((state) => state.signUp.major);
+  const campus = useSelector((state) => state.signUp.campus);
+
   // TODO: fix value/onChange for all input fields
   return(
     <form>
@@ -15,10 +23,11 @@ const InfoForm = (props) => {
         <label>Full Name</label>
         <input className="sign-up-detail" 
               type="text"
-              name="first-name" 
+              name="fullName" 
               placeholder=" E.g. John Doe"
-              value={props.test123}
+              value={fullName}
               onChange={handleChange}>
+              
         </input>
       </div>
 
@@ -28,6 +37,7 @@ const InfoForm = (props) => {
               type="text"
               name="year" 
               placeholder=" E.g. Sophomore"
+              value={year}
               onChange={handleChange}>
         </input>
       </div>
@@ -38,6 +48,7 @@ const InfoForm = (props) => {
               type="text"
               name="major" 
               placeholder=" E.g. Bioengineering"
+              value={major}
               onChange={handleChange}>
         </input>
       </div>
@@ -48,6 +59,7 @@ const InfoForm = (props) => {
               type="text"
               name="campus" 
               placeholder=" E.g. Seattle, Tacoma, Bothell"
+              value={campus}
               onChange={handleChange}>
         </input>
       </div>

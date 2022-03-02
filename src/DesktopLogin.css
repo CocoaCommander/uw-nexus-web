@@ -175,3 +175,11 @@ h2.right-pane-seperator span {
   padding: 0 10px;
   font-size: 12px;
 }
+
+.ssn {
+  width: 400px;
+  height: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20%;
+}

@@ -3,6 +3,7 @@ import ProjectListItem from "../components/ProjectListItem";
 import "../DesktopLogin.css";
 import logo from "../assets/Logo.png";
 import landingImage from "../assets/manyPpl.png";
+import ssn from "../assets/ssn.PNG"
 
 
 
@@ -69,8 +70,10 @@ const DesktopLogin = () => {
               <p>Don't have an account? <a className="sign-up" href="https://www.google.com">Sign Up Now</a>
               </p>
             </div>
+            <img src={ssn} className="ssn"></img>
 
-            <div className="right-pane-center">
+            
+            {/* <div className="right-pane-center">
 
               <div className="right-pane-third-auth">
                 <div className="third-auth-child">
@@ -110,7 +113,7 @@ const DesktopLogin = () => {
                 <p className="error-msg">{errorMsg}</p>
               </div>
               <button className="login-button" type="submit" onClick={(e) => {handleSignIn(e)}}>Login</button>
-            </div>
+            </div> */}
 
             {/* <div className="copyright">
               <p>Copyright &copy; NEXUS UW 2020.</p>
