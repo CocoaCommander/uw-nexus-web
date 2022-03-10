@@ -1,19 +1,39 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import logo from "../assets/Logo.png";
 import StepProgressBar from 'react-step-progress';
-// import the stylesheets
 import '../custom-react-step-progress.css';
 import "../SignUp.css";
 import InfoForm from "../components/InfoForm/InfoForm";
-import { setCampus, setFullName, setMajor, setYear } from "../redux/signUp/signUpActions";
+import SelectionsGrid from "../components/SelectionsGrid/SelectionsGrid";
+import { setCampus, setFullName, setMajor, setYear, addInterest, removeInterest, addSkill, removeSkill } from "../redux/signUp/signUpActions";
 
 
 
 const SignUp = (props) => {
 
+  const selectionTypes = ["interests", "skills"];
+
+  const interests = ["Software Development", "Automobile Creation",
+  "Design-Hardware", "Professional Communication",
+  "Healthcare", "Environmentalism",
+  "Aerospace", "Data Science",
+  "HTML Coding", "Hackathon",
+  "Manufacturing", "Project Outreach",
+  "Mechanical Design", "Mechatronics",
+  "Biomedical Research", "Business"];
+
+  const skills = ["Computer Aided Design (CAD)", "Printed Circuit Board (PCB) Design", "Finite Element Analysis (FEA)",
+                  "Front-End Software", "Computational Fluid Dynamics (CFD)", "Back-End Software", "MATLAB", "Soldering",
+                  "Python", "Material Selection & Ordering", "Manufacturing - Machine Shop", "Professional Communication",
+                  "Manufacturing - Composite Shop", "Graphic Design", "Manufacturing - 3D Printing", "Web Design",
+                  "Mechanical Design", "Design Prototyping", "Data Analysis", "Usability Testing", "Java", 
+                  "Bill of Material Selection", "JavaScript", "Management - Gantt Chart", "C++", "Management - Kanban",
+                  "Arduino", "Management - SCRUM", "Schematic Software", "HTML/CSS"];
+
   const dispatch = useDispatch();
 
-  const handleChange = (e) => {
+  // handle changes in General Information page
+  const handleFormChange = (e) => {
     let value = e.target.value;
     switch (e.target.name) {
       case "fullName":
@@ -30,19 +50,54 @@ const SignUp = (props) => {
     }
   }
 
+  // handle changes in interest selections in Project Interests Page
+  const handleInterestSelection = (e, selectedOptions) => {
+    let selection = e.target.textContent;
+    console.log(selectedOptions);
+    if (selectedOptions.includes(selection)) {
+      dispatch(removeInterest(selection));
+    } else {
+      dispatch(addInterest(selection));
+    }
+  }
+
+  // handle changes in skill selections in Technical Skills Page
+  const handleSkillSelection = (e, selectedOptions) => {
+    let selection = e.target.textContent;
+    if (selectedOptions.includes(selection)) {
+      dispatch(removeSkill(selection));
+    } else {
+      dispatch(addSkill(selection));
+    }
+  }
+
+  // render content of General Information Page
   const step1Content = (
     <div className="center-pane">
       <div className="sign-up-pane">
           <div className="form-field">
-            <InfoForm onChange={handleChange}>
+            <InfoForm onChange={handleFormChange}>
             </InfoForm>
           </div>
       </div>
     </div>
     )
   
-  const step2Content = <h1>Step 2 Content</h1>;
-  const step3Content = <h1>Step 3 Content</h1>;
+  // render content of Project Interests Page
+  const step2Content = (
+  <div className="center-pane">
+    <p className="interests-subtitle">SELECT UP TO 5 OF YOUR INTERESTS</p>
+    <SelectionsGrid selectionType={selectionTypes[0]} selections={interests} onClick={handleInterestSelection}></SelectionsGrid>
+  </div>
+  )
+
+  // render content of Technical Skills Page
+  const step3Content = (
+    <div className="center-pane">
+    <p className="interests-subtitle">SELECT UP TO 10 OF YOUR SKILLS</p>
+    <SelectionsGrid selectionType={selectionTypes[1]} selections={skills} onClick={handleSkillSelection}></SelectionsGrid>
+  </div>
+  )
   
   // setup step validators, will be called before proceeding to the next step
   function step2Validator() {

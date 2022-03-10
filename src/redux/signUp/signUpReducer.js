@@ -1,4 +1,4 @@
-import { SET_FULL_NAME, SET_YEAR, SET_MAJOR, SET_CAMPUS} from "./signUpTypes";
+import { SET_FULL_NAME, SET_YEAR, SET_MAJOR, SET_CAMPUS, ADD_INTEREST, REMOVE_INTEREST, ADD_SKILL, REMOVE_SKILL} from "./signUpTypes";
 
 
 const initialState = {
@@ -6,6 +6,8 @@ const initialState = {
   year: "",
   major: "",
   campus: "",
+  interests: [],
+  skills: [],
 }
 
 const signUpReducer = (state = initialState, action) => {
@@ -28,6 +30,26 @@ const signUpReducer = (state = initialState, action) => {
     case SET_CAMPUS: return {
       ...state,
       campus: action.payload
+    }
+
+    case ADD_INTEREST: return {
+      ...state,
+      interests: [...state.interests, action.payload]
+    }
+
+    case REMOVE_INTEREST: return {
+      ...state,
+      interests: state.interests.filter((interest) => interest != action.payload),
+    }
+
+    case ADD_SKILL: return {
+      ...state,
+      skills: [...state.skills, action.payload]
+    }
+
+    case REMOVE_SKILL: return {
+      ...state,
+      skills: state.skills.filter((skill) => skill != action.payload),
     }
     
     default: return state;
