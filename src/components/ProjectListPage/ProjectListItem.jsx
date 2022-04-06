@@ -44,6 +44,9 @@ const ProjectListItem = ({
     return (
         <Link to={`/${project._id}`}>
             <div className={"project-list-item-container"}>
+                <div className="project-list-item-header">
+                    <h3>{project.title}</h3>
+                </div>
                 <div className={"project-list-item-stats"}>
                     <div className='stat-item align-to-right'>
                         <TimeIcon className='stat-item-icon'/>
@@ -57,9 +60,6 @@ const ProjectListItem = ({
                         <LocationIcon className='stat-item-icon'/>
                         <p>{project.location}</p>
                     </div>
-                </div>
-                <div className="project-list-item-header">
-                    <h3>{project.title}</h3>
                 </div>
                 <div className="project-list-item-interests">
                     <p>Project Interests:</p>
