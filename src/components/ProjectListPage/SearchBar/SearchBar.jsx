@@ -1,9 +1,12 @@
-import { useEffect } from "react"
-import { ReactComponent as FilterIcon } from '../../../assets/filter-icon.svg'
+import { useEffect, useState } from "react";
+import { ReactComponent as FilterIcon } from '../../../assets/filter-icon.svg';
+import { ReactComponent as SearchIcon } from '../../../assets/icons/search.svg';
 
 const SearchBar = ({
     setQuery
 }) => {
+
+    const [searchBarInFocus, setSearchBarInFocus] = useState(false);
 
     useEffect(() => {
         const handleSearchInput = e => {
@@ -15,6 +18,9 @@ const SearchBar = ({
 
     return (
         <>
+            <i className="search-icon">
+                <SearchIcon />
+            </i>
             <input 
             id="SearchBar" 
             placeholder="Search projects..." 
