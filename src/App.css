@@ -248,6 +248,14 @@ a:link, a:visited, a:hover, a:active{
     padding: 10px;
     width: 13vw;
   }
+
+  .create-project-button {
+    position: relative;
+    background-color: #F05A28;
+    color: white;
+    border-radius: 15px;
+    border: none;
+  }
   
   .create-project-btn-icon {
     width: 100%;
