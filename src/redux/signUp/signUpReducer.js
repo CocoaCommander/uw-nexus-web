@@ -39,7 +39,7 @@ const signUpReducer = (state = initialState, action) => {
 
     case REMOVE_INTEREST: return {
       ...state,
-      interests: state.interests.filter((interest) => interest != action.payload),
+      interests: state.interests.filter((interest) => interest !== action.payload),
     }
 
     case ADD_SKILL: return {
@@ -49,7 +49,7 @@ const signUpReducer = (state = initialState, action) => {
 
     case REMOVE_SKILL: return {
       ...state,
-      skills: state.skills.filter((skill) => skill != action.payload),
+      skills: state.skills.filter((skill) => skill !== action.payload),
     }
     
     default: return state;
