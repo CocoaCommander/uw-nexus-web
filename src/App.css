@@ -1,3 +1,5 @@
+/* Global Styles */
+
 * {
   margin: 0;
   padding: 0;
@@ -46,7 +48,7 @@ a:link, a:visited, a:hover, a:active{
   justify-content: space-between;
 }
 
-.container-item {
+main
   margin-bottom: 10px;
 }
 
@@ -153,7 +155,7 @@ a:link, a:visited, a:hover, a:active{
 }
 
 .small-skill-container {
-  font-size: small;
+  font-size: 10px;
   padding: 4px;
 }
 
@@ -173,10 +175,6 @@ a:link, a:visited, a:hover, a:active{
   margin-bottom: 15px;
   border-width: 1px;
   padding: 10px;
-}
-
-.project-list-detail-page-element {
-  margin-bottom: 10px;
 }
 
 .no-border {

@@ -1,20 +1,26 @@
+import Query from "airtable/lib/query";
 import { useEffect, useState } from "react";
 import { ReactComponent as FilterIcon } from '../../../assets/filter-icon.svg';
 import { ReactComponent as SearchIcon } from '../../../assets/icons/search.svg';
+import { postData } from "../../../logic/getData";
 
 const SearchBar = ({
-    setQuery
+    setListOfProjectData,
+    setIsLoading
 }) => {
 
-    const [searchBarInFocus, setSearchBarInFocus] = useState(false);
+search-bar-logic
+    const SEARCH_ENDPOINT = "http://localhost:3100/api/project/search"
+
 
     useEffect(() => {
-        const handleSearchInput = e => {
-            setQuery(e.target.value);
-        }
         const searchBarElement = document.getElementById("SearchBar");
-        searchBarElement.addEventListener('input', handleSearchInput);
-    }, [setQuery]);
+        searchBarElement.addEventListener('keydown', e => {
+            if (e.code === 'Enter') {
+                postData(setIsLoading, setListOfProjectData, SEARCH_ENDPOINT, searchBarElement.value);
+            }
+        })
+    }, [])
 
     return (
         <>
