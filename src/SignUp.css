@@ -1,0 +1,114 @@
+.desktop-container {
+  background-color: white;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+  margin-top: 1%;
+  margin-left: 3%;
+}
+
+.sign-up-pane {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  height: 100%;
+}
+
+form {
+  height: 50%;
+}
+
+.form-field {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  display: block;
+}
+.center-pane {
+  margin-top: 3%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.interests-subtitle {
+  color: #757575;
+  font-weight: bold;
+  text-align: center;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  margin-top: 1%;
+  justify-content: space-evenly;
+  width: 75%;
+}
+
+.selection {
+  display: flex;
+  flex-direction: column;
+  flex: 40% 0 0;
+  height: 50px;
+  border: solid 1px black;
+  color: #757575;
+}
+
+.selection-text {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 5%;
+}
+
+.selected {
+  display: flex;
+  flex-direction: column;
+  flex: 40% 0 0;
+  height: 50px;
+  border: solid 1px black;
+  background-color: #f05a28;
+  color: white;
+}
+
+._53Ji7 {
+  width: 100%;
+}
+
+.login-button {
+  border: solid 2px black;
+  color: black;
+  border-radius: 5px;
+  background-color: white;
+  height: 30%;
+  width: 100px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.login-button:hover {
+  background-color: #f05a28;
+  color: white;
+  font-weight: bold;
+  border: solid 0px;
+}
+
+.buttonsWrapper {
+  display: inline-flex;
+  width: 100%;
+  margin-bottom: 5%;
+}
