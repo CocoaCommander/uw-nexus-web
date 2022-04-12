@@ -9,7 +9,9 @@ const SearchBar = ({
     setIsLoading
 }) => {
 
+search-bar-logic
     const SEARCH_ENDPOINT = "http://localhost:3100/api/project/search"
+
 
     useEffect(() => {
         const searchBarElement = document.getElementById("SearchBar");

@@ -20,6 +20,13 @@ const ProjectListPage = () => {
         console.log(listOfProjectData);
     }, [listOfProjectData]);
 
+    useEffect(() => {
+        const reactToWindowResize = () => {
+            window.innerWidth <= 450 ? setIsMobile(true) : setIsMobile(false)
+        }
+        window.addEventListener('resize', reactToWindowResize);
+    })
+
     return (
         <div className="project-list-page">
             <div className="create-project-btn-project-search-container">
