@@ -1,5 +1,4 @@
-import Query from "airtable/lib/query";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { ReactComponent as FilterIcon } from '../../../assets/filter-icon.svg';
 import { ReactComponent as SearchIcon } from '../../../assets/icons/search.svg';
 import { postData } from "../../../logic/getData";
