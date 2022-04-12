@@ -15,14 +15,6 @@ html {
   margin-right: 10%;
 }
 
-.flex {
-  display: flex;
-}
-
-.jc-space-between {
-  justify-content: space-between;
-}
-
 .project-list-and-filter-container {
   display: none;
 }
@@ -56,7 +48,7 @@ a:link, a:visited, a:hover, a:active{
   justify-content: space-between;
 }
 
-.container-item {
+.container-item, .project-list-detail-page-element {
   margin-bottom: 10px;
 }
 
@@ -163,7 +155,7 @@ a:link, a:visited, a:hover, a:active{
 }
 
 .small-skill-container {
-  font-size: small;
+  font-size: 10px;
   padding: 4px;
 }
 
@@ -183,10 +175,6 @@ a:link, a:visited, a:hover, a:active{
   margin-bottom: 15px;
   border-width: 1px;
   padding: 10px;
-}
-
-.project-list-detail-page-element {
-  margin-bottom: 10px;
 }
 
 .no-border {

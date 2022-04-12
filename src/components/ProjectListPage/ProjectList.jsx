@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 import getData from "../../logic/getData";
 import ProjectListItem from "./ProjectListItem";
 
-const ProjectList = () => {
-    const [listOfProjectData, setListOfProjectData] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+const ProjectList = ({
+    listOfProjectData,
+    setListOfProjectData,
+    isLoading,
+    setIsLoading
+}) => {
 
     const ALL_PROJECTS = "http://localhost:3100/api/project/allProjects"
 

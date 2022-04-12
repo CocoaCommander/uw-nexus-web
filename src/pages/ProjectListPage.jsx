@@ -5,15 +5,20 @@ import ProjectList from "../components/ProjectListPage/ProjectList";
 import SearchBar from "../components/ProjectListPage/SearchBar/SearchBar";
 
 const ProjectListPage = () => {
+    const [isLoading, setIsLoading] = useState(false);
+    const [listOfProjectData, setListOfProjectData] = useState([]);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 450);
-    const [query, setQuery] = useState("");
 
     useEffect(() => {
         const reactToWindowResize = () => {
             window.innerWidth <= 450 ? setIsMobile(true) : setIsMobile(false)
         }
         window.addEventListener('resize', reactToWindowResize);
-    })
+    });
+
+    useEffect(() => {
+        console.log(listOfProjectData);
+    }, [listOfProjectData]);
 
     return (
         <div className="project-list-page">
@@ -22,7 +27,9 @@ const ProjectListPage = () => {
                     <CreateProjectButton isMobile={isMobile}/>
                 </div>
                 <div className="container-item search-bar-container">
-                    <SearchBar query={query} setQuery={setQuery} />
+                    <SearchBar 
+                        setListOfProjectData={setListOfProjectData}
+                        setIsLoading={setIsLoading} />
                 </div>
             </div>
             <div className="project-list-and-filter-container">
@@ -34,7 +41,11 @@ const ProjectListPage = () => {
                 }
 
                 <div className="container-item">
-                    <ProjectList />     
+                    <ProjectList 
+                        listOfProjectData={listOfProjectData} 
+                        setListOfProjectData={setListOfProjectData}
+                        isLoading={isLoading}
+                        setIsLoading={setIsLoading} />     
                 </div>
             </div>
         </div>
