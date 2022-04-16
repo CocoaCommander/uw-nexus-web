@@ -10,10 +10,12 @@ const App = () => {
   return (
     <>
       <Header />
-      <Routes>
-        <Route path="/" element={<ProjectListPage />} />
-        <Route path=':projectId' element={<ProjectListDetail />} />
-      </Routes>
+      <div className='app'>
+        <Routes>
+          <Route path="/" element={<ProjectListPage />} />
+          <Route path=':projectId' element={<ProjectListDetail />} />
+        </Routes>
+      </div>
     </>
 
   );

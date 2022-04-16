@@ -33,19 +33,19 @@ const ProjectListPage = () => {
                 <div className="container-item">
                     <CreateProjectButton isMobile={isMobile}/>
                 </div>
-                <div className="container-item search-bar-container">
+                {/* <div className="container-item search-bar-container"> */}
                     <SearchBar 
                         setListOfProjectData={setListOfProjectData}
                         setIsLoading={setIsLoading} />
-                </div>
+                {/* </div> */}
             </div>
             <div className="project-list-and-filter-container">
-                {
+                {/* {
                     !isMobile && 
                 <div className="container-item">
                     <ProjectFilters />
                 </div>
-                }
+                } */}
 
                 <div className="container-item">
                     <ProjectList 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import getData from "../../logic/getData";
 import ProjectListItem from "./ProjectListItem";
 
@@ -17,6 +17,14 @@ const ProjectList = ({
 
     if (isLoading) {
         return <p>Loading...</p>
+    }
+
+    if (listOfProjectData.length === 0) {
+        return (
+            <div>
+                No Projects Found.
+            </div>
+        )
     }
 
     return (
