@@ -1,0 +1,62 @@
+.body {
+    background-color: white;
+    padding: 40pxt;
+}
+
+.minorButtons {
+    display: flex;
+    padding-right: 40;
+    padding-left: 40;
+}
+
+.button1 {
+    display: flex;
+    color: darkorange;
+    text-align: center;
+    size: 400px;
+    border-radius: 15px;
+}
+
+.button2 {
+    display: flex;
+    color: goldenrod;
+    text-align: center;
+    size: 400px;
+    border-radius: 15px;
+}
+
+.button3 {
+    display: flex;
+    color: tomato;
+    text-align: center;
+    size: 400px;
+    border-radius: 15px;
+}
+
+.italics {
+    font-style: italic;
+    text-align: center;
+}
+
+.text-large {
+    font-size: 400pxt;
+    text-align: center;
+    display: flex;
+    font-display: flex;
+}
+
+.text-medium {
+    font-size: 80pxt;
+    text-align: center;
+}
+
+.text-smaller {
+    font-size: 60pxt;
+    text-align: center;
+}
+
+.button-wrapper {
+    align-items: center;
+    text-align: center;
+    display: flex;
+}

@@ -42,7 +42,7 @@ const ProjectListItem = ({
     });
     
     return (
-        <Link to={`/${project._id}`}>
+        <Link to={`/projects/${project._id}`}>
             <div className={"project-list-item-container"}>
 
                 <div className='project-list-item-top-row'>
