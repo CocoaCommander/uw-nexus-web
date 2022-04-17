@@ -92,6 +92,9 @@ const SignUp = (props) => {
         break;
       case "campus":
         dispatch(setCampus(value));
+        break;
+      default:
+        break;
     }
   }
 
@@ -246,7 +249,7 @@ const SignUp = (props) => {
 
     return (
       <div className="desktop-container">
-        <img className="logo" src={logo}></img>
+        <img className="logo" src={logo} alt="Nexus Logo"></img>
         <StepProgressBar
               startingStep={0}
               onSubmit={onFormSubmit}
