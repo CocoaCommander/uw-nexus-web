@@ -5,6 +5,7 @@ import ProjectListDetail from './pages/ProjectListDetail';
 import ProjectListPage from './pages/ProjectListPage';
 import Home from './pages/Home';
 import { useEffect } from 'react';
+import CreateProject from './pages/CreateProject';
 
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path='/projects' element={<ProjectListPage />} />
           <Route path='/projects/:projectId' element={<ProjectListDetail />} />
+          <Route path='/createProject' element={<CreateProject />} />
         </Routes>
       </div>
     </>

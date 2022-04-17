@@ -24,7 +24,7 @@ const Home = () => {
                     </div>
                     <div className="home-card">
                         <div className="home-card-item home-card-label">Looking to recruit for your own project?</div>
-                        <Link to={"/"}>
+                        <Link to={"/createProject"}>
                             <div className="home-card-item home-button create-project">Create Your Project</div>
                         </Link>
                     </div>
@@ -54,12 +54,12 @@ const Home = () => {
                             Find Projects
                         </div>
                     </Link>
-                    <Link to={"/"}>
+                    <Link to={"/createProject"}>
                         <div className="footer-link-text">
                                 Recruit Team
                         </div>
                     </Link>
-                    <Link to={"/"}>
+                    <Link to={"/createProject"}>
                     <   div className="footer-link-text">
                             Post a Project
                         </div>

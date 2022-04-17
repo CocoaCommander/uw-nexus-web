@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ProjectListItem from "../components/ProjectListItem";
+
 import "../CreateUser.css";
 import logo from "../assets/Logo.png";
 import landingImage from "../assets/manyPpl.png";
