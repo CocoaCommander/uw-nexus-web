@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
 import DesktopLogin from './pages/DesktopLogin';
 import SignUp from './pages/SignUp';
 import CreateProject from './pages/CreateProject';
@@ -16,7 +17,9 @@ import store from './redux/store';
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
-      <CreateProject />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </React.StrictMode>    
   </Provider>,
   document.getElementById('root')

@@ -1,59 +1,30 @@
-import { useEffect, useState } from "react";
-import ProjectListItem from "../components/ProjectListItem";
-
-const PLPColOne = () => {
-    return (
-        <>
-            <button>Create a project</button>
-            <div>
-                <h3>All Projects</h3>
-                <p>Favorites</p>
-                <p>Your Projects</p>
-            </div>
-        </>
-    )
-}
-
-const PLPColTwo = () => {
-    const [projectListData, setProjectListData] = useState([]);
-
-    useEffect(() => {
-        fetch("./ProjectListItem_testData.json")
-        .then(res => res.json())
-        .then(data => {
-            setProjectListData(data);
-        })
-    }, [])
-
-    return (
-        <>
-            <p>Search Bar</p>
-            {projectListData.map(
-                element => <ProjectListItem 
-                            key={element.id} 
-                            id={element.id} 
-                            name={element.name}
-                            time={element.time}
-                            size={element.size}
-                            location={element.location}
-                            interests={element.interests}
-                            positions={element.positions}
-                            />
-                            )}
-        </>
-    );
-}
+import { useState } from "react";
+import CreateProjectButton from "../components/ProjectListPage/CreateProjectButton";
+import ProjectFilters from "../components/ProjectListPage/ProjectFilters";
+import ProjectList from "../components/ProjectListPage/ProjectList";
+import SearchBar from "../components/ProjectListPage/SearchBar/SearchBar";
 
 const ProjectListPage = () => {
 
+    const [query, setQuery] = useState("");
 
     return (
-        <div className="plp-container">
-            <div className="plp-col">
-                <PLPColOne/>
+        <div className="project-list-page">
+            <div className="create-project-btn-project-search-container">
+                <div className="container-item">
+                    <CreateProjectButton />
+                </div>
+                <div className="container-item search-bar-container">
+                    <SearchBar query={query} setQuery={setQuery} />
+                </div>
             </div>
-            <div className="plp-col">
-                <PLPColTwo />
+            <div className="project-list-and-filter-container">
+                <div className="container-item">
+                    <ProjectFilters />
+                </div>
+                <div className="container-item">
+                    <ProjectList />     
+                </div>
             </div>
         </div>
     );
