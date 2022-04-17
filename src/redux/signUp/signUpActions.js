@@ -1,5 +1,5 @@
-import { SET_FULL_NAME, SET_YEAR, SET_MAJOR, SET_CAMPUS, ADD_INTEREST, REMOVE_INTEREST, ADD_SKILL, REMOVE_SKILL} from "./signUpTypes";
-
+import { SET_FULL_NAME, SET_YEAR, SET_MAJOR, SET_CAMPUS, ADD_INTEREST, REMOVE_INTEREST, ADD_SKILL, REMOVE_SKILL, ADD_RESUME} from "./signUpTypes";
+import { SET_EMAIL, SET_PASSWORD } from "./signUpTypes";
 export const setFullName = (fullName) => {
   return {
     type: SET_FULL_NAME,
@@ -53,5 +53,26 @@ export const removeSkill = (skill) => {
   return {
     type: REMOVE_SKILL,
     payload: skill
+  }
+}
+
+export const addResume = (resume) => {
+  return {
+    type: ADD_RESUME,
+    payload: resume
+  }
+}
+
+export const setEmail = (email) => {
+  return {
+    type: SET_EMAIL,
+    payload: email
+  }
+}
+
+export const setPassword = (pass) => {
+  return {
+    type: SET_PASSWORD,
+    payload: pass
   }
 }

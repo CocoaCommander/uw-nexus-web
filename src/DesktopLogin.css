@@ -117,6 +117,7 @@ form {
   background-color: white;
   height: 30%;
   font-weight: bold;
+  width: 100%;
 }
 
 .login-button:hover {
@@ -156,6 +157,7 @@ form {
   color: red;
   text-align: center;
   margin-top: 5%;
+  margin-bottom: 1%;
 }
 
 /*

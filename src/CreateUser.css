@@ -1,0 +1,52 @@
+.nexus-title {
+  font-size: 60px;
+  font-weight: bold;
+  padding: 2%;
+}
+
+.main-pane {
+  margin-top: 3%;
+  margin-bottom: 3%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  width: 40%;
+  flex-direction: column;
+  align-items: center;
+  border: solid 5px;
+  border-radius: 5px;
+  border-image-source: linear-gradient(to left, #f05a28, orange);
+  border-image-slice: 1;
+  border-width: 5px;
+}
+
+.create-user-form {
+  width: 70%;
+}
+
+.create-user-field {
+  flex-basis: 10%;
+  margin: 2%;
+  padding: 1.5%;
+}
+
+.create-acc-button {
+  color: #f05a28;
+  background-color: white;
+  height: 10%;
+  font-weight: bold;
+  width: 70%;
+  border: solid 2px;
+  border-radius: 5px;
+  border-image-source: linear-gradient(to left, #f05a28, black);
+  border-image-slice: 1;
+  border-width: 5px;
+  margin-bottom: 5%;
+}
+
+.create-acc-button:hover {
+  background-color: #f05a28;
+  color: white;
+  font-weight: bold;
+  border: solid 0px;
+}

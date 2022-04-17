@@ -4,6 +4,7 @@ import "../DesktopLogin.css";
 import logo from "../assets/Logo.png";
 import landingImage from "../assets/manyPpl.png";
 import ssn from "../assets/ssn.PNG"
+import Cookies from 'universal-cookie';
 
 
 
@@ -12,6 +13,17 @@ const DesktopLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
+
+  useEffect(() => {
+    var cookie = new Cookies();
+    const jwt_token = cookie.get("jwt_token");
+    if (jwt_token) {
+      console.log("already authenticated!");
+      // redirect or something
+    } else {
+      console.log("not authenticated");
+    }
+  }, []);
 
 
 
@@ -41,7 +53,9 @@ const DesktopLogin = () => {
     let response = await fetch(url, requestOptions);
     if (response.ok) {
       const session = await response.json();
-      localStorage.setItem(session.id, session.accessToken);
+      const cookie = new Cookies();
+      cookie.set('jwt_token', session.accessToken);
+      console.log(cookie);
     } else {
       if (response.status == 404 || 400) {
         setErrorMsg("Invalid email and/or password. Please try again.");
@@ -70,10 +84,10 @@ const DesktopLogin = () => {
               <p>Don't have an account? <a className="sign-up" href="https://www.google.com">Sign Up Now</a>
               </p>
             </div>
-            <img src={ssn} className="ssn"></img>
+            {/* <img src={ssn} className="ssn"></img> */}
 
             
-            {/* <div className="right-pane-center">
+            <div className="right-pane-center">
 
               <div className="right-pane-third-auth">
                 <div className="third-auth-child">
@@ -92,10 +106,10 @@ const DesktopLogin = () => {
               <h2 className="right-pane-seperator"><span>Or</span></h2>
 
               <div className="right-pane-sign-in">
-                <p className="sign-in">Sign in</p>
-                <form>
-                  <div className="form-field">
-                    <input className="email-textbox" 
+                 <p className="sign-in">Sign in</p>
+                 <form>
+                   <div className="form-field">
+                     <input className="email-textbox" 
                            type="text"
                            name="e-mail" 
                            placeholder=" Email Address"
@@ -113,7 +127,7 @@ const DesktopLogin = () => {
                 <p className="error-msg">{errorMsg}</p>
               </div>
               <button className="login-button" type="submit" onClick={(e) => {handleSignIn(e)}}>Login</button>
-            </div> */}
+            </div>
 
             {/* <div className="copyright">
               <p>Copyright &copy; NEXUS UW 2020.</p>
