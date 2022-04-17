@@ -1,0 +1,68 @@
+
+
+.all-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.proj-done-img {
+  margin-top: 5%;
+  width: 500px;
+  height: 500px;
+}
+
+.publish-button, .review-button {
+  border-radius: 10px;
+  background-color: white;
+  font-weight: bold;
+  width: 200px;
+  height: 30%;
+  font-size: 18px;
+} 
+
+.publish-button {
+  border: #8A8888 2px solid;
+  color: #8A8888;
+}
+
+.publish-button:hover {
+  background-color: #8A8888;
+  color: white;
+}
+
+.review-button:hover {
+  background-color: #f05a28;
+  color: white;
+}
+
+.review-button {
+  border: solid 2px #f05a28;
+  color: #f05a28;
+}
+
+
+.finish-title {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.finish-subtitle {
+  color: #333333;
+  margin-top: 2%;
+}
+
+.finish-buttons-wrapper {
+  width: 40%;
+  margin-top: 2%;
+  height: 200px;
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.review-proj-text {
+  text-align: center;
+}

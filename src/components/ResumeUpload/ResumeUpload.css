@@ -1,0 +1,94 @@
+.main-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  
+}
+
+.resources-container {
+  width: 20%;
+  height: 500px;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  border: solid 1px black;
+  padding: 20px;
+}
+
+.resources-tab {
+  margin-left: 8%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+}
+
+.resources-title {
+  color: #333333;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.resource-subtitle {
+  font-weight: bold;
+  color: #2D2D2D;
+}
+
+.resource-text {
+  font-weight: bold;
+  color: #f05a28
+}
+
+.resources-option:hover {
+  background-color: #E7E5E5;
+
+}
+
+
+.res-container {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  height: 500px;
+
+}
+
+.res-option {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: solid #F27348 1px;
+  color: #f05a28;
+  font-size: 20px;
+  font-weight: bold;
+  width: 70%;
+  flex-basis: 10%;
+  text-align: center;
+  margin-top: 2%;
+  border-radius: 10px;
+}
+
+
+.res-title {
+  color: black;
+  font-size: 30px;
+}
+
+.resume-text {
+  font-size: large;
+  color: #757575;
+  font-weight: bold;
+  width: 70%;
+  margin-bottom: 10%;
+}
+
+.file-button {
+  display: none;
+}
+
+.e-pdf {
+  width: 600px;
+  height: 600px;
+}
