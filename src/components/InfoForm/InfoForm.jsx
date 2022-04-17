@@ -12,13 +12,15 @@ const InfoForm = (props) => {
   }
 
   const fullName = useSelector((state) => state.signUp.fullName);
+  const email = useSelector((state) => state.signUp.email);
+  const password = useSelector((state) => state.signUp.password);
   const year = useSelector((state) => state.signUp.year);
   const major = useSelector((state) => state.signUp.major);
   const campus = useSelector((state) => state.signUp.campus);
 
-  // TODO: fix value/onChange for all input fields
   return(
     <form>
+
       <div className="field-set">
         <label>Full Name</label>
         <input className="sign-up-detail" 
@@ -33,13 +35,17 @@ const InfoForm = (props) => {
 
       <div className="field-set">
         <label>Year</label>
-        <input className="sign-up-detail" 
-              type="text"
-              name="year" 
-              placeholder=" E.g. Sophomore"
-              value={year}
-              onChange={handleChange}>
-        </input>
+        <select className="sign-up-detail"
+                name="year"
+                id="select-year"
+                onChange={handleChange}
+                >
+          <option value="" disabled selected>E.g. Sophomore</option>
+          <option value="Freshman">Freshman</option>
+          <option value="Sophomore">Sophomore</option>
+          <option value="Junior">Junior</option>
+          <option value="Senior">Senior</option>
+        </select>
       </div>
 
       <div className="field-set">
@@ -55,13 +61,16 @@ const InfoForm = (props) => {
 
       <div className="field-set">
         <label>University of Washington Campus</label>
-        <input className="sign-up-detail" 
-              type="text"
-              name="campus" 
-              placeholder=" E.g. Seattle, Tacoma, Bothell"
-              value={campus}
-              onChange={handleChange}>
-        </input>
+        <select className="sign-up-detail"
+                name="campus"
+                id="select-campus"
+                onChange={handleChange}
+                >
+          <option value="" disabled selected>E.g. Seattle, Tacoma, Bothell</option>
+          <option value="Seattle">Seattle</option>
+          <option value="Tacoma">Tacoma</option>
+          <option value="Bothell">Bothell</option>
+        </select>
       </div>
     </form>
   )

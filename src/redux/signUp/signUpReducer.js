@@ -1,13 +1,16 @@
-import { SET_FULL_NAME, SET_YEAR, SET_MAJOR, SET_CAMPUS, ADD_INTEREST, REMOVE_INTEREST, ADD_SKILL, REMOVE_SKILL} from "./signUpTypes";
-
+import { SET_FULL_NAME, SET_YEAR, SET_MAJOR, SET_CAMPUS, ADD_INTEREST, REMOVE_INTEREST, ADD_SKILL, REMOVE_SKILL, ADD_RESUME} from "./signUpTypes";
+import { SET_EMAIL, SET_PASSWORD } from "./signUpTypes";
 
 const initialState = {
   fullName: "",
+  email: "",
+  password: "",
   year: "",
   major: "",
   campus: "",
   interests: [],
   skills: [],
+  resume: null,
 }
 
 const signUpReducer = (state = initialState, action) => {
@@ -51,6 +54,23 @@ const signUpReducer = (state = initialState, action) => {
       ...state,
       skills: state.skills.filter((skill) => skill !== action.payload),
     }
+
+    case ADD_RESUME: return {
+      ...state,
+      resume: action.payload,
+    }
+
+    case SET_EMAIL: return {
+      ...state,
+      email: action.payload,
+    }
+
+    case SET_PASSWORD: return {
+      ...state,
+      password: action.payload,
+    }
+
+    
     
     default: return state;
   }

@@ -1,34 +1,71 @@
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import logo from "../assets/Logo.png";
 import StepProgressBar from 'react-step-progress';
 import '../custom-react-step-progress.css';
 import "../SignUp.css";
 import InfoForm from "../components/InfoForm/InfoForm";
 import SelectionsGrid from "../components/SelectionsGrid/SelectionsGrid";
-import { setCampus, setFullName, setMajor, setYear, addInterest, removeInterest, addSkill, removeSkill } from "../redux/signUp/signUpActions";
-
+import ResumeUpload from "../components/ResumeUpload/ResumeUpload";
+import ReviewPage from "../components/ReviewPage/ReviewPage";
+import { setCampus, setFullName, setMajor, setYear, addInterest, removeInterest, addSkill, removeSkill, setEmail, setPassword } from "../redux/signUp/signUpActions";
+import { setInterestsList, setSkillsList } from "../redux/serverContent/serverContentActions";
+import Cookies from 'universal-cookie';
 
 
 const SignUp = (props) => {
 
+
+  const fullName = useSelector((state) => state.signUp.fullName);
+  const email = useSelector((state) => state.signUp.email);
+  const password = useSelector((state) => state.signUp.password);
+  const year = useSelector((state) => state.signUp.year);
+  const major = useSelector((state) => state.signUp.major);
+  const campus = useSelector((state) => state.signUp.campus);
+  const chosen_interests = useSelector((state) => state.signUp.interests);
+  const chosen_skills = useSelector((state) => state.signUp.skills);
+  const resume = useSelector((state) => state.signUp.resume);
+
   const selectionTypes = ["interests", "skills"];
 
-  const interests = ["Software Development", "Automobile Creation",
-  "Design-Hardware", "Professional Communication",
-  "Healthcare", "Environmentalism",
-  "Aerospace", "Data Science",
-  "HTML Coding", "Hackathon",
-  "Manufacturing", "Project Outreach",
-  "Mechanical Design", "Mechatronics",
-  "Biomedical Research", "Business"];
+  const interests = useSelector((state) => state.serverContent.interestsList);
+  const skills = useSelector((state) => state.serverContent.skillsList);
 
-  const skills = ["Computer Aided Design (CAD)", "Printed Circuit Board (PCB) Design", "Finite Element Analysis (FEA)",
-                  "Front-End Software", "Computational Fluid Dynamics (CFD)", "Back-End Software", "MATLAB", "Soldering",
-                  "Python", "Material Selection & Ordering", "Manufacturing - Machine Shop", "Professional Communication",
-                  "Manufacturing - Composite Shop", "Graphic Design", "Manufacturing - 3D Printing", "Web Design",
-                  "Mechanical Design", "Design Prototyping", "Data Analysis", "Usability Testing", "Java", 
-                  "Bill of Material Selection", "JavaScript", "Management - Gantt Chart", "C++", "Management - Kanban",
-                  "Arduino", "Management - SCRUM", "Schematic Software", "HTML/CSS"];
+  const [accessToken, setAccessToken] = useState(null);
+
+
+  useEffect(() => {
+
+    const url1 = "http://localhost:3100/api/constants/interests";
+    const url2 = "http://localhost:3100/api/constants/skills";
+
+    var cookie = new Cookies();
+    const jwt_token = cookie.get("jwt_token");
+    if (jwt_token) {
+      setAccessToken(jwt_token);
+      console.log("already authenticated!");
+      // redirect or something
+    } else {
+      console.log("not authenticated");
+    }
+
+    fetch(url1)
+    .then(response => response.json())
+    .then(data => dispatch(setInterestsList(data)))
+    .catch((error) => {
+      console.log(error);
+    })
+
+    fetch(url2)
+    .then(response => response.json())
+    .then(data => dispatch(setSkillsList(data)))
+    .catch((error) => {
+      console.log(error);
+    })
+
+  }, []);
+
+  console.log("rerendering");
 
   const dispatch = useDispatch();
 
@@ -39,6 +76,14 @@ const SignUp = (props) => {
       case "fullName":
         dispatch(setFullName(value));
         break;
+      case "email":
+        dispatch(setEmail(value));
+        break;
+
+      case "password":
+        dispatch(setPassword(value));
+        break;
+      
       case "year":
         dispatch(setYear(value));
         break;
@@ -79,6 +124,7 @@ const SignUp = (props) => {
     <div className="center-pane">
       <div className="sign-up-pane">
           <div className="form-field">
+            {console.log(interests)}
             <InfoForm onChange={handleFormChange}>
             </InfoForm>
           </div>
@@ -101,7 +147,20 @@ const SignUp = (props) => {
     <SelectionsGrid selectionType={selectionTypes[1]} selections={skills} onClick={handleSkillSelection}></SelectionsGrid>
   </div>
   )
+
+  // render content of Resume Upload Page
+  const step4Content = (
+    <div className="center-pane">
+      <ResumeUpload></ResumeUpload>
+    </div>
+  )
   
+  // render content of Review Page 
+  const step5Content = (
+    <div className="center-pane">
+      <ReviewPage></ReviewPage>
+    </div>
+  )
   // setup step validators, will be called before proceeding to the next step
   function step2Validator() {
     return true;
@@ -110,11 +169,82 @@ const SignUp = (props) => {
   function step3Validator() {
     return true;
   }
+
+  function step4Validator() {
+    return true;
+  }
+
+  async function createUser(firstName, lastName) {
+
+    const url = "http://localhost:3100/api/auth/createUser";
+
+    let credentials = {
+      "email": email,
+      "password": password,
+      "firstName": firstName,
+      "lastName": lastName
+    }
+
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(credentials)
+  };
+
+    const response = await fetch(url, requestOptions);
+    console.log("cred response = " + response);
+
+    return response;
+  }
   
-  function onFormSubmit() {
-    // handle the submit logic here
-    // This function will be executed at the last step
-    // when the submit button (next button in the previous steps) is pressed
+  async function onFormSubmit() {
+
+    const url = "http://localhost:3100/api/profile/createProfile";
+
+    const names = fullName.split(" ");
+
+    const firstName = names[0];
+    let lastName = names[1];
+    for (let i = 2; i < names.length; i++) {
+      lastName += " " + names[i];
+    }
+
+    const cred_response = await createUser(firstName, lastName);
+
+    let signUpInfo = new FormData();
+
+    signUpInfo.append("first_name", firstName);
+    signUpInfo.append("last_name", lastName);
+    signUpInfo.append("education", JSON.stringify({
+      "campus": campus,
+      "year": year,
+      "major": major
+    }));
+    signUpInfo.append("interests", JSON.stringify(chosen_interests));
+    signUpInfo.append("skills", JSON.stringify(chosen_skills));
+    signUpInfo.append("bio", "Loren Ipsum");
+    signUpInfo.append("file", resume);
+
+
+    //JSON.stringify(signUpInfo);
+    const requestOptions = {
+      method: 'POST',
+      headers: {'Authorization': `Bearer ${accessToken}` },
+      body: signUpInfo
+  };
+
+  let response = await fetch(url, requestOptions);
+
+  if (response.ok) {
+    console.log("success");
+  } else {
+    console.log(response.statusText);
+  }
+  console.log(response);
+
+
+
+    
   }
 
     return (
@@ -124,8 +254,8 @@ const SignUp = (props) => {
               startingStep={0}
               onSubmit={onFormSubmit}
               stepClass="step-indicator-wrapper"
-              primaryBtnClass="login-button"
-              secondaryBtnClass="login-button"
+              primaryBtnClass="login-button-sign-up"
+              secondaryBtnClass="login-button-sign-up"
               buttonWrapperClass="buttonsWrapper"
               labelClass="progress-labels"
 
@@ -149,14 +279,14 @@ const SignUp = (props) => {
                 },
                 {
                   label: 'Resume',
-                  name: 'step 3',
-                  content: step3Content,
-                  validator: step3Validator
+                  name: 'step 4',
+                  content: step4Content,
+                  validator: step4Validator
                 },
                 {
                   label: 'Review',
-                  name: 'step 3',
-                  content: step3Content,
+                  name: 'step 5',
+                  content: step5Content,
                   validator: step3Validator
                 }
               ]}

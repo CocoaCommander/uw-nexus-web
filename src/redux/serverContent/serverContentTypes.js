@@ -1,0 +1,2 @@
+export const SET_INTERESTS_LIST = "SET_INTERESTS_LIST";
+export const SET_SKILLS_LIST = "SET_SKILLS_LIST";
