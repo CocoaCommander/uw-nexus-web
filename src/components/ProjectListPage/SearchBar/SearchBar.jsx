@@ -1,38 +1,39 @@
 import { useEffect } from "react";
 import { ReactComponent as FilterIcon } from '../../../assets/filter-icon.svg';
 import { ReactComponent as SearchIcon } from '../../../assets/icons/search.svg';
-import { postData } from "../../../logic/getData";
+import getData, { postData } from "../../../logic/getData";
 
 const SearchBar = ({
     setListOfProjectData,
     setIsLoading
 }) => {
 
-search-bar-logic
-    const SEARCH_ENDPOINT = "http://localhost:3100/api/project/search"
+    const SEARCH_ENDPOINT = "http://localhost:3100/api/project/search?search_term="
 
 
     useEffect(() => {
         const searchBarElement = document.getElementById("SearchBar");
         searchBarElement.addEventListener('keydown', e => {
             if (e.code === 'Enter') {
-                postData(setIsLoading, setListOfProjectData, SEARCH_ENDPOINT, searchBarElement.value);
+                const searchTerm = SEARCH_ENDPOINT + searchBarElement.value;
+                console.log(searchTerm);
+                getData(setIsLoading, searchTerm, setListOfProjectData);
             }
         })
     }, [])
 
     return (
         <>
-            <i className="search-icon">
+            {/* <i className="search-icon">
                 <SearchIcon />
-            </i>
+            </i> */}
             <input 
             id="SearchBar" 
             placeholder="Search projects..." 
             className="search-bar"/>
-            <div className="search-filter-icon">
+            {/* <div className="search-filter-icon">
                 <FilterIcon />
-            </div>
+            </div> */}
             
         </>
     )
