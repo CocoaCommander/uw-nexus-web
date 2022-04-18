@@ -13,7 +13,7 @@ const ProjectListDetail = () => {
 
     let params = useParams();
 
-    const THIS_PROJECT = "http://localhost:3100/api/project/" + params.projectId
+    const THIS_PROJECT = `${process.env.REACT_APP_API_URL}/api/project/${params.projectId}`;
 
     console.log(params.projectId);
 

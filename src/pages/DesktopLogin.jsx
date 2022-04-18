@@ -28,7 +28,7 @@ const DesktopLogin = () => {
 
   const handleSignIn = async(e) => {
     e.preventDefault();
-    const url = "http://localhost:3100/api/auth/signIn";
+    const url = `${process.env.REACT_APP_API_URL}/api/auth/signIn`;
 
     if (email.length == 0) {
       setErrorMsg("Please enter your email.");

@@ -36,8 +36,8 @@ const SignUp = (props) => {
 
   useEffect(() => {
 
-    const url1 = "http://localhost:3100/api/constants/interests";
-    const url2 = "http://localhost:3100/api/constants/skills";
+    const url1 = `${process.env.REACT_APP_API_URL}/api/constants/interests`;
+    const url2 = `${process.env.REACT_APP_API_URL}/api/constants/skills`;
 
     var cookie = new Cookies();
     const jwt_token = cookie.get("jwt_token");
@@ -176,7 +176,7 @@ const SignUp = (props) => {
 
   async function createUser(firstName, lastName) {
 
-    const url = "http://localhost:3100/api/auth/createUser";
+    const url = `${process.env.REACT_APP_API_URL}/api/auth/createUser`;
 
     let credentials = {
       "email": email,
@@ -199,7 +199,7 @@ const SignUp = (props) => {
   
   async function onFormSubmit() {
 
-    const url = "http://localhost:3100/api/profile/createProfile";
+    const url = `${process.env.REACT_APP_API_URL}/api/profile/createProfile`;
 
     const names = fullName.split(" ");
 
