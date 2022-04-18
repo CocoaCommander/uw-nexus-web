@@ -31,7 +31,7 @@ const CreateUser = () => {
 
   const handleSignUp = async(e) => {
     e.preventDefault();
-    const url = "http://localhost:3100/api/auth/createUser";
+    const url = `${process.env.REACT_APP_API_URL}/api/auth/createUser`;
 
     if (email.length == 0) {
       setErrorMsg("Please enter your email.");

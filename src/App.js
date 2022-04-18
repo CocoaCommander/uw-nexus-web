@@ -4,15 +4,22 @@ import Header from './components/Global/Header';
 import ProjectListDetail from './pages/ProjectListDetail';
 import ProjectListPage from './pages/ProjectListPage';
 import Home from './pages/Home';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import CreateProject from './pages/CreateProject';
 
 
 const App = () => {
 
+  console.log(process.env.PORT);
+
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 450);
+
   useEffect(() => {
-    console.log(window.innerWidth);
-  }, [])
+    const reactToWindowResize = () => {
+      setIsMobile(window.innerWidth <= 450);
+    }
+    window.addEventListener('resize', reactToWindowResize);
+  });
 
   return (
     <>
@@ -22,7 +29,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path='/projects' element={<ProjectListPage />} />
           <Route path='/projects/:projectId' element={<ProjectListDetail />} />
-          <Route path='/createProject' element={<CreateProject />} />
+          <Route path='/createProject' element={<CreateProject isMobile={isMobile}/>} />
         </Routes>
       </div>
     </>

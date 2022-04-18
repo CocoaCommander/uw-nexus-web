@@ -19,8 +19,7 @@ import questionIcon from "../assets/icons/question-icon.png";
 import ProjectRoles from "../components/ProjectRoles/ProjectRoles";
 
 
-const CreateProject = (props) => {
-
+const CreateProject = isMobile => {
 
   const projName = useSelector((state) => state.createProj.projName);
   const projDesc = useSelector((state) => state.createProj.projDesc);
@@ -184,6 +183,14 @@ const CreateProject = (props) => {
   
   async function onFormSubmit() {
 
+  }
+
+  if (isMobile) {
+    return (
+      <>
+        You can only create a project on desktop.
+      </>
+    )
   }
 
     return (

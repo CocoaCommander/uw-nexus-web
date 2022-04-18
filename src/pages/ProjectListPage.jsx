@@ -10,13 +10,6 @@ const ProjectListPage = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 450);
 
     useEffect(() => {
-        const reactToWindowResize = () => {
-            window.innerWidth <= 450 ? setIsMobile(true) : setIsMobile(false)
-        }
-        window.addEventListener('resize', reactToWindowResize);
-    });
-
-    useEffect(() => {
         console.log(listOfProjectData);
     }, [listOfProjectData]);
 

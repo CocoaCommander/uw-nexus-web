@@ -9,7 +9,9 @@ const ProjectList = ({
     setIsLoading
 }) => {
 
-    const ALL_PROJECTS = "http://localhost:3100/api/project/allProjects"
+    const ALL_PROJECTS = `${process.env.REACT_APP_API_URL}/api/project/allProjects`;
+
+    console.log(ALL_PROJECTS);
 
     useEffect(() => {
         getData(setIsLoading, ALL_PROJECTS, setListOfProjectData);

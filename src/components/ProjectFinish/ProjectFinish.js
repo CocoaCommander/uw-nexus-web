@@ -45,7 +45,7 @@ const ProjectFinish = (props) => {
   }
 
   const publishProject = async () => {
-    const url = "http://localhost:3100/api/project/createProject";
+    const url = `${process.env.REACT_APP_API_URL}/api/project/createProject`;
 
     let createProjInfo = new FormData();
 

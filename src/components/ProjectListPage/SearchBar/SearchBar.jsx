@@ -8,7 +8,7 @@ const SearchBar = ({
     setIsLoading
 }) => {
 
-    const SEARCH_ENDPOINT = "http://localhost:3100/api/project/search?search_term="
+    const SEARCH_ENDPOINT = `${process.env.REACT_APP_API_URL}/api/project/search?search_term=`;
 
 
     useEffect(() => {
