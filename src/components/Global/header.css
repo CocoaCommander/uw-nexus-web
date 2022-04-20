@@ -4,11 +4,6 @@
     align-items: center;
 }
 
-.logo {
-    text-align: center;
-    height: 100px;
-}
-
 img {
     max-height: 100%;
 }
@@ -67,10 +62,18 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 /* Individual item */
 .bm-item {
+    font-size: 16px;
     display: inline-block;
+    color: black;
 }
 
 /* Styling of overlay */
 .bm-overlay {
     background: rgba(0, 0, 0, 0.3);
+}
+
+@media only screen and (min-width: 700px) {
+    .bm-item {
+        font-size: 20px;
+    }
 }

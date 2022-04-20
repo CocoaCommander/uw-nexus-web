@@ -13,10 +13,11 @@ const Header = () => {
                 <Link to={"/"}>Profile</Link>
             </Menu>
             <div className="flex">
-                <div className="logo">
-                    <img src={logo} alt="Nexus Logo" className="logo"/>
-                </div>
-
+                <Link to={"/"}>
+                    <div className="logo-header">
+                        <img src={logo} alt="Nexus Logo" className=""/>
+                    </div>
+                </Link>
             </div>
         </>
     );

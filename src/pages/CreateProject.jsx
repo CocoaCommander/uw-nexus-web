@@ -19,8 +19,10 @@ import questionIcon from "../assets/icons/question-icon.png";
 import ProjectRoles from "../components/ProjectRoles/ProjectRoles";
 
 
-const CreateProject = isMobile => {
-
+const CreateProject = ({
+  isMobile
+ }) => {
+  console.log(isMobile);
   const projName = useSelector((state) => state.createProj.projName);
   const projDesc = useSelector((state) => state.createProj.projDesc);
   const teamSize = useSelector((state) => state.createProj.teamSize);

@@ -8,8 +8,7 @@
 }
 
 a:link, a:visited, a:hover, a:active{ 
-  text-decoration: none; 
-  color: black;
+  text-decoration: none;
 }
 
 html {
@@ -71,7 +70,7 @@ html {
   position: absolute;
   z-index: -1;
   left: 0;
-  width: 120%;
+  width: 100%;
   height: 20rem;
   background-image: url(./assets/footer.png);
   background-repeat: no-repeat;
@@ -89,14 +88,15 @@ hr {
   border-color: white;
 }
 
+.logo-header {
+  width: 100px;
+  height: 100px;
+}
+
 .logo-small {
   height: 30px;
   width: 30px;
   padding-right: 10px;
-}
-
-.project-list-and-filter-container {
-  display: none;
 }
 
 h1, h2 {
@@ -172,6 +172,11 @@ h2 {
 
 h3 {
   font-size: 20px;
+  color: black;
+}
+
+p {
+  color: black;
 }
 
 .project-list-page {
@@ -188,6 +193,14 @@ main {
 
 .project-list-and-filter-container {
   width: 100%;
+}
+
+.create-project-button-project-search-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .create-project-button {
@@ -210,6 +223,11 @@ main {
   font-size: 16px;
   padding: 5px;
   background-color: #F6F6F8;
+}
+
+.search-bar {
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 .search-filter-icon {
@@ -284,7 +302,7 @@ main {
   align-items: center;
   border-style: solid;
   border-width: 1px;
-  border-radius: 15px;
+  border-radius: 10px;
   border-color: #E8E6E6;
   padding: 5px;
   margin-top: 10px;
@@ -330,11 +348,59 @@ main {
 }
 
 @media only screen and (min-width: 700px) {
-    .divider {
+    .divider, .footer {
       height: 30rem;
+      overflow: visible;
     }
 
     .home-card-container {
       display: flex;
+    }
+
+    .create-project-button {
+      position: static;
+      text-align: center;
+      background-color: #F05A28;
+      color: white;
+      font-weight: bold;
+      border-radius: 15px;
+      border: none;
+    }
+
+    .create-project-btn-project-search-container {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 30px;
+    }
+
+    a.create-project-button {
+      flex-grow: 1;
+      margin-right: 5px;
+    }
+
+    .create-project-button-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    input#SearchBar {
+      flex-grow: 2;
+      margin-bottom: 0;
+      margin-left: 10px;
+    }
+
+    .project-list {
+      width: 100%;
+    }
+
+    .project-list-item-container {
+      padding: 20px;
+    }
+
+    .project-list-item-top-row {
+      display: flex;
+      justify-content: space-between;
     }
 }

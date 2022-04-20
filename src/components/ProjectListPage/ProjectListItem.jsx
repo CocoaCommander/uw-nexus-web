@@ -44,7 +44,6 @@ const ProjectListItem = ({
     return (
         <Link to={`/projects/${project._id}`}>
             <div className={"project-list-item-container"}>
-
                 <div className='project-list-item-top-row'>
                     <div className="project-list-item-header">
                         <h3>{project.title}</h3>

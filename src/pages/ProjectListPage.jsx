@@ -40,13 +40,11 @@ const ProjectListPage = () => {
                 </div>
                 } */}
 
-                <div className="container-item">
-                    <ProjectList 
-                        listOfProjectData={listOfProjectData} 
-                        setListOfProjectData={setListOfProjectData}
-                        isLoading={isLoading}
-                        setIsLoading={setIsLoading} />     
-                </div>
+                <ProjectList 
+                    listOfProjectData={listOfProjectData} 
+                    setListOfProjectData={setListOfProjectData}
+                    isLoading={isLoading}
+                    setIsLoading={setIsLoading} />     
             </div>
         </div>
     );

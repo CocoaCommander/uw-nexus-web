@@ -10,8 +10,6 @@ import CreateProject from './pages/CreateProject';
 
 const App = () => {
 
-  console.log(process.env.PORT);
-
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 450);
 
   useEffect(() => {
