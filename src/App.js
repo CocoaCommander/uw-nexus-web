@@ -21,7 +21,7 @@ const App = () => {
 
   return (
     <>
-      <Header />
+      <Header isMobile={isMobile}/>
       <div className='app'>
         <Routes>
           <Route path="/" element={<Home />} />
