@@ -12,8 +12,13 @@ const CustomDropdown = (props) => {
   }
 
   const renderOptions = () => {
-    const options = props.options.map((option) => <option key={option} value={option}>{option}</option>)
+    let options = [];
+    for (let i = 0; i < props.options.length; i++) {
+      options.push(<option key={props.options[i]} value={props.values[i]}>{props.options[i]}</option>)
+    }
+    // const options = props.options.map((option) => <option key={option} value={option}>{option}</option>)
     options.unshift(<option value="" disabled selected>{props.placeholder}</option>)
+    console.log(options);
     return options;
   }
 

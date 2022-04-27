@@ -30,13 +30,14 @@ const ProjectRoles = (props) => {
 
 
   const updateRolls = () => {
-    if (currentRole.length > 0 && currentSkills.length > 0 && resp.length >> 0) {
+    if (currentRole.length > 0 && currentSkills.length > 0 && resp.length > 0) {
       const newRole = {
         role: currentRole,
         skill: currentSkills,
         responsibilities: resp,
       }
-  
+
+      props.onAdd();
       dispatch(addRole(newRole));
       setRole("");
       setSkills([]);
@@ -76,13 +77,13 @@ const ProjectRoles = (props) => {
       return roles.map((role) => 
       <div className="roles-block">
 
-        <div className="role-container">
+        <div className="role-name-container">
           <label className="roles-label">Role</label>
           <p className="role-name">{role.role}</p>
         </div>
 
 
-        <div className="selections-container">
+        <div className="selections-container-cp">
           {renderRoleSkill(role)}
         </div>
 
@@ -102,7 +103,10 @@ const ProjectRoles = (props) => {
   return(
     <div className="center-pane">
 
-    {renderRoles(projRoles)}
+    <div className="roles-container">
+      {renderRoles(projRoles)}
+    </div>
+
       
 
 
@@ -110,12 +114,12 @@ const ProjectRoles = (props) => {
 
     <p className="project-name-header">What kind of people are you looking for?</p>
 
-    <div className="field-set">
+    <div className="field-set-cp">
         <label className="roles-label">Roles</label>
         <CustomTextBox value={currentRole} onChange={(e) => {setRole(e.target.value)}} className="sign-up-detail" placeholder={"Roles that you are looking for"}></CustomTextBox>
       </div>
 
-      <div className="field-set">
+      <div className="field-set-cp">
         <label className="roles-label">Skillsets / Tools</label>
         <CustomTextBox value={skill}
                        className="sign-up-detail"
@@ -124,7 +128,7 @@ const ProjectRoles = (props) => {
                        onKeyPress={handleSkillAddition}></CustomTextBox>
       </div>
 
-      <div className="selections-container">
+      <div className="selections-container-categ">
           {renderSkills(currentSkills)}
         </div>
 

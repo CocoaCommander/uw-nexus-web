@@ -1,5 +1,5 @@
 import { SET_PROJECT_NAME, SET_PROJECT_DESC, SET_TEAM_SIZE, SET_PROJECT_DUR, SET_PROJECT_STATUS, ADD_PROJECT_CATEG, ADD_LOCATION } from "./createProjectTypes";
-import { ADD_ROLE } from "./createProjectTypes";
+import { ADD_ROLE, CLEAR_DATA } from "./createProjectTypes";
 
 const initialState = {
   projName: "",
@@ -54,6 +54,9 @@ const createProjectReducer = (state = initialState, action) => {
       location: action.payload
     }
 
+    case CLEAR_DATA:
+      return initialState;
+      
     default: return state;
   }
 }
