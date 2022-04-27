@@ -38,7 +38,7 @@ const ProjectCategories = (props) => {
           <img className={"question-icon"} src={questionIcon}></img>
         </div>
         <p className="project-page-subtitle">(max 5 categories)</p>
-        <div className="selections-container">
+        <div className="selections-container-categ">
           {renderCategories(projCategs)}
         </div>
       

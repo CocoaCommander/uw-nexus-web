@@ -8,3 +8,4 @@ export const ADD_ROLE = "ADD_ROLE";
 export const ADD_SKILL = "ADD_SKILL";
 export const ADD_RESPONSIBILITY = "ADD_RESPONSIBILITY";
 export const ADD_LOCATION = "ADD_LOCATION";
+export const CLEAR_DATA = "CLEAR_DATA";

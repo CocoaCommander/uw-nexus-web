@@ -1,4 +1,4 @@
-import { SET_PROJECT_NAME, SET_PROJECT_DESC, SET_TEAM_SIZE, SET_PROJECT_DUR, SET_PROJECT_STATUS, ADD_PROJECT_CATEG } from "./createProjectTypes";
+import { SET_PROJECT_NAME, SET_PROJECT_DESC, SET_TEAM_SIZE, SET_PROJECT_DUR, SET_PROJECT_STATUS, ADD_PROJECT_CATEG, CLEAR_DATA } from "./createProjectTypes";
 import { ADD_ROLE, ADD_SKILL, ADD_RESPONSIBILITY, ADD_LOCATION } from "./createProjectTypes";
 
 export const setProjName = (projName) => {
@@ -68,5 +68,11 @@ export const addLocation = (location) => {
   return {
     type: ADD_LOCATION,
     payload: location
+  }
+}
+
+export const clearAll = () => {
+  return {
+    type: CLEAR_DATA,
   }
 }

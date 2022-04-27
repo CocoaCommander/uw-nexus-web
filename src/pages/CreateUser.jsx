@@ -5,6 +5,7 @@ import logo from "../assets/Logo.png";
 import landingImage from "../assets/manyPpl.png";
 import ssn from "../assets/ssn.PNG"
 import Cookies from 'universal-cookie';
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -15,6 +16,8 @@ const CreateUser = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     var cookie = new Cookies();
@@ -69,6 +72,8 @@ const CreateUser = () => {
         setErrorMsg("Something went wrong on our end. Please try again later.");
       }
     }
+
+    navigate('/login');
   }
 
 
