@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import logo from "../assets/Logo.png";
 import StepProgressBar from 'react-step-progress';
@@ -11,6 +11,7 @@ import ReviewPage from "../components/ReviewPage/ReviewPage";
 import { setCampus, setFullName, setMajor, setYear, addInterest, removeInterest, addSkill, removeSkill, setEmail, setPassword } from "../redux/signUp/signUpActions";
 import { setInterestsList, setSkillsList } from "../redux/serverContent/serverContentActions";
 import Cookies from 'universal-cookie';
+import { useNavigate } from "react-router-dom";
 
 
 const SignUp = (props) => {
@@ -28,10 +29,22 @@ const SignUp = (props) => {
 
   const selectionTypes = ["interests", "skills"];
 
+  const navigate = useNavigate();
+
   const interests = useSelector((state) => state.serverContent.interestsList);
   const skills = useSelector((state) => state.serverContent.skillsList);
 
   const [accessToken, setAccessToken] = useState(null);
+
+  const name_valid = useRef(fullName);
+  const year_valid = useRef(year);
+  const major_valid = useRef(major);
+  const campus_valid = useRef(campus);
+
+  name_valid.current = fullName;
+  year_valid.current = year;
+  major_valid.current = major;
+  campus_valid.current = campus;
 
 
   useEffect(() => {
@@ -67,6 +80,7 @@ const SignUp = (props) => {
 
   console.log("rerendering");
 
+
   const dispatch = useDispatch();
 
   // handle changes in General Information page
@@ -101,11 +115,14 @@ const SignUp = (props) => {
   // handle changes in interest selections in Project Interests Page
   const handleInterestSelection = (e, selectedOptions) => {
     let selection = e.target.textContent;
-    console.log(selectedOptions);
+
     if (selectedOptions.includes(selection)) {
       dispatch(removeInterest(selection));
     } else {
-      dispatch(addInterest(selection));
+      if (selectedOptions.length < 5) {
+        dispatch(addInterest(selection));
+      }
+      
     }
   }
 
@@ -115,36 +132,44 @@ const SignUp = (props) => {
     if (selectedOptions.includes(selection)) {
       dispatch(removeSkill(selection));
     } else {
-      dispatch(addSkill(selection));
+      if (selectedOptions.length < 10) {
+        dispatch(addSkill(selection));
+      }
+
     }
   }
 
   // render content of General Information Page
   const step1Content = (
-    <div className="center-pane">
-      <div className="sign-up-pane">
-          <div className="form-field">
-            {console.log(interests)}
-            <InfoForm onChange={handleFormChange}>
-            </InfoForm>
-          </div>
+    <div className="vertical-center-signup">
+      <div className="center-pane">
+        <div className="sign-up-pane">
+            <div className="form-field">
+              <InfoForm onChange={handleFormChange}>
+              </InfoForm>
+            </div>
+        </div>
       </div>
     </div>
     )
   
   // render content of Project Interests Page
   const step2Content = (
-  <div className="center-pane">
-    <p className="interests-subtitle">SELECT UP TO 5 OF YOUR INTERESTS</p>
-    <SelectionsGrid selectionType={selectionTypes[0]} selections={interests} onClick={handleInterestSelection}></SelectionsGrid>
+  <div className="vertical-center-signup">
+    <div className="center-pane">
+      <p className="interests-subtitle">SELECT UP TO 5 OF YOUR INTERESTS</p>
+      <SelectionsGrid selectionType={selectionTypes[0]} onClick={handleInterestSelection}></SelectionsGrid>
+    </div>
   </div>
   )
 
   // render content of Technical Skills Page
   const step3Content = (
-    <div className="center-pane">
-    <p className="interests-subtitle">SELECT UP TO 10 OF YOUR SKILLS</p>
-    <SelectionsGrid selectionType={selectionTypes[1]} selections={skills} onClick={handleSkillSelection}></SelectionsGrid>
+    <div className="vertical-center-signup">
+      <div className="center-pane">
+        <p className="interests-subtitle">SELECT UP TO 10 OF YOUR SKILLS</p>
+        <SelectionsGrid selectionType={selectionTypes[1]} onClick={handleSkillSelection}></SelectionsGrid>
+      </div>
   </div>
   )
 
@@ -157,8 +182,10 @@ const SignUp = (props) => {
   
   // render content of Review Page 
   const step5Content = (
-    <div className="center-pane">
-      <ReviewPage></ReviewPage>
+    <div className="vertical-center-signup">
+      <div className="center-pane">
+        <ReviewPage></ReviewPage>
+      </div>
     </div>
   )
   // setup step validators, will be called before proceeding to the next step
@@ -174,28 +201,28 @@ const SignUp = (props) => {
     return true;
   }
 
-  async function createUser(firstName, lastName) {
+  // async function createUser(firstName, lastName) {
 
-    const url = `${process.env.REACT_APP_API_URL}/api/auth/createUser`;
+  //   const url = `${process.env.REACT_APP_API_URL}/api/auth/createUser`;
 
-    let credentials = {
-      "email": email,
-      "password": password,
-      "firstName": firstName,
-      "lastName": lastName
-    }
+  //   let credentials = {
+  //     "email": email,
+  //     "password": password,
+  //     "firstName": firstName,
+  //     "lastName": lastName
+  //   }
 
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(credentials)
-  };
+  //   const requestOptions = {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify(credentials)
+  // };
 
-    const response = await fetch(url, requestOptions);
-    console.log("cred response = " + response);
+  //   const response = await fetch(url, requestOptions);
+  //   console.log("cred response = " + response);
 
-    return response;
-  }
+  //   return response;
+  // }
   
   async function onFormSubmit() {
 
@@ -209,7 +236,7 @@ const SignUp = (props) => {
       lastName += " " + names[i];
     }
 
-    const cred_response = await createUser(firstName, lastName);
+    // const cred_response = await createUser(firstName, lastName);
 
     let signUpInfo = new FormData();
 
@@ -237,6 +264,7 @@ const SignUp = (props) => {
 
   if (response.ok) {
     console.log("success");
+    navigate('/welcomePage');
   } else {
     console.log(response.statusText);
   }
@@ -263,7 +291,10 @@ const SignUp = (props) => {
                 {
                   label: 'General Information',
                   name: 'step 1',
-                  content: step1Content
+                  content: step1Content,
+                  validator: () => {
+                    console.log(name_valid.current);
+                    return name_valid.current.length > 0 && year_valid.current.length > 0 && major_valid.current.length > 0 && campus_valid.current.length >> 0}
                 },
                 {
                   label: 'Project Interests',

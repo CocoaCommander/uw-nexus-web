@@ -24,6 +24,7 @@ const ProjectFinish = (props) => {
 
   const navigate = useNavigate();
 
+
   useEffect(() => {
 
     var cookie = new Cookies();
@@ -35,8 +36,6 @@ const ProjectFinish = (props) => {
       console.log("not authenticated");
     }
   }, []);
-
-  const a_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxODgxNWFlOWZiNjQ3YTBmYzM1NmNmNiIsImlhdCI6MTY1MDk2NjI4MywiZXhwIjoxNjUxMDUyNjgzfQ.Fk7dmv4U71ABXPl4aaa3HZL0Nzr82aDK3VizubjoG-g";
 
 
   // redirect user to whatever screen comes up after creating a project
@@ -71,7 +70,7 @@ const ProjectFinish = (props) => {
     console.log("sending " + createProjInfo);
     const requestOptions = {
       method: 'POST',
-      headers: {'Authorization': `Bearer ${a_token}`, 'Content-Type': 'application/json'},
+      headers: {'Authorization': `Bearer ${accessToken}`, 'Content-Type': 'application/json'},
       body: JSON.stringify(createProjInfo)
     };
 

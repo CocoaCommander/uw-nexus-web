@@ -39,6 +39,7 @@ const CreateProject = ({
   s2_valid.current = projDesc;
 
   const [cstyle, setStyle] = useState("desktop-container");
+  
 
   const navigate = useNavigate();
   const [errorMsg, setErrorMsg] = useState("");
@@ -47,7 +48,18 @@ const CreateProject = ({
 
   const [accessToken, setAccessToken] = useState(null);
 
-  console.log("rerendering");
+  useEffect(() => {
+    var cookie = new Cookies();
+    const jwt_token = cookie.get("jwt_token");
+    if (jwt_token) {
+      setAccessToken(jwt_token);
+      console.log("already authenticated!");
+      // redirect or something
+    } else {
+      console.log("not authenticated");
+    }
+
+  }, []);
 
   const dispatch = useDispatch();
 
