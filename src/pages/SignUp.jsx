@@ -283,7 +283,7 @@ const SignUp = (props) => {
               onSubmit={onFormSubmit}
               stepClass="step-indicator-wrapper"
               primaryBtnClass="login-button-sign-up"
-              secondaryBtnClass="login-button-sign-up"
+              secondaryBtnClass="back-button-proj"
               buttonWrapperClass="buttonsWrapper"
               labelClass="progress-labels"
 

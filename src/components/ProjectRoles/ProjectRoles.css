@@ -1,14 +1,34 @@
+.project-name-header-roles {
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  margin-right: 5px;
+}
+
 .selections-container-cp {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
   width: 70%;
-  margin-top: 1%;
+  margin-top: 3%;
 }
 
-.selection-proj-roles {
-  font-size: medium;
+.resp-container {
+  margin-top: 3%;
+}
+
+.selections-skills-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 100%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+.selection-proj-roles, .selection-proj-roles-2 {
   color: #757575;
   border: solid 2px #f05a28;
   border-radius: 10px;
@@ -16,7 +36,6 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  margin: 4px;
   padding-left: 2%;
   padding-right: 2%;
   padding-bottom: 1%;
@@ -24,13 +43,18 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   flex-basis: 15%;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+.selection-proj-roles {
+  margin-top: 4px;
 }
 
 
 .resp-set {
   margin-left: auto;
   margin-right: auto;
-  margin-top: 1%;
   width: 100%;
 }
 
@@ -48,14 +72,19 @@
 
 .roles-label {
   font-weight: bold;
-  color: #333333
+  color: #333333;
+  margin-top: 2%;
 }
 
-.roles-input {
+.roles-input-before, .roles-input-after {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.roles-input-before {
+  margin-top: 5%;
 }
 
 .add-role-text {
@@ -79,7 +108,6 @@
 
 .roles-block {
   display: flex;
-  height: 300px;
   flex-direction: column;
   justify-content: space-evenly;
   width: 50%;

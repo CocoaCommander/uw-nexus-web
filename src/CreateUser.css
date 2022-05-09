@@ -10,7 +10,7 @@
   margin-left: auto;
   margin-right: auto;
   display: flex;
-  width: 40%;
+  width: 90%;
   flex-direction: column;
   align-items: center;
   border: solid 5px;
@@ -49,4 +49,15 @@
   color: white;
   font-weight: bold;
   border: solid 0px;
+}
+
+.center-logo {
+  width: 40%;
+  height: 25%;
+}
+
+@media only screen and (min-width: 1200px) {
+  .main-pane {
+    width: 40%
+  }
 }

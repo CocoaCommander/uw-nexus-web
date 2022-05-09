@@ -98,8 +98,8 @@ label {
 }
 
 .login-button-sign-up {
-  border: solid 2px black;
-  color: black;
+  border: solid 2px #f05a28;
+  color: #f05a28;
   border-radius: 5px;
   background-color: white;
   height: 30%;
@@ -117,7 +117,7 @@ label {
 
 .buttonsWrapper {
   display: inline-flex;
-  width: 87%;
+  width: 80%;
   margin-bottom: 1.5%;
 }
 

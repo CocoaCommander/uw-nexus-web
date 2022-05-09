@@ -3,3 +3,19 @@
   width: 100%;
   padding: 2%;
 }
+
+textarea {
+  resize: none;
+  font-weight: 600;
+}
+
+.textarea-wrapper {
+  position: relative;
+  color: #BBBBBB;
+}
+
+.word-count {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}

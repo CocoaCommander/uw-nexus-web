@@ -150,7 +150,7 @@ const ProjectReview = (props) => {
           <div className="content-body">
             <div className="name-keyword-wrapper">
               <p className="proj-name">{projName}</p>
-              <p className="keywords">Keywords: Lorem, Lorem, Lorem, Lorem</p>
+              <p className="keywords">Keywords: {projCategs.join(",")}</p>
             </div>
 
             <div className="icon-wrapper">

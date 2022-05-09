@@ -21,7 +21,8 @@ const CustomTextBox = (props) => {
           value={text ? text : props.value}
           placeholder={props.placeholder}
           onKeyPress={props.onKeyPress}
-          onChange={props.onChange ? handleChange : () => {}}>
+          onChange={props.onChange ? handleChange : () => {}}
+          maxLength={25}>
     </input>
 
   )

@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import logo from "../assets/Logo.png";
@@ -19,18 +20,38 @@ import questionIcon from "../assets/icons/question-icon.png";
 import ProjectRoles from "../components/ProjectRoles/ProjectRoles";
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
+import ToolTip from "../components/ToolTip/ToolTip";
+import ReactTooltip from "react-tooltip";
 
 
 const CreateProject = ({
   isMobile
  }) => {
-  console.log(isMobile);
+  
   const projName = useSelector((state) => state.createProj.projName);
   const projDesc = useSelector((state) => state.createProj.projDesc);
   const teamSize = useSelector((state) => state.createProj.teamSize);
   const projDur = useSelector((state) => state.createProj.projDur);
   const projStatus = useSelector((state) => state.createProj.projStatus);
   const projCategs = useSelector((state) => state.createProj.projCategs);
+
+
+  const toolTipMsgs = [
+    `Project title helps users understand what the project outcome would be. Good examples are  
+    “Pet Training App Development” and “Local Tree Sustainability Project”`,
+    `Project description helps users understand what the project goals, purposes, and probelm to tackle are. 
+    Other information you can include can be time commitment as as well as your overall project plan.`,
+    `A new project is one that starts from scratch, while an ongoing project means the project already has existing members.`,
+    `Project category helps users understand the field of studies where your project could fall under.
+    Good examples are ‘healthcare’, ‘AI’, ‘politics’, and ‘international studies’.`, 
+    `Project location helps users understand where the location of meetings will be. 
+    Good examples if in person are “HUB 160”, “MEB 123” or if meeting virtually “remote”. `,
+  ];
+
+  const [showToolTip, setToolTip] = useState(false);
+
+  const toolval = useRef(showToolTip);
+  toolval.current = showToolTip;
 
   const s1_valid = useRef(projName);
   s1_valid.current = projName;
@@ -96,15 +117,15 @@ const CreateProject = ({
     let value = e.target.value;
     console.log("selected " + value);
     switch(e.target.name) {
-      case "team-size":
+      case "teamSize":
         dispatch(setTeamSize(value));
         break;
       
-      case "project-duration":
+      case "projDur":
         dispatch(setProjDur(value));
         break;
 
-      case "project-status":
+      case "projStatus":
         dispatch(setProjStatus(value));
         break;
     }
@@ -117,7 +138,16 @@ const CreateProject = ({
       <div className="center-pane">
           <div className="header-icon-wrapper">
             <p className="project-name-header">What is the name of your Project? <span className="asterix"> *</span></p>
-            <img className={"question-icon"} src={questionIcon}></img>
+              <img data-for="main" data-tip={toolTipMsgs[0]} className={"question-icon"} src={questionIcon}></img>
+              <ReactTooltip
+               id="main"
+               className="!important tooltip-text"
+               place="right"
+               type="light"
+               padding={"2px"}
+               border={true}/>
+
+
           </div>
 
           <div className="field-set">
@@ -134,11 +164,24 @@ const CreateProject = ({
       <div className="center-pane">
           <div className="header-icon-wrapper">
             <p className="project-name-header">How would you describe your Project? <span className="asterix"> *</span></p>
-            <img className={"question-icon"} src={questionIcon}></img>
+            <img data-for="desc-tip" data-tip={toolTipMsgs[1]} className={"question-icon"} src={questionIcon}></img>
+            <ReactTooltip
+               id="desc-tip"
+               className="!important tooltip-text"
+               place="right"
+               type="light"
+               padding={"2px"}
+               border={true}/>
           </div>
 
             <div className="field-set">
-              <CustomTextArea className="proj-desc-area" name="projDesc" reducer="createProj" onChange={handleTextboxChange}></CustomTextArea>
+              <CustomTextArea
+                className="proj-desc-area"
+                name="projDesc" 
+                reducer="createProj" 
+                onChange={handleTextboxChange} 
+                placeholder={`E.g. The main goal of our project is to find accessible treatments for people who may be unable to seek current treatment options either due to cost, distance, or other socioeconomic factors. We will be begin by analyzing data that provides us with this information and start brainstorming possible solutions to this issue. For this project we are looking at 4-5 hours  per week done in and outside of meetings.`}>
+              </CustomTextArea>
             </div>
       </div>
     </div>
@@ -152,30 +195,45 @@ const CreateProject = ({
         <div className="drop-downs-container">
           <CustomDropdown 
                           id="team-size"
-                          name="team-size"
-                          options={["Micro (1-5)", "Small (6-10)", "Medium (11-15)", "Large (15+)"]}
-                          values={["Micro", "Small", "Medium", "Large"]}
+                          name="teamSize"
+                          reducer="createProj"
+                          options={["Small (6-10)", "Medium (11-15)", "Large (15+)"]}
+                          values={["Small", "Medium", "Large"]}
                           placeholder={"Team Size"}
                           onChange={handleSelectionChange}>
           </CustomDropdown>
 
           <CustomDropdown 
                           id="project-duration"
-                          name="project-duration"
+                          name="projDur"
+                          reducer="createProj"
                           options={["1-3 months", "3-6 months", "6-9 months", "More than 9 months"]}
                           values={["1-3 months", "3-6 months", "6-9 months", "More than 9 months"]}
                           placeholder={"Project Duration"}
                           onChange={handleSelectionChange}>
           </CustomDropdown>
 
-          <CustomDropdown 
-                          id="project-status"
-                          name="project-status"
-                          options={["New Project", "Ongoing Project"]}
-                          values={["New Project", "Ongoing Project"]}
-                          placeholder={"Project Status"}
-                          onChange={handleSelectionChange}>
-          </CustomDropdown>
+            <div className="dropdown-wrapper">
+
+              <CustomDropdown 
+                              id="project-status"
+                              name="projStatus"
+                              reducer="createProj"
+                              options={["New Project", "Ongoing Project"]}
+                              values={["New Project", "Ongoing Project"]}
+                              placeholder={"Project Status"}
+                              onChange={handleSelectionChange}>
+              </CustomDropdown>
+
+              <img data-for="desc-tip" data-tip={toolTipMsgs[2]} className={"question-icon"} src={questionIcon}></img>
+                <ReactTooltip
+                  id="desc-tip"
+                  className="!important tooltip-text"
+                  place="right"
+                  type="light"
+                  padding={"2px"}
+                  border={true}/>
+          </div>
         </div>
     </div>
     </div>
@@ -185,7 +243,7 @@ const CreateProject = ({
   // render content of Resume Upload Page
   const step4Content = (
     <div className="vertical-center">
-      <ProjectCategories></ProjectCategories>
+      <ProjectCategories tooltip={toolTipMsgs[3]}></ProjectCategories>
     </div>
 
   )
@@ -204,7 +262,15 @@ const CreateProject = ({
       <div className="center-pane">
         <div className="header-icon-wrapper">
           <p className="project-name-header">Where would your meetings be located?</p>
-          <img className={"question-icon"} src={questionIcon}></img>
+          <img data-for="loc-tip" data-tip={toolTipMsgs[4]} className={"question-icon"} src={questionIcon}></img>
+          <ReactTooltip
+               id="loc-tip"
+               className="!important tooltip-text"
+               place="right"
+               type="light"
+               padding={"2px"}
+               border={true}/>
+          
         </div>
         <p className="project-page-subtitle">(If the location is irregular, you may enter a general location such as the University of Washington.)</p>
 
@@ -258,7 +324,7 @@ const CreateProject = ({
               onSubmit={onFormSubmit}
               stepClass="step-indicator-wrapper"
               primaryBtnClass="login-button-proj"
-              secondaryBtnClass="login-button-proj"
+              secondaryBtnClass="back-button-proj"
               buttonWrapperClass="buttonsWrapper-cp"
               labelClass="progress-labels"
               submitBtnName="Next"

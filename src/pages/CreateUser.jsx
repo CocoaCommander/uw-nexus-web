@@ -80,7 +80,7 @@ const CreateUser = () => {
     return (
         <div className="desktop-container">
           <div className="main-pane">
-            <img src={logo}></img>
+            <img className="center-logo" src={logo}></img>
 
             <p className="sign-in">Sign Up</p>
                  <form className="create-user-form">

@@ -1,6 +1,6 @@
 .desktop-container-cp {
   background-color: white;
-  height: 110vh;
+  height: 115vh;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -52,8 +52,8 @@ label {
 }
 
 .login-button-proj {
-  border: solid 2px black;
-  color: black;
+  border: solid 2px #f05a28;
+  color: #f05a28;
   border-radius: 5px;
   background-color: white;
   height: 30%;
@@ -69,9 +69,27 @@ label {
   border: solid 0px;
 }
 
+.back-button-proj {
+  border: solid 2px #8A8888;
+  color: #8A8888;
+  border-radius: 5px;
+  background-color: white;
+  height: 30%;
+  width: 100px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.back-button-proj:hover {
+  background-color: #8A8888;
+  color: white;
+  font-weight: bold;
+  border: solid 0px;
+}
+
 .buttonsWrapper-cp {
   display: inline-flex;
-  width: 87%;
+  width: 83%;
   margin-bottom: 1.5%;
 }
 
@@ -86,7 +104,7 @@ label {
   width: 100%;
   display: flex;
   flex-direction: column;
-  max-height: 30vh;
+  max-height: 15vh;
   overflow: auto;
 }
 
@@ -111,13 +129,13 @@ label {
 .header-icon-wrapper {
   display: flex;
   flex-direction: row;
-  width: 50%;
 }
 
 .question-icon {
   width: 20px;
   height: 20px;
   align-self: center;
+  margin-left: 10px;
 }
 
 .desktop-container-roles {
@@ -132,7 +150,7 @@ label {
 .field-set-cp {
     margin-left: auto;
     margin-right: auto;
-    margin-top: 2%;
+    margin-top: 1%;
     width: 100%
 }
 
@@ -162,4 +180,16 @@ label {
 /* set button(top and bottom of the scrollbar) */
 .roles-container::-webkit-scrollbar-button {
   display:none;
+}
+
+.tooltip-text{
+  width: 200px;
+}
+
+.dropdown-wrapper {
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-top: 12px;
 }
