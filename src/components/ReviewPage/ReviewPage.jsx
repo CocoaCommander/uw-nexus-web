@@ -35,9 +35,8 @@ const ReviewPage = (props) => {
 
       <div className="sub-section">
         <div className="subtitle">
-          <img className="edit-icon" src={editIcon}></img>
           <p className="subtitle-text">Sign Up</p>
-          
+          <img className="edit-icon" src={editIcon}></img>
         </div>
         <p className="info-field">Name: {fullName}</p>
         <p className="info-field">Year: {year}</p>
@@ -47,8 +46,8 @@ const ReviewPage = (props) => {
 
       <div className="sub-section">
         <div className="subtitle">
-          <img className="edit-icon" src={editIcon}></img>
           <p className="subtitle-text">Project Interests</p>
+          <img className="edit-icon" src={editIcon}></img>
         </div>
 
         <div className="selections-container">
@@ -59,8 +58,8 @@ const ReviewPage = (props) => {
 
       <div className="sub-section">
         <div className="subtitle">
-          <img className="edit-icon" src={editIcon}></img>
           <p className="subtitle-text">Technical Skills</p>
+          <img className="edit-icon" src={editIcon}></img>
 
         </div>
 
@@ -72,8 +71,8 @@ const ReviewPage = (props) => {
 
       <div className="sub-section">
         <div className="subtitle">
-          <img className="edit-icon" src={editIcon}></img>
           <p className="subtitle-text">Resume</p>
+          <img className="edit-icon" src={editIcon}></img>
 
         </div>
 

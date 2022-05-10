@@ -22,7 +22,7 @@ const InfoForm = (props) => {
     <form>
 
       <div className="field-set">
-        <label>Full Name</label>
+        <label>Full Name <span className="asterix-signup">*</span></label>
         <input className="sign-up-detail" 
               type="text"
               name="fullName" 
@@ -34,7 +34,7 @@ const InfoForm = (props) => {
       </div>
 
       <div className="field-set">
-        <label>Year</label>
+        <label>Year <span className="asterix-signup">*</span></label>
         <select className="sign-up-detail"
                 name="year"
                 id="select-year"
@@ -49,7 +49,7 @@ const InfoForm = (props) => {
       </div>
 
       <div className="field-set">
-        <label>Major / Intended Major</label>
+        <label>Major / Intended Major <span className="asterix-signup">*</span></label>
         <input className="sign-up-detail" 
               type="text"
               name="major" 
@@ -60,7 +60,7 @@ const InfoForm = (props) => {
       </div>
 
       <div className="field-set">
-        <label>University of Washington Campus</label>
+        <label>University of Washington Campus <span className="asterix-signup">*</span></label>
         <select className="sign-up-detail"
                 name="campus"
                 id="select-campus"

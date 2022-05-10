@@ -20,7 +20,7 @@ const ProjectRoles = (props) => {
   const projRoles = useSelector((state) => state.createProj.roles);
 
   const handleSkillAddition = (e) => {
-    if (e.key === 'Enter' && currentSkills.length < 5) {
+    if (e.key === 'Enter' && currentSkills.length < 5 && e.target.value.length > 0) {
       setSkills(prev => {
         return [...prev, e.target.value]
       })
@@ -49,7 +49,7 @@ const ProjectRoles = (props) => {
   
 
   const renderSkills = (skills) => {
-    return skills.map((skill) => <div className="selection-proj-roles">
+    return skills.map((skill) => <div className="selection-proj-roles-2">
       <p>{skill}</p>
     </div>)
   }
@@ -91,7 +91,6 @@ const ProjectRoles = (props) => {
           <label className="roles-label">Responsibilities</label>
           {renderResponsibilities(role.responsibilities)}
         </div>
-
       </div>
     )
 
@@ -110,9 +109,9 @@ const ProjectRoles = (props) => {
       
 
 
-    <div className="roles-input">
+    <div className={projRoles.length > 0 ? "roles-input-after" : "roles-input-before"}>
 
-    <p className="project-name-header">What kind of people are you looking for?</p>
+    <p className="project-name-header-roles">What kind of people are you looking for?</p>
 
     <div className="field-set-cp">
         <label className="roles-label">Roles</label>
@@ -128,7 +127,7 @@ const ProjectRoles = (props) => {
                        onKeyPress={handleSkillAddition}></CustomTextBox>
       </div>
 
-      <div className="selections-container-categ">
+      <div className="selections-skills-container">
           {renderSkills(currentSkills)}
         </div>
 

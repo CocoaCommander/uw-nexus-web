@@ -10,8 +10,11 @@
   height: 50px;
   font-size: 12px;
   padding-left: 5px;
-  font-weight: bold;
   border: solid 1.5px #c4c4c4;
   border-radius: 5px;
   margin-top: 2%;
+}
+
+option {
+  font-size: 14px;
 }

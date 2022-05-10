@@ -23,7 +23,7 @@ const CreateUser = () => {
     var cookie = new Cookies();
     const jwt_token = cookie.get("jwt_token"); // need to check expiry date too
     if (jwt_token) {
-      console.log("already authenticated!");
+      navigate('/projects');
       // redirect or something
     } else {
       console.log("not authenticated");
@@ -80,7 +80,7 @@ const CreateUser = () => {
     return (
         <div className="desktop-container">
           <div className="main-pane">
-            <img src={logo}></img>
+            <img className="center-logo" src={logo}></img>
 
             <p className="sign-in">Sign Up</p>
                  <form className="create-user-form">
@@ -110,7 +110,7 @@ const CreateUser = () => {
                            onChange={(e) => setEmail(e.target.value)}>
                     </input>
                     <input className="create-user-field"
-                           type="text"
+                           type="password"
                            name="password" 
                            placeholder=" Password"
                            value={password}

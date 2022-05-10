@@ -4,6 +4,7 @@ import logo from "../assets/Logo.png";
 import landingImage from "../assets/manyPpl.png";
 import ssn from "../assets/ssn.PNG"
 import Cookies from 'universal-cookie';
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -12,6 +13,8 @@ const DesktopLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     var cookie = new Cookies();
@@ -63,6 +66,7 @@ const DesktopLogin = () => {
       }
     }
 
+    navigate('/projects');
   }
 
 
@@ -115,7 +119,7 @@ const DesktopLogin = () => {
                            onChange={(e) => setEmail(e.target.value)}>
                     </input>
                     <input className="password-textbox"
-                           type="text"
+                           type="password"
                            name="password" 
                            placeholder=" Password"
                            onChange={(e) => setPassword(e.target.value)}></input>

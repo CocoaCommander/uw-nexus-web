@@ -82,12 +82,6 @@ const ResumeUpload = (props) => {
           <p className="res-text">ATTACH</p>
           <input ref={buttonRef} className={"file-button"} type={"file"} onChange={onFileChange}></input>
         </div>
-        <div className="res-option">
-          <p className="res-text">DROPBOX</p>
-        </div>
-        <div className="res-option">
-          <p className="res-text">PASTE</p>
-        </div>
       </div>
 
       {renderPDF()}

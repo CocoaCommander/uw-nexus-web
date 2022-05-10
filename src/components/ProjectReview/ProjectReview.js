@@ -1,10 +1,11 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import logo from "../../assets/Logo.png";
 import personIcon from "../../assets/icons/person-icon.svg";
 import locationIcon from "../../assets/icons/location-icon.svg";
 import timeIcon from "../../assets/icons/time-icon.svg";
 import "./ProjectReview.css";
+import Cookies from 'universal-cookie';
 import { useNavigate } from "react-router-dom";
 import { clearAll } from "../../redux/createProject/createProjectActions";
 
@@ -19,6 +20,22 @@ const ProjectReview = (props) => {
   const projCategs = useSelector((state) => state.createProj.projCategs);
   const location = useSelector((state) => state.createProj.location);
   const projRoles = useSelector((state) => state.createProj.roles);
+
+  const [accessToken, setAccessToken] = useState(null);
+
+  useEffect(() => {
+
+    var cookie = new Cookies();
+    const jwt_token = cookie.get("jwt_token");
+    if (jwt_token) {
+      setAccessToken(jwt_token);
+      console.log("already authenticated!");
+    } else {
+      console.log("not authenticated");
+    }
+  }, []);
+
+
 
   console.log(projRoles);
 
@@ -63,7 +80,7 @@ const ProjectReview = (props) => {
     console.log("sending " + createProjInfo);
     const requestOptions = {
       method: 'POST',
-      headers: {'Authorization': `Bearer ${a_token}`, 'Content-Type': 'application/json'},
+      headers: {'Authorization': `Bearer ${accessToken}`, 'Content-Type': 'application/json'},
       body: JSON.stringify(createProjInfo)
     };
 
@@ -133,7 +150,7 @@ const ProjectReview = (props) => {
           <div className="content-body">
             <div className="name-keyword-wrapper">
               <p className="proj-name">{projName}</p>
-              <p className="keywords">Keywords: Lorem, Lorem, Lorem, Lorem</p>
+              <p className="keywords">Keywords: {projCategs.join(",")}</p>
             </div>
 
             <div className="icon-wrapper">

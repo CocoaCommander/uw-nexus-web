@@ -2,17 +2,19 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  
+  margin-top: 5%;
 }
 
 .resources-container {
   width: 20%;
-  height: 500px;
-  align-self: center;
+  height: 400px;
+  align-self: flex-start;
   display: flex;
   flex-direction: column;
   border: solid 1px black;
   padding: 20px;
+  box-shadow: 2px 2px 5px 5px rgb(214, 214, 214, 1);
+  border-radius: 10px;
 }
 
 .resources-tab {
