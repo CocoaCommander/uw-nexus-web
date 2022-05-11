@@ -76,4 +76,17 @@ Note: Beware of modifying this element as it can break the animations - you shou
     .bm-item {
         font-size: 20px;
     }
+
+    .header-desktop {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .header-desktop-items > a, .header-desktop-items > a:visited {
+        color: black;
+        font-size: 16px;
+        margin-left: 8px;
+    }
 }
