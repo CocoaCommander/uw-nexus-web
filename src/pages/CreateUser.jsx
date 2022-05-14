@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
-
+import { useDispatch, useSelector } from "react-redux";
 import "../CreateUser.css";
 import logo from "../assets/Logo.png";
 import landingImage from "../assets/manyPpl.png";
 import ssn from "../assets/ssn.PNG"
 import Cookies from 'universal-cookie';
 import { useNavigate } from "react-router-dom";
+import { setUserID } from "../redux/userState/userStateActions";
 
 
 
 const CreateUser = () => {
+
+  const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -18,17 +21,16 @@ const CreateUser = () => {
   const [errorMsg, setErrorMsg] = useState("");
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    var cookie = new Cookies();
-    const jwt_token = cookie.get("jwt_token"); // need to check expiry date too
-    if (jwt_token) {
-      navigate('/projects');
-      // redirect or something
-    } else {
-      console.log("not authenticated");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (isLoggedIn) {
+  //     console.log("in Create User, already logged in!");
+  //     navigate('/projects');
+  //   } else {
+  //     console.log("in Create User, not logged in");
+  //   }
+  // }, [isLoggedIn]);
 
 
 
@@ -73,7 +75,36 @@ const CreateUser = () => {
       }
     }
 
-    navigate('/login');
+    // sign in user after sign up, setting access token and user id and redirecting to projects page
+    await handleSignIn();
+
+    navigate('/projects');
+  }
+
+
+  const handleSignIn = async(e) => {
+    //e.preventDefault();
+    const url = `${process.env.REACT_APP_API_URL}/api/auth/signIn`;
+
+    let creds = {
+      "email": email,
+      "password": password
+    };
+
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(creds)
+  };
+    
+    let response = await fetch(url, requestOptions);
+    if (response.ok) {
+      const session = await response.json();
+      const cookie = new Cookies();
+      cookie.set('jwt_token', session.accessToken);
+      dispatch(setUserID(session.id));
+      console.log(cookie);
+    }
   }
 
 
