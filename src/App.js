@@ -59,11 +59,11 @@ const App = () => {
           <Route path='/createProject' element={<CreateProject isMobile={isMobile}/>} />
           <Route path='/finishProject' element={<ProjectFinish/>}/>
           <Route path='/reviewProject' element={<ProjectReview/>}/>
-          <Route path='/signUp' element={<CreateUser/>}/>
-          <Route path='login' element={<DesktopLogin/>}/>
-          <Route path='createProfileStart' element={<SignUpStart/>}/>
-          <Route path='createProfile' element={<SignUp/>}/>
-          <Route path='welcomePage' element={<WelcomePage/>}/>
+          {/* <Route path='/signUp' element={<CreateUser/>}/>
+          <Route path='/login' element={<DesktopLogin/>}/>
+          <Route path='/createProfileStart' element={<SignUpStart/>}/>
+          <Route path='/createProfile' element={<SignUp/>}/>
+          <Route path='/welcomePage' element={<WelcomePage/>}/> */}
         </Routes>
       </div>
     </>
