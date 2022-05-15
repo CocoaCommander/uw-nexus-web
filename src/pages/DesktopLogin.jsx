@@ -1,32 +1,25 @@
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "../DesktopLogin.css";
 import logo from "../assets/Logo.png";
 import landingImage from "../assets/manyPpl.png";
 import ssn from "../assets/ssn.PNG"
 import Cookies from 'universal-cookie';
 import { useNavigate } from "react-router-dom";
+import { setUserID } from "../redux/userState/userStateActions";
 
 
 
 const DesktopLogin = () => {
+
+  const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    var cookie = new Cookies();
-    const jwt_token = cookie.get("jwt_token");
-    if (jwt_token) {
-      console.log("already authenticated!");
-      // redirect or something
-    } else {
-      console.log("not authenticated");
-    }
-  }, []);
-
+  const dispatch = useDispatch();
 
 
   const handleSignIn = async(e) => {
@@ -57,6 +50,7 @@ const DesktopLogin = () => {
       const session = await response.json();
       const cookie = new Cookies();
       cookie.set('jwt_token', session.accessToken);
+      dispatch(setUserID(session.id));
       console.log(cookie);
     } else {
       if (response.status == 404 || 400) {
