@@ -1,7 +1,9 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import logo from "../assets/Logo.png";
 
 const Home = () => {
+    const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
     return (
         <>
             <section className="home-section">
@@ -24,7 +26,7 @@ const Home = () => {
                     </div>
                     <div className="home-card">
                         <div className="home-card-item home-card-label">Looking to recruit for your own project?</div>
-                        <Link to={"/createProject"}>
+                        <Link to={isLoggedIn ? "/createProject" : "login"}>
                             <div className="home-card-item home-button create-project">Create Your Project</div>
                         </Link>
                     </div>

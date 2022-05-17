@@ -5,9 +5,7 @@ import logo from "../assets/Logo.png";
 import landingImage from "../assets/manyPpl.png";
 import Cookies from 'universal-cookie';
 import { useNavigate } from "react-router-dom";
-import { setUserID } from "../redux/userState/userStateActions";
-
-
+import { setLoggedIn, setUserID } from "../redux/userState/userStateActions";
 
 const DesktopLogin = () => {
 
@@ -50,6 +48,7 @@ const DesktopLogin = () => {
       const cookie = new Cookies();
       cookie.set('jwt_token', session.accessToken);
       dispatch(setUserID(session.id));
+      dispatch(setLoggedIn(true));
       console.log(cookie);
     } else {
       if (response.status === 404 || 400) {
