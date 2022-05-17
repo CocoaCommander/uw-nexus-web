@@ -15,7 +15,7 @@ const ProjectList = ({
 
     useEffect(() => {
         getData(setIsLoading, ALL_PROJECTS, setListOfProjectData);
-    }, []);
+    }, [setIsLoading, ALL_PROJECTS, setListOfProjectData]);
 
     if (isLoading) {
         return <p>Loading...</p>

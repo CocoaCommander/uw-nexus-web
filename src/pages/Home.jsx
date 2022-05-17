@@ -41,7 +41,7 @@ const Home = () => {
             <section className="home-section">
                 <div className="company-tag">
                     <div className="logo-small">
-                        <img src={logo}/>
+                        <img src={logo} alt="logo"/>
                     </div>
                     <p className="tag-text">
                         Supporting and empowering self-motivated and driven students toward their future

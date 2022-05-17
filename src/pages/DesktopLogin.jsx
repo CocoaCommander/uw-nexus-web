@@ -1,9 +1,8 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import "../DesktopLogin.css";
 import logo from "../assets/Logo.png";
 import landingImage from "../assets/manyPpl.png";
-import ssn from "../assets/ssn.PNG"
 import Cookies from 'universal-cookie';
 import { useNavigate } from "react-router-dom";
 import { setUserID } from "../redux/userState/userStateActions";
@@ -12,7 +11,7 @@ import { setUserID } from "../redux/userState/userStateActions";
 
 const DesktopLogin = () => {
 
-  const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
+  // const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,10 +25,10 @@ const DesktopLogin = () => {
     e.preventDefault();
     const url = `${process.env.REACT_APP_API_URL}/api/auth/signIn`;
 
-    if (email.length == 0) {
+    if (email.length === 0) {
       setErrorMsg("Please enter your email.");
       return;
-    } else if (password.length == 0) {
+    } else if (password.length === 0) {
       setErrorMsg("Please enter your password.");
       return;
     }
@@ -53,9 +52,9 @@ const DesktopLogin = () => {
       dispatch(setUserID(session.id));
       console.log(cookie);
     } else {
-      if (response.status == 404 || 400) {
+      if (response.status === 404 || 400) {
         setErrorMsg("Invalid email and/or password. Please try again.");
-      } else if (response.status == 500) {
+      } else if (response.status === 500) {
         setErrorMsg("Something went wrong on our end. Please try again later.");
       }
     }
@@ -67,14 +66,14 @@ const DesktopLogin = () => {
     return (
         <div className="desktop-container">
           <div className="left-pane">
-            <img className="logo" src={logo}></img>
+            <img className="logo" src={logo} alt="logo"></img>
             <div className="left-pane-text">
               <h4>Project Search Engine</h4>
               <h2>Let your ideas shine.</h2>
               <h2>Together we can go further.</h2>
             </div>
 
-            <img className="landing-image" src={landingImage}></img>
+            <img className="landing-image" src={landingImage} alt="landing"></img>
           </div>
           <div className="right-pane">
             <div className="right-pane-header">

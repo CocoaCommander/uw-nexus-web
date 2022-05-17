@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import logo from "../../assets/Logo.png";
 import personIcon from "../../assets/icons/person-icon.svg";
@@ -16,7 +16,7 @@ const ProjectReview = (props) => {
   const projDesc = useSelector((state) => state.createProj.projDesc);
   const teamSize = useSelector((state) => state.createProj.teamSize);
   const projDur = useSelector((state) => state.createProj.projDur);
-  const projStatus = useSelector((state) => state.createProj.projStatus);
+  // const projStatus = useSelector((state) => state.createProj.projStatus);
   const projCategs = useSelector((state) => state.createProj.projCategs);
   const location = useSelector((state) => state.createProj.location);
   const projRoles = useSelector((state) => state.createProj.roles);
@@ -35,24 +35,7 @@ const ProjectReview = (props) => {
     }
   }, []);
 
-
-
-  console.log(projRoles);
-
-  const placeholderRole = [{
-    role: "UX Designers",
-    skill: ["Javascript", "Python", "teamwork"],
-    responsibilities: "Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elit"
-  }, {
-    role: "UX Designers",
-    skill: ["Javascript", "Python", "teamwork"],
-    responsibilities: "Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elit"
-  }]
-
   const navigate = useNavigate();
-
-  const a_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxODgxNWFlOWZiNjQ3YTBmYzM1NmNmNiIsImlhdCI6MTY1MDk2NjI4MywiZXhwIjoxNjUxMDUyNjgzfQ.Fk7dmv4U71ABXPl4aaa3HZL0Nzr82aDK3VizubjoG-g";
-
 
   // redirect user to whatever screen comes up after creating a project
   const redirectHomeScreen = async () => {
@@ -143,7 +126,7 @@ const ProjectReview = (props) => {
     <div className="all-container-rev">
 
         <div className="header">
-          <img className={"logo-rev"} src={logo}></img>
+          <img className={"logo-rev"} src={logo} alt="nexus logo"></img>
         </div>
 
         <div className="seperation">
@@ -155,12 +138,12 @@ const ProjectReview = (props) => {
 
             <div className="icon-wrapper">
               <div className="det-wrapper">
-                <img src={personIcon}></img>
+                <img src={personIcon} alt="person icon"></img>
                 <p className="det-text">{teamSize}</p>
               </div>
 
               <div className="det-wrapper">
-                <img src={locationIcon}></img>
+                <img src={locationIcon} alt="location icon"></img>
                 <p className="det-text">{location}</p>
               </div>
             </div>
@@ -174,7 +157,7 @@ const ProjectReview = (props) => {
             <div className="roles-list">
               <div className="dur-apply-wrapper">
                 <div className="project-dur-wrapper">
-                  <img src={timeIcon}></img>
+                  <img src={timeIcon} alt="time icon"></img>
                   <p className="det-text">{projDur}</p>
                 </div>
 

@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import CustomTextBox from "../CustomTextBox/CustomTextBox";
 import { addProjCategory } from "../../redux/createProject/createProjectActions";
@@ -9,10 +8,6 @@ import ReactTooltip from "react-tooltip";
 
 
 const ProjectCategories = (props) => {
-
-  const handleChange = (e) => {
-    props.onChange(e);
-  }
 
   const dispatch = useDispatch();
 
@@ -41,7 +36,7 @@ const ProjectCategories = (props) => {
 
         <div className="header-icon-wrapper">
           <p className="project-name-header">How would you categorize your project?</p>
-          <img data-for="categ-tip" data-tip={props.tooltip} className={"question-icon"} src={questionIcon}></img>
+          <img data-for="categ-tip" data-tip={props.tooltip} className={"question-icon"} src={questionIcon} alt="question icon"></img>
 
           <ReactTooltip
                id="categ-tip"

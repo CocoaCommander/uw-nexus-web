@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import "../CreateUser.css";
 import logo from "../assets/Logo.png";
-import landingImage from "../assets/manyPpl.png";
-import ssn from "../assets/ssn.PNG"
 import Cookies from 'universal-cookie';
 import { useNavigate } from "react-router-dom";
 import { setUserID } from "../redux/userState/userStateActions";
@@ -12,7 +10,7 @@ import { setUserID } from "../redux/userState/userStateActions";
 
 const CreateUser = () => {
 
-  const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
+  // const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -38,16 +36,16 @@ const CreateUser = () => {
     e.preventDefault();
     const url = `${process.env.REACT_APP_API_URL}/api/auth/createUser`;
 
-    if (email.length == 0) {
+    if (email.length === 0) {
       setErrorMsg("Please enter your email.");
       return;
-    } else if (password.length == 0) {
+    } else if (password.length === 0) {
       setErrorMsg("Please enter your password.");
       return;
-    } else if (firstName.length == 0) {
+    } else if (firstName.length === 0) {
       setErrorMsg("Please enter your first name.");
       return;
-    } else if (lastName.length == 0) {
+    } else if (lastName.length === 0) {
       setErrorMsg("Please enter your last name.");
     }
 
@@ -65,12 +63,10 @@ const CreateUser = () => {
   };
     
     let response = await fetch(url, requestOptions);
-    if (response.ok) {
-      const session = await response.json();
-    } else {
-      if (response.status == 404 || 400) {
+    if (!response.ok) {
+      if (response.status === 404 || 400) {
         setErrorMsg("Invalid credentials. Please fill all");
-      } else if (response.status == 500) {
+      } else if (response.status === 500) {
         setErrorMsg("Something went wrong on our end. Please try again later.");
       }
     }
@@ -111,7 +107,7 @@ const CreateUser = () => {
     return (
         <div className="desktop-container">
           <div className="main-pane">
-            <img className="center-logo" src={logo}></img>
+            <img className="center-logo" src={logo} alt="nexus logo"></img>
 
             <p className="sign-in">Sign Up</p>
                  <form className="create-user-form">

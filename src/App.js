@@ -1,11 +1,13 @@
 import './App.css';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Header from './components/Global/Header';
 import ProjectListDetail from './pages/ProjectListDetail';
 import ProjectListPage from './pages/ProjectListPage';
 import Home from './pages/Home';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, 
+  // useSelector 
+} from "react-redux";
 import CreateProject from './pages/CreateProject';
 import ProjectFinish from './components/ProjectFinish/ProjectFinish';
 import ProjectReview from './components/ProjectReview/ProjectReview';
@@ -20,9 +22,8 @@ import { setLoggedIn } from './redux/userState/userStateActions';
 const App = () => {
 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 450);
-  const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
+  // const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   useEffect(() => {
     const reactToWindowResize = () => {
@@ -30,21 +31,14 @@ const App = () => {
     }
     window.addEventListener('resize', reactToWindowResize);
 
-    console.log("APP.js useEffect");
-
     // Check if user is signed in
     const cookie = new Cookies();
     const jwt_token = cookie.get("jwt_token");
     if (jwt_token) {
       console.log("already authenticated");
       dispatch(setLoggedIn(true));
-      // proceed
-
     } else {
-      console.log("not authenticated");
       dispatch(setLoggedIn(false));
-      navigate('/login')
-      // redirect to Login?
     }
   });
 
@@ -59,11 +53,11 @@ const App = () => {
           <Route path='/createProject' element={<CreateProject isMobile={isMobile}/>} />
           <Route path='/finishProject' element={<ProjectFinish/>}/>
           <Route path='/reviewProject' element={<ProjectReview/>}/>
-          {/* <Route path='/signUp' element={<CreateUser/>}/>
+          <Route path='/signUp' element={<CreateUser/>}/>
           <Route path='/login' element={<DesktopLogin/>}/>
           <Route path='/createProfileStart' element={<SignUpStart/>}/>
           <Route path='/createProfile' element={<SignUp/>}/>
-          <Route path='/welcomePage' element={<WelcomePage/>}/> */}
+          <Route path='/welcomePage' element={<WelcomePage/>}/>
         </Routes>
       </div>
     </>

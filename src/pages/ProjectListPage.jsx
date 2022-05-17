@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import CreateProjectButton from "../components/ProjectListPage/CreateProjectButton";
-import ProjectFilters from "../components/ProjectListPage/ProjectFilters";
 import ProjectList from "../components/ProjectListPage/ProjectList";
 import SearchBar from "../components/ProjectListPage/SearchBar/SearchBar";
 
