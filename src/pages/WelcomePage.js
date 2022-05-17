@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import "../WelcomePage.css";
 
 
@@ -7,7 +6,6 @@ import "../WelcomePage.css";
 const WelcomePage = () => {
 
   const navigate = useNavigate();
-  const fullName = useSelector((state) => state.signUp.fullName);
 
   return (
     <div className="center-text">

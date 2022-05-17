@@ -84,6 +84,28 @@ Note: Beware of modifying this element as it can break the animations - you shou
         align-items: center;
     }
 
+    .header-desktop-items {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .login-button-header {
+        border: solid 2px #f05a28;
+        color: #f05a28;
+        border-radius: 5px;
+        height: 30%;
+        font-weight: bold;
+        padding: 10px;
+        margin-left: 10px;
+      }
+      
+      .login-button-header:hover {
+        background-color: #f05a28;
+        color: white;
+        font-weight: bold;
+      }
+
     .header-desktop-items > a, .header-desktop-items > a:visited {
         color: black;
         font-size: 16px;

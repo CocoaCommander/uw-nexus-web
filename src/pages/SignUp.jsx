@@ -18,8 +18,6 @@ const SignUp = (props) => {
 
 
   const fullName = useSelector((state) => state.signUp.fullName);
-  const email = useSelector((state) => state.signUp.email);
-  const password = useSelector((state) => state.signUp.password);
   const year = useSelector((state) => state.signUp.year);
   const major = useSelector((state) => state.signUp.major);
   const campus = useSelector((state) => state.signUp.campus);
@@ -30,9 +28,6 @@ const SignUp = (props) => {
   const selectionTypes = ["interests", "skills"];
 
   const navigate = useNavigate();
-
-  const interests = useSelector((state) => state.serverContent.interestsList);
-  const skills = useSelector((state) => state.serverContent.skillsList);
 
   const [accessToken, setAccessToken] = useState(null);
 
@@ -45,7 +40,8 @@ const SignUp = (props) => {
   year_valid.current = year;
   major_valid.current = major;
   campus_valid.current = campus;
-
+  
+  const dispatch = useDispatch();
 
   useEffect(() => {
 
@@ -76,12 +72,9 @@ const SignUp = (props) => {
       console.log(error);
     })
 
-  }, []);
+  }, [dispatch]);
 
   console.log("rerendering");
-
-
-  const dispatch = useDispatch();
 
   // handle changes in General Information page
   const handleFormChange = (e) => {

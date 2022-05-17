@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import "./InfoForm.css";
 
 
@@ -12,11 +11,11 @@ const InfoForm = (props) => {
   }
 
   const fullName = useSelector((state) => state.signUp.fullName);
-  const email = useSelector((state) => state.signUp.email);
-  const password = useSelector((state) => state.signUp.password);
-  const year = useSelector((state) => state.signUp.year);
+  // const email = useSelector((state) => state.signUp.email);
+  // const password = useSelector((state) => state.signUp.password);
+  // const year = useSelector((state) => state.signUp.year);
   const major = useSelector((state) => state.signUp.major);
-  const campus = useSelector((state) => state.signUp.campus);
+  // const campus = useSelector((state) => state.signUp.campus);
 
   return(
     <form>

@@ -19,7 +19,7 @@ const ProjectListDetail = () => {
 
     useEffect(() => {
         getData(setIsLoading, THIS_PROJECT, setProject);
-    }, []);
+    }, [THIS_PROJECT]);
 
     if (isLoading) {
         return <p>Loading...</p>
