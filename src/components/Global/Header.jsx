@@ -52,7 +52,7 @@ const Header = ({
             <div className="header-desktop">
                 <Link to={"/"}>
                     <div className="logo-header">
-                        <img src={logo} alt="Nexus Logo" className=""/>
+                        <img src={logo} alt="Nexus Logo" className="nexus-logo-header"/>
                     </div>
                 </Link>
                 <div className="header-desktop-items">
