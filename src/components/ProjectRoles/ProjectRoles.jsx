@@ -1,12 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import CustomTextBox from "../CustomTextBox/CustomTextBox";
 import { addRole } from "../../redux/createProject/createProjectActions";
 import "./ProjectRoles.css"
 import CustomTextArea from "../CustomTextArea/CustomTextArea";
-import { render } from "react-dom";
-
-
 
 const ProjectRoles = (props) => {
 

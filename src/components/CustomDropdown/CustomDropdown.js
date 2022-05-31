@@ -1,6 +1,4 @@
-import { useEffect, useRef, useState } from "react";
-import { render } from "react-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import "./CustomDropdown.css";
 
 const CustomDropdown = (props) => {

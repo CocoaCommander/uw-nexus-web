@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addResume } from "../../redux/signUp/signUpActions";
 import "./ResumeUpload.css";
@@ -25,7 +25,7 @@ const ResumeUpload = (props) => {
 
     console.log(e.target.files[0]);
     dispatch(addResume(e.target.files[0]));
-    const formData = new FormData();
+    // const formData = new FormData();
 
   }
 

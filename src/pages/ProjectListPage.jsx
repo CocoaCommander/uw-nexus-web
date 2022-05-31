@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import CreateProjectButton from "../components/ProjectListPage/CreateProjectButton";
-import ProjectFilters from "../components/ProjectListPage/ProjectFilters";
 import ProjectList from "../components/ProjectListPage/ProjectList";
 import SearchBar from "../components/ProjectListPage/SearchBar/SearchBar";
+
 
 const ProjectListPage = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [listOfProjectData, setListOfProjectData] = useState([]);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 450);
+    const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
 
     useEffect(() => {
         console.log(listOfProjectData);
@@ -23,9 +25,13 @@ const ProjectListPage = () => {
     return (
         <div className="project-list-page">
             <div className="create-project-btn-project-search-container">
-                <div className="container-item">
-                    <CreateProjectButton isMobile={isMobile}/>
-                </div>
+                {
+                    isLoggedIn &&  
+                    <div className="container-item">
+                        <CreateProjectButton isMobile={isMobile}/>
+                    </div>
+                }
+
                 {/* <div className="container-item search-bar-container"> */}
                     <SearchBar 
                         setListOfProjectData={setListOfProjectData}

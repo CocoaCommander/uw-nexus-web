@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect } from "react-router-dom";
-import editIcon from "../../assets/icons/edit-icon.png";
 import projDoneImage from "../../assets/proj-done.png";
-import { setProjName, clearAll } from "../../redux/createProject/createProjectActions";
+import { clearAll } from "../../redux/createProject/createProjectActions";
 import "./ProjectFinish.css";
 import Cookies from 'universal-cookie';
 import { useNavigate } from "react-router-dom";
@@ -14,7 +12,7 @@ const ProjectFinish = (props) => {
   const projDesc = useSelector((state) => state.createProj.projDesc);
   const teamSize = useSelector((state) => state.createProj.teamSize);
   const projDur = useSelector((state) => state.createProj.projDur);
-  const projStatus = useSelector((state) => state.createProj.projStatus);
+  // const projStatus = useSelector((state) => state.createProj.projStatus);
   const projCategs = useSelector((state) => state.createProj.projCategs);
   const location = useSelector((state) => state.createProj.location);
   const roles = useSelector((state) => state.createProj.roles);
@@ -90,7 +88,7 @@ const ProjectFinish = (props) => {
         <p className="finish-title">Congratulations!</p>
         <p className="finish-subtitle">You just successfully created your project and we are about to publish!</p>
 
-        <img className={"proj-done-img"} src={projDoneImage}></img>
+        <img className={"proj-done-img"} src={projDoneImage} alt="project done"></img>
 
         <p className="review-proj-text">Would you like to review your project <br/> before publishing?</p>
 

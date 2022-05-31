@@ -1,15 +1,11 @@
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import logo from "../assets/Logo.png";
 import StepProgressBar from 'react-step-progress';
 import '../custom-react-step-progress.css';
 import "../CreateProject.css";
-import InfoForm from "../components/InfoForm/InfoForm";
-import SelectionsGrid from "../components/SelectionsGrid/SelectionsGrid";
-import ResumeUpload from "../components/ResumeUpload/ResumeUpload";
-import ReviewPage from "../components/ReviewPage/ReviewPage";
-import { setCampus, setFullName, setMajor, setYear, addInterest, removeInterest, addSkill, removeSkill, setEmail, setPassword } from "../redux/signUp/signUpActions";
+import { setCampus, setMajor, setYear, setPassword } from "../redux/signUp/signUpActions";
 import { setProjName, setProjDesc, setTeamSize, setProjDur, setProjStatus, addLocation} from "../redux/createProject/createProjectActions"
 import Cookies from 'universal-cookie';
 import CustomTextBox from "../components/CustomTextBox/CustomTextBox";
@@ -18,9 +14,7 @@ import CustomDropdown from "../components/CustomDropdown/CustomDropdown";
 import ProjectCategories from "../components/ProjectCategories/ProjectCategories";
 import questionIcon from "../assets/icons/question-icon.png";
 import ProjectRoles from "../components/ProjectRoles/ProjectRoles";
-import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
-import ToolTip from "../components/ToolTip/ToolTip";
 import ReactTooltip from "react-tooltip";
 
 
@@ -30,10 +24,6 @@ const CreateProject = ({
   
   const projName = useSelector((state) => state.createProj.projName);
   const projDesc = useSelector((state) => state.createProj.projDesc);
-  const teamSize = useSelector((state) => state.createProj.teamSize);
-  const projDur = useSelector((state) => state.createProj.projDur);
-  const projStatus = useSelector((state) => state.createProj.projStatus);
-  const projCategs = useSelector((state) => state.createProj.projCategs);
 
 
   const toolTipMsgs = [
@@ -43,12 +33,13 @@ const CreateProject = ({
     Other information you can include can be time commitment as as well as your overall project plan.`,
     `A new project is one that starts from scratch, while an ongoing project means the project already has existing members.`,
     `Project category helps users understand the field of studies where your project could fall under.
-    Good examples are ‘healthcare’, ‘AI’, ‘politics’, and ‘international studies’.`, 
+    Good examples are 'healthcare', 'AI', 'politics', and 'international studies'.`, 
     `Project location helps users understand where the location of meetings will be. 
     Good examples if in person are “HUB 160”, “MEB 123” or if meeting virtually “remote”. `,
   ];
 
-  const [showToolTip, setToolTip] = useState(false);
+  // const [showToolTip, setToolTip] = useState(false);
+  const showToolTip = false;
 
   const toolval = useRef(showToolTip);
   toolval.current = showToolTip;
@@ -59,28 +50,25 @@ const CreateProject = ({
   const s2_valid = useRef(projDesc);
   s2_valid.current = projDesc;
 
-  const [cstyle, setStyle] = useState("desktop-container");
+  // const [cstyle, setStyle] = useState("desktop-container");
   
 
   const navigate = useNavigate();
-  const [errorMsg, setErrorMsg] = useState("");
 
-  const selectionTypes = ["interests", "skills"];
-
-  const [accessToken, setAccessToken] = useState(null);
+  // const [accessToken, setAccessToken] = useState(null);
 
   useEffect(() => {
     var cookie = new Cookies();
     const jwt_token = cookie.get("jwt_token");
     if (jwt_token) {
-      setAccessToken(jwt_token);
+      // setAccessToken(jwt_token);
       console.log("already authenticated!");
-      // redirect or something
     } else {
       console.log("not authenticated");
+      navigate('/');
     }
 
-  }, []);
+  }, [navigate]);
 
   const dispatch = useDispatch();
 
@@ -107,8 +95,12 @@ const CreateProject = ({
         break;
       case "campus":
         dispatch(setCampus(value));
+        break;
       case "location":
         dispatch(addLocation(value));
+        break;
+      default:
+        break;
     }
   }
 
@@ -120,13 +112,13 @@ const CreateProject = ({
       case "teamSize":
         dispatch(setTeamSize(value));
         break;
-      
       case "projDur":
         dispatch(setProjDur(value));
         break;
-
       case "projStatus":
         dispatch(setProjStatus(value));
+        break;
+      default:
         break;
     }
 
@@ -138,7 +130,7 @@ const CreateProject = ({
       <div className="center-pane">
           <div className="header-icon-wrapper">
             <p className="project-name-header">What is the name of your Project? <span className="asterix"> *</span></p>
-              <img data-for="main" data-tip={toolTipMsgs[0]} className={"question-icon"} src={questionIcon}></img>
+              <img data-for="main" data-tip={toolTipMsgs[0]} className={"question-icon"} src={questionIcon} alt="question icon"></img>
               <ReactTooltip
                id="main"
                className="!important tooltip-text"
@@ -164,7 +156,7 @@ const CreateProject = ({
       <div className="center-pane">
           <div className="header-icon-wrapper">
             <p className="project-name-header">How would you describe your Project? <span className="asterix"> *</span></p>
-            <img data-for="desc-tip" data-tip={toolTipMsgs[1]} className={"question-icon"} src={questionIcon}></img>
+            <img data-for="desc-tip" data-tip={toolTipMsgs[1]} className={"question-icon"} src={questionIcon} alt="question icon"></img>
             <ReactTooltip
                id="desc-tip"
                className="!important tooltip-text"
@@ -225,7 +217,7 @@ const CreateProject = ({
                               onChange={handleSelectionChange}>
               </CustomDropdown>
 
-              <img data-for="desc-tip" data-tip={toolTipMsgs[2]} className={"question-icon"} src={questionIcon}></img>
+              <img data-for="desc-tip" data-tip={toolTipMsgs[2]} className={"question-icon"} src={questionIcon} alt="question icon"></img>
                 <ReactTooltip
                   id="desc-tip"
                   className="!important tooltip-text"
@@ -248,13 +240,13 @@ const CreateProject = ({
 
   )
 
-  const handleCSSChange = () => {
-    setStyle("desktop-container-roles");
-  }
+  // const handleCSSChange = () => {
+  //   setStyle("desktop-container-roles");
+  // }
   
   // render content of Review Page 
   const step5Content = (
-      <ProjectRoles onAdd={handleCSSChange}></ProjectRoles>
+      <ProjectRoles ></ProjectRoles>
   )
 
   const step6Content = (
@@ -262,7 +254,7 @@ const CreateProject = ({
       <div className="center-pane">
         <div className="header-icon-wrapper">
           <p className="project-name-header">Where would your meetings be located?</p>
-          <img data-for="loc-tip" data-tip={toolTipMsgs[4]} className={"question-icon"} src={questionIcon}></img>
+          <img data-for="loc-tip" data-tip={toolTipMsgs[4]} className={"question-icon"} src={questionIcon} alt="question icon"></img>
           <ReactTooltip
                id="loc-tip"
                className="!important tooltip-text"
@@ -282,20 +274,6 @@ const CreateProject = ({
 
   )
 
-  function step1Validator() {
-    // if (projName.trim().length < 1) {
-    //   setErrorMsg("Please enter a project name.");
-    let name = projName;
-    console.log("name = " + name);
-    console.log(name.length);
-    return true;
-  }
-
-  // setup step validators, will be called before proceeding to the next step
-  function step2Validator() {
-    return true;
-  }
-  
   function step3Validator() {
     return true;
   }
@@ -318,7 +296,7 @@ const CreateProject = ({
 
     return (
       <div className={"desktop-container-cp"}>
-        <img className="logo" src={logo}></img>
+        <img className="logo" src={logo} alt="nexus logo"></img>
         <StepProgressBar
               startingStep={0}
               onSubmit={onFormSubmit}

@@ -1,7 +1,5 @@
 import { useEffect } from "react";
-import { ReactComponent as FilterIcon } from '../../../assets/filter-icon.svg';
-import { ReactComponent as SearchIcon } from '../../../assets/icons/search.svg';
-import getData, { postData } from "../../../logic/getData";
+import getData from "../../../logic/getData";
 
 const SearchBar = ({
     setListOfProjectData,
@@ -20,7 +18,7 @@ const SearchBar = ({
                 getData(setIsLoading, searchTerm, setListOfProjectData);
             }
         })
-    }, [])
+    }, [SEARCH_ENDPOINT, setIsLoading, setListOfProjectData])
 
     return (
         <>
