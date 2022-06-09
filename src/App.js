@@ -13,6 +13,7 @@ import ProjectFinish from './components/ProjectFinish/ProjectFinish';
 import ProjectReview from './components/ProjectReview/ProjectReview';
 import CreateUser from './pages/CreateUser';
 import DesktopLogin from './pages/DesktopLogin';
+import Profile from './pages/Profile';
 import SignUp from './pages/SignUp';
 import SignUpStart from './pages/SignUpStart';
 import WelcomePage from './pages/WelcomePage';
@@ -55,6 +56,7 @@ const App = () => {
           <Route path='/reviewProject' element={<ProjectReview/>}/>
           <Route path='/signUp' element={<CreateUser/>}/>
           <Route path='/login' element={<DesktopLogin/>}/>
+          <Route path='/profile' element={<Profile isMobile={isMobile}/>}/>
           <Route path='/createProfileStart' element={<SignUpStart/>}/>
           <Route path='/createProfile' element={<SignUp/>}/>
           <Route path='/welcomePage' element={<WelcomePage/>}/>

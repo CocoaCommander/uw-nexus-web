@@ -1,0 +1,55 @@
+/* General Styling HOW DO I USE NORMAL CSS */
+
+.profile-grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 10px;
+}
+
+.user-summary,
+.user-bio,
+.user-resume,
+.user-project-categories,
+.user-project-interests,
+.user-skills {
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 2px 4px 10px rgba(0,0,0,0.25);
+}
+
+.item-header {
+    text-align: left;
+}
+
+/* Individual Card Styling */
+
+.user-summary {
+
+}
+
+.user-bio {
+    
+}
+
+.user-resume {
+
+}
+
+.user-project-categories {
+    grid-column-start: 2;
+    display: flex;
+}
+
+.user-project-interests {
+    grid-column-start: 2;
+    display: flex;
+}
+
+.user-skills {
+
+}
+
+.logout-button {
+
+}
