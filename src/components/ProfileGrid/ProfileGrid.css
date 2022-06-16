@@ -1,55 +1,119 @@
 /* General Styling HOW DO I USE NORMAL CSS */
+p {
+    font-size: 16px;
+}
 
 .profile-grid-container {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    row-gap: 10px;
+    gap: 40px;
+    justify-content: start;
+    grid-template-rows: auto auto;
 }
 
+/* All cards */
 .user-summary,
 .user-bio,
 .user-resume,
 .user-project-categories,
 .user-project-interests,
-.user-skills {
+.user-skills,
+.logout-button {
     padding: 2rem;
     background-color: #fff;
     border-radius: 0.5rem;
     box-shadow: 2px 4px 10px rgba(0,0,0,0.25);
 }
 
+/* First Column */
+.user-summary,
+.user-bio,
+.user-resume,
+.user-skills {
+    width: 50vw;
+}
+
+/* Second Column */
+.user-project-categories,
+.user-project-interests,
+.logout-button {
+    width: 20vw;
+}
+
 .item-header {
+    padding: 0;
     text-align: left;
+}
+
+.item-body {
+    margin-top: 10px;
+    text-align: left;
+    font-size: 16px;
 }
 
 /* Individual Card Styling */
 
 .user-summary {
+    height: 150px;
+}
 
+.summary-grid {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.summary-item {
+    text-align: left;
+    font-size: 16px;
+    color: grey;
 }
 
 .user-bio {
-    
+    height: 250px;
 }
 
 .user-resume {
-
+    height: 100px;
 }
 
 .user-project-categories {
+    height: 200px;
+    grid-row-start: 1;
     grid-column-start: 2;
-    display: flex;
 }
 
 .user-project-interests {
+    grid-row-start: 2;
     grid-column-start: 2;
-    display: flex;
+}
+
+.project-item {
+    padding: 2rem;
+    border-radius: 0.5rem;
+    width: 15vw;
+    text-align: center;
+    background-color: yellow; /* i don't know the color so i made it yellow */
 }
 
 .user-skills {
+    height: 300px;
+}
 
+.skill-item {
+    padding: 2rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    background-color: #f05a28; /* idk this color either */
 }
 
 .logout-button {
+    grid-row-start: 3;
+    grid-column-start: 2;
+    height: 25px;
+}
 
+.logout-button-text {
+    text-align: center;
+    color: #f05a28;
 }
