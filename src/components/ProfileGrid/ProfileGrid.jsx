@@ -22,12 +22,18 @@ const ProfileGrid = (props) => {
     // Third container
     const resume = userInfo.education.resume_file_id;
 
+    // Fourth container (first one on second column)
+    const projectCategories = ['All', 'Current', 'Accepted', 'Pending', 'Declined'];
+    const projectCategoriesArray = projectCategories.map((item, index) => {
+        return <ProjectCategory item={item} index={index} key={index} />;
+    });
+
     // Fifth container (second one on second column)
     const projectInterests = userInfo.education.interests;
     const projectInterestsArray = projectInterests.map((item, index) => {
         return <ProjectItem item={item} isSkill={false} key={index} />
     });
-    
+
     // Sixth container (last one on first column)
     const technicalSkills = userInfo.education.skills;
     const technicalSkillsArray = technicalSkills.map((item, index) => {
@@ -36,37 +42,47 @@ const ProfileGrid = (props) => {
 
     return (
         <div className="profile-grid-container">
-            <div className="user-summary">
-                <h1 className="item-header">{fullName}</h1>
-                <div className="summary-grid">
-                    {summaryGridArray}
+            <div className="grid-column">
+                <div className="user-summary">
+                    <div className="bio-header">
+                        <h1 className="item-header">{fullName}</h1>
+                        <p className="edit-profile">Edit Profile {'>'}</p>
+                    </div>
+                    <div className="summary-flexbox">
+                        {summaryGridArray}
+                    </div>
+                </div>
+                <div className="user-bio">
+                    <h1 className="item-header">Bio</h1>
+                    <p className="item-body">{bio}</p>
+                </div>
+                <div className="user-resume">
+                    <h1 className="item-header">Resume</h1>
+                    <p className="item-body">{resume}</p>
+                </div>
+                <div className="user-skills">
+                    <h1 className="item-header">Technical Skills</h1>
+                    <div className="summary-flexbox">
+                        {technicalSkillsArray}
+                    </div>
                 </div>
             </div>
-            <div className="user-bio">
-                <h1 className="item-header">Bio</h1>
-                <p className="item-body">{bio}</p>
-            </div>
-            <div className="user-resume">
-                <h1 className="item-header">Resume</h1>
-                <p className="item-body">{resume}</p>
-            </div>
-            <div className="user-project-categories">
-                <h1 className="item-header">Projects</h1>
-            </div>
-            <div className="user-project-interests">
-                <h1 className="item-header">Project Interests</h1>
-                <div className="summary-grid">
-                    {projectInterestsArray}
+            <div className="grid-column">
+                <div className="project-categories-container">
+                    <h1 className="item-header">Projects</h1>
+                    <div className="project-categories">
+                        {projectCategoriesArray}
+                    </div>
                 </div>
-            </div>
-            <div className="user-skills">
-                <h1 className="item-header">Technical Skills</h1>
-                <div className="summary-grid">
-                    {technicalSkillsArray}
+                <div className="user-project-interests">
+                    <h1 className="item-header">Project Interests</h1>
+                    <div className="summary-flexbox">
+                        {projectInterestsArray}
+                    </div>
                 </div>
-            </div>
-            <div className="logout-button">
-                <p className="logout-button-text">Log out</p>
+                <div className="logout-button">
+                    <p className="logout-button-text">Log out</p>
+                </div>
             </div>
         </div>
     );
@@ -85,6 +101,20 @@ const SummaryItem = (props) => {
         return <p className="summary-item">Class Standing: {item}</p>;
     } else {
         return <p className="summary-item">Major: {item}</p>;
+    }
+}
+
+const ProjectCategory = (props) => {
+    const { item, index } = props;
+    if (index === 0) {
+        return <p className="selected-category">{item}</p>;
+    } else {
+        return (
+            <div>
+                <hr className="category-divider" />
+                <p>{item}</p>
+            </div>
+        );
     }
 }
 

@@ -3,40 +3,16 @@ p {
     font-size: 16px;
 }
 
+/* "grid" lmao */
 .profile-grid-container {
-    display: grid;
+    display: flex;
     gap: 40px;
-    justify-content: start;
-    grid-template-rows: auto auto;
 }
 
-/* All cards */
-.user-summary,
-.user-bio,
-.user-resume,
-.user-project-categories,
-.user-project-interests,
-.user-skills,
-.logout-button {
-    padding: 2rem;
-    background-color: #fff;
-    border-radius: 0.5rem;
-    box-shadow: 2px 4px 10px rgba(0,0,0,0.25);
-}
-
-/* First Column */
-.user-summary,
-.user-bio,
-.user-resume,
-.user-skills {
-    width: 50vw;
-}
-
-/* Second Column */
-.user-project-categories,
-.user-project-interests,
-.logout-button {
-    width: 20vw;
+.grid-column {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
 }
 
 .item-header {
@@ -50,13 +26,43 @@ p {
     font-size: 16px;
 }
 
+/* All cards */
+.user-summary,
+.user-bio,
+.user-resume,
+.project-categories-container,
+.user-project-interests,
+.user-skills,
+.logout-button {
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 2px 4px 10px rgba(0,0,0,0.25);
+    overflow-y: auto;
+}
+
+/* First Column */
+.user-summary,
+.user-bio,
+.user-resume,
+.user-skills {
+    width: 50vw;
+}
+
+/* Second Column */
+.project-categories-container,
+.user-project-interests,
+.logout-button {
+    width: 20vw;
+}
+
 /* Individual Card Styling */
 
 .user-summary {
     height: 150px;
 }
 
-.summary-grid {
+.summary-flexbox {
     margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
@@ -73,19 +79,40 @@ p {
     height: 250px;
 }
 
+.bio-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.edit-profile {
+    padding: 0.75rem;
+    background-color: #f05a28;
+    color: white;
+    border-radius: 0.5rem;
+}
+
 .user-resume {
     height: 100px;
 }
 
-.user-project-categories {
+.project-categories-container {
     height: 200px;
-    grid-row-start: 1;
-    grid-column-start: 2;
 }
 
-.user-project-interests {
-    grid-row-start: 2;
-    grid-column-start: 2;
+.project-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.selected-category {
+    color: #f05a28;
+}
+
+.category-divider {
+    border-top: 1px solid #D3D3D3;
+    height: 0;
 }
 
 .project-item {
@@ -108,8 +135,6 @@ p {
 }
 
 .logout-button {
-    grid-row-start: 3;
-    grid-column-start: 2;
     height: 25px;
 }
 
