@@ -85,7 +85,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
     .header-desktop-items {
         display: flex;
-        flex: 0.3;
+        flex: 0.45;
         justify-content: space-around;
         align-items: center;
         margin-left: auto;
@@ -102,11 +102,12 @@ Note: Beware of modifying this element as it can break the animations - you shou
         font-weight: bold;
         padding: 10px;
         margin-left: 10px;
+        cursor: pointer;
       }
       
       .login-button-header:hover {
-        background-color: white;
-        color: #f05a28;
+        background-color: #f05a28;
+        color: white;
         font-weight: bold;
       }
 

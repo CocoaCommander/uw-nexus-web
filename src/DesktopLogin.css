@@ -34,7 +34,7 @@
 }
 
 .right-pane-center {
-  width: 50%;
+  width: 60%;
   height: 60%;
   display: flex;
   flex-direction: column;
@@ -65,7 +65,7 @@
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  height: 70%;
+  height: 50%;
 }
 
 .sign-in {
@@ -76,7 +76,7 @@
 }
 
 .desktop-form {
-  height: 20%;
+  height: 45%;
 }
 
 .form-field {
@@ -115,7 +115,7 @@
   background-color: white;
   color: #f05a28;
   border-radius: 5px;
-  height: 8%;
+  height: 10%;
   font-weight: bold;
   width: 100%;
 }
