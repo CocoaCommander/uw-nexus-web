@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import "../DesktopLogin.css";
-import logo from "../assets/Logo.png";
 import landingImage from "../assets/manyPpl.png";
 import Cookies from 'universal-cookie';
 import { useNavigate } from "react-router-dom";
@@ -65,7 +64,6 @@ const DesktopLogin = () => {
     return (
         <div className="desktop-container">
           <div className="left-pane">
-            {/* <img className="logo" src={logo} alt="logo"></img> */}
             <div className="left-pane-text">
               <p className="first-subtitle">Project Search Engine</p>
               <p className="second-subtitle">Let your ideas shine.</p>
@@ -76,7 +74,7 @@ const DesktopLogin = () => {
           </div>
           <div className="right-pane">
             <div className="right-pane-header">
-              <p>Don't have an account? <a className="sign-up" onClick={() => navigate('/signUp')}>Sign Up Now</a>
+              <p>Don't have an account? <p className="sign-up" onClick={() => navigate('/signUp')}>Sign Up Now</p>
               </p>
             </div>
             {/* <img src={ssn} className="ssn"></img> */}

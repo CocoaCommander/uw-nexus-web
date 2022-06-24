@@ -10,7 +10,7 @@ const Home = () => {
         <>
             <section className="home-section">
                 <div className="find-project-wrapper">
-                  <img className="people-img" src={peopleImage}></img>
+                  <img className="people-img" src={peopleImage} alt="people icon"></img>
                   <div className="find-project-center-wrapper">
                   <h1>Find Your Next Passion Project</h1>
                   <Link to={"/projects"} className={"home-button-container"}>
@@ -20,13 +20,13 @@ const Home = () => {
                   </Link>
                   <h2>Discover 100+ self-motivated students on the NEXUS Network</h2>
                 </div>
-                  <img className="people-img" src={peopleImage}></img>
+                  <img className="people-img" src={peopleImage} alt="people icon"></img>
                 </div>
 
 
                 {/* <div className="divider"/> */}
                 <div className="dividing">
-                  <img className="divider-image" src={dividerImage}></img>
+                  <img className="divider-image" src={dividerImage} alt="website divider"></img>
                 </div>
 
               <h2>What we do here at NEXUS</h2>                
