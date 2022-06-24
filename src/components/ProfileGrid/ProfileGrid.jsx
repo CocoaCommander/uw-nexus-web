@@ -1,5 +1,7 @@
 import './ProfileGrid.css';
-// import fontawesome for resume
+import userPic from '../../assets/userpic.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPenToSquare, faFile } from '@fortawesome/free-solid-svg-icons';
 
 const ProfileGrid = (props) => {
     const { userInfo } = props;
@@ -44,12 +46,15 @@ const ProfileGrid = (props) => {
         <div className="profile-grid-container">
             <div className="grid-column">
                 <div className="user-summary">
-                    <div className="bio-header">
-                        <h1 className="item-header">{fullName}</h1>
-                        <p className="edit-profile">Edit Profile {'>'}</p>
-                    </div>
-                    <div className="summary-flexbox">
-                        {summaryGridArray}
+                    <img src={userPic} />
+                    <div>
+                        <div className="bio-header">
+                            <h1 className="item-header">{fullName}</h1>
+                            <FontAwesomeIcon className="edit-profile-icon" icon={faPenToSquare} size="2xl" />
+                        </div>
+                        <div className="summary-flexbox">
+                            {summaryGridArray}
+                        </div>
                     </div>
                 </div>
                 <div className="user-bio">
@@ -58,7 +63,10 @@ const ProfileGrid = (props) => {
                 </div>
                 <div className="user-resume">
                     <h1 className="item-header">Resume</h1>
-                    <p className="item-body">{resume}</p>
+                    <div className="resume-body">
+                        <FontAwesomeIcon className="resume-icon" icon={faFile} size="2xl" />
+                        <p className="item-body">{resume}</p>
+                    </div>
                 </div>
                 <div className="user-skills">
                     <h1 className="item-header">Technical Skills</h1>

@@ -3,6 +3,11 @@ p {
     font-size: 16px;
 }
 
+.edit-profile-icon,
+.logout-button {
+    cursor: pointer;
+}
+
 /* "grid" lmao */
 .profile-grid-container {
     display: flex;
@@ -36,7 +41,7 @@ p {
 .logout-button {
     padding: 2rem;
     background-color: #fff;
-    border-radius: 0.5rem;
+    border-radius: 10px;
     box-shadow: 2px 4px 10px rgba(0,0,0,0.25);
     overflow-y: auto;
 }
@@ -60,6 +65,8 @@ p {
 
 .user-summary {
     height: 150px;
+    display: flex;
+    gap: 4rem;
 }
 
 .summary-flexbox {
@@ -85,15 +92,21 @@ p {
     justify-content: space-between;
 }
 
-.edit-profile {
-    padding: 0.75rem;
-    background-color: #f05a28;
-    color: white;
-    border-radius: 0.5rem;
+.edit-profile-icon {
+    padding: 1rem;
+    color: #f05a28;
 }
 
 .user-resume {
     height: 100px;
+}
+
+.resume-icon {
+    padding: 1rem;
+}
+
+.resume-body {
+    display: flex;
 }
 
 .project-categories-container {
@@ -116,11 +129,10 @@ p {
 }
 
 .project-item {
-    padding: 2rem;
-    border-radius: 0.5rem;
-    width: 15vw;
+    padding: 1rem;
+    border-radius: 5px;
     text-align: center;
-    background-color: #ffe7bf; /* idk this color */
+    background: rgba(249, 130, 44, 0.2);
 }
 
 .user-skills {
@@ -128,14 +140,14 @@ p {
 }
 
 .skill-item {
-    padding: 2rem;
-    border-radius: 0.5rem;
+    padding: 1rem;
+    border-radius: 5px;
     text-align: center;
-    background-color: #FDB44E; /* idk this color either */
+    background: rgba(249, 130, 44, 0.6)
 }
 
 .logout-button {
-    height: 25px;
+    padding: 1rem 2rem;
 }
 
 .logout-button-text {
