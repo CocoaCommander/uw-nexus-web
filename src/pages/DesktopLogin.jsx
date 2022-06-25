@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import "../DesktopLogin.css";
-import logo from "../assets/Logo.png";
 import landingImage from "../assets/manyPpl.png";
 import Cookies from 'universal-cookie';
 import { useNavigate } from "react-router-dom";
@@ -65,18 +64,17 @@ const DesktopLogin = () => {
     return (
         <div className="desktop-container">
           <div className="left-pane">
-            <img className="logo" src={logo} alt="logo"></img>
             <div className="left-pane-text">
-              <h4>Project Search Engine</h4>
-              <h2>Let your ideas shine.</h2>
-              <h2>Together we can go further.</h2>
+              <p className="first-subtitle">Project Search Engine</p>
+              <p className="second-subtitle">Let your ideas shine.</p>
+              <p className="second-subtitle">Together we can go further.</p>
             </div>
 
             <img className="landing-image" src={landingImage} alt="landing"></img>
           </div>
           <div className="right-pane">
             <div className="right-pane-header">
-              <p>Don't have an account? <a className="sign-up" href="https://www.google.com">Sign Up Now</a>
+              <p>Don't have an account? <p className="sign-up" onClick={() => navigate('/signUp')}>Sign Up Now</p>
               </p>
             </div>
             {/* <img src={ssn} className="ssn"></img> */}
@@ -84,7 +82,7 @@ const DesktopLogin = () => {
             
             <div className="right-pane-center">
 
-              <div className="right-pane-third-auth">
+              {/* <div className="right-pane-third-auth">
                 <div className="third-auth-child">
                   <p>Continue with Google</p>
                 </div>
@@ -98,11 +96,11 @@ const DesktopLogin = () => {
                 </div>
               </div>
 
-              <h2 className="right-pane-seperator"><span>Or</span></h2>
+              <h2 className="right-pane-seperator"><span>Or</span></h2> */}
 
               <div className="right-pane-sign-in">
                  <p className="sign-in">Sign in</p>
-                 <form>
+                 <form className="desktop-form">
                    <div className="form-field">
                      <input className="email-textbox" 
                            type="text"
@@ -120,8 +118,10 @@ const DesktopLogin = () => {
                 </form>
                 <a className="forgot-pass" href="https://www.google.com">Forgot Password?</a>
                 <p className="error-msg">{errorMsg}</p>
+                
               </div>
               <button className="login-button" type="submit" onClick={(e) => {handleSignIn(e)}}>Login</button>
+              
             </div>
 
             {/* <div className="copyright">
