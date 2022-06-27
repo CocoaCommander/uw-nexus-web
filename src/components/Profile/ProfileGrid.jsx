@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faFile } from '@fortawesome/free-solid-svg-icons';
 
 const ProfileGrid = (props) => {
-    const { userInfo } = props;
+    const { userInfo, editCallback } = props;
 
     // First container
     const fullName = userInfo.first_name + ' ' + userInfo.last_name;
@@ -50,7 +50,7 @@ const ProfileGrid = (props) => {
                     <div>
                         <div className="bio-header">
                             <h1 className="item-header">{fullName}</h1>
-                            <FontAwesomeIcon className="edit-profile-icon" icon={faPenToSquare} size="2xl" />
+                            <FontAwesomeIcon className="edit-profile-icon" icon={faPenToSquare} size="2xl" onClick={() => editCallback(true)}/>
                         </div>
                         <div className="summary-flexbox">
                             {summaryGridArray}
@@ -76,16 +76,18 @@ const ProfileGrid = (props) => {
                 </div>
             </div>
             <div className="grid-column">
-                <div className="project-categories-container">
-                    <h1 className="item-header">Projects</h1>
-                    <div className="project-categories">
-                        {projectCategoriesArray}
+                <div className="project-row">
+                    <div className="project-categories-container">
+                        <h1 className="item-header">Projects</h1>
+                        <div className="project-categories">
+                            {projectCategoriesArray}
+                        </div>
                     </div>
-                </div>
-                <div className="user-project-interests">
-                    <h1 className="item-header">Project Interests</h1>
-                    <div className="summary-flexbox">
-                        {projectInterestsArray}
+                    <div className="user-project-interests">
+                        <h1 className="item-header">Project Interests</h1>
+                        <div className="summary-flexbox">
+                            {projectInterestsArray}
+                        </div>
                     </div>
                 </div>
                 <div className="logout-button">

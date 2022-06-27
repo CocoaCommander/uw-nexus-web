@@ -1,4 +1,6 @@
-import ProfileGrid from "../components/ProfileGrid/ProfileGrid";
+import ProfileGrid from "../components/Profile/ProfileGrid";
+import EditProfile from "../components/Profile/EditProfile";
+import { useState } from 'react';
 
 // this'll be passed in as a prop
 const USER_INFO = {
@@ -37,13 +39,19 @@ const USER_INFO = {
 
 const Profile = (props) => {
     const { isMobile } = props;
-
+    const [userProfile, setUserProfile] = useState(USER_INFO); // This is probably the wrong place to put this
+    const [isEditing, setIsEditing] = useState(false);
+    
     if (isMobile) { // placeholder for now
         return <>You can only view your profile on desktop.</>;
     }
+    let profileLayout = <ProfileGrid userInfo={userProfile} editCallback={setIsEditing} />;
+    if (isEditing) {
+        profileLayout = <EditProfile userInfo={userProfile} editCallback={setIsEditing} />;
+    }
     return (
         <div>
-            <ProfileGrid userInfo={USER_INFO} />
+            {profileLayout}
         </div>
     );
 }

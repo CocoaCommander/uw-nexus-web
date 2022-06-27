@@ -1,0 +1,46 @@
+/* General Styling HOW DO I USE NORMAL CSS */
+p {
+    font-size: 16px;
+}
+
+h2 {
+    text-align: start;
+}
+.edit-profile-container {
+    display: flex;
+    flex-direction: column;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.02);
+    border-radius: 10px;
+    gap: 10px;
+}
+
+.finalize-edits-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.finalize-edits-button:nth-child(1) {
+    margin-left: 40px;
+    color: #888888;
+}
+
+.finalize-edits-button:nth-child(2) {
+    margin-right: 40px;
+    color: #0566F8;
+}
+
+.finalize-edits-button:hover {
+    cursor: pointer;
+}
+
+.template-img {
+    margin: auto;
+    width: 100px;
+}
+
+@media (max-width: 768px) {}
+
+/* FUTURE MOBILE STUFF */
+@media (max-width: 375px) {}

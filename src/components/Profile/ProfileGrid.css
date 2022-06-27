@@ -42,7 +42,7 @@ p {
     padding: 2rem;
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 2px 4px 10px rgba(0,0,0,0.25);
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.25);
     overflow-y: auto;
 }
 
@@ -109,6 +109,12 @@ p {
     display: flex;
 }
 
+.project-row {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
 .project-categories-container {
     height: 200px;
 }
@@ -153,4 +159,64 @@ p {
 .logout-button-text {
     text-align: center;
     color: #f05a28;
+}
+
+@media (max-width: 768px) {
+    .profile-grid-container {
+        flex-direction: column;
+    }
+
+    /* All cards */
+    .user-summary,
+    .user-bio,
+    .user-resume,
+    .project-categories-container,
+    .user-project-interests,
+    .user-skills,
+    .logout-button {
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    /* Long bois */
+    .user-summary,
+    .user-bio,
+    .user-resume,
+    .user-skills,
+    .logout-button {
+        width: 60vw;
+    }
+
+    /* Short bois */
+    .project-categories-container,
+    .user-project-interests {
+        height: 300px;
+    }
+
+    .project-row {
+        flex-direction: row;
+        gap: 0;
+    }
+    
+    .project-categories-container {
+        width: 20vw;
+    }
+
+    .project-categories {
+        gap: 15px;
+    }
+
+    .category-divider {
+        margin-bottom: 15px;
+    }
+
+    .user-project-interests {
+        margin-left: 0;
+        width: 30vw;
+    }
+}
+
+/* FUTURE MOBILE STUFF */
+@media (max-width: 375px) {
+
 }
