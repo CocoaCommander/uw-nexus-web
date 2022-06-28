@@ -4,7 +4,7 @@ import "../CreateUser.css";
 import logo from "../assets/Logo.png";
 import Cookies from 'universal-cookie';
 import { useNavigate } from "react-router-dom";
-import { setUserID } from "../redux/userState/userStateActions";
+import { setLoggedIn, setUserID } from "../redux/userState/userStateActions";
 
 
 
@@ -52,8 +52,8 @@ const CreateUser = () => {
     let creds = {
       "email": email,
       "password": password,
-      "firstName": firstName,
-      "lastName": lastName,
+      "first_name": firstName,
+      "last_name": lastName,
     };
 
     const requestOptions = {
@@ -99,6 +99,7 @@ const CreateUser = () => {
       const cookie = new Cookies();
       cookie.set('jwt_token', session.accessToken);
       dispatch(setUserID(session.id));
+      dispatch(setLoggedIn(true));
       console.log(cookie);
     }
   }

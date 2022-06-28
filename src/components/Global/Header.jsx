@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./header.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoggedIn } from "../../redux/userState/userStateActions";
+import Cookies from "universal-cookie";
 
 const LoginButton = () => {
     const dispatch = useDispatch();
@@ -13,7 +14,10 @@ const LoginButton = () => {
     const handleClick = async () => {
         if (isLoggedIn) {
             await fetch(SIGN_OUT);
+            const prevCookie = new Cookies()
+            prevCookie.remove("jwt_token");
             dispatch(setLoggedIn(false));
+            navigate('/');
         } else {
             navigate('/login')
         }
@@ -21,7 +25,7 @@ const LoginButton = () => {
 
     return (
         <button onClick={handleClick} className={"login-button-header"}>
-            {isLoggedIn ? `Log out` : `Log in`}
+            {isLoggedIn ? `Log out` : `Join the NEXUS Network`}
         </button>
     )
 }
