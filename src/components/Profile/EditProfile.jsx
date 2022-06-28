@@ -112,7 +112,7 @@ const EditProfile = (props) => {
                     <h2>Resume</h2>
                     {resumeComponent}
                 </div>
-                <div className="resume-body">
+                <div className="edit-resume-body">
                     <FontAwesomeIcon className="resume-icon" icon={faFile} size="2xl" />
                     <p className="item-body">{resume}</p>
                 </div>
