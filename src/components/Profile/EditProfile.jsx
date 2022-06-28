@@ -2,7 +2,8 @@ import './EditProfile.css';
 import userPic from '../../assets/userpic.png';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFile } from '@fortawesome/free-solid-svg-icons';
+import { faFile, faPlus } from '@fortawesome/free-solid-svg-icons';
+import Modal from 'react-bootstrap/Modal';
 
 const EditProfile = (props) => {
     const { userInfo, editCallback } = props;
@@ -12,6 +13,10 @@ const EditProfile = (props) => {
     const [newMajor, setNewMajor] = useState(userInfo.education.major);
     const [newCampus, setNewCampus] = useState(userInfo.education.campus);
     const [newBio, setNewBio] = useState(userInfo.education.bio);
+    const [newSkills, setNewSkills] = useState(userInfo.education.skills);
+    const [isSkillAddIconClicked, setSkillAddIconClicked] = useState(false);
+    const [newInterests, setNewInterests] = useState(userInfo.education.interests);
+    const [isInterestAddIconClicked, setInterestAddIconClicked] = useState(false);
 
     // General Information
     const firstName = userInfo.first_name;
@@ -54,7 +59,24 @@ const EditProfile = (props) => {
 
     // Resume
     const resume = userInfo.education.resume_file_id;
+    const resumeComponent = <ResumeAddIcon />;
 
+    // Technical Skills
+    const technicalSkills = userInfo.education.skills;
+    const technicalSkillsArray = technicalSkills.map((item, index) => {
+        return <ProjectItem item={item} isSkill={true} key={index} />;
+    });
+    const skillsComponent = <CardAddIcon setIsAddIconClicked={setSkillAddIconClicked} />;
+    // const addSkillsModal = <AddItemModal isAddIconClicked={isSkillAddIconClicked} />;
+
+    // Project Interests
+    const projectInterests = userInfo.education.interests;
+    const projectInterestsArray = projectInterests.map((item, index) => {
+        return <ProjectItem item={item} isSkill={false} key={index} />;
+    });
+    const interestsComponent = <CardAddIcon setIsAddIconClicked={setInterestAddIconClicked} />;
+    // const addInterestsModal = <AddItemModal isAddIconClicked={isInterestAddIconClicked} />;
+    
     const handleEdit = (event) => {
         event.preventDefault();
 
@@ -72,6 +94,8 @@ const EditProfile = (props) => {
 
     return (
         <div className="edit-profile-container">
+            {/* {addSkillsModal} */}
+            {/* {addInterestsModal} */}
             <div className="finalize-edits-container">
                 <h3 className="finalize-edits-button" onClick={() => editCallback(false)}>Cancel</h3>
                 <h3 className="finalize-edits-button" onClick={handleEdit}>Done</h3>
@@ -84,13 +108,28 @@ const EditProfile = (props) => {
                 </div>
                 <h2>Bio</h2>
                 {biography}
-                <h2>Resume</h2>
+                <div className="header-container">
+                    <h2>Resume</h2>
+                    {resumeComponent}
+                </div>
                 <div className="resume-body">
                     <FontAwesomeIcon className="resume-icon" icon={faFile} size="2xl" />
                     <p className="item-body">{resume}</p>
                 </div>
-                <h2>Technical Skills</h2>
-                <h2>Project Interests</h2>
+                <div className="header-container">
+                    <h2>Technical Skills</h2>
+                    {skillsComponent}
+                </div>
+                <div>
+                    {technicalSkillsArray}
+                </div>
+                <div className="header-container">
+                    <h2>Project Interests</h2>
+                    {interestsComponent}
+                </div>
+                <div>
+                    {projectInterestsArray}
+                </div>
             </div>
         </div>
     );
@@ -113,10 +152,41 @@ const Biography = (props) => {
     return (
         <form>
             <label className="hide-label" htmlFor="bio">User Biography</label>
-            <textarea value={userBio} onChange={(event) => callback(event.target.value)}/>
+            <textarea value={userBio} onChange={(event) => callback(event.target.value)} />
         </form>
     )
 }
+
+const ResumeAddIcon = () => {
+    return <FontAwesomeIcon className="add-icon" icon={faPlus} size="2xl" onClick={() => { alert('idk how to do this'); }} />
+}
+
+// No functionality for now
+// Temp functions
+const CardAddIcon = () => {
+    return <FontAwesomeIcon className="add-icon" icon={faPlus} size="2xl" onClick={() => { alert('implement later!'); }} />
+}
+
+// const CardAddIcon = (props) => {
+//     const { setIsAddIconClicked } = props;
+//     return <FontAwesomeIcon className="add-icon" icon={faPlus} size="2xl" onClick={() => { setIsAddIconClicked(true); }} />;
+// }
+
+// const AddItemModal = (props) => {
+//     const { isAddIconClicked } = props;
+
+//     return (
+//         <Modal show={isAddIconClicked}>
+//             <Modal.Header closeButton>
+//                 <Modal.Title>Modal heading</Modal.Title>
+//             </Modal.Header>
+//             <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+//             <Modal.Footer>
+
+//             </Modal.Footer>
+//         </Modal>
+//     )
+// }
 
 const ProjectItem = (props) => {
     const { item, isSkill } = props;
