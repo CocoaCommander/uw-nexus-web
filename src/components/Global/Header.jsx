@@ -38,8 +38,8 @@ const Header = ({
         return (
             <>
                 <Menu width={190}>
-                    <Link to={"/"}>Home</Link>
                     <Link to={"/projects"}>Discover Projects</Link>
+                    <Link to={"/profile"}>My Profile</Link>
                     <LoginButton/>
                 </Menu>
                 <div className="flex">
@@ -60,8 +60,8 @@ const Header = ({
                     </div>
                 </Link>
                 <div className="header-desktop-items">
-                    <Link to={"/"}>Home</Link>
                     <Link to={"/projects"}>Discover Projects</Link>
+                    <Link to={"/profile"}>My Profile</Link>
                     <LoginButton/>
                 </div>
             </div>

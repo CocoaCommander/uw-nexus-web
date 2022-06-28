@@ -1,0 +1,222 @@
+/* General Styling HOW DO I USE NORMAL CSS */
+p {
+    font-size: 16px;
+}
+
+.edit-profile-icon,
+.logout-button {
+    cursor: pointer;
+}
+
+/* "grid" lmao */
+.profile-grid-container {
+    display: flex;
+    gap: 40px;
+}
+
+.grid-column {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.item-header {
+    padding: 0;
+    text-align: left;
+}
+
+.item-body {
+    margin-top: 10px;
+    text-align: left;
+    font-size: 16px;
+}
+
+/* All cards */
+.user-summary,
+.user-bio,
+.user-resume,
+.project-categories-container,
+.user-project-interests,
+.user-skills,
+.logout-button {
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.25);
+    overflow-y: auto;
+}
+
+/* First Column */
+.user-summary,
+.user-bio,
+.user-resume,
+.user-skills {
+    width: 50vw;
+}
+
+/* Second Column */
+.project-categories-container,
+.user-project-interests,
+.logout-button {
+    width: 20vw;
+}
+
+/* Individual Card Styling */
+
+.user-summary {
+    height: 150px;
+    display: flex;
+    gap: 4rem;
+}
+
+.summary-flexbox {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.summary-item {
+    text-align: left;
+    font-size: 16px;
+    color: grey;
+}
+
+.user-bio {
+    height: 250px;
+}
+
+.bio-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.edit-profile-icon {
+    padding: 1rem;
+    color: #f05a28;
+}
+
+.user-resume {
+    height: 100px;
+}
+
+.resume-icon {
+    padding: 1rem;
+}
+
+.resume-body {
+    display: flex;
+}
+
+.project-row {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.project-categories-container {
+    height: 200px;
+}
+
+.project-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.selected-category {
+    color: #f05a28;
+}
+
+.category-divider {
+    border-top: 1px solid #D3D3D3;
+    height: 0;
+}
+
+.project-item {
+    padding: 1rem;
+    border-radius: 5px;
+    text-align: center;
+    background: rgba(249, 130, 44, 0.2);
+}
+
+.user-skills {
+    height: 300px;
+}
+
+.skill-item {
+    padding: 1rem;
+    border-radius: 5px;
+    text-align: center;
+    background: rgba(249, 130, 44, 0.6)
+}
+
+.logout-button {
+    padding: 1rem 2rem;
+}
+
+.logout-button-text {
+    text-align: center;
+    color: #f05a28;
+}
+
+@media (max-width: 768px) {
+    .profile-grid-container {
+        flex-direction: column;
+    }
+
+    /* All cards */
+    .user-summary,
+    .user-bio,
+    .user-resume,
+    .project-categories-container,
+    .user-project-interests,
+    .user-skills,
+    .logout-button {
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    /* Long bois */
+    .user-summary,
+    .user-bio,
+    .user-resume,
+    .user-skills,
+    .logout-button {
+        width: 60vw;
+    }
+
+    /* Short bois */
+    .project-categories-container,
+    .user-project-interests {
+        height: 300px;
+    }
+
+    .project-row {
+        flex-direction: row;
+        gap: 0;
+    }
+    
+    .project-categories-container {
+        width: 20vw;
+    }
+
+    .project-categories {
+        gap: 15px;
+    }
+
+    .category-divider {
+        margin-bottom: 15px;
+    }
+
+    .user-project-interests {
+        margin-left: 0;
+        width: 30vw;
+    }
+}
+
+/* FUTURE MOBILE STUFF */
+@media (max-width: 375px) {
+
+}
