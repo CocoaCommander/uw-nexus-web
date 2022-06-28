@@ -76,7 +76,7 @@ const EditProfile = (props) => {
     });
     const interestsComponent = <CardAddIcon setIsAddIconClicked={setInterestAddIconClicked} />;
     // const addInterestsModal = <AddItemModal isAddIconClicked={isInterestAddIconClicked} />;
-    
+
     const handleEdit = (event) => {
         event.preventDefault();
 
@@ -120,14 +120,14 @@ const EditProfile = (props) => {
                     <h2>Technical Skills</h2>
                     {skillsComponent}
                 </div>
-                <div>
+                <div className="skills-projects-container">
                     {technicalSkillsArray}
                 </div>
                 <div className="header-container">
                     <h2>Project Interests</h2>
                     {interestsComponent}
                 </div>
-                <div>
+                <div className="skills-projects-container">
                     {projectInterestsArray}
                 </div>
             </div>
@@ -139,9 +139,13 @@ const GeneralInfoItem = (props) => {
     const { userInfoItem, header, inputName, callback } = props;
 
     return (
-        <form>
-            <label htmlFor={inputName}>{header}</label>
-            <input type="text" name={inputName} placeholder={userInfoItem} onChange={(event) => callback(event.target.value)} />
+        <form className="form-container">
+            <label className="form-label" htmlFor={inputName}>
+                <h4 className="form-text">
+                    {header}
+                </h4>
+            </label>
+            <input className="form-input" type="text" name={inputName} placeholder={userInfoItem} onChange={(event) => callback(event.target.value)} />
         </form>
     )
 }
@@ -150,9 +154,13 @@ const Biography = (props) => {
     const { userBio, callback } = props;
 
     return (
-        <form>
-            <label className="hide-label" htmlFor="bio">User Biography</label>
-            <textarea value={userBio} onChange={(event) => callback(event.target.value)} />
+        <form className="form-container">
+            <label className="form-label" htmlFor="bio">
+                <h4 className="form-text">
+                    User Biography
+                </h4>
+            </label>
+            <textarea className="form-textarea" value={userBio} onChange={(event) => callback(event.target.value)} />
         </form>
     )
 }

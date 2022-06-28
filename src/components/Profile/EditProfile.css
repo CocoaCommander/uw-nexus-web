@@ -46,6 +46,34 @@ body {
     width: 100px;
 }
 
+.form-container,
+.skills-projects-container {
+    margin-left: 25px;
+}
+
+.resume-body {
+    margin-left: 20px;
+}
+
+.form-label,
+.form-input {
+    margin-bottom: 10px;
+}
+
+.form-text,
+.form-input,
+.form-textarea {
+    font-size: 16px;
+}
+
+.form-input,
+.form-textarea {
+    width: 60vw;
+    padding: 15px;
+    border: 1px solid #C4C4C4;
+    border-radius: 5px;
+}
+
 .header-container {
     display: flex;
     justify-content: space-between;
@@ -56,6 +84,12 @@ body {
     margin-right: 30px;
 }
 
+.skills-projects-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 70vw;
+}
 @media (max-width: 768px) {}
 
 /* FUTURE MOBILE STUFF */
