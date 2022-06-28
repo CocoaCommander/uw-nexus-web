@@ -18,6 +18,7 @@ import SignUpStart from './pages/SignUpStart';
 import WelcomePage from './pages/WelcomePage';
 import Cookies from 'universal-cookie';
 import { setLoggedIn } from './redux/userState/userStateActions';
+import ApplicationPage from './pages/ApplicationPage';
 
 const App = () => {
 
@@ -58,6 +59,7 @@ const App = () => {
           <Route path='/createProfileStart' element={<SignUpStart/>}/>
           <Route path='/createProfile' element={<SignUp/>}/>
           <Route path='/welcomePage' element={<WelcomePage/>}/>
+          <Route path='/apply' element={<ApplicationPage/>}/>
         </Routes>
       </div>
     </>

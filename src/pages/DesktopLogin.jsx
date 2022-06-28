@@ -74,30 +74,12 @@ const DesktopLogin = () => {
           </div>
           <div className="right-pane">
             <div className="right-pane-header">
-              <p>Don't have an account? <p className="sign-up" onClick={() => navigate('/signUp')}>Sign Up Now</p>
+              <p>Don't have an account? <a className="sign-up" onClick={() => navigate('/signUp')}>Sign Up Now</a>
               </p>
             </div>
-            {/* <img src={ssn} className="ssn"></img> */}
 
             
             <div className="right-pane-center">
-
-              {/* <div className="right-pane-third-auth">
-                <div className="third-auth-child">
-                  <p>Continue with Google</p>
-                </div>
-
-                <div className="third-auth-child">
-                  <p>Continue with Twitter</p>
-                </div>
-
-                <div className="third-auth-child">
-                  <p>Continue with Facebook</p>
-                </div>
-              </div>
-
-              <h2 className="right-pane-seperator"><span>Or</span></h2> */}
-
               <div className="right-pane-sign-in">
                  <p className="sign-in">Sign in</p>
                  <form className="desktop-form">
