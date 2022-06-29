@@ -3,7 +3,6 @@ import userPic from '../../assets/userpic.png';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFile, faPlus } from '@fortawesome/free-solid-svg-icons';
-import Modal from 'react-bootstrap/Modal';
 
 const EditProfile = (props) => {
     const { userInfo, editCallback } = props;

@@ -1,94 +1,94 @@
 /* General Styling HOW DO I USE NORMAL CSS */
 p {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 h2 {
-    text-align: start;
+  text-align: start;
 }
 
 body {
-    overflow-y: scroll !important; /* i hate react bootstrap modal */
+  overflow-y: scroll !important; /* i hate react bootstrap modal */
 }
 
 .edit-profile-container {
-    display: flex;
-    flex-direction: column;
-    background: #FFFFFF;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.02);
-    border-radius: 10px;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.02);
+  border-radius: 10px;
+  gap: 10px;
 }
 
 .finalize-edits-container {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .finalize-edits-button:nth-child(1) {
-    margin-left: 40px;
-    color: #888888;
+  margin-left: 40px;
+  color: #888888;
 }
 
 .finalize-edits-button:nth-child(2) {
-    margin-right: 40px;
-    color: #0566F8;
+  margin-right: 40px;
+  color: #0566F8;
 }
 
 .finalize-edits-button:hover,
 .add-icon:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .template-img {
-    margin: auto;
-    width: 100px;
+  margin: auto;
+  width: 100px;
 }
 
 .form-container,
 .skills-projects-container {
-    margin-left: 25px;
+  margin-left: 25px;
 }
 
 .edit-resume-body {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 .form-label,
 .form-input {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .form-text,
 .form-input,
 .form-textarea {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .form-input,
 .form-textarea {
-    width: 60vw;
-    padding: 15px;
-    border: 1px solid #C4C4C4;
-    border-radius: 5px;
+  width: 60vw;
+  padding: 15px;
+  border: 1px solid #C4C4C4;
+  border-radius: 5px;
 }
 
 .header-container {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .add-icon {
-    margin-top: 30px;
-    margin-right: 30px;
+  margin-top: 30px;
+  margin-right: 30px;
 }
 
 .skills-projects-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    width: 70vw;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 70vw;
 }
 @media (max-width: 768px) {}
 
