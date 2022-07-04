@@ -31,6 +31,14 @@ p {
   font-size: 16px;
 }
 
+.resume-link {
+  margin-top: 10px;
+  text-align: left;
+  font-size: 16px;
+  color: #0000EE;
+  cursor: pointer;
+}
+
 /* All cards */
 .user-summary,
 .user-bio,

@@ -45,8 +45,12 @@ const DesktopLogin = () => {
     if (response.ok) {
       const session = await response.json();
       const cookie = new Cookies();
-      cookie.set('jwt_token', session.accessToken);
-      dispatch(setUserID(session.id));
+      // const userIdCookie = new Cookies();
+      cookie.set('accessToken', session.accessToken);
+      window.localStorage.setItem("nxs-id", session.id);
+      // cookie.set('nxs_id', session.id);
+      
+      // dispatch(setUserID(session.id));
       dispatch(setLoggedIn(true));
       console.log(cookie);
     } else {

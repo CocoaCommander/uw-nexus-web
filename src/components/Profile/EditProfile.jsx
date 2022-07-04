@@ -88,8 +88,47 @@ const EditProfile = (props) => {
 
         // Biography
         userInfo.education.bio = newBio.length === 0 ? "This user has not set a bio." : newBio;
+
+        updateProfile(userInfo);
+
         editCallback(false);
     }
+
+    const updateProfile = async(userInfo) => {
+      console.log("RUNNING UPDATE PROFILE ENDPOINT!!");
+      console.log(userInfo.profile_id);
+      const url = `${process.env.REACT_APP_API_URL}/api/profile/update/${userInfo.profile_id}`;
+
+      let profileBody = new FormData();
+
+      console.log(userInfo.first_name);
+
+      profileBody.append("first_name", userInfo.first_name);
+      profileBody.append("last_name", userInfo.last_name);
+      profileBody.append("education", JSON.stringify({
+        "campus": userInfo.education.campus,
+        "year": userInfo.education.year,
+        "major": userInfo.education.major
+      }));
+      // profileBody.append("interests", JSON.stringify(newInterests));
+      // profileBody.append("skills", JSON.stringify(newSkills));
+      profileBody.append("bio", userInfo.education.bio);
+
+      const options = {
+        method: 'POST',
+        body: profileBody,
+        credentials: 'include'
+      }
+
+      const response = await fetch(url, options);
+      console.log(response);
+
+
+      //profileBody.append("file", resume);
+
+      const resp = await fetch(url, options)
+    }
+
 
     return (
         <div className="edit-profile-container">

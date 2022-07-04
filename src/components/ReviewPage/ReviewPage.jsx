@@ -13,7 +13,7 @@ const ReviewPage = (props) => {
   const resume = useSelector((state) => state.signUp.resume);
 
   const renderSelections = (selections, type) => {
-    return selections.map((selections) => <div className={type + "-selection"}>
+    return selections.map((selections) => <div className={type + "-selection-review"}>
       <p>{selections}</p>
     </div>)
   }

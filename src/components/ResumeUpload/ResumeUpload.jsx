@@ -37,55 +37,53 @@ const ResumeUpload = (props) => {
 
 
   return(
-    <div className="main-container">
 
-      <div className="resources-container">
-        <p className="resources-title">Resources</p>
+    <div className="col-container">
+      <p className="resume-text">Uploading a resume and/or cover letter are incredibly helpful for <br></br> project owners to get a better idea of your skills and qualities</p>
+      <div className="main-container">
 
-        <div className="resources-tab">
-          <div className="resources-option">
-            <p className="resource-subtitle">Top 10 Most Common Resume Errors</p>
-            <p className="resource-text">Loren Ipsum</p>
+        <div className="resources-container">
+          <p className="resources-title">Resources</p>
+
+          <div className="resources-tab">
+            <div className="resources-option">
+              <p className="resource-subtitle">Top 10 Most Common Resume Errors</p>
+              <p className="resource-text">Loren Ipsum</p>
+            </div>
+
+            <div className="resources-option">
+              <p className="resource-subtitle">How to Word Your Resume</p>
+              <p className="resource-text">Loren Ipsum</p>
+            </div>
+
+            <div className="resources-option">
+              <p className="resource-subtitle">What Not To Put in Your Resume</p>
+              <p className="resource-text">Loren Ipsum</p>
+            </div>
+
+            <div className="resources-option">
+              <p className="resource-subtitle">Must Have's in Resumes</p>
+              <p className="resource-text">Loren Ipsum</p>
+            </div>
+
           </div>
 
-          <div className="resources-option">
-            <p className="resource-subtitle">How to Word Your Resume</p>
-            <p className="resource-text">Loren Ipsum</p>
-          </div>
 
-          <div className="resources-option">
-            <p className="resource-subtitle">What Not To Put in Your Resume</p>
-            <p className="resource-text">Loren Ipsum</p>
-          </div>
-
-          <div className="resources-option">
-            <p className="resource-subtitle">Must Have's in Resumes</p>
-            <p className="resource-text">Loren Ipsum</p>
-          </div>
-
-          <div className="resources-option">
-            <p className="resource-subtitle">Example Resume: UW's Purple and Gold Resume template</p>
-            <p className="resource-text">Loren Ipsum</p>
-          </div>
         </div>
 
+        <div className="res-container">
 
-      </div>
-
-      <div className="res-container">
-
-          <p className="resume-text">Uploading a resume and/or cover letter are incredibly helpful for project owners to get a better idea of your skills and qualities</p>
-
-          <p className="res-title">Resume</p>
-        
-        <div className="res-option" onClick={() => {submitResume()}}>
-          <p className="res-text">ATTACH</p>
-          <input ref={buttonRef} className={"file-button"} type={"file"} onChange={onFileChange}></input>
-        </div>
-      </div>
-
-      {renderPDF()}
+            <p className="res-title">Resume</p>
           
+          <div className="res-option" onClick={() => {submitResume()}}>
+            <p className="res-text">ATTACH</p>
+            <input ref={buttonRef} className={"file-button"} type={"file"} onChange={onFileChange}></input>
+          </div>
+        </div>
+
+        {renderPDF()}
+            
+      </div>
     </div>
   )
 }

@@ -7,7 +7,7 @@
 }
 
 .main-title {
-  font-size: 30px;
+  font-size: 20px;
 }
 
 .sub-section {
@@ -35,6 +35,8 @@
 .subtitle-text {
   font-size: 12px;
   margin-left: auto;
+  font-weight: 500;
+  color: #000000;
 }
 
 .info-field {
@@ -57,22 +59,24 @@
   justify-content: space-around;
 }
 
-.skill-selection, .interest-selection {
-  font-size: large;
-  color: black;
+.skill-selection-review, .interest-selection-review {
   border-radius: 5px;
-  flex-basis: 20%;
   min-height: 30px;
   text-align: center;
   fill-opacity: 40%;
   margin: 4px;
+  padding: 5px;
 }
 
-.skill-selection {
+.skill-selection-review > p, .interest-selection-review > p {
+  font-size: 14px;
+}
+
+.skill-selection-review {
   background-color: rgb(240, 90, 40, 0.4);
 }
 
-.interest-selection {
+.interest-selection-review {
   background-color: rgb(240, 90, 40, 0.1);
 }
 
