@@ -12,7 +12,6 @@ const ProjectListPage = () => {
     const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
 
     useEffect(() => {
-        console.log(listOfProjectData);
     }, [listOfProjectData]);
 
     useEffect(() => {

@@ -4,7 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faFile } from '@fortawesome/free-solid-svg-icons';
 
 const ProfileGrid = (props) => {
+
     const { userInfo, editCallback } = props;
+
+    console.log("rererendring profileGrid");
+    console.log(userInfo)
 
     // First container
     const fullName = userInfo.first_name + ' ' + userInfo.last_name;
@@ -42,6 +46,18 @@ const ProfileGrid = (props) => {
         return <ProjectItem item={item} isSkill={true} key={index} />
     });
 
+    const convertBase64ToPDF = () => {
+      var byteCharacters = atob(resume);
+      var byteNumbers = new Array(byteCharacters.length);
+      for (var i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+      }
+      var byteArray = new Uint8Array(byteNumbers);
+      var file = new Blob([byteArray], { type: 'application/pdf;base64' });
+      var fileURL = URL.createObjectURL(file);
+      window.open(fileURL);
+    }
+
     return (
         <div className="profile-grid-container">
             <div className="grid-column">
@@ -65,7 +81,7 @@ const ProfileGrid = (props) => {
                     <h1 className="item-header">Resume</h1>
                     <div className="resume-body">
                         <FontAwesomeIcon className="resume-icon" icon={faFile} size="2xl" />
-                        <p className="item-body">{resume}</p>
+                        <p className="resume-link" onClick={convertBase64ToPDF}>View Resume</p>
                     </div>
                 </div>
                 <div className="user-skills">

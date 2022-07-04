@@ -25,6 +25,8 @@ const SignUp = (props) => {
   const chosen_skills = useSelector((state) => state.signUp.skills);
   const resume = useSelector((state) => state.signUp.resume);
 
+  const userID = useSelector((state) => state.userState.userID);
+
   const selectionTypes = ["interests", "skills"];
 
   const navigate = useNavigate();
@@ -49,9 +51,11 @@ const SignUp = (props) => {
     const url2 = `${process.env.REACT_APP_API_URL}/api/constants/skills`;
 
     var cookie = new Cookies();
-    const jwt_token = cookie.get("jwt_token");
+    const jwt_token = cookie.get("accessToken");
+    // const userID = cookie.get("nxs_id");
     if (jwt_token) {
       setAccessToken(jwt_token);
+      // setUserID(userID)
       console.log("already authenticated!");
       // redirect or something
     } else {
@@ -73,6 +77,7 @@ const SignUp = (props) => {
     })
 
   }, [dispatch]);
+
 
   console.log("rerendering");
 
@@ -175,7 +180,7 @@ const SignUp = (props) => {
   
   // render content of Review Page 
   const step5Content = (
-    <div className="vertical-center-signup">
+    <div className="vertical-center-signup-review">
       <div className="center-pane">
         <ReviewPage></ReviewPage>
       </div>
@@ -222,6 +227,7 @@ const SignUp = (props) => {
     const url = `${process.env.REACT_APP_API_URL}/api/profile/createProfile`;
 
     const names = fullName.split(" ");
+    console.log(accessToken);
 
     const firstName = names[0];
     let lastName = names[1];
@@ -232,7 +238,6 @@ const SignUp = (props) => {
     // const cred_response = await createUser(firstName, lastName);
 
     let signUpInfo = new FormData();
-
     signUpInfo.append("first_name", firstName);
     signUpInfo.append("last_name", lastName);
     signUpInfo.append("education", JSON.stringify({
@@ -246,26 +251,27 @@ const SignUp = (props) => {
     signUpInfo.append("file", resume);
 
 
+    console.log("ACCESS TOKEN = " + accessToken);
+
     //JSON.stringify(signUpInfo);
     const requestOptions = {
       method: 'POST',
-      headers: {'Authorization': `Bearer ${accessToken}` },
-      body: signUpInfo
+      body: signUpInfo,
+      credentials: 'include'
   };
 
   let response = await fetch(url, requestOptions);
 
   if (response.ok) {
     console.log("success");
+    const respJson = await response.json();
+    window.localStorage.setItem(userID, respJson.profile_id);
     navigate('/welcomePage');
+    console.log(respJson);
   } else {
     console.log(response.statusText);
   }
   console.log(response);
-
-
-
-    
   }
 
     return (

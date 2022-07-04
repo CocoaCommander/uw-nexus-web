@@ -6,7 +6,7 @@ import ProjectListPage from './pages/ProjectListPage';
 import Home from './pages/Home';
 import { useEffect, useState } from 'react';
 import { useDispatch, 
-  // useSelector 
+  useSelector 
 } from "react-redux";
 import CreateProject from './pages/CreateProject';
 import ProjectFinish from './components/ProjectFinish/ProjectFinish';
@@ -18,14 +18,15 @@ import SignUp from './pages/SignUp';
 import SignUpStart from './pages/SignUpStart';
 import WelcomePage from './pages/WelcomePage';
 import Cookies from 'universal-cookie';
-import { setLoggedIn } from './redux/userState/userStateActions';
+import { setLoggedIn, setUserID } from './redux/userState/userStateActions';
 import ApplicationPage from './pages/ApplicationPage';
 
 const App = () => {
-
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 450);
   // const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
+  const userID = useSelector((state) => state.userState.userID);
 
   useEffect(() => {
     const reactToWindowResize = () => {
@@ -35,10 +36,14 @@ const App = () => {
 
     // Check if user is signed in
     const cookie = new Cookies();
-    const jwt_token = cookie.get("jwt_token");
+    const jwt_token = cookie.get("accessToken");
+    // const user_id = cookie.get("nxs_id");
     if (jwt_token) {
-      console.log("already authenticated");
+      // console.log("already authenticated");
+      // console.log("in app.js, user_id = " + user_id);
       dispatch(setLoggedIn(true));
+      dispatch(setUserID(window.localStorage.getItem("nxs-id")));
+      // dispatch(setUserID(user_id));
     } else {
       dispatch(setLoggedIn(false));
     }

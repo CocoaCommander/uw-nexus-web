@@ -15,7 +15,9 @@ const LoginButton = () => {
         if (isLoggedIn) {
             await fetch(SIGN_OUT);
             const prevCookie = new Cookies()
-            prevCookie.remove("jwt_token");
+            prevCookie.remove("accessToken");
+            window.localStorage.removeItem("nxs-id");
+            // prevCookie.remove("nxs_id");
             dispatch(setLoggedIn(false));
             navigate('/');
         } else {
@@ -34,12 +36,13 @@ const Header = ({
     isMobile
 }) => {
     
+    const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
     if (isMobile) {
         return (
             <>
                 <Menu width={190}>
                     <Link to={"/projects"}>Discover Projects</Link>
-                    <Link to={"/profile"}>My Profile</Link>
+                    <Link to={isLoggedIn ? "/profile" : "/login"}>My Profile</Link>
                     <LoginButton/>
                 </Menu>
                 <div className="flex">
@@ -61,7 +64,7 @@ const Header = ({
                 </Link>
                 <div className="header-desktop-items">
                     <Link to={"/projects"}>Discover Projects</Link>
-                    <Link to={"/profile"}>My Profile</Link>
+                    <Link to={isLoggedIn? "/profile" : "/login"}>My Profile</Link>
                     <LoginButton/>
                 </div>
             </div>

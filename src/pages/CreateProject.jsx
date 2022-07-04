@@ -59,7 +59,7 @@ const CreateProject = ({
 
   useEffect(() => {
     var cookie = new Cookies();
-    const jwt_token = cookie.get("jwt_token");
+    const jwt_token = cookie.get("accessToken");
     if (jwt_token) {
       // setAccessToken(jwt_token);
       console.log("already authenticated!");
