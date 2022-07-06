@@ -1,0 +1,7 @@
+.entire-modal {
+    position: absolute;
+    display: flex;
+    top: 75px;
+    padding: rem 1rem;
+    background-color: white;
+}
