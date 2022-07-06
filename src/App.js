@@ -70,7 +70,7 @@ const App = () => {
 
   return (
     <>
-      <Header isMobile={isMobile}/>
+      <Header isMobile={isMobile} userProfile={userProfile} />
       <div className='app'>
         <Routes>
           <Route path="/" element={<Home />} />

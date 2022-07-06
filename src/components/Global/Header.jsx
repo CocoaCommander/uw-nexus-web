@@ -5,7 +5,8 @@ import "./header.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoggedIn } from "../../redux/userState/userStateActions";
 import Cookies from "universal-cookie";
-import Modal from 'react-bootstrap/modal';
+import { useEffect, useState, useRef } from 'react';
+import ProfileModal from './ProfileModal.jsx';
 
 const LoginButton = () => {
     const dispatch = useDispatch();
@@ -34,8 +35,24 @@ const LoginButton = () => {
 }
 
 const Header = ({
-    isMobile
+    isMobile,
+    userProfile
 }) => {
+    const [isMenuOpen, setMenuOpen] = useState(false);
+    const menuRef = useRef();
+    // Set up clicking event for dropdown user accounts and modals
+    useEffect(() => {
+        const checkIfClickedOutside = e => {
+            if (isMenuOpen && menuRef.current && !menuRef.current.contains(e.target)) {
+                setMenuOpen(false);
+            }
+        }
+        document.addEventListener('mousedown', checkIfClickedOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', checkIfClickedOutside);
+        }
+    }, [isMenuOpen]);
 
     const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
     if (isMobile) {
@@ -43,7 +60,8 @@ const Header = ({
             <>
                 <Menu width={190}>
                     <Link to={"/projects"}>Discover Projects</Link>
-                    <Link to={isLoggedIn ? "/profile" : "/login"}>My Profile</Link>
+                    {/* PLACEHOLDER: {isLoggedIn ? <p>My Profile</p> : null} */}
+                    {isMenuOpen ? <ProfileModal userProfile={userProfile} menuRef={menuRef} /> : null}
                     <LoginButton />
                 </Menu>
                 <div className="flex">
@@ -65,7 +83,9 @@ const Header = ({
                 </Link>
                 <div className="header-desktop-items">
                     <Link to={"/projects"}>Discover Projects</Link>
-                    <Link to={isLoggedIn ? "/profile" : "/login"}>My Profile</Link>
+                    {/* PLACEHOLDER: {isLoggedIn ? <p>My Profile</p> : null} */}
+                    <p className="profile-button" onClick={() => setMenuOpen(true)}>My Profile</p>
+                    {isMenuOpen ? <ProfileModal userProfile={userProfile} menuRef={menuRef} /> : null}
                     <LoginButton />
                 </div>
             </div>
