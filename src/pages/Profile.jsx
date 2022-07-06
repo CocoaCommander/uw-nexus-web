@@ -4,27 +4,8 @@ import { useState } from 'react';
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
-// this'll be passed in as a prop
-const USER_INFO = {
-    first_name: '',
-    last_name: '',
-    education: {
-        campus: '',
-        year: '',
-        major: '',
-        interests: [],
-        skills: [
-        ],
-        bio: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-        resume_file_id: '',
-        private: false,
-        profile_id: ''
-    }
-}
-
 const Profile = (props) => {
-    const { isMobile } = props;
-    const [userProfile, setUserProfile] = useState(USER_INFO); // This is probably the wrong place to put this
+    const { isMobile, userProfile, userCallback } = props;
     const [isEditing, setIsEditing] = useState(false);
     const userID = useSelector((state) => state.userState.userID);
     const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
@@ -82,7 +63,7 @@ const Profile = (props) => {
         },
         profile_id: data._id,
       }
-      setUserProfile(newData);
+      userCallback(newData);
     }
 
     if (isMobile) { // placeholder for now
