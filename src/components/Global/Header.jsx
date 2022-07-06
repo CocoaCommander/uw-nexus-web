@@ -60,7 +60,7 @@ const Header = ({
             <>
                 <Menu width={190}>
                     <Link to={"/projects"}>Discover Projects</Link>
-                    {/* PLACEHOLDER: {isLoggedIn ? <p>My Profile</p> : null} */}
+                    {/* {isLoggedIn ? <p className="profile-button" onClick={() => setMenuOpen(true)}>My Profile</p>: null} */}
                     {isMenuOpen ? <ProfileModal userProfile={userProfile} menuRef={menuRef} /> : null}
                     <LoginButton />
                 </Menu>
@@ -83,7 +83,7 @@ const Header = ({
                 </Link>
                 <div className="header-desktop-items">
                     <Link to={"/projects"}>Discover Projects</Link>
-                    {/* PLACEHOLDER: {isLoggedIn ? <p>My Profile</p> : null} */}
+                    {/* {isLoggedIn ? <p className="profile-button" onClick={() => setMenuOpen(true)}>My Profile</p>: null} */}
                     <p className="profile-button" onClick={() => setMenuOpen(true)}>My Profile</p>
                     {isMenuOpen ? <ProfileModal userProfile={userProfile} menuRef={menuRef} /> : null}
                     <LoginButton />
