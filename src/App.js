@@ -23,8 +23,8 @@ import ApplicationPage from './pages/ApplicationPage';
 
 // static user info
 const USER_INFO = {
-  first_name: '',
-  last_name: '',
+  first_name: 'James',
+  last_name: 'Lin',
   education: {
       campus: '',
       year: '',
