@@ -1,6 +1,6 @@
 import logo from "../../assets/Logo.png";
 import { slide as Menu } from 'react-burger-menu'
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import "./header.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoggedIn } from "../../redux/userState/userStateActions";
@@ -40,6 +40,8 @@ const Header = ({
 }) => {
     const [isMenuOpen, setMenuOpen] = useState(false);
     const menuRef = useRef();
+    const currPath = useLocation().pathname;
+    
     // Set up clicking event for dropdown user accounts and modals
     useEffect(() => {
         const checkIfClickedOutside = e => {
@@ -82,9 +84,9 @@ const Header = ({
                     </div>
                 </Link>
                 <div className="header-desktop-items">
-                    <Link to={"/projects"}>Discover Projects</Link>
+                    <NavLink className="projects-button" to={"/projects"}>Discover Projects</NavLink>
                     {/* {isLoggedIn ? <p className="profile-button" onClick={() => setMenuOpen(true)}>My Profile</p>: null} */}
-                    <p className="profile-button" onClick={() => setMenuOpen(true)}>My Profile</p>
+                    <p className={currPath === '/profile' ? 'profile-button-active' : 'profile-button'} onClick={() => setMenuOpen(true)}>My Profile</p>
                     {isMenuOpen ? <ProfileModal userProfile={userProfile} menuRef={menuRef} /> : null}
                     <LoginButton />
                 </div>

@@ -72,11 +72,25 @@ Note: Beware of modifying this element as it can break the animations - you shou
     background: rgba(0, 0, 0, 0.3);
 }
 
-.profile-button:hover {
+.projects-button,
+.profile-button,
+.profile-button-active {
+    font-weight: 700;
+    color: grey;
+}
+
+.profile-button:hover,
+.profile-button-active:hover {
     cursor: pointer;
 }
 
-@media only screen and (min-width: 700px) {
+.active,
+.profile-button-active {
+    color: #F05A28;
+}
+
+/* desktop view */
+@media only screen and (min-width: 375px) {
     .bm-item {
         font-size: 20px;
     }
@@ -100,11 +114,11 @@ Note: Beware of modifying this element as it can break the animations - you shou
         border: solid 2px #f05a28;
         color: white;
         background-color: #f05a28;
-        border-radius: 5px;
+        border-radius: 10px;
         height: 30%;
         width: 150px;
         font-weight: bold;
-        padding: 10px;
+        padding: 1rem 1rem;
         margin-left: 10px;
         cursor: pointer;
       }
@@ -116,7 +130,6 @@ Note: Beware of modifying this element as it can break the animations - you shou
       }
 
     .header-desktop-items > a, .header-desktop-items > a:visited {
-        color: black;
         font-size: 16px;
         margin-left: 8px;
     }
