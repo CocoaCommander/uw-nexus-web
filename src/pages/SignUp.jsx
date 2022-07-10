@@ -142,6 +142,7 @@ const SignUp = (props) => {
     <div className="vertical-center-signup">
       <div className="center-pane">
         <div className="sign-up-pane">
+            <p className="gen-info-title">General Information</p>
             <div className="form-field">
               <InfoForm onChange={handleFormChange}>
               </InfoForm>
@@ -156,6 +157,7 @@ const SignUp = (props) => {
   <div className="vertical-center-signup">
     <div className="center-pane">
       <p className="interests-subtitle">SELECT UP TO 5 OF YOUR INTERESTS</p>
+      <p className="gen-info-title">Project Interests</p>
       <SelectionsGrid selectionType={selectionTypes[0]} onClick={handleInterestSelection}></SelectionsGrid>
     </div>
   </div>
@@ -166,6 +168,7 @@ const SignUp = (props) => {
     <div className="vertical-center-signup">
       <div className="center-pane">
         <p className="interests-subtitle">SELECT UP TO 10 OF YOUR SKILLS</p>
+        <p className="gen-info-title">Technical Skills</p>
         <SelectionsGrid selectionType={selectionTypes[1]} onClick={handleSkillSelection}></SelectionsGrid>
       </div>
   </div>
@@ -174,6 +177,7 @@ const SignUp = (props) => {
   // render content of Resume Upload Page
   const step4Content = (
     <div className="center-pane">
+      <p className="gen-info-title">Resume Upload</p>
       <ResumeUpload></ResumeUpload>
     </div>
   )
@@ -199,41 +203,31 @@ const SignUp = (props) => {
     return true;
   }
 
-  // async function createUser(firstName, lastName) {
-
-  //   const url = `${process.env.REACT_APP_API_URL}/api/auth/createUser`;
-
-  //   let credentials = {
-  //     "email": email,
-  //     "password": password,
-  //     "firstName": firstName,
-  //     "lastName": lastName
-  //   }
-
-  //   const requestOptions = {
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify(credentials)
-  // };
-
-  //   const response = await fetch(url, requestOptions);
-  //   console.log("cred response = " + response);
-
-  //   return response;
-  // }
-  
-  async function onFormSubmit() {
-
-    const url = `${process.env.REACT_APP_API_URL}/api/profile/createProfile`;
-
+  const handleFullName = () => {
     const names = fullName.split(" ");
-    console.log(accessToken);
-
     const firstName = names[0];
     let lastName = names[1];
     for (let i = 2; i < names.length; i++) {
       lastName += " " + names[i];
     }
+
+    if (!lastName) {
+      lastName = "";
+    }
+
+    return [firstName, lastName];
+  }
+  
+  async function onFormSubmit() {
+
+    const url = `${process.env.REACT_APP_API_URL}/api/profile/createProfile`;
+
+    const [firstName, lastName] = handleFullName();
+
+
+    console.log(accessToken);
+
+
 
     // const cred_response = await createUser(firstName, lastName);
 

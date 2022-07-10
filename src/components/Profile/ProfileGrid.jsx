@@ -7,9 +7,6 @@ const ProfileGrid = (props) => {
 
     const { userInfo, editCallback } = props;
 
-    console.log("rererendring profileGrid");
-    console.log(userInfo)
-
     // First container
     const fullName = userInfo.first_name + ' ' + userInfo.last_name;
     const email = 'jlim@uw.edu'; // this is static static for now
@@ -47,7 +44,7 @@ const ProfileGrid = (props) => {
     });
 
     const convertBase64ToPDF = () => {
-      var byteCharacters = atob(resume);
+      var byteCharacters = window.atob(resume);
       var byteNumbers = new Array(byteCharacters.length);
       for (var i = 0; i < byteCharacters.length; i++) {
         byteNumbers[i] = byteCharacters.charCodeAt(i);

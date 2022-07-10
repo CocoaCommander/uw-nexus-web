@@ -2,9 +2,9 @@
   display: flex;
   flex-direction: row;
   align-self: center;
-  margin-top: 1%;
+  margin-top: 10px;
   justify-content: space-evenly;
-  width: 75%;
+  width: 100%;
 }
 
 .selection {
@@ -41,7 +41,6 @@
   width: 100%;
   justify-content: flex-start;
   overflow: auto;
-  padding: 3%;
   max-height: 80vh;
 }
 
@@ -88,4 +87,17 @@
 /* set button(top and bottom of the scrollbar) */
 .grid::-webkit-scrollbar-button {
   display:none;
+}
+
+
+@media only screen and (min-width: 700px) {
+  
+  .row {
+    width: 75%;
+  }
+
+  .grid {
+    padding: 3%;
+  }
+
 }

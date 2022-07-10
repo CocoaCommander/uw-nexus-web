@@ -2,7 +2,7 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 5%;
-  width: 70%;
+  width: 100%;
 }
 
 .sign-up-detail {
@@ -17,4 +17,11 @@
 
 option {
   font-size: 14px;
+}
+
+@media only screen and (min-width: 700px) {
+
+  .field-set {
+    width: 70%;
+  }
 }
