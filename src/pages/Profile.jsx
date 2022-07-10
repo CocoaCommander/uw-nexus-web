@@ -3,6 +3,8 @@ import EditProfile from "../components/Profile/EditProfile";
 import { useState } from 'react';
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { TailSpin } from "react-loader-spinner";
+import "../Profile.css";
 
 // this'll be passed in as a prop
 const USER_INFO = {
@@ -26,13 +28,14 @@ const Profile = (props) => {
     const { isMobile } = props;
     const [userProfile, setUserProfile] = useState(USER_INFO); // This is probably the wrong place to put this
     const [isEditing, setIsEditing] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const userID = useSelector((state) => state.userState.userID);
     const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
     
     useEffect(() => {
-      console.log("useEffect in Profile.jsx");
-
+      setIsLoading(true);
       const fetchData = async() => {
+
         const userID = window.localStorage.getItem("nxs-id");
         const profileID = window.localStorage.getItem(userID);
 
@@ -46,13 +49,13 @@ const Profile = (props) => {
         const profileResponse = await fetch(url, options);
         if (profileResponse.ok) {
           const profileData = await profileResponse.json();
-
+          console.log(`profile data = ${profileData}`)
           const resumeUrl = `${process.env.REACT_APP_API_URL}/api/profile/resume/${profileData.resume_file_id}`;
           const resumeResponse = await fetch(resumeUrl, options);
           if (resumeResponse.ok) {
             const resumeData = await resumeResponse.json();
             setData(profileData, resumeData);
-            console.log(resumeData);
+            console.log(`resume data = ${resumeData}`);
           } else {
             console.log(`Could not fetch user resume! Error = ${resumeResponse.status}`);
           }
@@ -60,13 +63,13 @@ const Profile = (props) => {
         } else {
           console.log(`Could not fetch user profile! Error = ${profileResponse.status}`);
         }
+        setIsLoading(false);
       }
-      
       fetchData();
+
     }, []);
 
     const setData = (data, resumeData) => {
-      console.log("data = " + data._id);
       let newData = {
         first_name: data.first_name,
         last_name: data.last_name,
@@ -92,6 +95,16 @@ const Profile = (props) => {
     if (isEditing) {
         profileLayout = <EditProfile userInfo={userProfile} editCallback={setIsEditing} />;
     }
+
+    if (isLoading) {
+      return (
+      <div className="loading-screen">
+        <TailSpin color="#f05a28" height={100} width={100} ariaLabel="Loading"></TailSpin>
+      </div>
+
+      )
+    }
+
     return (
         <div>
             {profileLayout}

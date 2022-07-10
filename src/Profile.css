@@ -1,0 +1,9 @@
+.loading-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 120px;
+    height: 75vh;
+}

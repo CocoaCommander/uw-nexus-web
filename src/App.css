@@ -22,8 +22,8 @@ body {
 .app {
   height: 100%;
   width: auto;
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .home-section {
@@ -386,6 +386,12 @@ main {
 }
 
 @media only screen and (min-width: 700px) {
+
+    .app {
+      margin-left: 10%;
+      margin-right: 10%;
+    }
+
     .divider, .footer {
       height: 30rem;
       overflow: visible;
