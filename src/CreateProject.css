@@ -1,6 +1,5 @@
 .desktop-container-cp {
   background-color: white;
-  height: 115vh;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -89,8 +88,9 @@ label {
 
 .buttonsWrapper-cp {
   display: inline-flex;
-  width: 83%;
+  width: 100%;
   margin-bottom: 1.5%;
+  margin-top: 40%;
 }
 
 .project-name-header {
@@ -100,14 +100,6 @@ label {
   margin-right: 5px;
 }
 
-.roles-container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  max-height: 15vh;
-  overflow: auto;
-}
-
 .asterix {
   color: red;
   vertical-align: super;
@@ -115,7 +107,7 @@ label {
 
 .drop-downs-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
   justify-content: space-evenly;
 }
@@ -138,6 +130,14 @@ label {
   margin-left: 10px;
 }
 
+.question-icon-dropdown {
+  width: 15px;
+  height: 15px;
+  align-self: center;
+  margin-left: 10px;
+  display: none;
+}
+
 .desktop-container-roles {
   background-color: white;
   min-height: min(100, 500);
@@ -158,30 +158,6 @@ label {
   margin-top: 10%;
 }
 
-
-/* total width */
-.roles-container::-webkit-scrollbar {
-  background-color: #fff;
-  width: 16px;
-}
-
-/* background of the scrollbar except button or resizer */
-.roles-container::-webkit-scrollbar-track {
-  background-color: #fff;
-}
-
-/* scrollbar itself */
-.roles-container::-webkit-scrollbar-thumb {
-  background-color: #babac0;
-  border-radius: 16px;
-  border: 4px solid #fff;
-}
-
-/* set button(top and bottom of the scrollbar) */
-.roles-container::-webkit-scrollbar-button {
-  display:none;
-}
-
 .tooltip-text{
   width: 200px;
 }
@@ -191,10 +167,11 @@ label {
   display: flex;
   flex-direction: row;
   align-items: flex-end;
-  margin-top: 12px;
+  margin-top: 1.9%;
+  width: 100%;
 }
 
-@media only screen and (min-width: 700px) {
+@media only screen and (min-width: 850px) {
   .project-name-header {
     font-size: 25px;
   }
@@ -202,5 +179,25 @@ label {
   .question-icon {
     width: 20px;
     height: 20px;
+  }
+
+  .buttonsWrapper-cp {
+    width: 83%;
+  }
+
+  .desktop-container-cp {
+    height: 115vh;
+  }
+
+  .drop-downs-container {
+    flex-direction: row;
+  }
+
+  .question-icon-dropdown {
+    display: block;
+  }
+
+  .dropdown-wrapper {
+    width: auto;
   }
 }

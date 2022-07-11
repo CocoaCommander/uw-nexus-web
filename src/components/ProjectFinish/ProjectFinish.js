@@ -84,7 +84,7 @@ const ProjectFinish = (props) => {
 
   return (
     <div className="all-container">
-      <div className="center-pane">
+      {/* <div className="center-pane"> */}
         <p className="finish-title">Congratulations!</p>
         <p className="finish-subtitle">You just successfully created your project and we are about to publish!</p>
 
@@ -92,7 +92,7 @@ const ProjectFinish = (props) => {
 
         <p className="review-proj-text">Would you like to review your project <br/> before publishing?</p>
 
-      </div>
+      {/* </div> */}
         <div className="finish-buttons-wrapper">
           <button className="publish-button" type="submit" onClick={redirectHomeScreen}>Publish Now</button>
           <button className="review-button" type="submit" onClick={redirectReviewScreen}>Review Project</button>

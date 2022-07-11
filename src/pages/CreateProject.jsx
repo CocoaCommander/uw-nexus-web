@@ -185,6 +185,7 @@ const CreateProject = ({
   const step3Content = (
     <div className="vertical-center">
       <div className="center-pane">
+        <p className="gen-info-title">Team Size</p>
         <div className="drop-downs-container">
           <CustomDropdown 
                           id="team-size"
@@ -218,7 +219,7 @@ const CreateProject = ({
                               onChange={handleSelectionChange}>
               </CustomDropdown>
 
-              <img data-for="desc-tip" data-tip={toolTipMsgs[2]} className={"question-icon"} src={questionIcon} alt="question icon"></img>
+              <img data-for="desc-tip" data-tip={toolTipMsgs[2]} className={"question-icon-dropdown"} src={questionIcon} alt="question icon"></img>
                 <ReactTooltip
                   id="desc-tip"
                   className="!important tooltip-text"
@@ -236,6 +237,7 @@ const CreateProject = ({
   // render content of Resume Upload Page
   const step4Content = (
     <div className="vertical-center">
+      <p className="gen-info-title">Category</p>
       <ProjectCategories tooltip={toolTipMsgs[3]}></ProjectCategories>
     </div>
 
@@ -253,6 +255,7 @@ const CreateProject = ({
   const step6Content = (
     <div className="vertical-center">
       <div className="center-pane">
+        <p className="gen-info-title">Location</p>
         <div className="header-icon-wrapper">
           <p className="project-name-header">Where would your meetings be located?</p>
           <img data-for="loc-tip" data-tip={toolTipMsgs[4]} className={"question-icon"} src={questionIcon} alt="question icon"></img>
@@ -268,7 +271,7 @@ const CreateProject = ({
         <p className="project-page-subtitle">(If the location is irregular, you may enter a general location such as the University of Washington.)</p>
 
         <div className="field-set">
-            <CustomTextBox className="sign-up-detail" name="location" reducer="createProj" onChange={handleTextboxChange}></CustomTextBox>
+            <CustomTextBox className="sign-up-detail" name="location" reducer="createProj" onChange={handleTextboxChange} placeholder={"Search Location"}></CustomTextBox>
           </div>
       </div>
     </div>
