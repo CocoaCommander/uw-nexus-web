@@ -8,10 +8,11 @@ import InfoForm from "../components/InfoForm/InfoForm";
 import SelectionsGrid from "../components/SelectionsGrid/SelectionsGrid";
 import ResumeUpload from "../components/ResumeUpload/ResumeUpload";
 import ReviewPage from "../components/ReviewPage/ReviewPage";
-import { setCampus, setFullName, setMajor, setYear, addInterest, removeInterest, addSkill, removeSkill, setEmail, setPassword } from "../redux/signUp/signUpActions";
+import { setCampus, setFullName, setMajor, setYear, addInterest, removeInterest, addSkill, removeSkill, setEmail, setPassword, decreaseStep, increaseStep } from "../redux/signUp/signUpActions";
 import { setInterestsList, setSkillsList } from "../redux/serverContent/serverContentActions";
 import Cookies from 'universal-cookie';
 import { useNavigate } from "react-router-dom";
+import { setStep } from "../redux/signUp/signUpActions";
 
 
 const SignUp = (props) => {
@@ -33,6 +34,8 @@ const SignUp = (props) => {
 
   const [accessToken, setAccessToken] = useState(null);
 
+  const progress = useRef();
+
   const name_valid = useRef(fullName);
   const year_valid = useRef(year);
   const major_valid = useRef(major);
@@ -46,6 +49,8 @@ const SignUp = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+
+    // console.log(progress.current);
 
     const url1 = `${process.env.REACT_APP_API_URL}/api/constants/interests`;
     const url2 = `${process.env.REACT_APP_API_URL}/api/constants/skills`;
@@ -186,12 +191,14 @@ const SignUp = (props) => {
   const step5Content = (
     <div className="vertical-center-signup-review">
       <div className="center-pane">
+        <p className="gen-info-title">Review</p>
         <ReviewPage></ReviewPage>
       </div>
     </div>
   )
   // setup step validators, will be called before proceeding to the next step
   function step2Validator() {
+    console.log("clicking next");
     return true;
   }
   
@@ -268,8 +275,19 @@ const SignUp = (props) => {
   console.log(response);
   }
 
+  const handleStepChange = (e) => {
+    const target = e.target.className;
+    console.log(target);
+    if (target.includes("back-button-proj")) {
+      dispatch(decreaseStep());
+    } else if (target.includes("login-button-sign-up")) {
+      dispatch(increaseStep());
+    }
+  }
+
+
     return (
-      <div className="desktop-container">
+      <div ref={progress} className="desktop-container" onClick={handleStepChange}>
         <img className="logo" src={logo} alt="Nexus Logo"></img>
         <StepProgressBar
               startingStep={0}
@@ -286,7 +304,7 @@ const SignUp = (props) => {
                   name: 'step 1',
                   content: step1Content,
                   validator: () => {
-                    console.log(name_valid.current);
+                    console.log("clicking next");
                     return name_valid.current.length > 0 && year_valid.current.length > 0 && major_valid.current.length > 0 && campus_valid.current.length >> 0}
                 },
                 {

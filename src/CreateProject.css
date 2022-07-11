@@ -94,7 +94,7 @@ label {
 }
 
 .project-name-header {
-  font-size: 25px;
+  font-size: 14px;
   font-weight: bold;
   text-align: center;
   margin-right: 5px;
@@ -132,8 +132,8 @@ label {
 }
 
 .question-icon {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   align-self: center;
   margin-left: 10px;
 }
@@ -192,4 +192,15 @@ label {
   flex-direction: row;
   align-items: flex-end;
   margin-top: 12px;
+}
+
+@media only screen and (min-width: 700px) {
+  .project-name-header {
+    font-size: 25px;
+  }
+
+  .question-icon {
+    width: 20px;
+    height: 20px;
+  }
 }

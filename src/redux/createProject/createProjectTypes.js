@@ -9,3 +9,5 @@ export const ADD_SKILL = "ADD_SKILL";
 export const ADD_RESPONSIBILITY = "ADD_RESPONSIBILITY";
 export const ADD_LOCATION = "ADD_LOCATION";
 export const CLEAR_DATA = "CLEAR_DATA";
+export const INCREASE_STEP = "INCREASE_STEP";
+export const DECREASE_STEP = "DECREASE_STEP";

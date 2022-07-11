@@ -16,6 +16,7 @@ import questionIcon from "../assets/icons/question-icon.png";
 import ProjectRoles from "../components/ProjectRoles/ProjectRoles";
 import { useNavigate } from 'react-router-dom';
 import ReactTooltip from "react-tooltip";
+import { increaseStep, decreaseStep } from "../redux/createProject/createProjectActions";
 
 
 const CreateProject = ({
@@ -143,7 +144,7 @@ const CreateProject = ({
           </div>
 
           <div className="field-set">
-            <CustomTextBox className="sign-up-detail" name="projName" reducer="createProj" onChange={handleTextboxChange}></CustomTextBox>
+            <CustomTextBox className="sign-up-detail" name="projName" reducer="createProj" onChange={handleTextboxChange} placeholder={"E.g. Accessible Treatments"}></CustomTextBox>
           </div>
       </div>
     </div>
@@ -286,16 +287,26 @@ const CreateProject = ({
     navigate('/finishProject');
   }
 
-  if (isMobile) {
-    return (
-      <>
-        You can only create a project on desktop.
-      </>
-    )
+  const handleStepChange = (e) => {
+    const target = e.target.className;
+    console.log(target);
+    if (target.includes("back-button-proj")) {
+      dispatch(decreaseStep());
+    } else if (target.includes("login-button-proj")) {
+      dispatch(increaseStep());
+    }
   }
 
+  // if (isMobile) {
+  //   return (
+  //     <>
+  //       You can only create a project on desktop.
+  //     </>
+  //   )
+  // }
+
     return (
-      <div className={"desktop-container-cp"}>
+      <div className={"desktop-container-cp"} onClick={handleStepChange}>
         <img className="logo" src={logo} alt="nexus logo"></img>
         <StepProgressBar
               startingStep={0}

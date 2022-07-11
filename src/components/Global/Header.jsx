@@ -1,6 +1,6 @@
 import logo from "../../assets/Logo.png";
 import { slide as Menu } from 'react-burger-menu'
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./header.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoggedIn } from "../../redux/userState/userStateActions";
@@ -35,9 +35,34 @@ const LoginButton = () => {
 const Header = ({
     isMobile
 }) => {
+    const location = useLocation().pathname;
     
+    // fix this in future, bad style
     const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
+    const projectStep = useSelector((state) => state.createProj.step);
+    const profileStep = useSelector((state) => state.signUp.step);
     if (isMobile) {
+        if (location === '/createProfile' || location === '/createProject') {
+            let maxSteps = 4;
+            if (location === '/createProject') {
+                maxSteps = 6;
+            }
+            const step = (location === '/createProfile' ? profileStep : projectStep);
+            return (
+                <>
+                    <div className="iterations-flex">
+                        <Link to={"/"}>
+                            <div className="iterations-logo-header">
+                                <img src={logo} alt="Nexus Logo" className=""/>
+                            </div>
+                        </Link>
+
+                        <p className={step <= maxSteps ? 'step-counter' : 'step-counter-hidden'}>Step {location === '/createProfile' ? profileStep : projectStep} of {maxSteps}</p>
+                    </div>
+                </>
+            )
+        }
+
         return (
             <>
                 <Menu width={190}>

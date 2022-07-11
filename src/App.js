@@ -22,7 +22,7 @@ import { setLoggedIn, setUserID } from './redux/userState/userStateActions';
 import ApplicationPage from './pages/ApplicationPage';
 
 const App = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 450);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 850);
   // const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
@@ -30,7 +30,7 @@ const App = () => {
 
   useEffect(() => {
     const reactToWindowResize = () => {
-      setIsMobile(window.innerWidth <= 450);
+      setIsMobile(window.innerWidth <= 850);
     }
     window.addEventListener('resize', reactToWindowResize);
 
