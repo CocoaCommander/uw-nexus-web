@@ -34,7 +34,7 @@ const ProjectRoles = (props) => {
         responsibilities: resp,
       }
 
-      props.onAdd();
+      //props.onAdd();
       dispatch(addRole(newRole));
       setRole("");
       setSkills([]);
@@ -75,7 +75,7 @@ const ProjectRoles = (props) => {
       <div className="roles-block">
 
         <div className="role-name-container">
-          <label className="roles-label">Role</label>
+          <label className="roles-label">Roles</label>
           <p className="role-name">{role.role}</p>
         </div>
 
@@ -99,53 +99,52 @@ const ProjectRoles = (props) => {
   return(
     <div className="center-pane">
 
+      
+
+
+    <div className={"roles-input-after"}>
+
+    <p className="project-name-header-roles">What kind of people are you looking for?</p>
+
     <div className="roles-container">
       {renderRoles(projRoles)}
     </div>
 
-      
-
-
-    <div className={projRoles.length > 0 ? "roles-input-after" : "roles-input-before"}>
-
-    <p className="project-name-header-roles">What kind of people are you looking for?</p>
-
-    <div className="field-set-cp">
-        <label className="roles-label">Roles</label>
-        <CustomTextBox value={currentRole} onChange={(e) => {setRole(e.target.value)}} className="sign-up-detail" placeholder={"Roles that you are looking for"}></CustomTextBox>
-      </div>
-
+    <div className="roles-input-container">
       <div className="field-set-cp">
-        <label className="roles-label">Skillsets / Tools</label>
-        <CustomTextBox value={skill}
-                       className="sign-up-detail"
-                       placeholder={"Qualifications of the role"}
-                       onChange={(e) => {setSkill(e.target.value)}} 
-                       onKeyPress={handleSkillAddition}></CustomTextBox>
-      </div>
-
-      <div className="selections-skills-container">
-          {renderSkills(currentSkills)}
+          <label className="roles-label">Roles</label>
+          <CustomTextBox value={currentRole} onChange={(e) => {setRole(e.target.value)}} className="sign-up-detail" placeholder={"Roles that you are looking for"}></CustomTextBox>
         </div>
 
-      <div className="resp-set">
-        <label className="roles-label">Responsibilities</label>
-        <CustomTextArea 
-                        value={resp}
-                        className="resp-text-area"
-                        placeholder={"What reponsibilities this role will uphold"}
-                        onChange={(e) => {setResp(e.target.value)}}>
-                        
-        </CustomTextArea>
-      </div>
+        <div className="field-set-cp">
+          <label className="roles-label">Skillsets / Tools</label>
+          <CustomTextBox value={skill}
+                        className="sign-up-detail"
+                        placeholder={"Qualifications of the role"}
+                        onChange={(e) => {setSkill(e.target.value)}} 
+                        onKeyPress={handleSkillAddition}></CustomTextBox>
+        </div>
 
-      <div onClick={updateRolls} className="add-role-wrapper">
-        <span className="add-role-text">Add Role</span>
-      </div>
+        <div className="selections-skills-container">
+            {renderSkills(currentSkills)}
+          </div>
 
+        <div className="resp-set">
+          <label className="roles-label">Responsibilities</label>
+          <CustomTextArea 
+                          value={resp}
+                          className="resp-text-area"
+                          placeholder={"What reponsibilities this role will uphold"}
+                          onChange={(e) => {setResp(e.target.value)}}>
+                          
+          </CustomTextArea>
+        </div>
 
+        <div onClick={updateRolls} className="add-role-wrapper">
+          <span className="add-role-text">Add Roles</span>
+        </div>
+      </div>  
     </div>
-
     </div>
   )
 }

@@ -9,3 +9,5 @@ export const REMOVE_INTEREST = "REMOVE_INTEREST"
 export const ADD_SKILL = "ADD_SKILL";
 export const REMOVE_SKILL = "REMOVE_SKILL"
 export const ADD_RESUME = "ADD_RESUME"
+export const INCREASE_STEP = "INCREASE_STEP"
+export const DECREASE_STEP = "DECREASE_STEP"

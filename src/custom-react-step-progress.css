@@ -226,7 +226,7 @@
 }
 
 
-@media only screen and (min-width: 700px) {
+@media only screen and (min-width: 850px) {
   ._1Lo2h {
     margin: 0 0 1rem 0;
     padding: 0;
@@ -243,6 +243,7 @@
 
   ._2_g61 {
     padding: 1rem;
+    height: 100%;
   }
 
 
