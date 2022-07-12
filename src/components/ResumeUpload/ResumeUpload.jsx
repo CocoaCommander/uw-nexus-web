@@ -66,6 +66,11 @@ const ResumeUpload = (props) => {
               <p className="resource-text">Loren Ipsum</p>
             </div>
 
+            <div className="resources-option">
+              <p className="resource-subtitle">Example Resume: UW's Purple and Gold Resume Template</p>
+              <p className="resource-text">Loren Ipsum</p>
+            </div>
+
           </div>
 
 

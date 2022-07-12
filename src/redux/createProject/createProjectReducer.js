@@ -1,4 +1,4 @@
-import { SET_PROJECT_NAME, SET_PROJECT_DESC, SET_TEAM_SIZE, SET_PROJECT_DUR, SET_PROJECT_STATUS, ADD_PROJECT_CATEG, ADD_LOCATION } from "./createProjectTypes";
+import { SET_PROJECT_NAME, SET_PROJECT_DESC, SET_TEAM_SIZE, SET_PROJECT_DUR, SET_PROJECT_STATUS, ADD_PROJECT_CATEG, ADD_LOCATION, INCREASE_STEP, DECREASE_STEP } from "./createProjectTypes";
 import { ADD_ROLE, CLEAR_DATA } from "./createProjectTypes";
 
 const initialState = {
@@ -9,7 +9,8 @@ const initialState = {
   projStatus: "",
   projCategs: [],
   roles: [],
-  location: ""
+  location: "",
+  step: 1
 }
 
 const createProjectReducer = (state = initialState, action) => {
@@ -52,6 +53,16 @@ const createProjectReducer = (state = initialState, action) => {
     case ADD_LOCATION: return {
       ...state,
       location: action.payload
+    }
+
+    case INCREASE_STEP: return {
+      ...state,
+      step: state.step + 1
+    }
+
+    case DECREASE_STEP: return {
+      ...state,
+      step: state.step - 1
     }
 
     case CLEAR_DATA:

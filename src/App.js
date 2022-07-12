@@ -40,7 +40,7 @@ const USER_INFO = {
 }
 
 const App = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 450);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 850);
   const [userProfile, setUserProfile] = useState(USER_INFO);
   // const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
   const dispatch = useDispatch();
@@ -49,7 +49,7 @@ const App = () => {
 
   useEffect(() => {
     const reactToWindowResize = () => {
-      setIsMobile(window.innerWidth <= 450);
+      setIsMobile(window.innerWidth <= 850);
     }
     window.addEventListener('resize', reactToWindowResize);
 

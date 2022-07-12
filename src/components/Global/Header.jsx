@@ -40,7 +40,7 @@ const Header = ({
 }) => {
     const [isMenuOpen, setMenuOpen] = useState(false);
     const menuRef = useRef();
-    const currPath = useLocation().pathname;
+    const location = useLocation().pathname;
     
     // Set up clicking event for dropdown user accounts and modals
     useEffect(() => {
@@ -55,9 +55,33 @@ const Header = ({
             document.removeEventListener('mousedown', checkIfClickedOutside);
         }
     }, [isMenuOpen]);
-
+    
+    // fix this in future, bad style
     const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
+    const projectStep = useSelector((state) => state.createProj.step);
+    const profileStep = useSelector((state) => state.signUp.step);
     if (isMobile) {
+        if (location === '/createProfile' || location === '/createProject') {
+            let maxSteps = 4;
+            if (location === '/createProject') {
+                maxSteps = 6;
+            }
+            const step = (location === '/createProfile' ? profileStep : projectStep);
+            return (
+                <>
+                    <div className="iterations-flex">
+                        <Link to={"/"}>
+                            <div className="iterations-logo-header">
+                                <img src={logo} alt="Nexus Logo" className=""/>
+                            </div>
+                        </Link>
+
+                        <p className={step <= maxSteps ? 'step-counter' : 'step-counter-hidden'}>Step {location === '/createProfile' ? profileStep : projectStep} of {maxSteps}</p>
+                    </div>
+                </>
+            )
+        }
+
         return (
             <>
                 <Menu width={190}>
@@ -86,7 +110,7 @@ const Header = ({
                 <div className="header-desktop-items">
                     <NavLink className="projects-button" to={"/projects"}>Discover Projects</NavLink>
                     {/* {isLoggedIn ? <p className="profile-button" onClick={() => setMenuOpen(true)}>My Profile</p>: null} */}
-                    <p className={currPath === '/profile' ? 'profile-button-active' : 'profile-button'} onClick={() => setMenuOpen(true)}>My Profile</p>
+                    <p className={location === '/profile' ? 'profile-button-active' : 'profile-button'} onClick={() => setMenuOpen(true)}>My Profile</p>
                     {isMenuOpen ? <ProfileModal userProfile={userProfile} menuRef={menuRef} /> : null}
                     <LoginButton />
                 </div>

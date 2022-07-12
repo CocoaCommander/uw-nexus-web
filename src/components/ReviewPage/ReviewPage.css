@@ -1,5 +1,5 @@
 .review-container {
-  width: 50%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -7,7 +7,7 @@
 }
 
 .main-title {
-  font-size: 20px;
+  display: none;
 }
 
 .sub-section {
@@ -78,5 +78,16 @@
 
 .interest-selection-review {
   background-color: rgb(240, 90, 40, 0.1);
+}
+
+@media only screen and (min-width: 850px) {
+  .review-container {
+    width: 50%;
+  }
+
+  .main-title {
+    display: block;
+    font-size: 20px;
+  }
 }
 

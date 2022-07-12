@@ -66,15 +66,22 @@ const CreateUser = () => {
     if (!response.ok) {
       if (response.status === 404 || 400) {
         setErrorMsg("Invalid credentials. Please fill all");
+        return;
       } else if (response.status === 500) {
         setErrorMsg("Something went wrong on our end. Please try again later.");
+        return;
       }
     }
 
     // sign in user after sign up, setting access token and user id and redirecting to projects page
     await handleSignIn();
 
-    navigate('/projects');
+    if (!localStorage.getItem(localStorage.getItem("nxs-id"))) {
+      navigate('/createProfile');
+    } else {
+      navigate('/projects');
+    }
+
   }
 
 

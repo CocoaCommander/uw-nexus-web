@@ -9,16 +9,15 @@
 
 .proj-done-img {
   margin-top: 5%;
-  width: 500px;
-  height: 500px;
+  width: 300px;
+  align-self: center;
 }
 
 .publish-button, .review-button {
   border-radius: 10px;
   background-color: white;
   font-weight: bold;
-  width: 200px;
-  height: 30%;
+  width: 135px;
   font-size: 18px;
 } 
 
@@ -44,25 +43,51 @@
 
 
 .finish-title {
-  font-size: 36px;
+  font-size: 24px;
   font-weight: bold;
+  align-self: center;
+  margin-top: 7%;
 }
 
 .finish-subtitle {
   color: #333333;
-  margin-top: 2%;
+  margin-top: 5%;
+  align-self: center;
 }
 
 .finish-buttons-wrapper {
-  width: 40%;
-  margin-top: 2%;
-  height: 200px;
+  width: 100%;
+  margin-top: 30px;
   align-self: center;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  height: 30%;
 }
 
 .review-proj-text {
+  align-self: center;
   text-align: center;
+  margin-top: 5%;
+}
+
+@media only screen and (min-width: 850px) {
+  .finish-title {
+    font-size: 36px;
+  }
+
+  .proj-done-img {
+    width: 450px;
+    height: 500px;
+  }
+
+  .finish-buttons-wrapper {
+    width: 40%;
+    height: 50px;
+    margin-bottom: 5%;
+  }
+
+  .publish-button, .review-button {
+    width: 200px;
+  } 
 }

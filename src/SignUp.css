@@ -1,6 +1,5 @@
 .desktop-container {
   background-color: white;
-  height: 110vh;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -8,10 +7,7 @@
 }
 
 .logo {
-  width: 100px;
-  height: 100px;
-  margin-top: 1%;
-  margin-left: 3%;
+  display: none;
 }
 
 .sign-up-pane {
@@ -19,8 +15,15 @@
   flex-direction: column;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
+  width: 100%;
   height: 100%;
+}
+
+.gen-info-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 10%;
 }
 
 form {
@@ -47,10 +50,7 @@ label {
 }
 
 .interests-subtitle {
-  color: #757575;
-  font-weight: bold;
-  text-align: center;
-  font-size: 12px;
+  display: none;
 }
 
 .row {
@@ -117,8 +117,9 @@ label {
 
 .buttonsWrapper {
   display: inline-flex;
-  width: 80%;
+  width: 100%;
   margin-bottom: 1.5%;
+  margin-top: 10%;
 }
 
 .step-content {
@@ -141,14 +142,10 @@ label {
 
 .vertical-center-signup {
   margin-top: 7%;
-  height: 35vw;
 }
 
 .vertical-center-signup-review {
   margin-top: 7%;
-  height: 34.5vw;
-  overflow-y: scroll;
-  overflow-x: hidden;
 }
 
 /* total width */
@@ -172,4 +169,46 @@ label {
 /* set button(top and bottom of the scrollbar) */
 .vertical-center-signup-review::-webkit-scrollbar-button {
   display:none;
+}
+
+
+@media only screen and (min-width: 850px) {
+  .logo {
+    display: block;
+    width: 100px;
+    height: 100px;
+    margin-top: 1%;
+    margin-left: 3%;
+  }
+
+  .sign-up-pane {
+    width: 50%;
+  }
+
+  .gen-info-title {
+    display: none;
+  }
+
+  .buttonsWrapper {
+    width: 80%;
+  }
+
+  .interests-subtitle {
+    color: #757575;
+    font-weight: bold;
+    text-align: center;
+    font-size: 12px;
+    display: block;
+  }
+
+  .desktop-container {
+    height: 110vh;
+  }
+
+  .vertical-center-signup-review {
+    height: 34.5vw;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
 }
