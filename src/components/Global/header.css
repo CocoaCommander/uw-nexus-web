@@ -39,18 +39,18 @@ img {
     left: 36px;
     top: 36px;
 }
-  
-  /* Color/shape of burger icon bars */
+
+/* Color/shape of burger icon bars */
 .bm-burger-bars {
     background: #373a47;
 }
-  
-  /* Color/shape of burger icon bars on hover*/
-  .bm-burger-bars-hover {
+
+/* Color/shape of burger icon bars on hover*/
+.bm-burger-bars-hover {
     background: #a90000;
-  }
-  
-  /* Position and sizing of clickable cross button */
+}
+
+/* Position and sizing of clickable cross button */
 .bm-cross-button {
     height: 24px;
     width: 24px;
@@ -69,7 +69,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
     position: fixed;
     height: 100%;
 }
-  
+
 /* General sidebar styles */
 .bm-menu {
     background: white;
@@ -144,15 +144,16 @@ Note: Beware of modifying this element as it can break the animations - you shou
         padding: 1rem 1rem;
         margin-left: 10px;
         cursor: pointer;
-      }
-      
-      .login-button-header:hover {
+    }
+
+    .login-button-header:hover {
         background-color: #f05a28;
         color: white;
         font-weight: bold;
-      }
+    }
 
-    .header-desktop-items > a, .header-desktop-items > a:visited {
+    .header-desktop-items>a,
+    .header-desktop-items>a:visited {
         font-size: 16px;
         margin-left: 8px;
     }
@@ -162,7 +163,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
         margin-left: 20px;
     }
 
-    .nexus-logo-header{
+    .nexus-logo-header {
         width: 75px;
         height: 75px;
     }

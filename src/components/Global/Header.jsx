@@ -86,6 +86,7 @@ const Header = ({
             <>
                 <Menu width={190}>
                     <Link to={"/projects"}>Discover Projects</Link>
+                    <p className={location === '/profile' ? 'profile-button-active' : 'profile-button'} onClick={() => setMenuOpen(true)}>My Profile</p>
                     {/* {isLoggedIn ? <p className="profile-button" onClick={() => setMenuOpen(true)}>My Profile</p>: null} */}
                     {isMenuOpen ? <ProfileModal userProfile={userProfile} menuRef={menuRef} /> : null}
                     <LoginButton />

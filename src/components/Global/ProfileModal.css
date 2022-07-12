@@ -60,3 +60,13 @@
         flex-direction: column;
     }
 }
+
+@media (max-width: 375px) {
+    .entire-modal {
+        width: 90vw;
+        padding: 2rem;
+        left: 17%;
+        align-items: center;
+        flex-direction: column;
+    }
+}
