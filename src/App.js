@@ -21,8 +21,27 @@ import Cookies from 'universal-cookie';
 import { setLoggedIn, setUserID } from './redux/userState/userStateActions';
 import ApplicationPage from './pages/ApplicationPage';
 
+// static user info
+const USER_INFO = {
+  first_name: 'James',
+  last_name: 'Lin',
+  education: {
+      campus: '',
+      year: '',
+      major: '',
+      interests: [],
+      skills: [
+      ],
+      bio: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+      resume_file_id: '',
+      private: false,
+      profile_id: ''
+  }
+}
+
 const App = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 850);
+  const [userProfile, setUserProfile] = useState(USER_INFO);
   // const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
@@ -51,7 +70,7 @@ const App = () => {
 
   return (
     <>
-      <Header isMobile={isMobile}/>
+      <Header isMobile={isMobile} userProfile={userProfile} />
       <div className='app'>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -62,7 +81,7 @@ const App = () => {
           <Route path='/reviewProject' element={<ProjectReview/>}/>
           <Route path='/signUp' element={<CreateUser/>}/>
           <Route path='/login' element={<DesktopLogin/>}/>
-          <Route path='/profile' element={<Profile isMobile={isMobile}/>}/>
+          <Route path='/profile' element={<Profile isMobile={isMobile} userProfile={userProfile} userCallback={setUserProfile} />}/>
           <Route path='/createProfileStart' element={<SignUpStart/>}/>
           <Route path='/createProfile' element={<SignUp/>}/>
           <Route path='/welcomePage' element={<WelcomePage/>}/>
