@@ -1,7 +1,7 @@
 import './ProfileModal.css';
 import { Link } from 'react-router-dom';
 import userPic from '../../assets/userpic.png';
-import Modal from 'react-bootstrap/modal';
+import Modal from 'react-bootstrap/Modal';
 
 const ProfileModal = (props) => {
     const { userProfile, menuRef } = props;
