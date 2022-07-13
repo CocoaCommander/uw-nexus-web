@@ -1,0 +1,72 @@
+.entire-modal {
+    position: absolute;
+    display: flex;
+    top: 75px;
+    padding: 2rem 6rem;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 2px 4px 10px rgb(0 0 0 / 25%);
+    text-align: center;
+}
+
+.user-pic,
+.user-name,
+.user-email {
+    margin-top: 10px;
+}
+
+.user-name {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.user-email {
+    color: #757575;
+}
+
+.options-info {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.manage-profile-button,
+.modal-logout-button {
+    padding: 1rem 6rem;
+    border: 1px solid #8A8888;
+    border-radius: 10px;
+}
+
+.manage-profile-button {
+    color: black; /* Keep Link color black even after clicking */
+    font-size: 16px;
+}
+
+.modal-logout-button {
+    margin-top: 20px;
+    color: #F05A28;
+}
+
+.modal-logout-button:hover {
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .entire-modal {
+        width: 60vw;
+        padding: 2rem;
+        left: 17%;
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 375px) {
+    .entire-modal {
+        width: 90vw;
+        padding: 2rem;
+        left: 17%;
+        align-items: center;
+        flex-direction: column;
+    }
+}

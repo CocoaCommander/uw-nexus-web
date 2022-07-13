@@ -1,10 +1,12 @@
 import logo from "../../assets/Logo.png";
 import { slide as Menu } from 'react-burger-menu'
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import "./header.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoggedIn } from "../../redux/userState/userStateActions";
 import Cookies from "universal-cookie";
+import { useEffect, useState, useRef } from 'react';
+import ProfileModal from './ProfileModal.jsx';
 
 const LoginButton = () => {
     const dispatch = useDispatch();
@@ -33,9 +35,26 @@ const LoginButton = () => {
 }
 
 const Header = ({
-    isMobile
+    isMobile,
+    userProfile
 }) => {
+    const [isMenuOpen, setMenuOpen] = useState(false);
+    const menuRef = useRef();
     const location = useLocation().pathname;
+    
+    // Set up clicking event for dropdown user accounts and modals
+    useEffect(() => {
+        const checkIfClickedOutside = e => {
+            if (isMenuOpen && menuRef.current && !menuRef.current.contains(e.target)) {
+                setMenuOpen(false);
+            }
+        }
+        document.addEventListener('mousedown', checkIfClickedOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', checkIfClickedOutside);
+        }
+    }, [isMenuOpen]);
     
     // fix this in future, bad style
     const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
@@ -67,13 +86,15 @@ const Header = ({
             <>
                 <Menu width={190}>
                     <Link to={"/projects"}>Discover Projects</Link>
-                    <Link to={isLoggedIn ? "/profile" : "/login"}>My Profile</Link>
-                    <LoginButton/>
+                    <p className={location === '/profile' ? 'profile-button-active' : 'profile-button'} onClick={() => setMenuOpen(true)}>My Profile</p>
+                    {/* {isLoggedIn ? <p className="profile-button" onClick={() => setMenuOpen(true)}>My Profile</p>: null} */}
+                    {isMenuOpen ? <ProfileModal userProfile={userProfile} menuRef={menuRef} /> : null}
+                    <LoginButton />
                 </Menu>
                 <div className="flex">
                     <Link to={"/"}>
                         <div className="logo-header">
-                            <img src={logo} alt="Nexus Logo" className=""/>
+                            <img src={logo} alt="Nexus Logo" className="" />
                         </div>
                     </Link>
                 </div>
@@ -84,19 +105,38 @@ const Header = ({
             <div className="header-desktop">
                 <Link to={"/"}>
                     <div className="logo-header">
-                        <img src={logo} alt="Nexus Logo" className="nexus-logo-header"/>
+                        <img src={logo} alt="Nexus Logo" className="nexus-logo-header" />
                     </div>
                 </Link>
                 <div className="header-desktop-items">
-                    <Link to={"/projects"}>Discover Projects</Link>
-                    <Link to={isLoggedIn? "/profile" : "/login"}>My Profile</Link>
-                    <LoginButton/>
+                    <NavLink className="projects-button" to={"/projects"}>Discover Projects</NavLink>
+                    {/* {isLoggedIn ? <p className="profile-button" onClick={() => setMenuOpen(true)}>My Profile</p>: null} */}
+                    <p className={location === '/profile' ? 'profile-button-active' : 'profile-button'} onClick={() => setMenuOpen(true)}>My Profile</p>
+                    {isMenuOpen ? <ProfileModal userProfile={userProfile} menuRef={menuRef} /> : null}
+                    <LoginButton />
                 </div>
             </div>
         )
     }
-    
 
+
+    /*
+    <Modal.Dialog show={true}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Modal title</Modal.Title>
+                        </Modal.Header>
+
+                        <Modal.Body>
+                            <p>Modal body text goes here.</p>
+                        </Modal.Body>
+
+                        <Modal.Footer>
+                        </Modal.Footer>
+                    </Modal.Dialog>
+                    <Link to={"/projects"}>Discover Projects</Link>
+                    <Link to={isLoggedIn ? "/profile" : "/login"}>My Profile</Link>
+                    <LoginButton />
+    */
 }
 
 export default Header;
