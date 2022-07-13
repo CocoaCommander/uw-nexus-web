@@ -171,7 +171,7 @@ p {
 
 @media (max-width: 768px) {
   .profile-grid-container {
-      flex-direction: column;
+    flex-direction: column;
   }
 
   /* All cards */
@@ -182,8 +182,8 @@ p {
   .user-project-interests,
   .user-skills,
   .logout-button {
-      margin-right: auto;
-      margin-left: auto;
+    margin-right: auto;
+    margin-left: auto;
   }
 
   /* Long bois */
@@ -192,39 +192,61 @@ p {
   .user-resume,
   .user-skills,
   .logout-button {
-      width: 60vw;
+    width: 60vw;
   }
 
   /* Short bois */
   .project-categories-container,
   .user-project-interests {
-      height: 300px;
+    height: 300px;
   }
 
   .project-row {
-      flex-direction: row;
-      gap: 0;
+    flex-direction: row;
+    gap: 0;
   }
-  
+
   .project-categories-container {
-      width: 20vw;
+    width: 20vw;
   }
 
   .project-categories {
-      gap: 15px;
+    gap: 15px;
   }
 
   .category-divider {
-      margin-bottom: 15px;
+    margin-bottom: 15px;
   }
 
   .user-project-interests {
-      margin-left: 0;
-      width: 30vw;
+    margin-left: 0;
+    width: 30vw;
   }
 }
 
-/* FUTURE MOBILE STUFF */
-@media (max-width: 375px) {
+/* mobile */
+@media only screen and (max-width: 395px) {
 
+  .project-row {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .project-categories-container,
+  .user-project-interests {
+    width: 60vw;
+  }
+
+  .user-project-interests {
+    margin-left: auto;
+  }
+
+  .user-summary > img {
+    width: 20vw;
+    height: 20vw;
+  }
+
+  .summary-flexbox > p:not(:first-child) {
+    display: none;
+  }
 }
