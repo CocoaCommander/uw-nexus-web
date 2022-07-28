@@ -7,6 +7,7 @@ import { setLoggedIn } from "../../redux/userState/userStateActions";
 import Cookies from "universal-cookie";
 import { useEffect, useState, useRef } from 'react';
 import ProfileModal from './ProfileModal.jsx';
+import MenuIcon from '../../assets/menu-icon.png';
 
 const LoginButton = () => {
     const dispatch = useDispatch();
@@ -84,12 +85,16 @@ const Header = ({
 
         return (
             <>
-                <Menu width={190}>
-                    <Link to={"/projects"}>Discover Projects</Link>
-                    <p className={location === '/profile' ? 'profile-button-active' : 'profile-button'} onClick={() => setMenuOpen(true)}>My Profile</p>
-                    {/* {isLoggedIn ? <p className="profile-button" onClick={() => setMenuOpen(true)}>My Profile</p>: null} */}
-                    {isMenuOpen ? <ProfileModal userProfile={userProfile} menuRef={menuRef} /> : null}
-                    <LoginButton />
+                <Menu width={190} customBurgerIcon={<img src={MenuIcon}></img>} customCrossIcon={false}>
+                    <img className="menu-icon" src={MenuIcon}></img>
+                    <div className="side-menu-container">
+                      <Link className={location === '/projects' ? 'side-menu-option-active-a' : 'side-menu-option-a'} to={"/projects"}>Discover Projects</Link>
+                      {isLoggedIn && <p className={location === '/profile' ? 'side-menu-option-active' : 'side-menu-option'} onClick={() => setMenuOpen(true)}>My Profile</p>}
+                      {/* {isLoggedIn ? <p className="profile-button" onClick={() => setMenuOpen(true)}>My Profile</p>: null} */}
+                      {isMenuOpen ? <ProfileModal userProfile={userProfile} menuRef={menuRef} /> : null}
+                      <LoginButton />
+                    </div>
+
                 </Menu>
                 <div className="flex">
                     <Link to={"/"}>
@@ -111,7 +116,7 @@ const Header = ({
                 <div className="header-desktop-items">
                     <NavLink className="projects-button" to={"/projects"}>Discover Projects</NavLink>
                     {/* {isLoggedIn ? <p className="profile-button" onClick={() => setMenuOpen(true)}>My Profile</p>: null} */}
-                    <p className={location === '/profile' ? 'profile-button-active' : 'profile-button'} onClick={() => setMenuOpen(true)}>My Profile</p>
+                    {isLoggedIn && <p className={location === '/profile' ? 'profile-button-active' : 'profile-button'} onClick={() => setMenuOpen(true)}>My Profile</p>}
                     {isMenuOpen ? <ProfileModal userProfile={userProfile} menuRef={menuRef} /> : null}
                     <LoginButton />
                 </div>

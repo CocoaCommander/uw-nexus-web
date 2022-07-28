@@ -2,14 +2,15 @@ import './ProfileGrid.css';
 import userPic from '../../assets/userpic.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faFile } from '@fortawesome/free-solid-svg-icons';
+import { TailSpin } from "react-loader-spinner";
 
 const ProfileGrid = (props) => {
 
-    const { userInfo, editCallback } = props;
+    const { userInfo, editCallback, hasResume } = props;
 
     // First container
     const fullName = userInfo.first_name + ' ' + userInfo.last_name;
-    const email = 'jlim@uw.edu'; // this is static static for now
+    const email = userInfo.email; // this is static static for now
     const connections = 8; // static static again
     const campus = userInfo.education.campus;
     const classStanding = userInfo.education.year;
@@ -23,7 +24,7 @@ const ProfileGrid = (props) => {
     const bio = userInfo.education.bio;
 
     // Third container
-    const resume = userInfo.education.resume_file_id;
+    const resume = props.resume;
 
     // Fourth container (first one on second column)
     const projectCategories = ['All', 'Current', 'Accepted', 'Pending', 'Declined'];
@@ -78,7 +79,12 @@ const ProfileGrid = (props) => {
                     <h1 className="item-header">Resume</h1>
                     <div className="resume-body">
                         <FontAwesomeIcon className="resume-icon" icon={faFile} size="2xl" />
-                        <p className="resume-link" onClick={convertBase64ToPDF}>View Resume</p>
+                        {!resume && 
+                          <div className='loading-resume-container'>
+                            <TailSpin color="#f05a28" height={25} width={25} ariaLabel="Loading"></TailSpin>
+                          </div>
+                          }
+                        {resume && (hasResume ? <p className="resume-link" onClick={convertBase64ToPDF}>View Resume</p> : <p className='no-resume-text'>No resume found.</p>)}
                     </div>
                 </div>
                 <div className="user-skills">

@@ -1,0 +1,25 @@
+.project-list-proj-title {
+  font-size: 32px;
+  text-align: start;
+  padding: 0px;
+  margin-bottom: 15px;
+}
+
+.project-list-interests-text {
+  text-align: start;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.project-list-detail-description {
+
+  margin-top: 15px;
+  font-size: 18px;
+}
+
+.project-list-open-roles {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}

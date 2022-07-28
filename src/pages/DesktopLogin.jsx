@@ -39,7 +39,7 @@ const DesktopLogin = () => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(creds)
-  };
+    };
     
     let response = await fetch(url, requestOptions);
     if (response.ok) {

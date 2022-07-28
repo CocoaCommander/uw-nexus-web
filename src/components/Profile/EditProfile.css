@@ -53,6 +53,7 @@ body {
 
 .edit-resume-body {
   margin-left: 20px;
+  display: flex;
 }
 
 .form-label,

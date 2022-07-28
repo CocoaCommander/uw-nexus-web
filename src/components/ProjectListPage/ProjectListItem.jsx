@@ -2,12 +2,13 @@ import '../../App.css';
 import { ReactComponent as TimeIcon } from '../../assets/time-icon.svg';
 import { ReactComponent as PersonIcon } from '../../assets/person-icon.svg';
 import { ReactComponent as LocationIcon } from '../../assets/location-icon.svg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const ProjectListItem = ({
     project,
     isLoading
 }) => {
+    const navigate = useNavigate();
     if (isLoading) {
         return (
             <></>
@@ -15,6 +16,14 @@ const ProjectListItem = ({
     }
 
     let projectSize = "";
+
+    const handleProjectApply = (projName, role) => {
+      navigate('/apply', {
+        projName: projName,
+        role: role
+      });
+    }
+
 
     switch(project.size) {
         case 'Small':
@@ -37,13 +46,20 @@ const ProjectListItem = ({
             <div className='role-container' key={i}>
                 <p className='role-title'>{role.title}</p>
                 {roleSkillElements}
+                {console.log(project.owner_email)}
+                <Link className="proj-apply-link" to={`/apply/${project.title}/${role.title}`} state={{email: project.owner_email}}>
+                  <button className='proj-apply-button'>Apply</button>
+                </Link>
+
             </div>
         );
     });
     
     return (
-        <Link to={`/projects/${project._id}`}>
+        
+
             <div className={"project-list-item-container"}>
+                <Link to={`/projects/${project._id}`}>
                 <div className='project-list-item-top-row'>
                     <div className="project-list-item-header">
                         <h3>{project.title}</h3>
@@ -66,13 +82,15 @@ const ProjectListItem = ({
                 </div>
                 <div className="project-list-item-interests">
                     <p>Project Interests:</p>
-                    {/* TODO: implement project interests */}
+                    {}
                 </div>
+                </Link>
                 <div className="project-list-item-role-container">
                     {roleElements}
                 </div>
             </div>
-        </Link>
+            
+
     )
 }
 

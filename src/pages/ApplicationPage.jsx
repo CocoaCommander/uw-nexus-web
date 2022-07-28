@@ -2,6 +2,8 @@ import { useState, useRef } from "react";
 import "../ApplicationPage.css";
 import man from "../assets/human-man.png";
 import woman from "../assets/human-woman.png";
+import emailjs from "emailjs-com";
+import { useParams, useLocation } from "react-router-dom";
 
 const ApplicationPage = (props) => {
 
@@ -20,12 +22,15 @@ const ApplicationPage = (props) => {
   const [coverLetter, setCoverLetter] = useState(null);
   const [extraQuestions, setExtraQuestions] = useState("");
 
+  const params = useParams();
+  const location = useLocation();
+
+
 
   const buttonRef = useRef(null);
   const buttonRef2 = useRef(null);
 
   const handleChange = (e) => {
-    console.log(e.target.name);
     const value = e.target.value;
     switch (e.target.name) {
       case "app-fullName":
@@ -124,7 +129,24 @@ const ApplicationPage = (props) => {
   }
 
   // fill out when backend implements functionality
-  const submitApplication = () => {
+  const submitApplication = async(e) => {
+    e.preventDefault();
+
+    
+    const email_params = {
+        to_name: fullName,
+        proj_name: params.projectName,
+        position: params.projectRole,
+        proj_email: location.state.email,
+      }
+
+
+    
+
+    emailjs.send("application_request", "proj_app_form", email_params, "Cu_UQyXLAv90NgE7U")
+           .then(res => console.log(res))
+           .catch(err => console.log(err));
+
     
   }
 

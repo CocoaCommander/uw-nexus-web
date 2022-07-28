@@ -26,7 +26,7 @@ const ProjectReview = (props) => {
   useEffect(() => {
 
     var cookie = new Cookies();
-    const jwt_token = cookie.get("jwt_token");
+    const jwt_token = cookie.get("accessToken");
     if (jwt_token) {
       setAccessToken(jwt_token);
       console.log("already authenticated!");
@@ -49,6 +49,7 @@ const ProjectReview = (props) => {
 
     let createProjInfo = {
       title: projName,
+      owner_email: props.email,
       size: teamSize,
       location: location,
       duration: {
@@ -60,11 +61,12 @@ const ProjectReview = (props) => {
       categories: projCategs
     }
 
-    console.log("sending " + createProjInfo);
+    console.log("sending " + accessToken);
     const requestOptions = {
       method: 'POST',
       headers: {'Authorization': `Bearer ${accessToken}`, 'Content-Type': 'application/json'},
-      body: JSON.stringify(createProjInfo)
+      body: JSON.stringify(createProjInfo),
+      credentials: 'include'
     };
 
     let response = await fetch(url, requestOptions);
@@ -88,13 +90,13 @@ const ProjectReview = (props) => {
         </div>
 
 
-        <label className="roles-label">Skills</label>
+        <label className="roles-label-rev">Skills</label>
         <div className="selections-container-prev">
           {renderRoleSkill(role)}
         </div>
 
         <div className="resp-container">
-          <label className="roles-label">Responsibilities</label>
+          <label className="roles-label-rev">Responsibilities</label>
           {renderResponsibilities(role.responsibilities)}
         </div>
 
@@ -125,15 +127,16 @@ const ProjectReview = (props) => {
   return (
     <div className="all-container-rev">
 
-        <div className="header">
+        {/* <div className="header">
           <img className={"logo-rev"} src={logo} alt="nexus logo"></img>
-        </div>
+        </div> */}
 
         <div className="seperation">
           <div className="content-body">
             <div className="name-keyword-wrapper">
+              <p className="proj-new">New</p>
               <p className="proj-name">{projName}</p>
-              <p className="keywords">Keywords: {projCategs.join(",")}</p>
+              <p className="keywords">Keywords: {projCategs.join(", ")}</p>
             </div>
 
             <div className="icon-wrapper">
@@ -169,9 +172,7 @@ const ProjectReview = (props) => {
           </div>
 
 
-          <div className="finish-buttons-wrapper-rev">
-            <button className="review-button" type="submit" onClick={redirectHomeScreen}>Publish</button>
-          </div>
+          <button className="review-button-rev" type="submit" onClick={redirectHomeScreen}>Publish</button>
         </div>
     </div>
 
