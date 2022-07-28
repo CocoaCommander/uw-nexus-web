@@ -39,6 +39,12 @@ p {
   cursor: pointer;
 }
 
+.no-resume-text {
+  margin-top: 10px;
+  text-align: left;
+  font-size: 16px;
+}
+
 /* All cards */
 .user-summary,
 .user-bio,

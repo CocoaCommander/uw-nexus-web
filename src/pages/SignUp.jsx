@@ -11,11 +11,13 @@ import ReviewPage from "../components/ReviewPage/ReviewPage";
 import { setCampus, setFullName, setMajor, setYear, addInterest, removeInterest, addSkill, removeSkill, setEmail, setPassword, decreaseStep, increaseStep } from "../redux/signUp/signUpActions";
 import { setInterestsList, setSkillsList } from "../redux/serverContent/serverContentActions";
 import Cookies from 'universal-cookie';
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { setStep } from "../redux/signUp/signUpActions";
 
 
 const SignUp = (props) => {
+
+  const [email, setEmail] = useState("");
 
 
   const fullName = useSelector((state) => state.signUp.fullName);
@@ -47,6 +49,7 @@ const SignUp = (props) => {
   campus_valid.current = campus;
   
   const dispatch = useDispatch();
+  const location = useLocation();
 
   useEffect(() => {
 
@@ -79,7 +82,10 @@ const SignUp = (props) => {
     .then(data => dispatch(setSkillsList(data)))
     .catch((error) => {
       console.log(error);
-    })
+    });
+
+    console.log(`email = ${location.state.email}`);
+    setEmail(location.state.email);
 
   }, [dispatch]);
 
@@ -227,9 +233,12 @@ const SignUp = (props) => {
   
   async function onFormSubmit() {
 
+
+
     const url = `${process.env.REACT_APP_API_URL}/api/profile/createProfile`;
 
     const [firstName, lastName] = handleFullName();
+    console.log(props);
 
 
     console.log(accessToken);
@@ -241,6 +250,7 @@ const SignUp = (props) => {
     let signUpInfo = new FormData();
     signUpInfo.append("first_name", firstName);
     signUpInfo.append("last_name", lastName);
+    signUpInfo.append("email", email);
     signUpInfo.append("education", JSON.stringify({
       "campus": campus,
       "year": year,
@@ -267,6 +277,7 @@ const SignUp = (props) => {
     console.log("success");
     const respJson = await response.json();
     window.localStorage.setItem(userID, respJson.profile_id);
+    props.onCreateProfile(respJson.profile_id);
     navigate('/welcomePage');
     console.log(respJson);
   } else {

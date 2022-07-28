@@ -77,7 +77,7 @@ const CreateUser = () => {
     await handleSignIn();
 
     if (!localStorage.getItem(localStorage.getItem("nxs-id"))) {
-      navigate('/createProfile');
+      navigate('/createProfileStart', {state: {email: email}});
     } else {
       navigate('/projects');
     }

@@ -279,10 +279,12 @@ const CreateProject = ({
   )
 
   function step3Validator() {
+    handleStepIncrease();
     return true;
   }
 
   function step4Validator() {
+    handleStepIncrease();
     return true;
   }
   
@@ -290,14 +292,18 @@ const CreateProject = ({
     navigate('/finishProject');
   }
 
-  const handleStepChange = (e) => {
+  const handleStepDecrease = (e) => {
     const target = e.target.className;
     console.log(target);
     if (target.includes("back-button-proj")) {
       dispatch(decreaseStep());
     } else if (target.includes("login-button-proj")) {
-      dispatch(increaseStep());
+      // dispatch(increaseStep());
     }
+  }
+
+  const handleStepIncrease = () => {
+    dispatch(increaseStep());
   }
 
   // if (isMobile) {
@@ -309,7 +315,7 @@ const CreateProject = ({
   // }
 
     return (
-      <div className={"desktop-container-cp"} onClick={handleStepChange}>
+      <div className={"desktop-container-cp"} onClick={handleStepDecrease}>
         <img className="logo" src={logo} alt="nexus logo"></img>
         <StepProgressBar
               startingStep={0}
@@ -326,13 +332,25 @@ const CreateProject = ({
                   label: 'Project Name',
                   name: 'step 1',
                   content: step1Content,
-                  validator: () => {return s1_valid.current.length > 0}
+                  validator: () => {
+                    const valid = s1_valid.current.length > 0;
+                    if (valid) {
+                      handleStepIncrease();
+                    }
+                    return valid;
+                  }
                 },
                 {
                   label: 'Project Description',
                   name: 'step 2',
                   content: step2Content,
-                  validator: () => {return s2_valid.current.length > 0}
+                  validator: () => {
+                    const valid = s2_valid.current.length > 0;
+                    if (valid) {
+                      handleStepIncrease();
+                    }
+                    return valid
+                  }
                 },
                 {
                   label: 'Team Size',

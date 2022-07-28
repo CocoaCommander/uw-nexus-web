@@ -29,6 +29,7 @@ const ProjectRoles = (props) => {
   const updateRolls = () => {
     if (currentRole.length > 0 && currentSkills.length > 0 && resp.length > 0) {
       const newRole = {
+        title: currentRole,
         role: currentRole,
         skill: currentSkills,
         responsibilities: resp,
@@ -98,7 +99,7 @@ const ProjectRoles = (props) => {
 
   return(
     <div className="center-pane">
-
+      <p className="gen-info-title">Roles</p>
       
 
 

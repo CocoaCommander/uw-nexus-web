@@ -1,0 +1,45 @@
+.title-duration-apply-wrapper {
+  display: flex;
+  width: 100%;
+}
+
+.duration-apply-wrapper {
+  display: flex;
+  margin-left: auto;
+  align-items: center;
+}
+
+.duration-apply-wrapper > p {
+  font-size: 12px;
+  color: #757575;
+}
+
+.project-list-role-title {
+  font-size: 16px;
+  color: #F05A28;
+  font-weight: bold;
+}
+
+.project-list-skills-text {
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.project-list-skills-container {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  margin-top: 10px;
+}
+
+.project-list-resp-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.project-list-resp-text {
+  font-size: 14px;
+  margin-top: 10px;
+}

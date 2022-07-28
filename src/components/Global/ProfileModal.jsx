@@ -1,10 +1,30 @@
 import './ProfileModal.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import userPic from '../../assets/userpic.png';
 import Modal from 'react-bootstrap/Modal';
+import { useSelector, useDispatch } from 'react-redux';
+import { setLoggedIn } from "../../redux/userState/userStateActions";
+import Cookies from "universal-cookie";
 
 const ProfileModal = (props) => {
     const { userProfile, menuRef } = props;
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
+    const SIGN_OUT = `${process.env.REACT_APP_API_URL}/api/auth/signOut`;
+
+    const handleSignOut = async() => {
+      if (isLoggedIn) {
+        await fetch(SIGN_OUT);
+        const prevCookie = new Cookies()
+        prevCookie.remove("accessToken");
+        window.localStorage.removeItem("nxs-id");
+        dispatch(setLoggedIn(false));
+        navigate('/');
+      }
+    }
+
     return (
         <Modal.Dialog className="entire-modal" ref={menuRef}>
             <Modal.Header>
@@ -13,12 +33,12 @@ const ProfileModal = (props) => {
 
             <Modal.Body className="user-info">
                 <p className="user-name">{userProfile.first_name + ' ' + userProfile.last_name}</p>
-                <p className="user-email">{'jlim@uw.edu'}</p>
+                <p className="user-email">{userProfile.email}</p>
             </Modal.Body>
 
             <Modal.Footer className="options-info">
                 <Link className="manage-profile-button" to="/profile">Manage your profile</Link>
-                <p className="modal-logout-button">Log out</p>
+                <p className="modal-logout-button" onClick={handleSignOut}>Log out</p>
             </Modal.Footer>
         </Modal.Dialog >
     );

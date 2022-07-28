@@ -1,8 +1,9 @@
 .project-name-header-roles {
-  font-size: 22px;
+  font-size: 14px;
   font-weight: bold;
   text-align: center;
   margin-right: 5px;
+  margin-bottom: 15px;
 }
 
 .selections-container-cp {
@@ -10,7 +11,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
-  width: 70%;
+  width: 100%;
   margin-top: 3%;
 }
 
@@ -24,8 +25,8 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   width: 100%;
-  margin-top: 1%;
-  margin-bottom: 1%;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .selection-proj-roles, .selection-proj-roles-2 {
@@ -161,5 +162,20 @@
 /* set button(top and bottom of the scrollbar) */
 .roles-input-after::-webkit-scrollbar-button {
   display:none;
+}
+
+@media only screen and (min-width: 850px) {
+  .project-name-header-roles {
+    font-size: 22px;
+  }
+
+  .selections-container-cp {
+    width: 70%;
+  }
+
+  .selections-skills-container {
+    margin-top: 1%;
+    margin-bottom: 1%;
+  }
 }
 

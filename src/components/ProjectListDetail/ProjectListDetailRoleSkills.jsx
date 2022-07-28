@@ -5,8 +5,8 @@ const ProjectListDetailRoleSkills = ({
     console.log(skills);
     return (
         <div>
-            <h6>Skills</h6>
-            <div className="role-container no-border">
+            <p className="project-list-skills-text">Skills</p>
+            <div className="project-list-skills-container">
                 {skills.map(skill => <div className="skill-container small-skill-container">{skill}</div>)}
             </div>
         </div>
