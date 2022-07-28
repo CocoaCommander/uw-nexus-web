@@ -11,7 +11,7 @@ const EditProfile = (props) => {
     const [newClassStanding, setNewClassStanding] = useState(userInfo.education.year);
     const [newMajor, setNewMajor] = useState(userInfo.education.major);
     const [newCampus, setNewCampus] = useState(userInfo.education.campus);
-    const [newBio, setNewBio] = useState(userInfo.education.bio);
+    const [newBio, setNewBio] = useState(""); // change when we implement bios in sign up iterations
     const [newSkills, setNewSkills] = useState(userInfo.education.skills);
     const [isSkillAddIconClicked, setSkillAddIconClicked] = useState(false);
     const [newInterests, setNewInterests] = useState(userInfo.education.interests);
@@ -57,7 +57,7 @@ const EditProfile = (props) => {
     const biography = <Biography userBio={newBio} callback={setNewBio} />;
 
     // Resume
-    const resume = userInfo.education.resume_file_id;
+    const resume = props.resume;
     const resumeComponent = <ResumeAddIcon />;
 
     // Technical Skills
@@ -129,6 +129,18 @@ const EditProfile = (props) => {
       const resp = await fetch(url, options)
     }
 
+    const convertBase64ToPDF = () => {
+      var byteCharacters = window.atob(resume);
+      var byteNumbers = new Array(byteCharacters.length);
+      for (var i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+      }
+      var byteArray = new Uint8Array(byteNumbers);
+      var file = new Blob([byteArray], { type: 'application/pdf;base64' });
+      var fileURL = URL.createObjectURL(file);
+      window.open(fileURL);
+    }
+
 
     return (
         <div className="edit-profile-container">
@@ -152,7 +164,7 @@ const EditProfile = (props) => {
                 </div>
                 <div className="edit-resume-body">
                     <FontAwesomeIcon className="resume-icon" icon={faFile} size="2xl" />
-                    <p className="item-body">{resume}</p>
+                    {resume ? <p className="resume-link" onClick={convertBase64ToPDF}>View Resume</p> : <p className='no-resume-text'>No resume found.</p>}
                 </div>
                 <div className="header-container">
                     <h2>Technical Skills</h2>

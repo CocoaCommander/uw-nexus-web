@@ -12,43 +12,41 @@ const Profile = (props) => {
     const [isLoading, setIsLoading] = useState(false);
     const userID = useSelector((state) => state.userState.userID);
     const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
+    const [hasResume, setHasResume] = useState(false);
+    const [resume, setResume] = useState(null);
     
     useEffect(() => {
-      setIsLoading(false); // change to true, i only changed this to test css
       const fetchData = async() => {
-
         const userID = window.localStorage.getItem("nxs-id");
         const profileID = window.localStorage.getItem(userID);
 
-        const url = `${process.env.REACT_APP_API_URL}/api/profile/${profileID}`;
+        // const url = `${process.env.REACT_APP_API_URL}/api/profile/${profileID}`;
         const options = {
           method: 'GET',
           credentials: 'include'
         }
 
-
-        const profileResponse = await fetch(url, options);
-        if (profileResponse.ok) {
-          const profileData = await profileResponse.json();
-          console.log(`profile data = ${profileData}`)
-          const resumeUrl = `${process.env.REACT_APP_API_URL}/api/profile/resume/${profileData.resume_file_id}`;
-          const resumeResponse = await fetch(resumeUrl, options);
-          if (resumeResponse.ok) {
-            const resumeData = await resumeResponse.json();
-            setData(profileData, resumeData);
-            console.log(`resume data = ${resumeData}`);
+        console.log(isLoading);
+        // const profileResponse = await fetch(url, options);
+        // if (profileResponse.ok) {
+          // const profileData = await profileResponse.json();
+          if (userProfile.education.resume_file_id) {
+            setHasResume(true);
+            const resumeUrl = `${process.env.REACT_APP_API_URL}/api/profile/resume/${userProfile.education.resume_file_id}`;
+            const resumeResponse = await fetch(resumeUrl, options);
+            if (resumeResponse.ok) {
+              const resumeData = await resumeResponse.json();
+              setResume(resumeData.pdf);
+            } else {
+              console.log(`Could not fetch user resume! Error = ${resumeResponse.status}`);
+            }
           } else {
-            console.log(`Could not fetch user resume! Error = ${resumeResponse.status}`);
+            setResume("No resume found");
+            setHasResume(false);
           }
-
-        } else {
-          console.log(`Could not fetch user profile! Error = ${profileResponse.status}`);
-        }
-        setIsLoading(false);
-      }
-      fetchData();
-
-    }, []);
+        } 
+        fetchData();
+    }, [userProfile]);
 
     const setData = (data, resumeData) => {
       let newData = {
@@ -69,19 +67,20 @@ const Profile = (props) => {
       userCallback(newData);
     }
 
-    let profileLayout = <ProfileGrid userInfo={userProfile} editCallback={setIsEditing} />;
+    let profileLayout = <ProfileGrid userInfo={userProfile} editCallback={setIsEditing} resume={resume} hasResume={hasResume}/>;
     if (isEditing) {
-        profileLayout = <EditProfile userInfo={userProfile} editCallback={setIsEditing} />;
+        profileLayout = <EditProfile userInfo={userProfile} editCallback={setIsEditing} resume={resume} hasResume={hasResume}/>;
     }
 
-    if (isLoading) {
-      return (
-      <div className="loading-screen">
-        <TailSpin color="#f05a28" height={100} width={100} ariaLabel="Loading"></TailSpin>
-      </div>
+      // if (isLoading) {
+      //   console.log("LOADING");
+      //   return (
+      //   <div className="loading-screen">
+      //     <TailSpin color="#f05a28" height={100} width={100} ariaLabel="Loading"></TailSpin>
+      //   </div>
 
-      )
-    }
+      //   )
+      // }
 
     return (
         <div>

@@ -26,7 +26,7 @@ const ProjectFinish = (props) => {
   useEffect(() => {
 
     var cookie = new Cookies();
-    const jwt_token = cookie.get("jwt_token");
+    const jwt_token = cookie.get("accessToken");
     if (jwt_token) {
       setAccessToken(jwt_token);
       console.log("already authenticated!");
@@ -54,6 +54,7 @@ const ProjectFinish = (props) => {
 
     let createProjInfo = {
       title: projName,
+      owner_email: props.email,
       size: teamSize,
       location: location,
       duration: {
@@ -69,7 +70,8 @@ const ProjectFinish = (props) => {
     const requestOptions = {
       method: 'POST',
       headers: {'Authorization': `Bearer ${accessToken}`, 'Content-Type': 'application/json'},
-      body: JSON.stringify(createProjInfo)
+      body: JSON.stringify(createProjInfo),
+      credentials: 'include'
     };
 
     let response = await fetch(url, requestOptions);

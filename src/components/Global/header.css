@@ -34,10 +34,19 @@ img {
 /* Position and sizing of burger button */
 .bm-burger-button {
     position: absolute;
-    width: 36px;
-    height: 30px;
+    width: 45px;
+    height: 39px;
     left: 36px;
     top: 36px;
+}
+
+.menu-icon {
+  width: 45px;
+  height: 39px;
+}
+
+.side-menu-container {
+  margin-top: 20px;
 }
 
 /* Color/shape of burger icon bars */
@@ -81,6 +90,8 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .bm-item-list {
     color: #b8b7ad;
     padding: 0.8em;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Individual item */
@@ -93,6 +104,31 @@ Note: Beware of modifying this element as it can break the animations - you shou
 /* Styling of overlay */
 .bm-overlay {
     background: rgba(0, 0, 0, 0.3);
+}
+
+.side-menu-option, .side-menu-option-active {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.side-menu-option-active {
+  color:  #F05A28;
+}
+
+.side-menu-option-a {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.side-menu-option-active-a {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: inline-block;
+  color: #F05A28;
 }
 
 .projects-button,

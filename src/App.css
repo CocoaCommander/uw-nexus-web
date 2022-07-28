@@ -280,7 +280,7 @@ main {
   background-color: white;
   border-radius: 10px;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.09);
-  padding: 10px;
+  padding: 25px;
 }
 
 .home-card {
@@ -355,20 +355,24 @@ main {
   border-radius: 5px;
   background-color: rgba(249, 130, 44, 0.4);
   padding: 3px;
+  margin-right: 10px;
 }
 
 .small-skill-container {
-  font-size: 10px;
+  font-size: 14px;
   padding: 4px;
 }
 
 .project-list-detail-logistics {
   display: flex;
+  align-items: center;
+  margin-top: 15px;
 }
 
 .project-list-detail-logistics-inner-text {
   margin-left: 5px;
   margin-right: 10px;
+  font-size: 10px;
 }
 
 .project-list-detail-role-container {
@@ -377,12 +381,38 @@ main {
   border-radius: 15px;
   margin-bottom: 15px;
   border-width: 1px;
-  padding: 10px;
+  padding: 15px;
 }
 
 .no-border {
   border: none;
   margin-top: 5px;
+}
+
+.proj-apply-button {
+  width: 55px;
+  height: 25px;
+  background-color: white;
+  border: #F05A28 1px solid;
+  padding: 5px;
+  color: #F05A28;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+.proj-apply-button:hover {
+  width: 55px;
+  height: 25px;
+  background-color: #F05A28;
+  border: #F05A28 1px solid;
+  padding: 5px;
+  color: white;
+  border-radius: 3px;
+}
+
+.proj-apply-link {
+  margin-left: auto;
+  margin-right: 10px;
 }
 
 @media only screen and (min-width: 700px) {

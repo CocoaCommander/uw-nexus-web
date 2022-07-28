@@ -10,6 +10,7 @@
     "airtable": "^0.11.1",
     "babel-preset-react-app": "^7.0.0",
     "cra-template": "1.1.2",
+    "emailjs-com": "^3.2.0",
     "netlify-cli": "^10.3.0",
     "react": "^17.0.2",
     "react-bootstrap": "^2.4.0",

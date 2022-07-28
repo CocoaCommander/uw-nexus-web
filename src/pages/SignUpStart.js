@@ -1,11 +1,12 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "../SignUpStart.css";
 
 
 
-const SignUpStart = () => {
+const SignUpStart = (props) => {
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     <div className="center-text">
@@ -18,7 +19,7 @@ const SignUpStart = () => {
         </p>
       </div>
 
-      <button className="start-button" onClick={() => {navigate('/createProfile')}}>Start</button>
+      <button className="start-button" onClick={() => {navigate('/createProfile', {state: {email: location.state.email}})}}>Start</button>
 
     </div>
   )

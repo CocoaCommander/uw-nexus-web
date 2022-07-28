@@ -12,7 +12,7 @@ const ResumeUpload = (props) => {
   const renderPDF = () => {
     if (resume) {
       return (
-        <div>
+        <div className="e-pdf-container">
           <embed className="e-pdf" src={URL.createObjectURL(resume)}></embed>
           <p>{resume.name}</p>
         </div>
