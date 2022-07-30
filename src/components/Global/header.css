@@ -41,12 +41,13 @@ img {
 }
 
 .menu-icon {
-  width: 45px;
-  height: 39px;
+    width: 45px;
+    height: 39px;
 }
 
 .side-menu-container {
-  margin-top: 20px;
+    margin-left: 5px;
+    margin-top: 20px;
 }
 
 /* Color/shape of burger icon bars */
@@ -106,29 +107,29 @@ Note: Beware of modifying this element as it can break the animations - you shou
     background: rgba(0, 0, 0, 0.3);
 }
 
-.side-menu-option, .side-menu-option-active {
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 10px;
+.side-menu-option,
+.side-menu-option-active {
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px auto;
 }
 
 .side-menu-option-active {
-  color:  #F05A28;
+    color: #F05A28;
 }
 
 .side-menu-option-a {
-  display: inline-block;
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 10px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: black;
 }
 
 .side-menu-option-active-a {
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 10px;
-  display: inline-block;
-  color: #F05A28;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: inline-block;
+    color: #F05A28;
 }
 
 .projects-button,
@@ -146,6 +147,19 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .active,
 .profile-button-active {
     color: #F05A28;
+}
+
+.login-button-header {
+    margin-top: 10px;
+    border: solid 2px #f05a28;
+    color: white;
+    background-color: #f05a28;
+    border-radius: 10px;
+    height: 40px;
+    width: 150px;
+    font-weight: bold;
+    padding: 1rem 1rem;
+    cursor: pointer;
 }
 
 /* desktop view */
@@ -170,6 +184,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
     }
 
     .login-button-header {
+        margin-top: 0;
         border: solid 2px #f05a28;
         color: white;
         background-color: #f05a28;

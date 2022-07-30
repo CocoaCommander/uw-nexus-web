@@ -54,17 +54,8 @@
 
 @media (max-width: 768px) {
     .entire-modal {
-        width: 60vw;
-        padding: 2rem;
-        left: 17%;
-        align-items: center;
-        flex-direction: column;
-    }
-}
-
-@media (max-width: 375px) {
-    .entire-modal {
-        width: 90vw;
+        top: 150px;
+        width: 80vw;
         padding: 2rem;
         left: 17%;
         align-items: center;
