@@ -7,6 +7,7 @@ import { setLoggedIn } from "../../redux/userState/userStateActions";
 import Cookies from "universal-cookie";
 import { useEffect, useState, useRef } from 'react';
 import ProfileModal from './ProfileModal.jsx';
+import CreateProjectHeader from "./CreateProjectHeader.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
@@ -94,6 +95,7 @@ const Header = ({
                       {/* {isLoggedIn ? <p className="profile-button" onClick={() => setMenuOpen(true)}>My Profile</p>: null} */}
                       {isMenuOpen ? <ProfileModal userProfile={userProfile} menuRef={menuRef} /> : null}
                       <LoginButton />
+                      <CreateProjectHeader className="header-create-project" />
                     </div>
 
                 </Menu>

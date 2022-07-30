@@ -197,7 +197,7 @@ h2 {
   margin-top: 20px;
 }
 
-.create-project-button {
+/* .create-project-button {
   position: fixed;
   text-align: center;
   bottom: 0px;
@@ -206,7 +206,7 @@ h2 {
   color: white;
   border-radius: 50%;
   border: none;
-}
+} */
 
 h3 {
   font-size: 20px;
@@ -242,7 +242,7 @@ main {
 }
 
 .create-project-button {
-  display: flex;
+  display: none;
   padding: 10px;
 }
 
@@ -432,6 +432,7 @@ main {
     }
 
     .create-project-button {
+      display: block;
       position: static;
       text-align: center;
       background-color: #F05A28;

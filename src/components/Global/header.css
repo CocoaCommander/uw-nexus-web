@@ -162,6 +162,31 @@ Note: Beware of modifying this element as it can break the animations - you shou
     cursor: pointer;
 }
 
+.create-project-header {
+    display: block;
+    margin-top: 50vh;;
+    border: solid 2px #f05a28;
+    color: white;
+    background-color: #f05a28;
+    border-radius: 10px;
+    height: 30px;
+    width: 125px;
+    font-weight: bold;
+    padding: 1rem 1rem;
+}
+
+.create-project-header-container {
+    display: flex;
+}
+
+.create-project-header-container p {
+    color: white;
+    font-size: 10px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 10px;
+}
+
 /* desktop view */
 @media only screen and (min-width: 850px) {
     .bm-item {
