@@ -72,8 +72,8 @@ const App = () => {
   const getUserProfile = async() => {
     const profile_id = window.localStorage.getItem(window.localStorage.getItem("nxs-id"));
     if (profile_id) {
-      const url = `${process.env.REACT_APP_API_URL}/api/profile/${profile_id}`;
-
+      // const url = `${process.env.REACT_APP_API_URL}/api/profile/${profile_id}`;
+      const url = `/api/profile/${profile_id}`;
       const requestOptions = {
         method: 'GET',
         credentials: 'include'
