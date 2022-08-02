@@ -105,7 +105,7 @@ const CreateUser = () => {
       const session = await response.json();
       const cookie = new Cookies();
       // const userIdCookie = new Cookies();
-      cookie.set('accessToken', session.accessToken);
+      cookie.set('fr-accessToken', session.accessToken, {sameSite: "none", secure: true});
       window.localStorage.setItem("nxs-id", session.id);
       // cookie.set("nxs_id", session.id);
       

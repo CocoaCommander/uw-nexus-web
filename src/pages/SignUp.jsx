@@ -34,7 +34,7 @@ const SignUp = (props) => {
 
   const navigate = useNavigate();
 
-  const [accessToken, setAccessToken] = useState(null);
+  const [accessToken2, setaccessToken2] = useState(null);
 
   const progress = useRef();
 
@@ -59,10 +59,10 @@ const SignUp = (props) => {
     const url2 = `${process.env.REACT_APP_API_URL}/api/constants/skills`;
 
     var cookie = new Cookies();
-    const jwt_token = cookie.get("accessToken");
+    const jwt_token = cookie.get("fr-accessToken");
     // const userID = cookie.get("nxs_id");
     if (jwt_token) {
-      setAccessToken(jwt_token);
+      setaccessToken2(jwt_token);
       // setUserID(userID)
       console.log("already authenticated!");
       // redirect or something
@@ -241,7 +241,7 @@ const SignUp = (props) => {
     console.log(props);
 
 
-    console.log(accessToken);
+    console.log(accessToken2);
 
 
 
@@ -262,7 +262,7 @@ const SignUp = (props) => {
     signUpInfo.append("file", resume);
 
 
-    console.log("ACCESS TOKEN = " + accessToken);
+    console.log("ACCESS TOKEN = " + accessToken2);
 
     //JSON.stringify(signUpInfo);
     const requestOptions = {
