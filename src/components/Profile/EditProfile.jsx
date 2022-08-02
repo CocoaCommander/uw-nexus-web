@@ -97,7 +97,7 @@ const EditProfile = (props) => {
     const updateProfile = async(userInfo) => {
       console.log("RUNNING UPDATE PROFILE ENDPOINT!!");
       console.log(userInfo.profile_id);
-      const url = `${process.env.REACT_APP_API_URL}/api/profile/update/${userInfo.profile_id}`;
+      const url = `/api/profile/update/${userInfo.profile_id}`;
 
       let profileBody = new FormData();
 

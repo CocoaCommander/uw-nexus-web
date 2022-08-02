@@ -32,7 +32,7 @@ const Profile = (props) => {
           // const profileData = await profileResponse.json();
           if (userProfile.education.resume_file_id) {
             setHasResume(true);
-            const resumeUrl = `${process.env.REACT_APP_API_URL}/api/profile/resume/${userProfile.education.resume_file_id}`;
+            const resumeUrl = `/api/profile/resume/${userProfile.education.resume_file_id}`;
             const resumeResponse = await fetch(resumeUrl, options);
             if (resumeResponse.ok) {
               const resumeData = await resumeResponse.json();
