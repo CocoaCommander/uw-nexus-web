@@ -55,8 +55,11 @@ const SignUp = (props) => {
 
     // console.log(progress.current);
 
-    const url1 = `${process.env.REACT_APP_API_URL}/api/constants/interests`;
-    const url2 = `${process.env.REACT_APP_API_URL}/api/constants/skills`;
+    // const url1 = `${process.env.REACT_APP_API_URL}/api/constants/interests`;
+    // const url2 = `${process.env.REACT_APP_API_URL}/api/constants/skills`;
+
+    const url1 = "/api/constants/interests";
+    const url2 = "/api/constants/skills";
 
     var cookie = new Cookies();
     const jwt_token = cookie.get("fr-accessToken");
@@ -235,7 +238,8 @@ const SignUp = (props) => {
 
 
 
-    const url = `${process.env.REACT_APP_API_URL}/api/profile/createProfile`;
+    // const url = `${process.env.REACT_APP_API_URL}/api/profile/createProfile`;
+    const url = "/api/profile/createProfile";
 
     const [firstName, lastName] = handleFullName();
     console.log(props);
