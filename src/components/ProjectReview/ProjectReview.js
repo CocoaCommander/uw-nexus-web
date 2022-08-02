@@ -21,14 +21,14 @@ const ProjectReview = (props) => {
   const location = useSelector((state) => state.createProj.location);
   const projRoles = useSelector((state) => state.createProj.roles);
 
-  const [accessToken, setAccessToken] = useState(null);
+  const [accessToken2, setaccessToken2] = useState(null);
 
   useEffect(() => {
 
     var cookie = new Cookies();
-    const jwt_token = cookie.get("accessToken");
+    const jwt_token = cookie.get("fr-accessToken");
     if (jwt_token) {
-      setAccessToken(jwt_token);
+      setaccessToken2(jwt_token);
       console.log("already authenticated!");
     } else {
       console.log("not authenticated");
@@ -61,10 +61,10 @@ const ProjectReview = (props) => {
       categories: projCategs
     }
 
-    console.log("sending " + accessToken);
+    console.log("sending " + accessToken2);
     const requestOptions = {
       method: 'POST',
-      headers: {'Authorization': `Bearer ${accessToken}`, 'Content-Type': 'application/json'},
+      headers: {'Authorization': `Bearer ${accessToken2}`, 'Content-Type': 'application/json'},
       body: JSON.stringify(createProjInfo),
       credentials: 'include'
     };

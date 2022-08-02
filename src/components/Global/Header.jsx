@@ -18,7 +18,7 @@ const LoginButton = () => {
         if (isLoggedIn) {
             await fetch(SIGN_OUT);
             const prevCookie = new Cookies()
-            prevCookie.remove("accessToken");
+            prevCookie.remove("fr-accessToken");
             window.localStorage.removeItem("nxs-id");
             // prevCookie.remove("nxs_id");
             dispatch(setLoggedIn(false));
