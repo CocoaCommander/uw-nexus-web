@@ -13,7 +13,7 @@ const LoginButton = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
-    const SIGN_OUT = `${process.env.REACT_APP_API_URL}/api/auth/signOut`;
+    const SIGN_OUT = `/api/auth/signOut`;
     const handleClick = async () => {
         if (isLoggedIn) {
             await fetch(SIGN_OUT);
