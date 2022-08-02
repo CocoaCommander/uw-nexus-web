@@ -106,7 +106,7 @@ const App = () => {
 
     // Check if user is signed in
     const cookie = new Cookies();
-    const jwt_token = cookie.get("accessToken2");
+    const jwt_token = cookie.get("fr-accessToken");
     // const user_id = cookie.get("nxs_id");
     if (jwt_token) {
       // console.log("already authenticated");
