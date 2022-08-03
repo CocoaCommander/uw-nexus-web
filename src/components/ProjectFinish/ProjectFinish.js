@@ -50,7 +50,7 @@ const ProjectFinish = (props) => {
   }
 
   const publishProject = async () => {
-    const url = `${process.env.REACT_APP_API_URL}/api/project/createProject`;
+    const url = `/api/project/createProject`;
 
     let createProjInfo = {
       title: projName,
