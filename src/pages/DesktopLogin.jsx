@@ -20,7 +20,8 @@ const DesktopLogin = () => {
 
   const handleSignIn = async (e) => {
     e.preventDefault();
-    const url = `${process.env.REACT_APP_API_URL}/api/auth/signIn`;
+    //const url = `${process.env.REACT_APP_API_URL}/api/auth/signIn`;
+    const url = "/api/auth/signIn";
 
     if (email.length === 0) {
       setErrorMsg("Please enter your email.");
@@ -46,7 +47,7 @@ const DesktopLogin = () => {
       const session = await response.json();
       const cookie = new Cookies();
       // const userIdCookie = new Cookies();
-      cookie.set('accessToken', session.accessToken);
+      cookie.set('fr-accessToken', session.accessToken, {sameSite: "none", secure: true});
       window.localStorage.setItem("nxs-id", session.id);
       // cookie.set('nxs_id', session.id);
 

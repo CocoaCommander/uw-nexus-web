@@ -56,13 +56,13 @@ const CreateProject = ({
 
   const navigate = useNavigate();
 
-  // const [accessToken, setAccessToken] = useState(null);
+  // const [accessToken2, setaccessToken2] = useState(null);
 
   useEffect(() => {
     var cookie = new Cookies();
-    const jwt_token = cookie.get("accessToken");
+    const jwt_token = cookie.get("fr-accessToken");
     if (jwt_token) {
-      // setAccessToken(jwt_token);
+      // setaccessToken2(jwt_token);
       console.log("already authenticated!");
     } else {
       console.log("not authenticated");

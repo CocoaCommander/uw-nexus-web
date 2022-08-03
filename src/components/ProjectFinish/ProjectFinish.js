@@ -17,7 +17,7 @@ const ProjectFinish = (props) => {
   const location = useSelector((state) => state.createProj.location);
   const roles = useSelector((state) => state.createProj.roles);
 
-  const [accessToken, setAccessToken] = useState(null);
+  const [accessToken2, setaccessToken2] = useState(null);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -26,9 +26,9 @@ const ProjectFinish = (props) => {
   useEffect(() => {
 
     var cookie = new Cookies();
-    const jwt_token = cookie.get("accessToken");
+    const jwt_token = cookie.get("fr-accessToken");
     if (jwt_token) {
-      setAccessToken(jwt_token);
+      setaccessToken2(jwt_token);
       console.log("already authenticated!");
     } else {
       console.log("not authenticated");
@@ -50,7 +50,7 @@ const ProjectFinish = (props) => {
   }
 
   const publishProject = async () => {
-    const url = `${process.env.REACT_APP_API_URL}/api/project/createProject`;
+    const url = `/api/project/createProject`;
 
     let createProjInfo = {
       title: projName,
@@ -69,7 +69,7 @@ const ProjectFinish = (props) => {
     console.log("sending " + createProjInfo);
     const requestOptions = {
       method: 'POST',
-      headers: {'Authorization': `Bearer ${accessToken}`, 'Content-Type': 'application/json'},
+      headers: {'Authorization': `Bearer ${accessToken2}`, 'Content-Type': 'application/json'},
       body: JSON.stringify(createProjInfo),
       credentials: 'include'
     };

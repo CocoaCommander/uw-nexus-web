@@ -9,7 +9,7 @@ const ProjectList = ({
     setIsLoading
 }) => {
 
-    const ALL_PROJECTS = `${process.env.REACT_APP_API_URL}/api/project/allProjects`;
+    const ALL_PROJECTS = `/api/project/allProjects`;
 
     console.log(ALL_PROJECTS);
 
