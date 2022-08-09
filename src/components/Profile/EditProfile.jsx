@@ -23,6 +23,7 @@ const EditProfile = (props) => {
     const classStanding = userInfo.education.year;
     const major = userInfo.education.major;
     const campus = userInfo.education.campus;
+    const oldBio = userInfo.education.bio; // needed for empty biography edge case
     const generalInfo = [firstName, lastName, classStanding, major, campus];
     const generalInfoArray = generalInfo.map((item, index) => {
         let header = '';
@@ -87,7 +88,7 @@ const EditProfile = (props) => {
         userInfo.education.campus = newCampus.length === 0 ? userInfo.education.campus : newCampus;
 
         // Biography
-        userInfo.education.bio = newBio.length === 0 ? "This user has not set a bio." : newBio;
+        userInfo.education.bio = newBio.length === 0 ? oldBio : newBio;
 
         updateProfile(userInfo);
 
