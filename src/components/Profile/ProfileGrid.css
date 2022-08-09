@@ -96,10 +96,6 @@ p {
   color: grey;
 }
 
-.user-bio {
-  height: 250px;
-}
-
 .bio-header {
   display: flex;
   flex-direction: row;
@@ -153,10 +149,6 @@ p {
   border-radius: 5px;
   text-align: center;
   background: rgba(249, 130, 44, 0.2);
-}
-
-.user-skills {
-  height: 300px;
 }
 
 .skill-item {
