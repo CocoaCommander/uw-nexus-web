@@ -34,8 +34,8 @@ const CreateUser = () => {
 
   const handleSignUp = async(e) => {
     e.preventDefault();
-    //const url = `${process.env.REACT_APP_API_URL}/api/auth/createUser`;
-    const url = "/api/auth/createUser";
+    const url = `/api/auth/createUser`;
+    // const url = "/api/auth/createUser";
 
     if (email.length === 0) {
       setErrorMsg("Please enter your email.");
@@ -88,8 +88,7 @@ const CreateUser = () => {
 
   const handleSignIn = async(e) => {
     //e.preventDefault();
-    //const url = `${process.env.REACT_APP_API_URL}/api/auth/signIn`;
-    const url = "/api/auth/signIn";
+    const url = `/api/auth/signIn`;
 
     let creds = {
       "email": email,

@@ -53,7 +53,11 @@ const DesktopLogin = () => {
 
       // dispatch(setUserID(session.id));
       dispatch(setLoggedIn(true));
-      console.log(cookie);
+      if (!localStorage.getItem(session.id)) {
+        navigate('/createProfileStart', {state: {email: email}});
+      } else {
+        navigate('/projects');
+      }
     } else {
       if (response.status === 404 || 400) {
         setErrorMsg("Invalid email and/or password. Please try again.");
@@ -61,8 +65,6 @@ const DesktopLogin = () => {
         setErrorMsg("Something went wrong on our end. Please try again later.");
       }
     }
-
-    navigate('/projects');
   }
 
 

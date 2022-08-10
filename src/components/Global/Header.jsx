@@ -18,7 +18,10 @@ const LoginButton = () => {
     const SIGN_OUT = `/api/auth/signOut`;
     const handleClick = async () => {
         if (isLoggedIn) {
-            await fetch(SIGN_OUT);
+            const options = {
+              method: 'DELETE'
+            }
+            await fetch(SIGN_OUT, options);
             const prevCookie = new Cookies()
             prevCookie.remove("fr-accessToken");
             window.localStorage.removeItem("nxs-id");
