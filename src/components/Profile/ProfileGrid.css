@@ -10,6 +10,7 @@ p {
 
 /* "grid" lmao */
 .profile-grid-container {
+  margin-top: 10px;
   display: flex;
   gap: 40px;
 }
@@ -96,10 +97,6 @@ p {
   color: grey;
 }
 
-.user-bio {
-  height: 250px;
-}
-
 .bio-header {
   display: flex;
   flex-direction: row;
@@ -155,10 +152,6 @@ p {
   background: rgba(249, 130, 44, 0.2);
 }
 
-.user-skills {
-  height: 300px;
-}
-
 .skill-item {
   padding: 1rem;
   border-radius: 5px;
@@ -168,6 +161,7 @@ p {
 
 .logout-button {
   padding: 1rem 2rem;
+  margin-bottom: 30px;
 }
 
 .logout-button-text {
@@ -180,6 +174,9 @@ p {
     flex-direction: column;
   }
 
+  .item-header {
+    font-size: 24px;
+  }
   /* All cards */
   .user-summary,
   .user-bio,
@@ -198,22 +195,22 @@ p {
   .user-resume,
   .user-skills,
   .logout-button {
-    width: 60vw;
+    width: 80vw;
   }
 
   /* Short bois */
-  .project-categories-container,
-  .user-project-interests {
+  .project-categories-container {
     height: 300px;
   }
 
   .project-row {
     flex-direction: row;
-    gap: 0;
+    gap: 30px;
   }
 
-  .project-categories-container {
-    width: 20vw;
+  .project-categories-container,
+  .user-project-interests {
+    width: 35vw;
   }
 
   .project-categories {
@@ -222,11 +219,6 @@ p {
 
   .category-divider {
     margin-bottom: 15px;
-  }
-
-  .user-project-interests {
-    margin-left: 0;
-    width: 30vw;
   }
 }
 
@@ -240,19 +232,19 @@ p {
 
   .project-categories-container,
   .user-project-interests {
-    width: 60vw;
+    width: 80vw;
   }
 
   .user-project-interests {
     margin-left: auto;
   }
 
-  .user-summary > img {
+  .user-summary>img {
     width: 20vw;
     height: 20vw;
   }
 
-  .summary-flexbox > p:not(:first-child) {
+  .summary-flexbox>p:not(:first-child) {
     display: none;
   }
 }

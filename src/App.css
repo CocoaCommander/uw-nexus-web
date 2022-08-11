@@ -122,6 +122,10 @@ hr {
   border-color: white;
 }
 
+.footer-divider {
+  margin-top: 10px;
+}
+
 .logo-header {
   width: 100px;
   height: 100px;
@@ -175,7 +179,8 @@ h2 {
   text-align: center;
   font-weight: 600;
   font-style: italic;
-  font-size: 16px;
+  font-size: 20px;
+  width: 50%;
 }
 .footer-links {
   padding-top: 10px;
@@ -416,7 +421,7 @@ main {
   margin-right: 10px;
 }
 
-@media only screen and (min-width: 700px) {
+@media only screen and (min-width: 768px) {
 
     .app {
       margin-left: 10%;
@@ -486,8 +491,6 @@ main {
 
     .people-img {
       display: block;
-      width: 100px;
-      height: 100px;
     }
 
     .footer-link-text {

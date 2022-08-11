@@ -49,10 +49,13 @@ const Header = ({
     const menuRef = useRef();
     const location = useLocation().pathname;
 
+<<<<<<< HEAD
+=======
     const getUserProfile = () => {
       getProfile();
     }
     
+>>>>>>> 661ec867cc51c42d8fb6b136ab3bebb67f26c5fa
     // Set up clicking event for dropdown user accounts and modals
     useEffect(() => {
         const checkIfClickedOutside = e => {
@@ -66,7 +69,7 @@ const Header = ({
             document.removeEventListener('mousedown', checkIfClickedOutside);
         }
     }, [isMenuOpen]);
-    
+
     // fix this in future, bad style
     const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
     const projectStep = useSelector((state) => state.createProj.step);
@@ -83,7 +86,7 @@ const Header = ({
                     <div className="iterations-flex">
                         <Link to={"/"}>
                             <div className="iterations-logo-header">
-                                <img src={logo} alt="Nexus Logo" className=""/>
+                                <img src={logo} alt="Nexus Logo" className="" />
                             </div>
                         </Link>
 
@@ -98,12 +101,14 @@ const Header = ({
                 <Menu width={190} customBurgerIcon={<FontAwesomeIcon icon={faBars} />} customCrossIcon={false}>
                     <FontAwesomeIcon className="menu-icon" icon={faBars} />
                     <div className="side-menu-container">
-                      <Link className={location === '/projects' ? 'side-menu-option-active-a' : 'side-menu-option-a'} to={"/projects"}>Discover Projects</Link>
-                      {isLoggedIn && <p className={location === '/profile' ? 'side-menu-option-active' : 'side-menu-option'} onClick={() => setMenuOpen(true)}>My Profile</p>}
-                      {/* {isLoggedIn ? <p className="profile-button" onClick={() => setMenuOpen(true)}>My Profile</p>: null} */}
-                      {isMenuOpen ? <ProfileModal userProfile={userProfile} menuRef={menuRef} getUserProfile={getUserProfile}/> : null}
-                      <LoginButton />
-                      <CreateProjectHeader className="header-create-project" />
+                        <Link className={location === '/projects' ? 'side-menu-option-active-a' : 'side-menu-option-a'} to={"/projects"}>Discover Projects</Link>
+                        {isLoggedIn && <p className={location === '/profile' ? 'side-menu-option-active' : 'side-menu-option'} onClick={() => setMenuOpen(true)}>My Profile</p>}
+                        {/* {isLoggedIn ? <p className="profile-button" onClick={() => setMenuOpen(true)}>My Profile</p>: null} */}
+                        {isMenuOpen ? <ProfileModal userProfile={userProfile} menuRef={menuRef} getUserProfile={getUserProfile} /> : null}
+                        <LoginButton />
+                        {isLoggedIn ?
+                            <CreateProjectHeader className="header-create-project" /> :
+                            null}
                     </div>
 
                 </Menu>

@@ -13,12 +13,12 @@ const Home = () => {
                   <img className="people-img" src={peopleImage} alt="people icon"></img>
                   <div className="find-project-center-wrapper">
                   <h1>Find Your Next Passion Project</h1>
+                  <h2>Discover 100+ self-motivated students on the NEXUS Network</h2>
                   <Link to={"/projects"} className={"home-button-container"}>
                       <div className={"find-project home-button"}>
                           Find Your Project
                       </div>
                   </Link>
-                  <h2>Discover 100+ self-motivated students on the NEXUS Network</h2>
                 </div>
                   <img className="people-img" src={peopleImage} alt="people icon"></img>
                 </div>
@@ -34,13 +34,13 @@ const Home = () => {
             <section className="home-section">
                 <div className="home-card-container">
                     <div className="home-card">
-                        <div className="home-card-item home-card-label">Looking for a side project?</div>
+                        <div className="home-card-item home-card-label">If you are looking for a side project...</div>
                         <Link to={"/projects"}>
                             <div className="home-card-item home-button side-project">Find a Project</div>
                         </Link>
                     </div>
                     <div className="home-card">
-                        <div className="home-card-item home-card-label">Looking to recruit for your own project?</div>
+                        <div className="home-card-item home-card-label">If you are recruiting for your dream project...</div>
                         <Link to={isLoggedIn ? "/createProject" : "login"}>
                             <div className="home-card-item home-button create-project">Create Your Project</div>
                         </Link>
@@ -52,8 +52,7 @@ const Home = () => {
                 <p className="tag-line">Join a community of self-motivated and driven students. Find a teammate or explore side project opportunities. Let&#39;s fuel your future!</p>
             </section>
             <div className="community">
-                <div className="people man" />
-                <div className="people woman" />
+
             </div>
             <section className="home-section">
                 <div className="company-tag">
@@ -61,10 +60,10 @@ const Home = () => {
                         <img src={logo} alt="logo"/>
                     </div>
                     <p className="tag-text">
-                        Supporting and empowering self-motivated <br></br> and driven students toward their future
+                        Supporting and empowering self-motivated and driven students toward their future
                     </p>
                 </div>
-                <hr></hr>
+                <hr className="footer-divider" />
                 <div className="footer-links">
                     <Link to={"/projects"}>
                         <div className="footer-link-text">
