@@ -3,7 +3,7 @@ import "../ApplicationPage.css";
 import man from "../assets/human-man.png";
 import woman from "../assets/human-woman.png";
 import emailjs from "emailjs-com";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 
 const ApplicationPage = (props) => {
 
@@ -24,6 +24,7 @@ const ApplicationPage = (props) => {
 
   const params = useParams();
   const location = useLocation();
+  const navigate = useNavigate();
 
 
 
@@ -143,11 +144,12 @@ const ApplicationPage = (props) => {
 
     
 
-    emailjs.send("application_request", "proj_app_form", email_params, "Cu_UQyXLAv90NgE7U")
-           .then(res => console.log(res))
-           .catch(err => console.log(err));
-
-    
+    const response = await emailjs.send("application_request", "proj_app_form", email_params, `${process.env.REACT_APP_EMAIL_KEY}`)
+    if (response.status == 200) {
+      navigate("/projects");
+    } else {
+      console.log("Could not send email");
+    }
   }
 
 

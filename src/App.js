@@ -20,6 +20,7 @@ import WelcomePage from './pages/WelcomePage';
 import Cookies from 'universal-cookie';
 import { setLoggedIn, setUserID } from './redux/userState/userStateActions';
 import ApplicationPage from './pages/ApplicationPage';
+import { useLocation } from 'react-router-dom';
 
 // static user info
 const USER_INFO = {
@@ -48,6 +49,7 @@ const App = () => {
   const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
   const userID = useSelector((state) => state.userState.userID);
   const [profileID, setProfileID] = useState(localStorage.getItem(localStorage.getItem("nxs-id")));
+  const location = useLocation().pathname;
 
   const setData = (data, resumeData) => {
     let newData = {
@@ -125,7 +127,7 @@ const App = () => {
 
   return (
     <>
-      <Header isMobile={isMobile} userProfile={userProfile} />
+      <Header isMobile={isMobile} userProfile={userProfile} getProfile={getUserProfile}/>
       <div className='app'>
         <Routes>
           <Route path="/" element={<Home />} />

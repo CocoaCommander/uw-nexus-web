@@ -127,6 +127,12 @@ input[type=number]::-webkit-outer-spin-button {
   font-weight: bold;
   color: black;
   cursor: pointer;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 280px;
+  margin: auto;
 }
 
 .drop-text {

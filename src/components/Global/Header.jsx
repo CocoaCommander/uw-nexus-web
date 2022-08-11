@@ -42,11 +42,16 @@ const LoginButton = () => {
 
 const Header = ({
     isMobile,
-    userProfile
+    userProfile,
+    getProfile
 }) => {
     const [isMenuOpen, setMenuOpen] = useState(false);
     const menuRef = useRef();
     const location = useLocation().pathname;
+
+    const getUserProfile = () => {
+      getProfile();
+    }
     
     // Set up clicking event for dropdown user accounts and modals
     useEffect(() => {
@@ -96,7 +101,7 @@ const Header = ({
                       <Link className={location === '/projects' ? 'side-menu-option-active-a' : 'side-menu-option-a'} to={"/projects"}>Discover Projects</Link>
                       {isLoggedIn && <p className={location === '/profile' ? 'side-menu-option-active' : 'side-menu-option'} onClick={() => setMenuOpen(true)}>My Profile</p>}
                       {/* {isLoggedIn ? <p className="profile-button" onClick={() => setMenuOpen(true)}>My Profile</p>: null} */}
-                      {isMenuOpen ? <ProfileModal userProfile={userProfile} menuRef={menuRef} /> : null}
+                      {isMenuOpen ? <ProfileModal userProfile={userProfile} menuRef={menuRef} getUserProfile={getUserProfile}/> : null}
                       <LoginButton />
                       <CreateProjectHeader className="header-create-project" />
                     </div>
@@ -123,7 +128,7 @@ const Header = ({
                     <NavLink className="projects-button" to={"/projects"}>Discover Projects</NavLink>
                     {/* {isLoggedIn ? <p className="profile-button" onClick={() => setMenuOpen(true)}>My Profile</p>: null} */}
                     {isLoggedIn && <p className={location === '/profile' ? 'profile-button-active' : 'profile-button'} onClick={() => setMenuOpen(true)}>My Profile</p>}
-                    {isMenuOpen ? <ProfileModal userProfile={userProfile} menuRef={menuRef} /> : null}
+                    {isMenuOpen ? <ProfileModal userProfile={userProfile} menuRef={menuRef} getUserProfile={getUserProfile}/> : null}
                     <LoginButton />
                 </div>
             </div>

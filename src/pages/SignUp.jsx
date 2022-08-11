@@ -29,6 +29,7 @@ const SignUp = (props) => {
   const resume = useSelector((state) => state.signUp.resume);
 
   const userID = useSelector((state) => state.userState.userID);
+  const currentStep = useSelector((state) => state.signUp.step);
 
   const selectionTypes = ["interests", "skills"];
 
@@ -207,15 +208,17 @@ const SignUp = (props) => {
   )
   // setup step validators, will be called before proceeding to the next step
   function step2Validator() {
-    console.log("clicking next");
+    handleStepIncrease();
     return true;
   }
   
   function step3Validator() {
+    handleStepIncrease();
     return true;
   }
 
   function step4Validator() {
+    handleStepIncrease();
     return true;
   }
 
@@ -290,26 +293,28 @@ const SignUp = (props) => {
   console.log(response);
   }
 
-  const handleStepChange = (e) => {
+  const handleStepDecrease = (e) => {
     const target = e.target.className;
     console.log(target);
     if (target.includes("back-button-proj")) {
       dispatch(decreaseStep());
-    } else if (target.includes("login-button-sign-up")) {
-      dispatch(increaseStep());
     }
+  }
+
+  const handleStepIncrease = () => {
+    dispatch(increaseStep());
   }
 
 
     return (
-      <div ref={progress} className="desktop-container" onClick={handleStepChange}>
+      <div ref={progress} className="desktop-container" onClick={handleStepDecrease}>
         <img className="logo" src={logo} alt="Nexus Logo"></img>
         <StepProgressBar
               startingStep={0}
               onSubmit={onFormSubmit}
               stepClass="step-indicator-wrapper"
               primaryBtnClass="login-button-sign-up"
-              secondaryBtnClass="back-button-proj"
+              secondaryBtnClass= {currentStep == 1 ? "back-button-proj-hidden" : "back-button-proj"}
               buttonWrapperClass="buttonsWrapper"
               labelClass="progress-labels"
 
@@ -319,9 +324,13 @@ const SignUp = (props) => {
                   name: 'step 1',
                   content: step1Content,
                   validator: () => {
-                    console.log("clicking next");
-                    return name_valid.current.length > 0 && year_valid.current.length > 0 && major_valid.current.length > 0 && campus_valid.current.length >> 0}
-                },
+                    const isValid = name_valid.current.length > 0 && year_valid.current.length > 0 && major_valid.current.length > 0 && campus_valid.current.length > 0;
+                    if (isValid) {
+                      console.log("incrementing profile step");
+                      handleStepIncrease();
+                    }
+                    return isValid
+                }},
                 {
                   label: 'Project Interests',
                   name: 'step 2',
