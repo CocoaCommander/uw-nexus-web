@@ -48,14 +48,10 @@ const Header = ({
     const [isMenuOpen, setMenuOpen] = useState(false);
     const menuRef = useRef();
     const location = useLocation().pathname;
-
-<<<<<<< HEAD
-=======
     const getUserProfile = () => {
       getProfile();
     }
     
->>>>>>> 661ec867cc51c42d8fb6b136ab3bebb67f26c5fa
     // Set up clicking event for dropdown user accounts and modals
     useEffect(() => {
         const checkIfClickedOutside = e => {
