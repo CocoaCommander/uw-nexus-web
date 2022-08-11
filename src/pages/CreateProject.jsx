@@ -25,6 +25,7 @@ const CreateProject = ({
   
   const projName = useSelector((state) => state.createProj.projName);
   const projDesc = useSelector((state) => state.createProj.projDesc);
+  const currentStep = useSelector((state) => state.createProj.step);
 
 
   const toolTipMsgs = [
@@ -297,8 +298,6 @@ const CreateProject = ({
     console.log(target);
     if (target.includes("back-button-proj")) {
       dispatch(decreaseStep());
-    } else if (target.includes("login-button-proj")) {
-      // dispatch(increaseStep());
     }
   }
 
@@ -322,7 +321,7 @@ const CreateProject = ({
               onSubmit={onFormSubmit}
               stepClass="step-indicator-wrapper"
               primaryBtnClass="login-button-proj"
-              secondaryBtnClass="back-button-proj"
+              secondaryBtnClass={currentStep == 1 ? "back-button-proj-hidden" : "back-button-proj"}
               buttonWrapperClass="buttonsWrapper-cp"
               labelClass="progress-labels"
               submitBtnName="Next"

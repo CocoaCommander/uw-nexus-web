@@ -286,6 +286,7 @@ main {
   border-radius: 10px;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.09);
   padding: 25px;
+  box-sizing: border-box;
 }
 
 .home-card {

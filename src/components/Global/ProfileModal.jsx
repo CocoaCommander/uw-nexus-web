@@ -28,6 +28,10 @@ const ProfileModal = (props) => {
       }
     }
 
+    const getUserProfile = () => {
+      props.getUserProfile();
+    }
+
     return (
         <Modal.Dialog className="entire-modal" ref={menuRef}>
             <Modal.Header>
@@ -40,7 +44,7 @@ const ProfileModal = (props) => {
             </Modal.Body>
 
             <Modal.Footer className="options-info">
-                <Link className="manage-profile-button" to="/profile">Manage your profile</Link>
+                <Link className="manage-profile-button" to="/profile" onClick={getUserProfile}>Manage your profile</Link>
                 <p className="modal-logout-button" onClick={handleSignOut}>Log out</p>
             </Modal.Footer>
         </Modal.Dialog >
