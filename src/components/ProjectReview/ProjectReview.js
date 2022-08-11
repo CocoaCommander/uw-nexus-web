@@ -158,14 +158,12 @@ const ProjectReview = (props) => {
 
 
             <div className="roles-list">
-              <div className="dur-apply-wrapper">
+              {/* <div className="dur-apply-wrapper"> */}
                 <div className="project-dur-wrapper">
                   <img src={timeIcon} alt="time icon"></img>
                   <p className="det-text">{projDur}</p>
                 </div>
-
-                <p className="apply">Apply</p>
-              </div>
+              {/* </div> */}
 
               {renderRoles(projRoles)}
             </div>

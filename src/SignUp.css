@@ -106,6 +106,7 @@ label {
   width: 100px;
   text-align: center;
   font-weight: bold;
+  margin-left: auto;
 }
 
 .login-button-sign-up:hover {
@@ -190,7 +191,7 @@ label {
   }
 
   .buttonsWrapper {
-    width: 80%;
+    width: 95%;
   }
 
   .interests-subtitle {

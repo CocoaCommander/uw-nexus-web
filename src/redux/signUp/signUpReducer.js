@@ -1,5 +1,5 @@
 import { SET_FULL_NAME, SET_YEAR, SET_MAJOR, SET_CAMPUS, ADD_INTEREST, REMOVE_INTEREST, ADD_SKILL, REMOVE_SKILL, ADD_RESUME, INCREASE_STEP, DECREASE_STEP} from "./signUpTypes";
-import { SET_EMAIL, SET_PASSWORD } from "./signUpTypes";
+import { SET_EMAIL, SET_PASSWORD, CLEAR_DATA } from "./signUpTypes";
 
 const initialState = {
   fullName: "",
@@ -80,6 +80,9 @@ const signUpReducer = (state = initialState, action) => {
       ...state,
       step: state.step - 1
     }
+  
+    case CLEAR_DATA:
+      return initialState;
     
     default: return state;
   }
