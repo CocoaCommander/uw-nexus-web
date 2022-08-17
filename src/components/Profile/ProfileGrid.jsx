@@ -10,7 +10,7 @@ const ProfileGrid = (props) => {
 
     // First container
     const fullName = userInfo.first_name + ' ' + userInfo.last_name;
-    const email = userInfo.email; // this is static static for now
+    const email = 'test@test.org'; // this is static static for now
     const connections = 8; // static static again
     const campus = userInfo.education.campus;
     const classStanding = userInfo.education.year;
@@ -61,7 +61,7 @@ const ProfileGrid = (props) => {
             <div className="grid-column">
                 <div className="user-summary">
                     <img src={userPic} />
-                    <div>
+                    <div className='bio-container'>
                         <div className="bio-header">
                             <h1 className="item-header">{fullName}</h1>
                             <FontAwesomeIcon className="edit-profile-icon" icon={faPenToSquare} size="2xl" onClick={() => editCallback(true)}/>

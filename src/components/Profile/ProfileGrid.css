@@ -75,6 +75,10 @@ p {
 
 /* Individual Card Styling */
 
+.bio-container {
+  width: 110%; /* no idea how this worked but it works */
+}
+
 .user-summary {
   height: 150px;
   display: flex;
@@ -231,5 +235,19 @@ p {
 
   .summary-flexbox>p:not(:first-child) {
     display: none;
+  }
+
+  .user-summary>img,
+  .bio-container {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  .edit-profile-icon { /* extremely hacky do not recommend */
+    position: absolute;
+    top: 125px;
+    right: 10vw;
+    padding: 1rem;
+    color: #f05a28;
   }
 }
