@@ -308,7 +308,6 @@ const SignUp = (props) => {
 
     return (
       <div ref={progress} className="desktop-container" onClick={handleStepDecrease}>
-        <img className="logo" src={logo} alt="Nexus Logo"></img>
         <StepProgressBar
               startingStep={0}
               onSubmit={onFormSubmit}
