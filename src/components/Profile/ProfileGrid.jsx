@@ -105,12 +105,9 @@ const ProfileGrid = (props) => {
                     <div className="user-project-interests">
                         <h1 className="item-header">Project Interests</h1>
                         <div className="summary-flexbox">
-                            {projectInterestsArray}
+                            {projectInterestsArray.length === 0 ? <p>This user has not set any project interests.</p> : {projectInterestsArray}}
                         </div>
                     </div>
-                </div>
-                <div className="logout-button">
-                    <p className="logout-button-text">Log out</p>
                 </div>
             </div>
         </div>

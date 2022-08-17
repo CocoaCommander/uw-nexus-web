@@ -3,8 +3,7 @@ p {
   font-size: 16px;
 }
 
-.edit-profile-icon,
-.logout-button {
+.edit-profile-icon {
   cursor: pointer;
 }
 
@@ -52,8 +51,7 @@ p {
 .user-resume,
 .project-categories-container,
 .user-project-interests,
-.user-skills,
-.logout-button {
+.user-skills {
   padding: 2rem;
   background-color: #fff;
   border-radius: 10px;
@@ -71,8 +69,7 @@ p {
 
 /* Second Column */
 .project-categories-container,
-.user-project-interests,
-.logout-button {
+.user-project-interests {
   width: 20vw;
 }
 
@@ -159,16 +156,6 @@ p {
   background: rgba(249, 130, 44, 0.6)
 }
 
-.logout-button {
-  padding: 1rem 2rem;
-  margin-bottom: 30px;
-}
-
-.logout-button-text {
-  text-align: center;
-  color: #f05a28;
-}
-
 @media (max-width: 768px) {
   .profile-grid-container {
     flex-direction: column;
@@ -183,8 +170,7 @@ p {
   .user-resume,
   .project-categories-container,
   .user-project-interests,
-  .user-skills,
-  .logout-button {
+  .user-skills {
     margin-right: auto;
     margin-left: auto;
   }
@@ -193,8 +179,7 @@ p {
   .user-summary,
   .user-bio,
   .user-resume,
-  .user-skills,
-  .logout-button {
+  .user-skills {
     width: 80vw;
   }
 
