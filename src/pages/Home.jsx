@@ -9,18 +9,14 @@ const Home = () => {
     return (
         <>
             <section className="home-section">
-                <div className="find-project-wrapper">
-                    <img className="people-img" src={peopleImage} alt="people icon"></img>
-                    <div className="find-project-center-wrapper">
-                        <h1>Find Your Next Passion Project</h1>
-                        <h2>Discover 100+ self-motivated students on the NEXUS Network</h2>
-                        <Link to={"/projects"} className={"home-button-container"}>
-                            <div className={"find-project home-button"}>
-                                Find Your Project
-                            </div>
-                        </Link>
-                    </div>
-                    <img className="people-img" src={peopleImage} alt="people icon"></img>
+                <div className="find-project-center-wrapper">
+                    <h1>Find Your Next Passion Project</h1>
+                    <h2>Discover 100+ self-motivated students on the NEXUS Network</h2>
+                    <Link to={"/projects"} className={"home-button-container"}>
+                        <div className={"find-project home-button"}>
+                            Find Your Project
+                        </div>
+                    </Link>
                 </div>
 
 
@@ -33,7 +29,6 @@ const Home = () => {
             </section>
             <section className="home-section">
                 <div className="home-card-container">
-                    <img className="people-img" src={peopleImage} alt="people icon"></img>
                     <div className="home-card">
                         <div className="home-card-item home-card-label">If you are looking for a side project...</div>
                         <Link to={"/projects"}>
@@ -46,7 +41,6 @@ const Home = () => {
                             <div className="home-card-item home-button create-project">Create Your Project</div>
                         </Link>
                     </div>
-                    <img className="people-img" src={peopleImage} alt="people icon"></img>
                 </div>
             </section>
             <section className="home-section">
