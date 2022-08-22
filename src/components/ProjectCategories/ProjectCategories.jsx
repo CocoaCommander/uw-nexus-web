@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import CustomTextBox from "../CustomTextBox/CustomTextBox";
-import { addProjCategory } from "../../redux/createProject/createProjectActions";
+import ProjectSelectionsGrid from "../ProjectSelectionsGrid/ProjectSelectionsGrid";
+import { addProjCategory, removeProjCategory } from "../../redux/createProject/createProjectActions";
 import "./ProjectCategories.css"
 import questionIcon from "../../assets/icons/question-icon.png"
 import ReactTooltip from "react-tooltip";
@@ -13,10 +14,24 @@ const ProjectCategories = (props) => {
 
   const projCategs = useSelector((state) => state.createProj.projCategs);
 
-  const handleCategoryAddition = (e) => {
-    if (e.key === 'Enter' && projCategs.length < 5 && e.target.value.length > 0) {
-      dispatch(addProjCategory(e.target.value));
-      e.currentTarget.value = "";
+  // const handleCategoryAddition = (e) => {
+  //   if (e.key === 'Enter' && projCategs.length < 5 && e.target.value.length > 0) {
+  //     dispatch(addProjCategory(e.target.value));
+  //     e.currentTarget.value = "";
+  //   }
+  // }
+
+  // handle changes in category selections
+  const handleCategorySelection = (e, selectedOptions) => {
+    let selection = e.target.textContent;
+
+    if (selectedOptions.includes(selection)) {
+      dispatch(removeProjCategory(selection));
+    } else {
+      if (selectedOptions.length < 5) {
+        dispatch(addProjCategory(selection));
+      }
+      
     }
   }
 
@@ -51,8 +66,8 @@ const ProjectCategories = (props) => {
       
 
 
-      
-      <CustomTextBox className="sign-up-detail" onKeyPress={handleCategoryAddition}></CustomTextBox>
+      <ProjectSelectionsGrid selectionType={'projCategs'} onClick={handleCategorySelection} />
+      {/* <CustomTextBox className="sign-up-detail" onKeyPress={handleCategoryAddition}></CustomTextBox> */}
     </div>
   )
 }
