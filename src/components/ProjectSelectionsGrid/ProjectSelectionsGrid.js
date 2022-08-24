@@ -3,7 +3,7 @@ import "./ProjectSelectionsGrid.css";
 
 const ProjectSelectionsGrid = (props) => {
 
-  const selectedOptions = useSelector((state) => state.createProject[props.selectionType]);
+  const selectedOptions = useSelector((state) => state.createProj[props.selectionType]);
   const list = useSelector((state) => state.serverContent[props.selectionType + "List"]);
   //const list =  ["ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!"];
 
