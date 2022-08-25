@@ -10,7 +10,7 @@ const ProfileGrid = (props) => {
 
     // First container
     const fullName = userInfo.first_name + ' ' + userInfo.last_name;
-    const email = 'test@test.org'; // this is static static for now
+    const email = userInfo.email; // this is static static for now
     const connections = 8; // static static again
     const campus = userInfo.education.campus;
     const classStanding = userInfo.education.year;
@@ -105,7 +105,7 @@ const ProfileGrid = (props) => {
                     <div className="user-project-interests">
                         <h1 className="item-header">Project Interests</h1>
                         <div className="summary-flexbox">
-                            {projectInterestsArray.length === 0 ? <p>This user has not set any project interests.</p> : {projectInterestsArray}}
+                            {projectInterestsArray.length === 0 ? <p>This user has not set any project interests.</p> : projectInterestsArray}
                         </div>
                     </div>
                 </div>
