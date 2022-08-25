@@ -8,9 +8,7 @@ import { setLoggedIn, setUserID } from "../redux/userState/userStateActions";
 
 
 
-const CreateUser = () => {
-
-  // const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
+const CreateUser = (props) => {
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -21,21 +19,9 @@ const CreateUser = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   if (isLoggedIn) {
-  //     console.log("in Create User, already logged in!");
-  //     navigate('/projects');
-  //   } else {
-  //     console.log("in Create User, not logged in");
-  //   }
-  // }, [isLoggedIn]);
-
-
-
   const handleSignUp = async(e) => {
     e.preventDefault();
     const url = `/api/auth/createUser`;
-    // const url = "/api/auth/createUser";
 
     if (email.length === 0) {
       setErrorMsg("Please enter your email.");
@@ -85,9 +71,7 @@ const CreateUser = () => {
 
   }
 
-
   const handleSignIn = async(e) => {
-    //e.preventDefault();
     const url = `/api/auth/signIn`;
 
     let creds = {
@@ -105,12 +89,8 @@ const CreateUser = () => {
     if (response.ok) {
       const session = await response.json();
       const cookie = new Cookies();
-      // const userIdCookie = new Cookies();
-      cookie.set('fr-accessToken', session.accessToken, {sameSite: "none", secure: true});
+      cookie.set('fr-accessToken', "loggedin", {maxAge: 3.6e+6});
       window.localStorage.setItem("nxs-id", session.id);
-      // cookie.set("nxs_id", session.id);
-      
-      // dispatch(setUserID(session.id));
       dispatch(setLoggedIn(true));
       console.log(cookie);
     }
@@ -121,7 +101,6 @@ const CreateUser = () => {
       handleSignUp(e);
   }
   }
-
 
     return (
         <div className="desktop-container">

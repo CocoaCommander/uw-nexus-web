@@ -1,8 +1,9 @@
-import { SET_INTERESTS_LIST, SET_SKILLS_LIST } from "./serverContentTypes";
+import { SET_INTERESTS_LIST, SET_SKILLS_LIST, SET_MAJORS_LIST } from "./serverContentTypes";
 
 const initialState = {
   interestsList: [],
   skillsList: [],
+  majorsList: []
 }
 
 const serverContentReducer = (state = initialState, action) => {
@@ -15,6 +16,11 @@ const serverContentReducer = (state = initialState, action) => {
     case SET_SKILLS_LIST: return {
       ...state,
       skillsList: action.payload
+    }
+
+    case SET_MAJORS_LIST: return {
+      ...state,
+      majorsList: action.payload
     }
 
     default: return state;

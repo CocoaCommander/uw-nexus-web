@@ -9,7 +9,7 @@ import SelectionsGrid from "../components/SelectionsGrid/SelectionsGrid";
 import ResumeUpload from "../components/ResumeUpload/ResumeUpload";
 import ReviewPage from "../components/ReviewPage/ReviewPage";
 import { setCampus, setFullName, setMajor, setYear, addInterest, removeInterest, addSkill, removeSkill, setEmail, setPassword, decreaseStep, increaseStep } from "../redux/signUp/signUpActions";
-import { setInterestsList, setSkillsList } from "../redux/serverContent/serverContentActions";
+import { setInterestsList, setSkillsList, setMajorsList } from "../redux/serverContent/serverContentActions";
 import Cookies from 'universal-cookie';
 import { useLocation, useNavigate } from "react-router-dom";
 import { setStep } from "../redux/signUp/signUpActions";
@@ -61,6 +61,7 @@ const SignUp = (props) => {
 
     const url1 = "/api/constants/interests";
     const url2 = "/api/constants/skills";
+    const url3 = "/api/constants/majors"
 
     var cookie = new Cookies();
     const jwt_token = cookie.get("fr-accessToken");
@@ -68,10 +69,8 @@ const SignUp = (props) => {
     if (jwt_token) {
       setaccessToken2(jwt_token);
       // setUserID(userID)
-      console.log("already authenticated!");
-      // redirect or something
     } else {
-      console.log("not authenticated");
+
     }
 
     fetch(url1)
@@ -88,17 +87,27 @@ const SignUp = (props) => {
       console.log(error);
     });
 
-    console.log(`email = ${location.state.email}`);
+    fetch(url3)
+      .then(response => response.json())
+      .then(data => dispatch(setMajorsList(data)))
+      .catch(error => console.log(error))
+
     setEmail(location.state.email);
 
   }, [dispatch]);
 
-
-  console.log("rerendering");
-
   // handle changes in General Information page
   const handleFormChange = (e) => {
+
+    console.log(e);
+
+    if (e.label) {
+      dispatch(setMajor(e.value));
+      return;
+    }
+
     let value = e.target.value;
+
     switch (e.target.name) {
       case "fullName":
         dispatch(setFullName(value));
@@ -245,10 +254,6 @@ const SignUp = (props) => {
     const url = "/api/profile/createProfile";
 
     const [firstName, lastName] = handleFullName();
-    console.log(props);
-
-
-    console.log(accessToken2);
 
 
 
@@ -269,7 +274,6 @@ const SignUp = (props) => {
     signUpInfo.append("file", resume);
 
 
-    console.log("ACCESS TOKEN = " + accessToken2);
 
     //JSON.stringify(signUpInfo);
     const requestOptions = {
@@ -281,21 +285,17 @@ const SignUp = (props) => {
   let response = await fetch(url, requestOptions);
 
   if (response.ok) {
-    console.log("success");
     const respJson = await response.json();
     window.localStorage.setItem(userID, respJson.profile_id);
     props.onCreateProfile(respJson.profile_id);
     navigate('/welcomePage');
-    console.log(respJson);
   } else {
     console.log(response.statusText);
   }
-  console.log(response);
   }
 
   const handleStepDecrease = (e) => {
     const target = e.target.className;
-    console.log(target);
     if (target.includes("back-button-proj")) {
       dispatch(decreaseStep());
     }
@@ -326,7 +326,6 @@ const SignUp = (props) => {
                   validator: () => {
                     const isValid = name_valid.current.length > 0 && year_valid.current.length > 0 && major_valid.current.length > 0 && campus_valid.current.length > 0;
                     if (isValid) {
-                      console.log("incrementing profile step");
                       handleStepIncrease();
                     }
                     return isValid

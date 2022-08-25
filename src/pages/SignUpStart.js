@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../SignUpStart.css";
 
@@ -7,6 +8,22 @@ const SignUpStart = (props) => {
 
   const navigate = useNavigate();
   const location = useLocation();
+
+  const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    const userID = localStorage.getItem("nxs-id");
+    const userUrl = `/api/auth/getUser/${userID}`;
+    const requestOptions = {
+      method: 'GET',
+      credentials: 'include'
+    };
+
+    fetch(userUrl, requestOptions)
+      .then(res => res.json())
+      .then(data => setEmail(data.email))
+      .catch(err => console.log(err))
+  }, []);
 
   return (
     <div className="center-text">
@@ -19,7 +36,7 @@ const SignUpStart = (props) => {
         </p>
       </div>
 
-      <button className="start-button" onClick={() => {navigate('/createProfile', {state: {email: location.state.email}})}}>Start</button>
+      <button className="start-button" onClick={() => {navigate('/createProfile', {state: {email: email}})}}>Start</button>
 
     </div>
   )
