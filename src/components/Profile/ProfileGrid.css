@@ -3,13 +3,13 @@ p {
   font-size: 16px;
 }
 
-.edit-profile-icon,
-.logout-button {
+.edit-profile-icon {
   cursor: pointer;
 }
 
 /* "grid" lmao */
 .profile-grid-container {
+  margin-top: 10px;
   display: flex;
   gap: 40px;
 }
@@ -51,8 +51,7 @@ p {
 .user-resume,
 .project-categories-container,
 .user-project-interests,
-.user-skills,
-.logout-button {
+.user-skills {
   padding: 2rem;
   background-color: #fff;
   border-radius: 10px;
@@ -70,12 +69,15 @@ p {
 
 /* Second Column */
 .project-categories-container,
-.user-project-interests,
-.logout-button {
+.user-project-interests {
   width: 20vw;
 }
 
 /* Individual Card Styling */
+
+.bio-container {
+  width: 110%; /* no idea how this worked but it works */
+}
 
 .user-summary {
   height: 150px;
@@ -94,10 +96,6 @@ p {
   text-align: left;
   font-size: 16px;
   color: grey;
-}
-
-.user-bio {
-  height: 250px;
 }
 
 .bio-header {
@@ -155,10 +153,6 @@ p {
   background: rgba(249, 130, 44, 0.2);
 }
 
-.user-skills {
-  height: 300px;
-}
-
 .skill-item {
   padding: 1rem;
   border-radius: 5px;
@@ -166,28 +160,21 @@ p {
   background: rgba(249, 130, 44, 0.6)
 }
 
-.logout-button {
-  padding: 1rem 2rem;
-}
-
-.logout-button-text {
-  text-align: center;
-  color: #f05a28;
-}
-
 @media (max-width: 768px) {
   .profile-grid-container {
     flex-direction: column;
   }
 
+  .item-header {
+    font-size: 24px;
+  }
   /* All cards */
   .user-summary,
   .user-bio,
   .user-resume,
   .project-categories-container,
   .user-project-interests,
-  .user-skills,
-  .logout-button {
+  .user-skills {
     margin-right: auto;
     margin-left: auto;
   }
@@ -196,24 +183,23 @@ p {
   .user-summary,
   .user-bio,
   .user-resume,
-  .user-skills,
-  .logout-button {
-    width: 60vw;
+  .user-skills {
+    width: 80vw;
   }
 
   /* Short bois */
-  .project-categories-container,
-  .user-project-interests {
+  .project-categories-container {
     height: 300px;
   }
 
   .project-row {
     flex-direction: row;
-    gap: 0;
+    gap: 30px;
   }
 
-  .project-categories-container {
-    width: 20vw;
+  .project-categories-container,
+  .user-project-interests {
+    width: 35vw;
   }
 
   .project-categories {
@@ -222,11 +208,6 @@ p {
 
   .category-divider {
     margin-bottom: 15px;
-  }
-
-  .user-project-interests {
-    margin-left: 0;
-    width: 30vw;
   }
 }
 
@@ -240,19 +221,33 @@ p {
 
   .project-categories-container,
   .user-project-interests {
-    width: 60vw;
+    width: 80vw;
   }
 
   .user-project-interests {
     margin-left: auto;
   }
 
-  .user-summary > img {
+  .user-summary>img {
     width: 20vw;
     height: 20vw;
   }
 
-  .summary-flexbox > p:not(:first-child) {
+  .summary-flexbox>p:not(:first-child) {
     display: none;
+  }
+
+  .user-summary>img,
+  .bio-container {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  .edit-profile-icon { /* extremely hacky do not recommend */
+    position: absolute;
+    top: 125px;
+    right: 10vw;
+    padding: 1rem;
+    color: #f05a28;
   }
 }

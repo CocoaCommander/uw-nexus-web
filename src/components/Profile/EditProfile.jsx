@@ -11,7 +11,7 @@ const EditProfile = (props) => {
     const [newClassStanding, setNewClassStanding] = useState(userInfo.education.year);
     const [newMajor, setNewMajor] = useState(userInfo.education.major);
     const [newCampus, setNewCampus] = useState(userInfo.education.campus);
-    const [newBio, setNewBio] = useState(""); // change when we implement bios in sign up iterations
+    const [newBio, setNewBio] = useState(userInfo.education.bio);
     const [newSkills, setNewSkills] = useState(userInfo.education.skills);
     const [isSkillAddIconClicked, setSkillAddIconClicked] = useState(false);
     const [newInterests, setNewInterests] = useState(userInfo.education.interests);
@@ -23,6 +23,7 @@ const EditProfile = (props) => {
     const classStanding = userInfo.education.year;
     const major = userInfo.education.major;
     const campus = userInfo.education.campus;
+    const oldBio = userInfo.education.bio; // needed for empty biography edge case
     const generalInfo = [firstName, lastName, classStanding, major, campus];
     const generalInfoArray = generalInfo.map((item, index) => {
         let header = '';
@@ -87,7 +88,7 @@ const EditProfile = (props) => {
         userInfo.education.campus = newCampus.length === 0 ? userInfo.education.campus : newCampus;
 
         // Biography
-        userInfo.education.bio = newBio.length === 0 ? "This user has not set a bio." : newBio;
+        userInfo.education.bio = newBio.length === 0 ? oldBio : newBio;
 
         updateProfile(userInfo);
 

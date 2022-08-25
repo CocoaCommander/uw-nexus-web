@@ -72,7 +72,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 20rem;
+  height: 15rem;
   width: 100%;
 }
 
@@ -120,6 +120,10 @@ hr {
   width: 100%;
   color: white;
   border-color: white;
+}
+
+.footer-divider {
+  margin-top: 10px;
 }
 
 .logo-header {
@@ -175,7 +179,8 @@ h2 {
   text-align: center;
   font-weight: 600;
   font-style: italic;
-  font-size: 16px;
+  font-size: 20px;
+  width: 50%;
 }
 .footer-links {
   padding-top: 10px;
@@ -416,7 +421,7 @@ main {
   margin-right: 10px;
 }
 
-@media only screen and (min-width: 700px) {
+@media only screen and (min-width: 768px) {
 
     .app {
       margin-left: 10%;
@@ -430,6 +435,16 @@ main {
 
     .home-card-container {
       display: flex;
+      width: 90vw;
+      justify-content: center;
+    }
+
+    .home-card-container > .people-img:first-child {
+      margin-right: 5vw;
+    }
+
+    .home-card-container > .people-img:nth-of-type(2) {
+      margin-left: 5vw;
     }
 
     .create-project-button {
@@ -486,8 +501,6 @@ main {
 
     .people-img {
       display: block;
-      width: 100px;
-      height: 100px;
     }
 
     .footer-link-text {
