@@ -6,9 +6,7 @@ import Cookies from 'universal-cookie';
 import { useNavigate } from "react-router-dom";
 import { setLoggedIn, setUserID } from "../redux/userState/userStateActions";
 
-const DesktopLogin = () => {
-
-  // const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
+const DesktopLogin = (props) => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,7 +18,6 @@ const DesktopLogin = () => {
 
   const handleSignIn = async (e) => {
     e.preventDefault();
-    //const url = `${process.env.REACT_APP_API_URL}/api/auth/signIn`;
     const url = "/api/auth/signIn";
 
     if (email.length === 0) {
@@ -46,18 +43,11 @@ const DesktopLogin = () => {
     if (response.ok) {
       const session = await response.json();
       const cookie = new Cookies();
-      // const userIdCookie = new Cookies();
-      cookie.set('fr-accessToken', session.accessToken, {sameSite: "none", secure: true});
+      cookie.set('fr-accessToken', "loggedin", {maxAge: 3.6e+6});
       window.localStorage.setItem("nxs-id", session.id);
-      // cookie.set('nxs_id', session.id);
-
-      // dispatch(setUserID(session.id));
       dispatch(setLoggedIn(true));
-      if (!localStorage.getItem(session.id)) {
-        navigate('/createProfileStart', {state: {email: email}});
-      } else {
-        navigate('/projects');
-      }
+      props.onLogin(email);
+      navigate('/projects');
     } else {
       if (response.status === 404 || 400) {
         setErrorMsg("Invalid email and/or password. Please try again.");
@@ -66,7 +56,6 @@ const DesktopLogin = () => {
       }
     }
   }
-
 
   return (
     <div className="desktop-container">
@@ -114,18 +103,7 @@ const DesktopLogin = () => {
           <p>Don't have an account? <a className="sign-up" onClick={() => navigate('/signUp')}>Sign Up</a>
           </p>
         </div>
-
-        {/* <div className="copyright">
-              <p>Copyright &copy; NEXUS UW 2020.</p>
-            </div> */}
-
-
-
-
       </div>
-
-
-
     </div>
   );
 }
