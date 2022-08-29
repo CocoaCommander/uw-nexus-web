@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import Select from "react-select";
 import "./InfoForm.css";
 
 
@@ -15,7 +16,14 @@ const InfoForm = (props) => {
   // const password = useSelector((state) => state.signUp.password);
   // const year = useSelector((state) => state.signUp.year);
   const major = useSelector((state) => state.signUp.major);
+  const majorsList = useSelector((state) => state.serverContent.majorsList);
   // const campus = useSelector((state) => state.signUp.campus);
+
+  const selectOptions = () => {
+    return majorsList.map(major => {
+      return {value: major, label: major}
+    })
+  }
 
   return(
     <form>
@@ -47,15 +55,24 @@ const InfoForm = (props) => {
         </select>
       </div>
 
+
       <div className="field-set">
         <label>Major / Intended Major <span className="asterix-signup">*</span></label>
-        <input className="sign-up-detail" 
+        {/* <input className="sign-up-detail" 
               type="text"
               name="major" 
               placeholder=" E.g. Bioengineering"
               value={major}
               onChange={handleChange}>
-        </input>
+        </input> */}
+        <Select className="react-select-bar"
+          name="major"
+          placeholder="E.g. Bioengineering"
+          defaultValue={major}
+          onChange={handleChange}
+          options={selectOptions()}>
+
+        </Select>
       </div>
 
       <div className="field-set">

@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Global/Header';
 import ProjectListDetail from './pages/ProjectListDetail';
 import ProjectListPage from './pages/ProjectListPage';
@@ -20,7 +20,7 @@ import WelcomePage from './pages/WelcomePage';
 import Cookies from 'universal-cookie';
 import { setLoggedIn, setUserID } from './redux/userState/userStateActions';
 import ApplicationPage from './pages/ApplicationPage';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 // static user info
 const USER_INFO = {
@@ -44,12 +44,13 @@ const USER_INFO = {
 const App = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 850);
   const [userProfile, setUserProfile] = useState(USER_INFO);
-  // const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
   const userID = useSelector((state) => state.userState.userID);
   const [profileID, setProfileID] = useState(localStorage.getItem(localStorage.getItem("nxs-id")));
   const location = useLocation().pathname;
+
+  const navigate = useNavigate();
 
   const setData = (data, resumeData) => {
     let newData = {
@@ -71,25 +72,29 @@ const App = () => {
     setUserProfile(newData);
   }
 
-  const getUserProfile = async() => {
-    const profile_id = window.localStorage.getItem(window.localStorage.getItem("nxs-id"));
-    if (profile_id) {
-      // const url = `${process.env.REACT_APP_API_URL}/api/profile/${profile_id}`;
-      const url = `/api/profile/${profile_id}`;
+  const getUserProfile = async(email) => {
+    const user_id = window.localStorage.getItem("nxs-id");
+    if (user_id) { // user is logged in
+      const url = `/api/profile/user/${user_id}`;
       const requestOptions = {
         method: 'GET',
         credentials: 'include'
       };
 
       const response = await fetch(url, requestOptions);
-      if (response.ok) {
+      if (response.ok) { // profile that matches user ID found
         const profileData = await response.json();
         setData(profileData);
-      } else {
-        console.log("Error fetching profile!");
+      } else if (response.status === 400) { // profile not yet created
+        navigate('/createProfileStart');
       }
     }
   }
+
+  const handleFirstLogin = (email) => {
+    getUserProfile(email);
+  }
+
 
   useEffect(() => {
     const cookie = new Cookies();
@@ -98,7 +103,7 @@ const App = () => {
       console.log("GETTING PROFILE AGAIN!");
       getUserProfile();
     }
-  }, [isLoggedIn, profileID])
+  }, [profileID])
 
   useEffect(() => {
     const reactToWindowResize = () => {
@@ -106,17 +111,15 @@ const App = () => {
     }
     window.addEventListener('resize', reactToWindowResize);
 
+    console.log("rerendering");
     // Check if user is signed in
     const cookie = new Cookies();
     const jwt_token = cookie.get("fr-accessToken");
-    // const user_id = cookie.get("nxs_id");
     if (jwt_token) {
-      // console.log("already authenticated");
-      // console.log("in app.js, user_id = " + user_id);
       dispatch(setLoggedIn(true));
       dispatch(setUserID(window.localStorage.getItem("nxs-id")));
-      // dispatch(setUserID(user_id));
     } else {
+      console.log("no cookie");
       dispatch(setLoggedIn(false));
     }
   });
@@ -136,8 +139,8 @@ const App = () => {
           <Route path='/createProject' element={<CreateProject isMobile={isMobile}/>} />
           <Route path='/finishProject' element={<ProjectFinish email={userProfile.email}/>}/>
           <Route path='/reviewProject' element={<ProjectReview/>} email={userProfile.email}/>
-          <Route path='/signUp' element={<CreateUser/>}/>
-          <Route path='/login' element={<DesktopLogin/>}/>
+          <Route path='/signUp' element={<CreateUser onLogin={handleFirstLogin}/>}/>
+          <Route path='/login' element={<DesktopLogin onLogin={handleFirstLogin}/>}/>
           <Route path='/profile' element={<Profile isMobile={isMobile} userProfile={userProfile} userCallback={(data) => setUserProfile(data)} />}/>
           <Route path='/createProfileStart' element={<SignUpStart/>}/>
           <Route path='/createProfile' element={<SignUp onCreateProfile={onCreateProfile}/>}/>
