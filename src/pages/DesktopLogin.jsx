@@ -57,6 +57,12 @@ const DesktopLogin = (props) => {
     }
   }
 
+  const handleKeypress = (e) => {
+    if (e.key === 'Enter') {
+        handleSignIn(e);
+    }
+};
+
   return (
     <div className="desktop-container">
       <div className="left-pane">
@@ -78,13 +84,15 @@ const DesktopLogin = (props) => {
                   type="text"
                   name="e-mail"
                   placeholder=" Email Address"
-                  onChange={(e) => setEmail(e.target.value)}>
+                  onChange={(e) => setEmail(e.target.value)}
+                  onKeyDown={(e) => handleKeypress(e)}>
                 </input>
                 <input className="password-textbox"
                   type="password"
                   name="password"
                   placeholder=" Password"
-                  onChange={(e) => setPassword(e.target.value)}></input>
+                  onChange={(e) => setPassword(e.target.value)}
+                  onKeyDown={(e) => handleKeypress(e)}></input>
                 <a className="forgot-pass" href="https://www.google.com">Forgot Password?</a>
               </div>
             </form>

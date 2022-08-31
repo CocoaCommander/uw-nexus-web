@@ -1,6 +1,6 @@
 .desktop-container {
   background-color: lightcyan;
-  height: 100vh;
+  /* height: 100vh; why */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -242,4 +242,9 @@ h2.right-pane-seperator span {
   .or-hr {
     width: 30vw;
   }
+
+  .right-pane-footer {
+    margin-bottom: 5vh;
+  }
+
 }

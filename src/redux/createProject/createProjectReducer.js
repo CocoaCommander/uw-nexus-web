@@ -1,4 +1,4 @@
-import { SET_PROJECT_NAME, SET_PROJECT_DESC, SET_TEAM_SIZE, SET_PROJECT_DUR, SET_PROJECT_STATUS, ADD_PROJECT_CATEG, ADD_LOCATION, INCREASE_STEP, DECREASE_STEP } from "./createProjectTypes";
+import { SET_PROJECT_NAME, SET_PROJECT_DESC, SET_TEAM_SIZE, SET_PROJECT_DUR, SET_PROJECT_STATUS, ADD_PROJECT_CATEG, REMOVE_PROJECT_CATEG, ADD_LOCATION, INCREASE_STEP, DECREASE_STEP } from "./createProjectTypes";
 import { ADD_ROLE, CLEAR_DATA } from "./createProjectTypes";
 
 const initialState = {
@@ -43,6 +43,11 @@ const createProjectReducer = (state = initialState, action) => {
     case ADD_PROJECT_CATEG: return {
       ...state,
       projCategs: [...state.projCategs, action.payload]
+    }
+
+    case REMOVE_PROJECT_CATEG: return {
+      ...state,
+      projCategs: state.projCategs.filter((projCateg) => projCateg !== action.payload),
     }
 
     case ADD_ROLE: return {

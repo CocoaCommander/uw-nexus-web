@@ -28,18 +28,25 @@
 }
 
 .start-button {
-  border: solid 2px #f05a28;
+  border: solid 2px#f05a28;
   color: black;
   border-radius: 10px;
   background-color: white;
   height: 15%;
   font-weight: bold;
-  width: 30%;
+  width: 200px;
   font-size: 20px;
 }
 
 .start-button:hover {
+  cursor: pointer;
   background-color: #f05a28;
   color: white;
   font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .start-button {
+    width: 30vw;
+  }
 }

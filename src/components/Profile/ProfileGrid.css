@@ -228,6 +228,19 @@ p {
     margin-left: auto;
   }
 
+  .user-summary {
+    padding-bottom: 3rem;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    text-align: center;
+  }
+
+  .bio-container > .bio-header,
+  .summary-flexbox {
+    justify-content: center;
+  }
+
   .user-summary>img {
     width: 20vw;
     height: 20vw;

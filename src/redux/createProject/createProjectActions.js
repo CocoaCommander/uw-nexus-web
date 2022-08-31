@@ -1,4 +1,4 @@
-import { SET_PROJECT_NAME, SET_PROJECT_DESC, SET_TEAM_SIZE, SET_PROJECT_DUR, SET_PROJECT_STATUS, ADD_PROJECT_CATEG, CLEAR_DATA, INCREASE_STEP, DECREASE_STEP } from "./createProjectTypes";
+import { SET_PROJECT_NAME, SET_PROJECT_DESC, SET_TEAM_SIZE, SET_PROJECT_DUR, SET_PROJECT_STATUS, ADD_PROJECT_CATEG, REMOVE_PROJECT_CATEG, CLEAR_DATA, INCREASE_STEP, DECREASE_STEP } from "./createProjectTypes";
 import { ADD_ROLE, ADD_SKILL, ADD_RESPONSIBILITY, ADD_LOCATION } from "./createProjectTypes";
 
 export const setProjName = (projName) => {
@@ -39,6 +39,13 @@ export const setProjStatus = (status) => {
 export const addProjCategory = (category) => {
   return {
     type: ADD_PROJECT_CATEG,
+    payload: category
+  }
+}
+
+export const removeProjCategory = (category) => {
+  return {
+    type: REMOVE_PROJECT_CATEG,
     payload: category
   }
 }
