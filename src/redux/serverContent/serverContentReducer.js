@@ -27,7 +27,7 @@ const serverContentReducer = (state = initialState, action) => {
     
     case SET_PROJ_CATEGS_LIST: return {
       ...state,
-      projCategList: action.payload
+      projCategsList: action.payload
     }
 
     default: return state;

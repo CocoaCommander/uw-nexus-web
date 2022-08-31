@@ -14,7 +14,6 @@ const ProjectSelectionsGrid = (props) => {
   const generateGrid = () => {
     let grid = [];
 
-    console.log(props.selections);
     if (list) {
 
       let selections = list.map((selection) => 
