@@ -1,5 +1,5 @@
 
-import { useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import logo from "../assets/Logo.png";
 import StepProgressBar from 'react-step-progress';

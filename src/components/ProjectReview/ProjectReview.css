@@ -228,6 +228,20 @@
   color: white;
 }
 
+.review-button-rev-active {
+  border-radius: 10px;
+  background-color: #f05a28;
+  font-weight: bold;
+  width: 180px;
+  height: 50px;
+  font-size: 18px;
+  border: solid 2px #f05a28;
+  color: #f05a28;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 @media only screen and (min-width: 850px) {
 
   .keywords {

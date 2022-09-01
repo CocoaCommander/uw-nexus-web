@@ -5,6 +5,8 @@ import landingImage from "../assets/manyPpl.png";
 import Cookies from 'universal-cookie';
 import { useNavigate } from "react-router-dom";
 import { setLoggedIn, setUserID } from "../redux/userState/userStateActions";
+import { TailSpin } from "react-loader-spinner";
+import LoadingButton from "../components/LoadingButton/LoadingButton";
 
 const DesktopLogin = (props) => {
 
@@ -12,12 +14,15 @@ const DesktopLogin = (props) => {
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
 
   const handleSignIn = async (e) => {
     e.preventDefault();
+
     const url = "/api/auth/signIn";
 
     if (email.length === 0) {
@@ -28,6 +33,7 @@ const DesktopLogin = (props) => {
       return;
     }
 
+    setIsLoading(true);
     let creds = {
       "email": email,
       "password": password
@@ -47,8 +53,10 @@ const DesktopLogin = (props) => {
       window.localStorage.setItem("nxs-id", session.id);
       dispatch(setLoggedIn(true));
       props.onLogin(email);
+      setIsLoading(false);
       navigate('/projects');
     } else {
+      setIsLoading(false);
       if (response.status === 404 || 400) {
         setErrorMsg("Invalid email and/or password. Please try again.");
       } else if (response.status === 500) {
@@ -91,7 +99,11 @@ const DesktopLogin = (props) => {
             <p className="error-msg">{errorMsg}</p>
 
           </div>
-          <button className="login-button" type="submit" onClick={(e) => { handleSignIn(e) }}>Login</button>
+          {/* <button className="login-button" type="submit" onClick={(e) => { handleSignIn(e) }}>Login
+
+          </button> */}
+
+          <LoadingButton title="Login" isLoading={isLoading} onClick={(e) => handleSignIn(e)}></LoadingButton>
 
         </div>
         <div className="or-separator">

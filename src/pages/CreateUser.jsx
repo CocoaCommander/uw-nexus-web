@@ -5,6 +5,7 @@ import logo from "../assets/Logo.png";
 import Cookies from 'universal-cookie';
 import { useNavigate } from "react-router-dom";
 import { setLoggedIn, setUserID } from "../redux/userState/userStateActions";
+import LoadingButton from "../components/LoadingButton/LoadingButton";
 
 
 
@@ -15,6 +16,8 @@ const CreateUser = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -36,6 +39,7 @@ const CreateUser = (props) => {
       setErrorMsg("Please enter your last name.");
     }
 
+    setIsLoading(true);
     let creds = {
       "email": email,
       "password": password,
@@ -62,6 +66,8 @@ const CreateUser = (props) => {
 
     // sign in user after sign up, setting access token and user id and redirecting to projects page
     await handleSignIn();
+
+    setIsLoading(false);
 
     if (!localStorage.getItem(localStorage.getItem("nxs-id"))) {
       navigate('/createProfileStart', {state: {email: email}});
@@ -151,7 +157,12 @@ const CreateUser = (props) => {
                 <p className="error-msg">{errorMsg}</p>
 
                 
-              <button className="create-acc-button" type="submit" onClick={(e) => {handleSignUp(e)}}>Create Account</button>
+              {/* <button className="create-acc-button" type="submit" onClick={(e) => {handleSignUp(e)}}>Create Account</button> */}
+              <LoadingButton title="Create Account"
+                             className={"create-acc-button"}
+                             isLoading={isLoading}
+                             active={"create-acc-button-active"}
+                             onClick={(e) => {handleSignUp(e)}}/>
           </div>
         </div>
     );
