@@ -1,0 +1,54 @@
+.loading-button {
+  height: 40px;
+  width: 20vw;
+  font-size: large;
+  border: solid 2px #f05a28;
+  background-color: white;
+  color: #f05a28;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-left: 10vw;
+  margin-right: 10vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.center-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.loading-button:hover {
+  background-color: #f05a28;
+  color: white;
+  font-weight: bold;
+}
+
+.loading-button-active {
+  height: 40px;
+  width: 20vw;
+  font-size: large;
+  border: solid 2px #f05a28;
+  background-color: #f05a28;
+  color: #f05a28;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-left: 10vw;
+  margin-right: 10vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .loading-button, .loading-button-active {
+    width: 40vw;
+    margin-left: 25vw;
+    margin-right: 25vw;
+  }
+}

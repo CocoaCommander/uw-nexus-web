@@ -109,6 +109,26 @@ label {
   margin-left: auto;
 }
 
+.loader-wheel {
+  animation: spin 1s infinite linear;
+  border: 2px solid #f05a28;
+  border-left: 4px solid #fff;
+  border-radius: 50%;
+  height: 50px;
+  margin-bottom: 10px;
+  width: 50px;
+  margin-left: auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .login-button-sign-up:hover {
   background-color: #f05a28;
   color: white;

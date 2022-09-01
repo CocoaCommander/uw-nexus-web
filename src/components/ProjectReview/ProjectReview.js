@@ -8,6 +8,7 @@ import "./ProjectReview.css";
 import Cookies from 'universal-cookie';
 import { useNavigate } from "react-router-dom";
 import { clearAll } from "../../redux/createProject/createProjectActions";
+import LoadingButton from "../LoadingButton/LoadingButton";
 
 const ProjectReview = (props) => {
 
@@ -22,6 +23,8 @@ const ProjectReview = (props) => {
   const projRoles = useSelector((state) => state.createProj.roles);
 
   const [accessToken2, setaccessToken2] = useState(null);
+
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
 
@@ -40,11 +43,10 @@ const ProjectReview = (props) => {
   // redirect user to whatever screen comes up after creating a project
   const redirectHomeScreen = async () => {
     await publishProject();
-    dispatch(clearAll());
-    navigate('/projects');
   }
 
   const publishProject = async () => {
+    setIsLoading(true);
     const url = `/api/project/createProject`;
 
     let createProjInfo = {
@@ -72,9 +74,12 @@ const ProjectReview = (props) => {
     let response = await fetch(url, requestOptions);
 
     if (response.ok) {
-      console.log("success");
+      dispatch(clearAll());
+      setIsLoading(false);
+      navigate('/projects');
     } else {
       console.log(response.statusText);
+      setIsLoading(false);
     }
     console.log(response);
   }
@@ -169,8 +174,15 @@ const ProjectReview = (props) => {
             </div>
           </div>
 
+          <LoadingButton
+            title="Publish"
+            className={"review-button-rev"}
+            isLoading={isLoading}
+            onClick={redirectHomeScreen}
+            active={"review-button-rev-active"}
+            />
 
-          <button className="review-button-rev" type="submit" onClick={redirectHomeScreen}>Publish</button>
+          {/* <button className="review-button-rev" type="submit" onClick={redirectHomeScreen}>Publish</button> */}
         </div>
     </div>
 

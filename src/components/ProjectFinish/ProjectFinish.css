@@ -26,6 +26,14 @@
   color: #8A8888;
 }
 
+.publish-button-active {
+  border-radius: 10px;
+  background-color: #8A8888;
+  font-weight: bold;
+  width: 135px;
+  font-size: 18px;
+}
+
 .publish-button:hover {
   background-color: #8A8888;
   color: white;
@@ -90,5 +98,9 @@
 
   .publish-button, .review-button {
     width: 200px;
-  } 
+  }
+
+  .publish-button-active {
+    width: 200px;
+  }
 }

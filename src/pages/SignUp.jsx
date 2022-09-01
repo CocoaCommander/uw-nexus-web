@@ -30,6 +30,8 @@ const SignUp = (props) => {
   const userID = useSelector((state) => state.userState.userID);
   const currentStep = useSelector((state) => state.signUp.step);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const selectionTypes = ["interests", "skills"];
 
   const navigate = useNavigate();
@@ -248,7 +250,7 @@ const SignUp = (props) => {
   async function onFormSubmit() {
 
 
-
+    setIsLoading(true);
     // const url = `${process.env.REACT_APP_API_URL}/api/profile/createProfile`;
     const url = "/api/profile/createProfile";
 
@@ -287,8 +289,10 @@ const SignUp = (props) => {
     const respJson = await response.json();
     window.localStorage.setItem(userID, respJson.profile_id);
     props.onCreateProfile(respJson.profile_id);
+    setIsLoading(false);
     navigate('/welcomePage');
   } else {
+    setIsLoading(false);
     console.log(response.statusText);
   }
   }
@@ -311,7 +315,7 @@ const SignUp = (props) => {
               startingStep={0}
               onSubmit={onFormSubmit}
               stepClass="step-indicator-wrapper"
-              primaryBtnClass="login-button-sign-up"
+              primaryBtnClass={isLoading ? "loader-wheel" : "login-button-sign-up"}
               secondaryBtnClass= {currentStep == 1 ? "back-button-proj-hidden" : "back-button-proj"}
               buttonWrapperClass="buttonsWrapper"
               labelClass="progress-labels"
