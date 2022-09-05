@@ -109,26 +109,17 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 .side-menu-option,
 .side-menu-option-active {
-    cursor: pointer;
     font-size: 16px;
-    margin: 10px auto;
+    margin: 5px auto;
+    display: inline-block;
 }
 
-.side-menu-option-active {
-    color: #F05A28;
-}
-
-.side-menu-option-a {
-    font-size: 16px;
-    margin-bottom: 10px;
+.side-menu-option {
     color: black;
 }
 
-.side-menu-option-active-a {
-    font-size: 16px;
+.side-menu-option-active {
     font-weight: 600;
-    margin-bottom: 10px;
-    display: inline-block;
     color: #F05A28;
 }
 
