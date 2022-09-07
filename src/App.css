@@ -352,16 +352,32 @@ main {
   margin-top: 10px;
 }
 
+.more-roles-tag {
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+}
+
 .role-title {
   color: #F05A28;
   margin-right: 10px;
+  flex-grow: 0;
 }
 
 .skill-container {
+  flex-grow: 0;
   border-radius: 5px;
   background-color: rgba(249, 130, 44, 0.4);
   padding: 3px;
   margin-right: 10px;
+}
+
+.skills-wrapper {
+  display: flex;
+  align-content: center;
+  max-width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .small-skill-container {
