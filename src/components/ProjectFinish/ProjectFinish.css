@@ -71,6 +71,7 @@
   flex-direction: row;
   justify-content: space-between;
   height: 30%;
+  margin-bottom: 5vh;
 }
 
 .review-proj-text {

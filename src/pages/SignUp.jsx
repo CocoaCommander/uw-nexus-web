@@ -19,7 +19,6 @@ const SignUp = (props) => {
 
   const [email, setEmail] = useState("");
 
-
   const fullName = useSelector((state) => state.signUp.fullName);
   const year = useSelector((state) => state.signUp.year);
   const major = useSelector((state) => state.signUp.major);
@@ -331,7 +330,7 @@ const SignUp = (props) => {
                     if (isValid) {
                       handleStepIncrease();
                     }
-                    return isValid
+                    return isValid;
                 }},
                 {
                   label: 'Project Interests',

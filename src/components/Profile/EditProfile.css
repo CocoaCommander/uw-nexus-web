@@ -91,6 +91,10 @@ body {
   gap: 20px;
   width: 70vw;
 }
+
+.skills-projects-container ~ .skills-projects-container {
+  margin-bottom: 5vh;
+}
 @media (max-width: 768px) {}
 
 /* FUTURE MOBILE STUFF */
