@@ -339,6 +339,14 @@ main {
 
 .project-list-item-interests {
   margin-top: 10px;
+  display: flex;
+}
+
+.proj-item-interest {
+  margin-left: 10px;
+  font-size: 14px;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .role-container {
@@ -352,16 +360,36 @@ main {
   margin-top: 10px;
 }
 
+.more-roles-tag {
+  font-weight: bold;
+  font-size: 12px;
+  cursor: pointer;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
 .role-title {
   color: #F05A28;
-  margin-right: 10px;
+  flex-grow: 0;
+  white-space: normal;
 }
 
 .skill-container {
+  flex-grow: 0;
   border-radius: 5px;
   background-color: rgba(249, 130, 44, 0.4);
   padding: 3px;
   margin-right: 10px;
+  margin-top: 2px;
+}
+
+.skills-wrapper {
+  flex-grow: 6;
+  display: flex;
+  align-content: center;
+  max-width: 100%;
+  flex-wrap: wrap;
+  margin-left: 10px;
 }
 
 .small-skill-container {
@@ -511,5 +539,9 @@ main {
 
     .tag-text {
       font-size: 13px;
+    }
+
+    .role-title {
+      white-space: nowrap;
     }
 }
