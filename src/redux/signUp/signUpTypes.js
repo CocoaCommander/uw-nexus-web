@@ -11,4 +11,5 @@ export const REMOVE_SKILL = "REMOVE_SKILL"
 export const ADD_RESUME = "ADD_RESUME"
 export const INCREASE_STEP = "INCREASE_STEP"
 export const DECREASE_STEP = "DECREASE_STEP"
+export const SET_ERROR_MSG = "SET_ERROR_MSG";
 export const CLEAR_DATA = "CLEAR_DATA";

@@ -8,7 +8,7 @@ import InfoForm from "../components/InfoForm/InfoForm";
 import SelectionsGrid from "../components/SelectionsGrid/SelectionsGrid";
 import ResumeUpload from "../components/ResumeUpload/ResumeUpload";
 import ReviewPage from "../components/ReviewPage/ReviewPage";
-import { setCampus, setFullName, setMajor, setYear, addInterest, removeInterest, addSkill, removeSkill, setEmail, setPassword, decreaseStep, increaseStep } from "../redux/signUp/signUpActions";
+import { setCampus, setFullName, setMajor, setYear, addInterest, removeInterest, addSkill, removeSkill, setEmail, setPassword, decreaseStep, increaseStep, setErrorMsg } from "../redux/signUp/signUpActions";
 import { setInterestsList, setSkillsList, setMajorsList } from "../redux/serverContent/serverContentActions";
 import Cookies from 'universal-cookie';
 import { useLocation, useNavigate } from "react-router-dom";
@@ -29,6 +29,7 @@ const SignUp = (props) => {
 
   const userID = useSelector((state) => state.userState.userID);
   const currentStep = useSelector((state) => state.signUp.step);
+  const errorMsg = useSelector((state) => state.signUp.errorMsg);
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -44,21 +45,18 @@ const SignUp = (props) => {
   const year_valid = useRef(year);
   const major_valid = useRef(major);
   const campus_valid = useRef(campus);
+  const errorMsgRef = useRef(errorMsg);
 
   name_valid.current = fullName;
   year_valid.current = year;
   major_valid.current = major;
   campus_valid.current = campus;
+  errorMsgRef.current = errorMsg;
   
   const dispatch = useDispatch();
   const location = useLocation();
 
   useEffect(() => {
-
-    // console.log(progress.current);
-
-    // const url1 = `${process.env.REACT_APP_API_URL}/api/constants/interests`;
-    // const url2 = `${process.env.REACT_APP_API_URL}/api/constants/skills`;
 
     const url1 = "/api/constants/interests";
     const url2 = "/api/constants/skills";
@@ -100,7 +98,6 @@ const SignUp = (props) => {
   // handle changes in General Information page
   const handleFormChange = (e) => {
 
-    console.log(e);
 
     if (e.label) {
       dispatch(setMajor(e.value));
@@ -133,6 +130,12 @@ const SignUp = (props) => {
       default:
         break;
     }
+  }
+
+  const handleInvalidFirstStep = () => {
+    dispatch(setErrorMsg("Please fill out all fields"));
+    errorMsgRef.current = "PLeASE";
+    console.log(errorMsgRef.current);
   }
 
   // handle changes in interest selections in Project Interests Page
@@ -168,8 +171,9 @@ const SignUp = (props) => {
       <div className="center-pane">
         <div className="sign-up-pane">
             <p className="gen-info-title">General Information</p>
+            <p className="error-msg">{errorMsg}</p>
             <div className="form-field">
-              <InfoForm onChange={handleFormChange}>
+              <InfoForm onChange={handleFormChange} err={errorMsg}>
               </InfoForm>
             </div>
         </div>
@@ -251,6 +255,7 @@ const SignUp = (props) => {
 
 
     setIsLoading(true);
+
     // const url = `${process.env.REACT_APP_API_URL}/api/profile/createProfile`;
     const url = "/api/profile/createProfile";
 
@@ -309,6 +314,8 @@ const SignUp = (props) => {
   }
 
 
+
+
     return (
       <div ref={progress} className="desktop-container" onClick={handleStepDecrease}>
         <StepProgressBar
@@ -326,9 +333,12 @@ const SignUp = (props) => {
                   name: 'step 1',
                   content: step1Content,
                   validator: () => {
+                    console.log("validating...");
                     const isValid = name_valid.current.length > 0 && year_valid.current.length > 0 && major_valid.current.length > 0 && campus_valid.current.length > 0;
                     if (isValid) {
                       handleStepIncrease();
+                    } else {
+                      handleInvalidFirstStep();
                     }
                     return isValid;
                 }},

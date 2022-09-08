@@ -27,8 +27,6 @@ const InfoForm = (props) => {
 
   return(
     <form>
-
-      <p className="error-msg">Please fill out all the forms.</p>
       <div className="field-set">
         <label>Full Name <span className="asterix-signup">*</span></label>
         <input className="sign-up-detail" 
