@@ -14,7 +14,6 @@
     width: 60px;
     height: 60px;
     margin-left: 5vw;
-    margin-top: 5vw;
 }
 
 .step-counter {
@@ -109,26 +108,17 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 .side-menu-option,
 .side-menu-option-active {
-    cursor: pointer;
     font-size: 16px;
-    margin: 10px auto;
+    margin: 5px auto;
+    display: inline-block;
 }
 
-.side-menu-option-active {
-    color: #F05A28;
-}
-
-.side-menu-option-a {
-    font-size: 16px;
-    margin-bottom: 10px;
+.side-menu-option {
     color: black;
 }
 
-.side-menu-option-active-a {
-    font-size: 16px;
+.side-menu-option-active {
     font-weight: 600;
-    margin-bottom: 10px;
-    display: inline-block;
     color: #F05A28;
 }
 
@@ -149,42 +139,40 @@ Note: Beware of modifying this element as it can break the animations - you shou
     color: #F05A28;
 }
 
-.login-button-header {
-    margin-top: 10px;
+.login-button-header,
+.create-project-header {
     border: solid 2px #f05a28;
-    color: white;
     background-color: #f05a28;
+    color: white;
     border-radius: 10px;
-    height: 40px;
-    width: 150px;
+    height: 30px;
+    width: 175px;
     font-weight: bold;
+    font-size: 16px;
     padding: 1rem 1rem;
+}
+
+.login-button-header {
+    padding: 0.25rem 1rem;
+    margin-top: 10px;
     cursor: pointer;
+    width: 199px;
+    height: 54px;
 }
 
 .create-project-header {
     display: block;
-    margin-top: 50vh;;
-    border: solid 2px #f05a28;
-    color: white;
-    background-color: #f05a28;
-    border-radius: 10px;
-    height: 30px;
-    width: 125px;
-    font-weight: bold;
-    padding: 1rem 1rem;
+    margin-top: 50vh;
 }
 
 .create-project-header-container {
     display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .create-project-header-container p {
     color: white;
-    font-size: 10px;
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-left: 10px;
 }
 
 /* desktop view */

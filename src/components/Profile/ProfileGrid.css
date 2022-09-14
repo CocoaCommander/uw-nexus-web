@@ -1,8 +1,4 @@
 /* General Styling HOW DO I USE NORMAL CSS */
-p {
-  font-size: 16px;
-}
-
 .edit-profile-icon {
   cursor: pointer;
 }
@@ -183,7 +179,8 @@ p {
   .user-summary,
   .user-bio,
   .user-resume,
-  .user-skills {
+  .user-skills,
+  .user-project-interests {
     width: 80vw;
   }
 
@@ -197,10 +194,10 @@ p {
     gap: 30px;
   }
 
-  .project-categories-container,
+  /* .project-categories-container,
   .user-project-interests {
     width: 35vw;
-  }
+  } */
 
   .project-categories {
     gap: 15px;

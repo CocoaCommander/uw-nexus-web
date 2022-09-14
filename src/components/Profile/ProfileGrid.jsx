@@ -11,11 +11,10 @@ const ProfileGrid = (props) => {
     // First container
     const fullName = userInfo.first_name + ' ' + userInfo.last_name;
     const email = userInfo.email; // this is static static for now
-    const connections = 8; // static static again
     const campus = userInfo.education.campus;
     const classStanding = userInfo.education.year;
     const major = userInfo.education.major;
-    const summaryArray = [email, connections, campus, classStanding, major];
+    const summaryArray = [email, campus, classStanding, major];
     const summaryGridArray = summaryArray.map((item, index) => {
         return <SummaryItem item={item} index={index} key={index} />
     })
@@ -27,10 +26,10 @@ const ProfileGrid = (props) => {
     const resume = props.resume;
 
     // Fourth container (first one on second column)
-    const projectCategories = ['All', 'Current', 'Accepted', 'Pending', 'Declined'];
-    const projectCategoriesArray = projectCategories.map((item, index) => {
-        return <ProjectCategory item={item} index={index} key={index} />;
-    });
+    // const projectCategories = ['All', 'Current', 'Accepted', 'Pending', 'Declined'];
+    // const projectCategoriesArray = projectCategories.map((item, index) => {
+    //     return <ProjectCategory item={item} index={index} key={index} />;
+    // });
 
     // Fifth container (second one on second column)
     const projectInterests = userInfo.education.interests;
@@ -96,12 +95,12 @@ const ProfileGrid = (props) => {
             </div>
             <div className="grid-column">
                 <div className="project-row">
-                    <div className="project-categories-container">
+                    {/* <div className="project-categories-container">
                         <h1 className="item-header">Projects</h1>
                         <div className="project-categories">
                             {projectCategoriesArray}
                         </div>
-                    </div>
+                    </div> */}
                     <div className="user-project-interests">
                         <h1 className="item-header">Project Interests</h1>
                         <div className="summary-flexbox">
@@ -120,10 +119,8 @@ const SummaryItem = (props) => {
     if (index === 0) {
         return <p className="summary-item">{item}</p>;
     } else if (index === 1) {
-        return <p className="summary-item">Network: {item} connections</p>;
-    } else if (index === 2) {
         return <p className="summary-item">Campus: {item}</p>;
-    } else if (index === 3) {
+    } else if (index === 2) {
         return <p className="summary-item">Class Standing: {item}</p>;
     } else {
         return <p className="summary-item">Major: {item}</p>;

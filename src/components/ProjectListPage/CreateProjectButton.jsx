@@ -8,8 +8,8 @@ const CreateProjectButton = ({
         <>
             <Link to={"/createProject"} className="create-project-button">
                 <div className="create-project-button-content">
-                    <PlusIcon className='.create-project-button-icon'/>
-                    {!isMobile ? "Create a project" : ""}
+                    <PlusIcon className='create-project-btn-icon'/>
+                    {!isMobile ? <p className='create-project-text'>Create a Project</p> : ""}
                 </div>
             </Link>
         </>
