@@ -220,6 +220,7 @@ h3 {
 
 p {
   color: black;
+  font-size: 16px;
 }
 
 .project-list-page {
@@ -324,7 +325,6 @@ main {
 
 .stat-item {
   color: #757575;
-  font-size: 12px;
   display: flex;
   margin-right: 10px;
   margin-top: 5px;
@@ -332,6 +332,10 @@ main {
 
 .stat-item-icon {
   margin-right: 5px;
+}
+
+.stat-item > p {
+  font-size: 12px;
 }
 
 .project-list-item-interests {
