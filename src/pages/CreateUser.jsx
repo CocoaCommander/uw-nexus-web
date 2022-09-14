@@ -6,6 +6,7 @@ import Cookies from 'universal-cookie';
 import { useNavigate } from "react-router-dom";
 import { setLoggedIn, setUserID } from "../redux/userState/userStateActions";
 import LoadingButton from "../components/LoadingButton/LoadingButton";
+import landingImage from "../assets/manyPpl.png";
 
 
 
@@ -102,69 +103,146 @@ const CreateUser = (props) => {
     }
   }
 
-  const handleEnterKeypress = (e) => {
+  const handleKeypress = (e) => {
     if (e.key === 'Enter') {
-      handleSignUp(e);
-  }
-  }
+        handleSignUp(e);
+    }
+};
 
-    return (
-        <div className="desktop-container">
-          <div className="main-pane">
-            <img className="center-logo" src={logo} alt="nexus logo"></img>
+    // return (
+    //     <div className="desktop-container">
+    //       <div className="main-pane">
+    //         <img className="center-logo" src={logo} alt="nexus logo"></img>
 
-            <p className="sign-in">Sign Up</p>
-                 <form className="create-user-form">
-                  <div className="form-field">
+    //         <p className="sign-in">Sign Up</p>
+    //              <form className="create-user-form">
+    //               <div className="form-field">
 
-                  <input className="create-user-field"
-                           type="text"
-                           name="first-name" 
-                           placeholder=" First Name"
-                           value={firstName}
-                           onChange={(e) => setFirstName(e.target.value)}
-                           onKeyDown={handleEnterKeypress}>
-                    </input>
+    //               <input className="create-user-field"
+    //                        type="text"
+    //                        name="first-name" 
+    //                        placeholder=" First Name"
+    //                        value={firstName}
+    //                        onChange={(e) => setFirstName(e.target.value)}
+    //                        onKeyDown={handleEnterKeypress}>
+    //                 </input>
 
-                    <input className="create-user-field"
-                           type="text"
-                           name="last-name" 
-                           placeholder=" Last Name"
-                           value={lastName}
-                           onChange={(e) => setLastName(e.target.value)}
-                           onKeyDown={handleEnterKeypress}>
-                    </input>
+    //                 <input className="create-user-field"
+    //                        type="text"
+    //                        name="last-name" 
+    //                        placeholder=" Last Name"
+    //                        value={lastName}
+    //                        onChange={(e) => setLastName(e.target.value)}
+    //                        onKeyDown={handleEnterKeypress}>
+    //                 </input>
 
-                     <input className="create-user-field" 
-                           type="text"
-                           name="e-mail" 
-                           placeholder=" Email Address"
-                           value={email}
-                           onChange={(e) => setEmail(e.target.value)}
-                           onKeyDown={handleEnterKeypress}>
-                    </input>
-                    <input className="create-user-field"
-                           type="password"
-                           name="password" 
-                           placeholder=" Password"
-                           value={password}
-                           onChange={(e) => setPassword(e.target.value)}
-                           onKeyDown={handleEnterKeypress}>
-                    </input>
-                  </div>
+    //                  <input className="create-user-field" 
+    //                        type="text"
+    //                        name="e-mail" 
+    //                        placeholder=" Email Address"
+    //                        value={email}
+    //                        onChange={(e) => setEmail(e.target.value)}
+    //                        onKeyDown={handleEnterKeypress}>
+    //                 </input>
+    //                 <input className="create-user-field"
+    //                        type="password"
+    //                        name="password" 
+    //                        placeholder=" Password"
+    //                        value={password}
+    //                        onChange={(e) => setPassword(e.target.value)}
+    //                        onKeyDown={handleEnterKeypress}>
+    //                 </input>
+    //               </div>
 
-                </form>
-                <p className="error-msg">{errorMsg}</p>
+    //             </form>
+    //             <p className="error-msg">{errorMsg}</p>
 
                 
-              {/* <button className="create-acc-button" type="submit" onClick={(e) => {handleSignUp(e)}}>Create Account</button> */}
-              <LoadingButton title="Create Account"
-                             className={"create-acc-button"}
-                             isLoading={isLoading}
-                             active={"create-acc-button-active"}
-                             onClick={(e) => {handleSignUp(e)}}/>
+    //           {/* <button className="create-acc-button" type="submit" onClick={(e) => {handleSignUp(e)}}>Create Account</button> */}
+    //           <LoadingButton title="Create Account"
+    //                          className={"create-acc-button"}
+    //                          isLoading={isLoading}
+    //                          active={"create-acc-button-active"}
+    //                          onClick={(e) => {handleSignUp(e)}}/>
+    //       </div>
+    //     </div>
+    // );
+
+    return (
+      <div className="desktop-container">
+        <div className="left-pane">
+          <div className="left-pane-text">
+            <p className="first-subtitle">Project Search Engine</p>
+            <p className="second-subtitle">Let your ideas shine.</p>
+            <p className="second-subtitle">Together we can go further.</p>
+          </div>
+  
+          <img className="landing-image" src={landingImage} alt="landing"></img>
+        </div>
+        <div className="right-pane">
+          <div className="right-pane-center">
+            <div className="right-pane-sign-in">
+              <p className="sign-in">SIGN UP</p>
+              <form className="desktop-form">
+                <div className="form-field">
+                  <input className="email-textbox"
+                      type="text"
+                      name="first-name"
+                      placeholder=" First Name"
+                      onChange={(e) => setFirstName(e.target.value)}
+                      onKeyDown={(e) => handleKeypress(e)}>
+                      </input>
+
+                      <input className="email-textbox"
+                      type="text"
+                      name="last-name"
+                      placeholder=" Last Name"
+                      onChange={(e) => setLastName(e.target.value)}
+                      onKeyDown={(e) => handleKeypress(e)}>
+                      </input>
+
+                    <input className="email-textbox"
+                      type="text"
+                      name="e-mail"
+                      placeholder=" Email Address"
+                      onChange={(e) => setEmail(e.target.value)}
+                      onKeyDown={(e) => handleKeypress(e)}>
+                    </input>
+
+                    <input className="password-textbox"
+                      type="password"
+                      name="password"
+                      placeholder=" Password"
+                      onChange={(e) => setPassword(e.target.value)}
+                      onKeyDown={(e) => handleKeypress(e)}>
+                      </input>
+                </div>
+              </form>
+              <p className="error-msg">{errorMsg}</p>
+  
+            </div>
+            {/* <button className="login-button" type="submit" onClick={(e) => { handleSignIn(e) }}>Login
+  
+            </button> */}
+  
+            <LoadingButton
+              title="Create Account"
+              isLoading={isLoading}
+              onClick={(e) => handleSignUp(e)}
+              />
+  
+          </div>
+          <div className="or-separator-signup">
+            <hr className="or-hr" />
+            <p className="or-text">OR</p>
+            <hr className="or-hr" />
+          </div>
+          <div className="right-pane-footer">
+            <p>Already have an account? <a className="sign-up" onClick={() => navigate('/login')}>Sign In</a>
+            </p>
           </div>
         </div>
+      </div>
     );
 }
 

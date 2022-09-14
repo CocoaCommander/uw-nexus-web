@@ -139,6 +139,16 @@ const ApplicationPage = (props) => {
         proj_name: params.projectName,
         position: params.projectRole,
         proj_email: location.state.email,
+        major: major,
+        year: graduationYear,
+        purpose: purpose,
+        experience: relevantExperience,
+        hours: hoursDedicated,
+        relevantClasses: relevantClasses,
+        willMeet: willMeet,
+        resume_link: "",
+        coverletter_link: "",
+        extraQuestions: extraQuestions
       }
 
 

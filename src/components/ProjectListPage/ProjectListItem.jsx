@@ -3,6 +3,7 @@ import { ReactComponent as TimeIcon } from '../../assets/time-icon.svg';
 import { ReactComponent as PersonIcon } from '../../assets/person-icon.svg';
 import { ReactComponent as LocationIcon } from '../../assets/location-icon.svg';
 import { Link, useNavigate } from 'react-router-dom';
+import { useState, useRef } from 'react';
 
 const ProjectListItem = ({
     project,
@@ -37,16 +38,38 @@ const ProjectListItem = ({
             break;
     }
     const roleElements = project.roles.map((role, i) => {
-        const roleSkillElements = role.skill.map((skill, i) => {
+
+        const RoleSkillElements = () => {
+          const [isExpanded, setExpanded] = useState(false);
+          const skillRef = useRef(null);
+
+          const renderedSkills = role.skill.map((skill, i) => {
             return (
-                <div className='skill-container' key={i}>{skill}</div>
+                <div ref={skillRef} className='skill-container' key={i}>{skill}</div>
             )
-        });
+          });
+
+
+
+          if (renderedSkills.length > 3) {
+            return (
+              <>
+                {isExpanded ? renderedSkills : renderedSkills.slice(0, 3)}
+                {!isExpanded && <p className='more-roles-tag' onClick={() => setExpanded(prev => !prev)}>+{renderedSkills.length - 3}</p>}
+              </>
+            )
+          }
+
+          return renderedSkills;
+
+        }
         return (
             <div className='role-container' key={i}>
                 <p className='role-title'>{role.title}</p>
-                {roleSkillElements}
-                {console.log(project.owner_email)}
+                <div className='skills-wrapper'>
+                  <RoleSkillElements/>
+                </div>
+
                 <Link className="proj-apply-link" to={`/apply/${project.title}/${role.title}`} state={{email: project.owner_email}}>
                   <button className='proj-apply-button'>Apply</button>
                 </Link>
@@ -54,6 +77,10 @@ const ProjectListItem = ({
             </div>
         );
     });
+
+    const projectInterests = project.interests.map(interest => {
+      return <p className='proj-item-interest'>{interest}</p>
+    })
     
     return (
         
@@ -82,7 +109,7 @@ const ProjectListItem = ({
                 </div>
                 <div className="project-list-item-interests">
                     <p>Project Interests:</p>
-                    {}
+                    {projectInterests}  
                 </div>
                 </Link>
                 <div className="project-list-item-role-container">

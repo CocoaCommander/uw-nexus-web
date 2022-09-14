@@ -67,8 +67,20 @@
   height: 25%;
 }
 
-@media only screen and (min-width: 1200px) {
+.or-separator-signup {
+  display: none;
+}
+
+
+@media only screen and (min-width: 760px) {
   .main-pane {
     width: 40%
+  }
+
+  .or-separator-signup {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
