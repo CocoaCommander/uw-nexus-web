@@ -94,7 +94,7 @@ const Header = ({
 
         return (
             <>
-                <Menu width={190} customBurgerIcon={<FontAwesomeIcon icon={faBars} />} customCrossIcon={false}>
+                <Menu width={250} customBurgerIcon={<FontAwesomeIcon icon={faBars} />} customCrossIcon={false}>
                     <FontAwesomeIcon className="menu-icon" icon={faBars} />
                     <div className="side-menu-container">
                         <Link className={location === '/projects' ? 'side-menu-option-active' : 'side-menu-option'} to={"/projects"}>Discover Projects</Link>
