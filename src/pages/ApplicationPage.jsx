@@ -115,6 +115,9 @@ const ApplicationPage = (props) => {
   const onFileChange = (e) => {
     if (e.target.name === "resume-button") {
       setResume(e.target.files[0]);
+      const file = e.target.files[0];
+      new FileReader().readAsDataURL(file);
+      console.log(e.target.files[0]);
     } else {
       setCoverLetter(e.target.files[0]);
     }

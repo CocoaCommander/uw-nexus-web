@@ -49,7 +49,7 @@ const DesktopLogin = (props) => {
     if (response.ok) {
       const session = await response.json();
       const cookie = new Cookies();
-      cookie.set('fr-accessToken', "loggedin", {maxAge: 3.6e+6});
+      cookie.set('fr-accessToken', "loggedin", {maxAge: 24 * 60 * 60, path: '/'});
       window.localStorage.setItem("nxs-id", session.id);
       dispatch(setLoggedIn(true));
       props.onLogin(email);

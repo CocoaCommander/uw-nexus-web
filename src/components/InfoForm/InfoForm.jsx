@@ -7,6 +7,8 @@ import "./InfoForm.css";
 
 const InfoForm = (props) => {
 
+  console.log(`infoform prop = ${props.err}`)
+
   const handleChange = (e) => {
     props.onChange(e);
   }
@@ -17,6 +19,7 @@ const InfoForm = (props) => {
   // const year = useSelector((state) => state.signUp.year);
   const major = useSelector((state) => state.signUp.major);
   const majorsList = useSelector((state) => state.serverContent.majorsList);
+  const errorMsg = useSelector((state) => state.signUp.errorMsg);
   // const campus = useSelector((state) => state.signUp.campus);
 
   const selectOptions = () => {
@@ -25,69 +28,104 @@ const InfoForm = (props) => {
     })
   }
 
+  const selectBarStyling = {
+    control: (provided) => ({
+      ...provided,
+      border: "solid 1.5px #c4c4c4",
+      borderRadius: "5px",
+      height: "50px",
+    }),
+
+    input: (provided) => ({
+      ...provided,
+      fontSize: "12px",
+    }),
+
+    singleValue: (provided) => ({
+      ...provided,
+      fontSize: "12px",
+    }),
+
+    dropdownIndicator: (provided) => ({
+      ...provided,
+      color: "black",
+      padding: "0px",
+      display: "flex",
+      justifyContent: "flex-end",
+      width: "17px",
+      height: "20px",
+      marginLeft: "10px",
+      paddingRight: "2px"
+    })
+  }
+
   return(
-    <form>
-      <div className="field-set">
-        <label>Full Name <span className="asterix-signup">*</span></label>
-        <input className="sign-up-detail" 
-              type="text"
-              name="fullName" 
-              placeholder=" E.g. John Doe"
-              value={fullName}
-              onChange={handleChange}>
-              
-        </input>
-      </div>
+    <>
+      <p className="error-msg-signup">{errorMsg}</p>
+      <form>
+        <div className="field-set">
+          <label>Full Name <span className="asterix-signup">*</span></label>
+          <input className="sign-up-detail" 
+                type="text"
+                name="fullName" 
+                placeholder=" E.g. John Doe"
+                value={fullName}
+                onChange={handleChange}>
+                
+          </input>
+        </div>
 
-      <div className="field-set">
-        <label>Year <span className="asterix-signup">*</span></label>
-        <select className="sign-up-detail"
-                name="year"
-                id="select-year"
-                onChange={handleChange}
-                >
-          <option value="" disabled selected>E.g. Sophomore</option>
-          <option value="Freshman">Freshman</option>
-          <option value="Sophomore">Sophomore</option>
-          <option value="Junior">Junior</option>
-          <option value="Senior">Senior</option>
-        </select>
-      </div>
+        <div className="field-set">
+          <label>Year <span className="asterix-signup">*</span></label>
+          <select className="sign-up-detail"
+                  name="year"
+                  id="select-year"
+                  onChange={handleChange}
+                  >
+            <option value="" disabled selected>E.g. Sophomore</option>
+            <option value="Freshman">Freshman</option>
+            <option value="Sophomore">Sophomore</option>
+            <option value="Junior">Junior</option>
+            <option value="Senior">Senior</option>
+          </select>
+        </div>
 
 
-      <div className="field-set">
-        <label>Major / Intended Major <span className="asterix-signup">*</span></label>
-        {/* <input className="sign-up-detail" 
-              type="text"
-              name="major" 
-              placeholder=" E.g. Bioengineering"
-              value={major}
-              onChange={handleChange}>
-        </input> */}
-        <Select className="react-select-bar"
-          name="major"
-          placeholder="E.g. Bioengineering"
-          defaultValue={major}
-          onChange={handleChange}
-          options={selectOptions()}>
+        <div className="field-set">
+          <label>Major / Intended Major <span className="asterix-signup">*</span></label>
+          {/* <input className="sign-up-detail" 
+                type="text"
+                name="major" 
+                placeholder=" E.g. Bioengineering"
+                value={major}
+                onChange={handleChange}>
+          </input> */}
+          <Select className="react-select-bar"
+            name="major"
+            placeholder="E.g. Bioengineering"
+            defaultValue={major}
+            onChange={handleChange}
+            options={selectOptions()}
+            styles={selectBarStyling}>
 
-        </Select>
-      </div>
+          </Select>
+        </div>
 
-      <div className="field-set">
-        <label>University of Washington Campus <span className="asterix-signup">*</span></label>
-        <select className="sign-up-detail"
-                name="campus"
-                id="select-campus"
-                onChange={handleChange}
-                >
-          <option value="" disabled selected>E.g. Seattle, Tacoma, Bothell</option>
-          <option value="Seattle">Seattle</option>
-          <option value="Tacoma">Tacoma</option>
-          <option value="Bothell">Bothell</option>
-        </select>
-      </div>
-    </form>
+        <div className="field-set">
+          <label>University of Washington Campus <span className="asterix-signup">*</span></label>
+          <select className="sign-up-detail"
+                  name="campus"
+                  id="select-campus"
+                  onChange={handleChange}
+                  >
+            <option value="" disabled selected>E.g. Seattle, Tacoma, Bothell</option>
+            <option value="Seattle">Seattle</option>
+            <option value="Tacoma">Tacoma</option>
+            <option value="Bothell">Bothell</option>
+          </select>
+        </div>
+      </form>
+    </>
   )
 }
 
