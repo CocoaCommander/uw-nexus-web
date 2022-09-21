@@ -45,13 +45,11 @@ const SignUp = (props) => {
   const year_valid = useRef(year);
   const major_valid = useRef(major);
   const campus_valid = useRef(campus);
-  const errorMsgRef = useRef(errorMsg);
 
   name_valid.current = fullName;
   year_valid.current = year;
   major_valid.current = major;
   campus_valid.current = campus;
-  errorMsgRef.current = errorMsg;
   
   const dispatch = useDispatch();
   const location = useLocation();
@@ -134,8 +132,6 @@ const SignUp = (props) => {
 
   const handleInvalidFirstStep = () => {
     dispatch(setErrorMsg("Please fill out all fields"));
-    errorMsgRef.current = "PLeASE";
-    console.log(errorMsgRef.current);
   }
 
   // handle changes in interest selections in Project Interests Page
@@ -171,9 +167,8 @@ const SignUp = (props) => {
       <div className="center-pane">
         <div className="sign-up-pane">
             <p className="gen-info-title">General Information</p>
-            <p className="error-msg">{errorMsg}</p>
             <div className="form-field">
-              <InfoForm onChange={handleFormChange} err={errorMsg}>
+              <InfoForm onChange={handleFormChange}>
               </InfoForm>
             </div>
         </div>

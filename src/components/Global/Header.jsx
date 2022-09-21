@@ -22,8 +22,9 @@ const LoginButton = () => {
               method: 'DELETE'
             }
             await fetch(SIGN_OUT, options);
-            const prevCookie = new Cookies()
-            prevCookie.remove("fr-accessToken");
+            console.log("removing cookie!");
+            const prevCookie = new Cookies();
+            prevCookie.remove("fr-accessToken", {path : '/'});
             window.localStorage.removeItem("nxs-id");
             // prevCookie.remove("nxs_id");
             dispatch(setLoggedIn(false));
