@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import "../DesktopLogin.css";
 import landingImage from "../assets/manyPpl.png";
 import Cookies from 'universal-cookie';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { setLoggedIn, setUserID } from "../redux/userState/userStateActions";
 import { TailSpin } from "react-loader-spinner";
 import LoadingButton from "../components/LoadingButton/LoadingButton";
@@ -101,7 +101,7 @@ const DesktopLogin = (props) => {
                   placeholder=" Password"
                   onChange={(e) => setPassword(e.target.value)}
                   onKeyDown={(e) => handleKeypress(e)}></input>
-                <a className="forgot-pass" href="https://www.google.com">Forgot Password?</a>
+                <Link className="forgot-pass" to='/forgotPass'>Forgot Password?</Link>
               </div>
             </form>
             <p className="error-msg">{errorMsg}</p>
