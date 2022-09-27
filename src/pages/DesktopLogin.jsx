@@ -101,7 +101,7 @@ const DesktopLogin = (props) => {
                   placeholder=" Password"
                   onChange={(e) => setPassword(e.target.value)}
                   onKeyDown={(e) => handleKeypress(e)}></input>
-                <Link className="forgot-pass" to='/forgotPass'>Forgot Password?</Link>
+                <Link className="forgot-pass" to='/forgotPassword'>Forgot Password?</Link>
               </div>
             </form>
             <p className="error-msg">{errorMsg}</p>
