@@ -1,9 +1,16 @@
-const ForgotPassword = (props) => {
+import { useState } from 'react';
+import ForgotPasswordBody from '../components/ForgotPassword/ForgotPasswordBody';
+import SentEmailModal from '../components/ForgotPassword/SentEmailModal';
+
+const ForgotPassword = () => {
+  const [currEmail, setCurrEmail] = useState('');
+  const [isButtonClicked, setButtonClicked] = useState(false);
+
 
   return (
     <div>
-        <h1>Forgot your password?</h1>
-        <p className="">Enter your registered email address to receive password reset instructions.</p>
+      <ForgotPasswordBody currEmail={currEmail} emailCallback={setCurrEmail} buttonCallback={setButtonClicked} />
+      <SentEmailModal isButtonClicked={isButtonClicked} />
     </div>
   );
 }
