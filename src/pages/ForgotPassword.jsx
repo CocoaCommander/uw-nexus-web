@@ -10,7 +10,7 @@ const ForgotPassword = () => {
   return (
     <div>
       <ForgotPasswordBody currEmail={currEmail} emailCallback={setCurrEmail} buttonCallback={setButtonClicked} />
-      <SentEmailModal isButtonClicked={isButtonClicked} />
+      <SentEmailModal isButtonClicked={isButtonClicked} buttonCallback={setButtonClicked} />
     </div>
   );
 }
