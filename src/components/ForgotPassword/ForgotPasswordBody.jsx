@@ -1,6 +1,7 @@
 import './ForgotPassword.css';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import emailjs from "emailjs-com";
 
 const ForgotPasswordBody = (props) => {
     const { currEmail, emailCallback, buttonCallback } = props;
@@ -11,9 +12,35 @@ const ForgotPasswordBody = (props) => {
             setError(true);
         } else {
             setError(false);
-            buttonCallback(true);
+            sendEmail();
         }
     };
+
+    const verifyEmail = () => {
+        // verifies the email entered is an existing account
+        // returns user name
+    }
+
+    const getResetLink = () => {
+        // returns link to password change page
+    }
+
+
+    const sendEmail = async() => {
+
+        const email_params = {
+            to_name: "Person X",
+            to_email: currEmail,
+            message: "<linktoreset>"
+        }
+
+        const response = await emailjs.send("application_request", "account_pass_reset", email_params, `${process.env.REACT_APP_EMAIL_JS_API_KEY}`);
+        if (response.status == 200) {
+            buttonCallback(true);
+        } else {
+            console.log("error sending email");
+        }
+    }
 
     return (
         <section className='forgot-password-container'>
