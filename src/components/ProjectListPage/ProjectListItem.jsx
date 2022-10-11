@@ -18,6 +18,8 @@ const ProjectListItem = ({
 
     let projectSize = "";
 
+    console.log(project.owner_email);
+
     const handleProjectApply = (projName, role) => {
       navigate('/apply', {
         projName: projName,
