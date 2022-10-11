@@ -6,7 +6,8 @@ import StepProgressBar from 'react-step-progress';
 import '../custom-react-step-progress.css';
 import "../CreateProject.css";
 import { setCampus, setMajor, setYear, setPassword } from "../redux/signUp/signUpActions";
-import { setProjName, setProjDesc, setTeamSize, setProjDur, setProjStatus, addLocation} from "../redux/createProject/createProjectActions"
+import { setProjName, setProjDesc, setTeamSize, setProjDur, setProjStatus, addLocation} from "../redux/createProject/createProjectActions";
+import { setSkillsList } from "../redux/serverContent/serverContentActions";
 import Cookies from 'universal-cookie';
 import CustomTextBox from "../components/CustomTextBox/CustomTextBox";
 import CustomTextArea from "../components/CustomTextArea/CustomTextArea";
@@ -26,6 +27,7 @@ const CreateProject = ({
   const projName = useSelector((state) => state.createProj.projName);
   const projDesc = useSelector((state) => state.createProj.projDesc);
   const currentStep = useSelector((state) => state.createProj.step);
+  
 
 
   const toolTipMsgs = [
@@ -63,8 +65,14 @@ const CreateProject = ({
     var cookie = new Cookies();
     const jwt_token = cookie.get("fr-accessToken");
     if (jwt_token) {
-      // setaccessToken2(jwt_token);
-      console.log("already authenticated!");
+      const url = "/api/constants/skills";
+
+      fetch(url)
+      .then(response => response.json())
+      .then(data => dispatch(setSkillsList(data)))
+      .catch((error) => {
+        console.log(error);
+      })
     } else {
       console.log("not authenticated");
       navigate('/');
@@ -250,7 +258,7 @@ const CreateProject = ({
   
   // render content of Review Page 
   const step5Content = (
-      <ProjectRoles ></ProjectRoles>
+      <ProjectRoles></ProjectRoles>
   )
 
   const step6Content = (
@@ -295,7 +303,6 @@ const CreateProject = ({
 
   const handleStepDecrease = (e) => {
     const target = e.target.className;
-    console.log(target);
     if (target.includes("back-button-proj")) {
       dispatch(decreaseStep());
     }

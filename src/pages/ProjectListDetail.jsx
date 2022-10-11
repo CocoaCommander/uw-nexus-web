@@ -26,8 +26,6 @@ const ProjectListDetail = () => {
         return <p>Loading...</p>
     }
 
-    console.log(project);
-
     const projectRoles = project.roles ? project.roles.map(role => <ProjectListDetailRole role={role} duration={project.duration ? project.duration.length : ""} projDetails={{projectTitle: project.title, owner_email: project.owner_email}}/>) : [];
 
     return (
