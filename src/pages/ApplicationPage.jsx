@@ -188,8 +188,6 @@ const ApplicationPage = (props) => {
     const resumeURL = await uploadFile(resume);
     const coverLetterURL = await uploadFile(coverLetter);
 
-    console.log(coverLetterURL);
-
     const email_params = {
         to_name: fullName,
         proj_name: params.projectName,
