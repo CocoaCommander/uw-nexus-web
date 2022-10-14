@@ -116,7 +116,7 @@ const ProjectRoles = ({
       <div className="roles-block">
 
         <div className="role-name-container">
-          <label className="roles-label">Roles</label>
+          <label className="roles-label">Role</label>
           <p className="role-name">{role.role}</p>
         </div>
 
@@ -145,7 +145,7 @@ const ProjectRoles = ({
 
     <div className={"roles-input-after"}>
 
-    <p className="project-name-header-roles">What kind of people are you looking for?</p>
+    <p className="project-name-header-roles">What kind of people are you looking for? <span className="asterix">*</span></p>
 
     <div className="roles-container">
       {renderRoles(projRoles)}

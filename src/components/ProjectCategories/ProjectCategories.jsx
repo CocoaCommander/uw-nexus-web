@@ -70,7 +70,7 @@ const ProjectCategories = (props) => {
       </div> */}
 
       <div className="header-icon-wrapper">
-        <p className="project-name-header">How would you categorize your project?</p>
+        <p className="project-name-header">How would you categorize your project? <span className="asterix"> *</span></p>
         <img data-for="categ-tip" data-tip={props.tooltip} className={"question-icon"} src={questionIcon} alt="question icon"></img>
 
         <ReactTooltip

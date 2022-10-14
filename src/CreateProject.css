@@ -100,12 +100,13 @@ label {
   font-size: 14px;
   font-weight: bold;
   text-align: center;
-  margin-right: 5px;
 }
 
 .asterix {
   color: red;
   vertical-align: super;
+  align-self: flex-start;
+  margin-left: 5px;
 }
 
 .drop-downs-container {
