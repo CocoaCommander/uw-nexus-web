@@ -4,22 +4,65 @@ import CustomTextBox from "../CustomTextBox/CustomTextBox";
 import { addRole } from "../../redux/createProject/createProjectActions";
 import "./ProjectRoles.css"
 import CustomTextArea from "../CustomTextArea/CustomTextArea";
+import Select from "react-select";
 
-const ProjectRoles = (props) => {
+const ProjectRoles = ({
+
+  }) => {
 
   const [currentRole, setRole] = useState("");
   const [skill, setSkill] = useState("");
   const [currentSkills, setSkills] = useState([]);
   const [resp, setResp] = useState("");
 
+  const skills = useSelector(state => state.serverContent.skillsList);
+
   const dispatch = useDispatch();
 
   const projRoles = useSelector((state) => state.createProj.roles);
 
+  const selectBarStyling = {
+    control: (provided) => ({
+      ...provided,
+      border: "solid 1.5px #c4c4c4",
+      borderRadius: "5px",
+      height: "50px",
+    }),
+
+    input: (provided) => ({
+      ...provided,
+      fontSize: "12px",
+    }),
+
+    singleValue: (provided) => ({
+      ...provided,
+      fontSize: "12px",
+    }),
+
+    dropdownIndicator: (provided) => ({
+      ...provided,
+      color: "black",
+      padding: "0px",
+      display: "flex",
+      justifyContent: "flex-end",
+      width: "17px",
+      height: "20px",
+      marginLeft: "10px",
+      paddingRight: "2px"
+    })
+  }
+
+  const selectOptions = () => {
+    return skills.map(skill => {
+      return {value: skill, label: skill}
+    })
+  }
+
   const handleSkillAddition = (e) => {
-    if (e.key === 'Enter' && currentSkills.length < 5 && e.target.value.length > 0) {
+    console.log(e);
+    if (e.key === 'Enter' && currentSkills.length < 5 && skill.length > 0) {
       setSkills(prev => {
-        return [...prev, e.target.value]
+        return [...prev, skill]
       })
       setSkill("");
     }
@@ -42,8 +85,6 @@ const ProjectRoles = (props) => {
       setResp("");
     }
   }
-
-  console.log(projRoles);
   
 
   const renderSkills = (skills) => {
@@ -53,7 +94,6 @@ const ProjectRoles = (props) => {
   }
 
   const renderRoleSkill = (role) => {
-    console.log("for role = " + role + " skills = " + role.skill);
     let res = role.skill.map((skill) => 
       <div className="selection-proj-roles">
         <p>{skill}</p>
@@ -76,7 +116,7 @@ const ProjectRoles = (props) => {
       <div className="roles-block">
 
         <div className="role-name-container">
-          <label className="roles-label">Roles</label>
+          <label className="roles-label">Role</label>
           <p className="role-name">{role.role}</p>
         </div>
 
@@ -105,7 +145,7 @@ const ProjectRoles = (props) => {
 
     <div className={"roles-input-after"}>
 
-    <p className="project-name-header-roles">What kind of people are you looking for?</p>
+    <p className="project-name-header-roles">What kind of people are you looking for? <span className="asterix">*</span></p>
 
     <div className="roles-container">
       {renderRoles(projRoles)}
@@ -119,11 +159,21 @@ const ProjectRoles = (props) => {
 
         <div className="field-set-cp">
           <label className="roles-label">Skillsets / Tools</label>
-          <CustomTextBox value={skill}
+          {/* <CustomTextBox value={skill}
                         className="sign-up-detail"
                         placeholder={"Qualifications of the role"}
                         onChange={(e) => {setSkill(e.target.value)}} 
-                        onKeyPress={handleSkillAddition}></CustomTextBox>
+                        onKeyPress={handleSkillAddition}/> */}
+            <Select className="react-select-bar"
+            name="skillset"
+            placeholder="Qualifications of the role"
+            defaultValue={skill}
+            onChange={(e) => setSkill(e.value)}
+            options={selectOptions()}
+            styles={selectBarStyling}
+            onKeyDown={handleSkillAddition}>
+
+          </Select>
         </div>
 
         <div className="selections-skills-container">

@@ -2,8 +2,11 @@ import { useState, useRef } from "react";
 import "../ApplicationPage.css";
 import man from "../assets/human-man.png";
 import woman from "../assets/human-woman.png";
+import LoadingButton from "../components/LoadingButton/LoadingButton";
 import emailjs from "emailjs-com";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
+import storage from "../firebaseConfig.js";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 const ApplicationPage = (props) => {
 
@@ -21,6 +24,9 @@ const ApplicationPage = (props) => {
   const [resume, setResume] = useState(null);
   const [coverLetter, setCoverLetter] = useState(null);
   const [extraQuestions, setExtraQuestions] = useState("");
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   const params = useParams();
   const location = useLocation();
@@ -132,11 +138,56 @@ const ApplicationPage = (props) => {
     buttonRef2.current.click();
   }
 
+
+  const uploadFile = async(file) => {
+
+    return new Promise(function(resolve, reject) {
+
+      const storageRef = ref(storage, `/files/${file.name}`);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+  
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+            const percent = Math.round(
+                (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+            );
+  
+            // update progress
+        },
+        (err) => {
+          console.log(err);
+          reject();
+        },
+        () => {
+            // download url
+                getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+                resolve(url);
+            });
+        }
+      );
+    })
+  }
+
+  const validateSubmission = () => {
+    return (graduationYear && email && referral && purpose && hoursDedicated && relevantExperience && 
+            relevantClasses && willMeet && resume && coverLetter);
+  }
+
   // fill out when backend implements functionality
   const submitApplication = async(e) => {
     e.preventDefault();
+    setIsLoading(true);
 
-    
+    if (!validateSubmission()) {
+      setErrorMsg("Please fill all required fields.");
+      setIsLoading(false);
+      return;
+    }
+
+    const resumeURL = await uploadFile(resume);
+    const coverLetterURL = await uploadFile(coverLetter);
+
     const email_params = {
         to_name: fullName,
         proj_name: params.projectName,
@@ -148,20 +199,19 @@ const ApplicationPage = (props) => {
         experience: relevantExperience,
         hours: hoursDedicated,
         relevantClasses: relevantClasses,
-        willMeet: willMeet,
-        resume_link: "",
-        coverletter_link: "",
+        willMeet: willMeet ? "Yes" : "No",
+        resume_link: resumeURL,
+        coverletter_link: coverLetterURL,
         extraQuestions: extraQuestions
       }
 
-
-    
-
-    const response = await emailjs.send("application_request", "proj_app_form", email_params, `${process.env.REACT_APP_EMAIL_KEY}`)
+    const response = await emailjs.send("application_request", "proj_app_form", email_params, `${process.env.REACT_APP_EMAIL_JS_API_KEY}`);
+    setIsLoading(false);
     if (response.status == 200) {
+      setErrorMsg("");
       navigate("/projects");
     } else {
-      console.log("Could not send email");
+      setErrorMsg("There was an error submitting your application. Please try again later");
     }
   }
 
@@ -325,12 +375,21 @@ const ApplicationPage = (props) => {
                     onChange={handleChange}
                     maxLength={500}>
               </textarea>
+
+              <p className="error-msg-apply">{errorMsg}</p>
             </div>
             </div>
           </form>
           <img className="side-image-woman" src={woman} alt="woman graphic"></img>
         </div>
-        <div className="apply-button" onClick={submitApplication}>Apply</div>
+        <LoadingButton
+              title="Apply"
+              className={"apply-button"}
+              active={"apply-button-active"}
+              isLoading={isLoading}
+              onClick={submitApplication}
+        />
+        {/* <div className="apply-button" onClick={submitApplication}>Apply</div> */}
         
       </div>
   );

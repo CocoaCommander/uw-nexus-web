@@ -171,12 +171,33 @@ input[type=number]::-webkit-outer-spin-button {
   font-size: 14px;
 }
 
+.apply-button-active {
+  width: 100px;
+  height: 40px;
+  border: 1px solid #f05a28;
+  border-radius: 7px;
+  color: white;
+  background-color: #f05a28;
+  text-align: center;
+  font-weight: bold;
+  line-height: 40px;
+  align-self: flex-end;
+  font-size: 14px;
+  margin-top: 3%;
+}
+
 .side-image-man {
   display: none;
 }
 
 .side-image-woman {
   display: none;
+}
+
+.error-msg-apply {
+  color: red;
+  text-align: center;
+  margin-top: 5px;
 }
 
 @media only screen and (min-width: 700px) {
@@ -211,12 +232,16 @@ input[type=number]::-webkit-outer-spin-button {
   }
 
   .apply-button {
-    width: 20%;
+    width: 20vw;
   }
   
   
   .apply-button:hover {
-    width: 20%;
+    width: 20vw;
+  }
+
+  .apply-button-active {
+    width: 20vw;
   }
 }
 

@@ -6,7 +6,8 @@ import StepProgressBar from 'react-step-progress';
 import '../custom-react-step-progress.css';
 import "../CreateProject.css";
 import { setCampus, setMajor, setYear, setPassword } from "../redux/signUp/signUpActions";
-import { setProjName, setProjDesc, setTeamSize, setProjDur, setProjStatus, addLocation} from "../redux/createProject/createProjectActions"
+import { setProjName, setProjDesc, setTeamSize, setProjDur, setProjStatus, addLocation} from "../redux/createProject/createProjectActions";
+import { setSkillsList } from "../redux/serverContent/serverContentActions";
 import Cookies from 'universal-cookie';
 import CustomTextBox from "../components/CustomTextBox/CustomTextBox";
 import CustomTextArea from "../components/CustomTextArea/CustomTextArea";
@@ -25,7 +26,17 @@ const CreateProject = ({
   
   const projName = useSelector((state) => state.createProj.projName);
   const projDesc = useSelector((state) => state.createProj.projDesc);
+  const teamSize = useSelector((state) => state.createProj.teamSize);
+  const projDur = useSelector((state) => state.createProj.projDur);
+  const projStatus = useSelector((state) => state.createProj.projStatus);
+  const projCategs = useSelector((state) => state.createProj.projCategs);
+  const projRoles = useSelector((state) => state.createProj.roles);
+  const projLocation = useSelector((state) => state.createProj.location);
+
+
   const currentStep = useSelector((state) => state.createProj.step);
+  const [errorMsg, setErrorMsg] = useState("");
+  
 
 
   const toolTipMsgs = [
@@ -52,19 +63,39 @@ const CreateProject = ({
   const s2_valid = useRef(projDesc);
   s2_valid.current = projDesc;
 
-  // const [cstyle, setStyle] = useState("desktop-container");
+  const teamSize_valid = useRef(teamSize);
+  teamSize_valid.current = teamSize;
+
+  const projDur_valid = useRef(projDur);
+  projDur_valid.current = projDur;
+
+  const projStatus_valid = useRef(projStatus);
+  projStatus_valid.current = projStatus;
+
+  const projCategs_valid = useRef(projCategs);
+  projCategs_valid.current = projCategs;
+
+  const projRoles_valid = useRef(projRoles);
+  projRoles_valid.current = projRoles;
+
+  const projLocation_valid = useRef(projLocation);
+  projLocation_valid.current = projLocation;
   
 
   const navigate = useNavigate();
-
-  // const [accessToken2, setaccessToken2] = useState(null);
 
   useEffect(() => {
     var cookie = new Cookies();
     const jwt_token = cookie.get("fr-accessToken");
     if (jwt_token) {
-      // setaccessToken2(jwt_token);
-      console.log("already authenticated!");
+      const url = "/api/constants/skills";
+
+      fetch(url)
+      .then(response => response.json())
+      .then(data => dispatch(setSkillsList(data)))
+      .catch((error) => {
+        console.log(error);
+      })
     } else {
       console.log("not authenticated");
       navigate('/');
@@ -188,46 +219,54 @@ const CreateProject = ({
       <div className="center-pane">
         <p className="gen-info-title">Team Size</p>
         <div className="drop-downs-container">
-          <CustomDropdown 
-                          id="team-size"
-                          name="teamSize"
-                          reducer="createProj"
-                          options={["Small (6-10)", "Medium (11-15)", "Large (15+)"]}
-                          values={["Small", "Medium", "Large"]}
-                          placeholder={"Team Size"}
-                          onChange={handleSelectionChange}>
-          </CustomDropdown>
+          <div className="dropdown-wrapper">
+            <CustomDropdown 
+                            id="team-size"
+                            name="teamSize"
+                            reducer="createProj"
+                            options={["Small (6-10)", "Medium (11-15)", "Large (15+)"]}
+                            values={["Small", "Medium", "Large"]}
+                            placeholder={"Team Size"}
+                            onChange={handleSelectionChange}>
+            </CustomDropdown>
+            <span className="asterix"> *</span>
+          </div>
 
-          <CustomDropdown 
-                          id="project-duration"
-                          name="projDur"
-                          reducer="createProj"
-                          options={["1-3 months", "3-6 months", "6-9 months", "More than 9 months"]}
-                          values={["1-3 months", "3-6 months", "6-9 months", "More than 9 months"]}
-                          placeholder={"Project Duration"}
-                          onChange={handleSelectionChange}>
-          </CustomDropdown>
+          <div className="dropdown-wrapper">
+            <CustomDropdown 
+                            id="project-duration"
+                            name="projDur"
+                            reducer="createProj"
+                            options={["1-3 months", "3-6 months", "6-9 months", "More than 9 months"]}
+                            values={["1-3 months", "3-6 months", "6-9 months", "More than 9 months"]}
+                            placeholder={"Project Duration"}
+                            onChange={handleSelectionChange}>
+            </CustomDropdown>
+            <span className="asterix"> *</span>
+          </div>
 
-            <div className="dropdown-wrapper">
 
-              <CustomDropdown 
-                              id="project-status"
-                              name="projStatus"
-                              reducer="createProj"
-                              options={["New Project", "Ongoing Project"]}
-                              values={["New Project", "Ongoing Project"]}
-                              placeholder={"Project Status"}
-                              onChange={handleSelectionChange}>
-              </CustomDropdown>
+          <div className="dropdown-wrapper">
+            <CustomDropdown 
+                            id="project-status"
+                            name="projStatus"
+                            reducer="createProj"
+                            options={["New Project", "Ongoing Project"]}
+                            values={["New Project", "Ongoing Project"]}
+                            placeholder={"Project Status"}
+                            onChange={handleSelectionChange}>
+            </CustomDropdown>
 
-              <img data-for="desc-tip" data-tip={toolTipMsgs[2]} className={"question-icon-dropdown"} src={questionIcon} alt="question icon"></img>
-                <ReactTooltip
-                  id="desc-tip"
-                  className="!important tooltip-text"
-                  place="right"
-                  type="light"
-                  padding={"2px"}
-                  border={true}/>
+            <span className="asterix"> *</span>
+
+            <img data-for="desc-tip" data-tip={toolTipMsgs[2]} className={"question-icon-dropdown"} src={questionIcon} alt="question icon"></img>
+              <ReactTooltip
+                id="desc-tip"
+                className="!important tooltip-text"
+                place="right"
+                type="light"
+                padding={"2px"}
+                border={true}/>
           </div>
         </div>
     </div>
@@ -250,7 +289,7 @@ const CreateProject = ({
   
   // render content of Review Page 
   const step5Content = (
-      <ProjectRoles ></ProjectRoles>
+      <ProjectRoles></ProjectRoles>
   )
 
   const step6Content = (
@@ -258,7 +297,7 @@ const CreateProject = ({
       <div className="center-pane">
         <p className="gen-info-title">Location</p>
         <div className="header-icon-wrapper">
-          <p className="project-name-header">Where would your meetings be located?</p>
+          <p className="project-name-header">Where would your meetings be located? <span className="asterix"> *</span></p>
           <img data-for="loc-tip" data-tip={toolTipMsgs[4]} className={"question-icon"} src={questionIcon} alt="question icon"></img>
           <ReactTooltip
                id="loc-tip"
@@ -280,28 +319,63 @@ const CreateProject = ({
   )
 
   function step3Validator() {
-    handleStepIncrease();
-    return true;
+    if (teamSize_valid.current && projDur_valid.current && projStatus_valid.current) {
+      handleStepIncrease();
+      return true;
+    } else {
+      setErrorMsg("Please fill in all required fields.");
+      return false;
+    }
   }
 
   function step4Validator() {
-    handleStepIncrease();
-    return true;
+    if (projCategs_valid.current.length > 0) {
+      console.log(projCategs_valid.current);
+      handleStepIncrease();
+      return true;
+    } else {
+      setErrorMsg("Please choose atleast one category.")
+      return false;
+    }
+  }
+
+  function step5Validator() {
+    if (projRoles_valid.current.length > 0) {
+      handleStepIncrease();
+      return true;
+    } else {
+      setErrorMsg("Please add atleast one role.");
+      return false;
+    }
+  }
+
+  function step6Validator() {
+    console.log(projLocation_valid.current);
+    if (projLocation_valid.current) {
+      handleStepIncrease();
+      return true;
+    }
   }
   
   async function onFormSubmit() {
-    navigate('/finishProject');
+    if (projLocation_valid.current) {
+      navigate('/finishProject');
+      setErrorMsg("");
+    } else {
+      setErrorMsg("Please enter your meeting location.");
+    }
+
   }
 
   const handleStepDecrease = (e) => {
     const target = e.target.className;
-    console.log(target);
     if (target.includes("back-button-proj")) {
       dispatch(decreaseStep());
     }
   }
 
   const handleStepIncrease = () => {
+    setErrorMsg("");
     dispatch(increaseStep());
   }
 
@@ -335,6 +409,8 @@ const CreateProject = ({
                     const valid = s1_valid.current.length > 0;
                     if (valid) {
                       handleStepIncrease();
+                    } else {
+                      setErrorMsg("Please enter your project name.");
                     }
                     return valid;
                   }
@@ -347,6 +423,8 @@ const CreateProject = ({
                     const valid = s2_valid.current.length > 0;
                     if (valid) {
                       handleStepIncrease();
+                    } else {
+                      setErrorMsg("Please add a description of your project.");
                     }
                     return valid
                   }
@@ -367,17 +445,17 @@ const CreateProject = ({
                   label: 'Roles',
                   name: 'step 5',
                   content: step5Content,
-                  validator: step3Validator
+                  validator: step5Validator
                 },
                 {
                   label: 'Location',
                   name: 'step 6',
                   content: step6Content,
-                  validator: step3Validator
+                  validator: step6Validator
                 },
               ]}
               />
-              {/* <p className="error-msg">{errorMsg}</p> */}
+              <p className="error-msg">{errorMsg}</p>
       </div>
     );
 }
