@@ -6,13 +6,14 @@ const ForgotPassword = () => {
   const [currEmail, setCurrEmail] = useState('');
   const [isButtonClicked, setButtonClicked] = useState(false);
   const rootDOM = document.getElementById('root');
-
+  const headerDesktopDOM = document.getElementsByClassName('header-desktop')[0];
+  
   if (isButtonClicked) {
-    document.getElementById('root').style.backdropFilter = 'brightness(40%)';
-    document.getElementsByClassName('header-desktop')[0].style.filter = 'brightness(40%)';
+    rootDOM.style.backdropFilter = 'brightness(40%)';
+    headerDesktopDOM.style.filter = 'brightness(40%)';
   } else {
-    document.getElementById('root').style.backdropFilter = 'brightness(100%)';
-    document.getElementsByClassName('header-desktop')[0].style.filter = 'brightness(100%)';
+    rootDOM.style.backdropFilter = 'brightness(100%)';
+    headerDesktopDOM.style.filter = 'brightness(100%)';
   }
 
   const forgotPasswordDetails = {
