@@ -17,6 +17,7 @@ import Profile from './pages/Profile';
 import SignUp from './pages/SignUp';
 import SignUpStart from './pages/SignUpStart';
 import ForgotPassword from './pages/ForgotPassword';
+import ChangePassword from './pages/ChangePassword';
 import WelcomePage from './pages/WelcomePage';
 import Cookies from 'universal-cookie';
 import { setLoggedIn, setUserID } from './redux/userState/userStateActions';
@@ -50,6 +51,14 @@ const App = () => {
   const userID = useSelector((state) => state.userState.userID);
   const [profileID, setProfileID] = useState(localStorage.getItem(localStorage.getItem("nxs-id")));
   const location = useLocation().pathname;
+
+  if (location !== '/forgotPassword') { // fixes brightness when leaving forgotPassword page
+    const headerDesktopDOM = document.getElementsByClassName('header-desktop')[0];
+    document.getElementById('root').style.backdropFilter = 'brightness(100%)';
+    if (headerDesktopDOM !== undefined) {
+      headerDesktopDOM.style.filter = 'brightness(100%)';
+    }
+  }
 
   const navigate = useNavigate();
 
@@ -142,6 +151,7 @@ const App = () => {
           <Route path='/reviewProject' element={<ProjectReview/>} email={userProfile.email}/>
           <Route path='/signUp' element={<CreateUser onLogin={handleFirstLogin}/>}/>
           <Route path='/forgotPassword' element={<ForgotPassword />} />
+          <Route path='/changePassword' element={<ChangePassword />} />
           <Route path='/login' element={<DesktopLogin onLogin={handleFirstLogin}/>}/>
           <Route path='/profile' element={<Profile isMobile={isMobile} userProfile={userProfile} userCallback={(data) => setUserProfile(data)} />}/>
           <Route path='/createProfileStart' element={<SignUpStart/>}/>

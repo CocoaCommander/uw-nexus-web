@@ -4,11 +4,38 @@ import { Link } from 'react-router-dom';
 import emailjs from "emailjs-com";
 
 const ForgotPasswordBody = (props) => {
-    const { currEmail, emailCallback, buttonCallback } = props;
+    const { forgotPasswordDetails, buttonCallback } = props;
+    const {
+        currEmail,
+        setCurrEmail,
+        currPassOne,
+        setCurrPassOne,
+        currPassTwo, // password confirmation
+        setCurrPassTwo, // password confirmation
+        header,
+        body,
+        bodyTwo, // for password confirmation
+        formType,
+        formLabel,
+        inputPlaceholder,
+        inputPlaceholderTwo, // for password confirmation
+        errorMessage,
+        buttonText
+    } = forgotPasswordDetails;
+    const isEmail = formType === 'email';
     const [error, setError] = useState(false);
 
-    const handleClick = () => {
+    const handleEmailClick = () => {
         if (currEmail.length === 0) {
+            setError(true);
+        } else {
+            setError(false);
+            buttonCallback(true);
+        }
+    };
+
+    const handlePasswordClick = () => {
+        if (currPassOne !== currPassTwo || currPassOne.length === 0) {
             setError(true);
         } else {
             setError(false);
@@ -44,17 +71,24 @@ const ForgotPasswordBody = (props) => {
 
     return (
         <section className='forgot-password-container'>
-            <h1>Forgot your password?</h1>
-            <p>Enter your registered email address to receive password reset instructions.</p>
+            <h1>{header}</h1>
+            <p>{body}</p>
+            {bodyTwo ? <p className='forgot-password-body-two'>{bodyTwo}</p> : null}
             <form className='forgot-password-form'>
-                <label className='forgot-password-email-label' htmlFor='email'>
-                    Enter your email here:
+                <label className='forgot-password-email-label' htmlFor={formType}>
+                    {formLabel}
                 </label>
-                <input className='forgot-password-input' type='text' placeholder='Email Address' onChange={(event) => emailCallback(event.target.value)}/>
+                {isEmail ?
+                    <input className='forgot-password-input' type={formType} placeholder={inputPlaceholder} onChange={(event) => setCurrEmail(event.target.value)} /> :
+                    <div className='change-password-input-container'>
+                        <input className='forgot-password-input' type={formType} placeholder={inputPlaceholder} onChange={(event) => setCurrPassOne(event.target.value)} />
+                        <input className='forgot-password-input' type={formType} placeholder={inputPlaceholderTwo} onChange={(event) => setCurrPassTwo(event.target.value)} />
+                    </div>
+                }
             </form>
-            {error ? <p className='forgot-password-error'>No users found.</p> : null}
-            <button className='forgot-password-button' onClick={handleClick}>Send</button>
-            <footer className='forgot-password-footer'>&larr; Return to <Link className='login-redirect' to='/login'>Sign in screen</Link></footer>
+            {error ? <p className='forgot-password-error'>{errorMessage}</p> : null}
+            <button className='forgot-password-button' onClick={isEmail ? handleEmailClick : handlePasswordClick}>{buttonText}</button>
+            {isEmail ? <footer className='forgot-password-footer'>&larr; Return to <Link className='login-redirect' to='/login'>Sign in screen</Link></footer> : null}
         </section>
     )
 }
