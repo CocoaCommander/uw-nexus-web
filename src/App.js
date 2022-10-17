@@ -52,10 +52,14 @@ const App = () => {
   const [profileID, setProfileID] = useState(localStorage.getItem(localStorage.getItem("nxs-id")));
   const location = useLocation().pathname;
 
-  if (location !== '/forgotPassword') {
+  if (location !== '/forgotPassword') { // fixes brightness when leaving forgotPassword page
+    const headerDesktopDOM = document.getElementsByClassName('header-desktop')[0];
     document.getElementById('root').style.backdropFilter = 'brightness(100%)';
+    if (headerDesktopDOM !== undefined) {
+      headerDesktopDOM.style.filter = 'brightness(100%)';
+    }
   }
-  
+
   const navigate = useNavigate();
 
   const setData = (data, resumeData) => {

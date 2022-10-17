@@ -5,10 +5,15 @@ import SentEmailModal from '../components/ForgotPassword/SentEmailModal';
 const ForgotPassword = () => {
   const [currEmail, setCurrEmail] = useState('');
   const [isButtonClicked, setButtonClicked] = useState(false);
+  const rootDOM = document.getElementById('root');
 
-  isButtonClicked ?
-    document.getElementById('root').style.backdropFilter = 'brightness(40%)' :
+  if (isButtonClicked) {
+    document.getElementById('root').style.backdropFilter = 'brightness(40%)';
+    document.getElementsByClassName('header-desktop')[0].style.filter = 'brightness(40%)';
+  } else {
     document.getElementById('root').style.backdropFilter = 'brightness(100%)';
+    document.getElementsByClassName('header-desktop')[0].style.filter = 'brightness(100%)';
+  }
 
   const forgotPasswordDetails = {
     currEmail: currEmail,
