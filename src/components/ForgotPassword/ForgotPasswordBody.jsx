@@ -31,6 +31,7 @@ const ForgotPasswordBody = (props) => {
         } else {
             setError(false);
             buttonCallback(true);
+            sendEmail(); // sending password reset link to email should be here
         }
     };
 
@@ -39,7 +40,7 @@ const ForgotPasswordBody = (props) => {
             setError(true);
         } else {
             setError(false);
-            sendEmail();
+            buttonCallback(true);
         }
     };
 
@@ -53,7 +54,7 @@ const ForgotPasswordBody = (props) => {
     }
 
 
-    const sendEmail = async() => {
+    const sendEmail = async () => {
 
         const email_params = {
             to_name: "Person X",
@@ -87,7 +88,10 @@ const ForgotPasswordBody = (props) => {
                 }
             </form>
             {error ? <p className='forgot-password-error'>{errorMessage}</p> : null}
-            <button className='forgot-password-button' onClick={isEmail ? handleEmailClick : handlePasswordClick}>{buttonText}</button>
+            {buttonText === 'Continue' ?
+                <Link className='forgot-password-button' to='/login'>{buttonText}</Link> :
+                <button className='forgot-password-button' onClick={isEmail ? handleEmailClick : handlePasswordClick}>{buttonText}</button>
+            }
             {isEmail ? <footer className='forgot-password-footer'>&larr; Return to <Link className='login-redirect' to='/login'>Sign in screen</Link></footer> : null}
         </section>
     )
