@@ -29,7 +29,6 @@ const ForgotPasswordBody = (props) => {
         if (currEmail.length === 0) {
             setError(true);
         } else {
-            document.getElementById('root').style.backdropFilter = 'brightness(40%)';
             setError(false);
             buttonCallback(true);
         }

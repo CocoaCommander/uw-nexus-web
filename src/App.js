@@ -52,6 +52,10 @@ const App = () => {
   const [profileID, setProfileID] = useState(localStorage.getItem(localStorage.getItem("nxs-id")));
   const location = useLocation().pathname;
 
+  if (location !== '/forgotPassword') {
+    document.getElementById('root').style.backdropFilter = 'brightness(100%)';
+  }
+  
   const navigate = useNavigate();
 
   const setData = (data, resumeData) => {

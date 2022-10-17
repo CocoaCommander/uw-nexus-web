@@ -6,6 +6,10 @@ const ForgotPassword = () => {
   const [currEmail, setCurrEmail] = useState('');
   const [isButtonClicked, setButtonClicked] = useState(false);
 
+  isButtonClicked ?
+    document.getElementById('root').style.backdropFilter = 'brightness(40%)' :
+    document.getElementById('root').style.backdropFilter = 'brightness(100%)';
+
   const forgotPasswordDetails = {
     currEmail: currEmail,
     setCurrEmail: setCurrEmail,

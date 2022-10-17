@@ -4,7 +4,6 @@ const SentEmailModal = (props) => {
     const { isButtonClicked, buttonCallback } = props;
 
     const handleButtonClick = () => {
-        document.getElementById('root').style.backdropFilter = 'brightness(100%)';
         buttonCallback(false);  
     }
     return isButtonClicked ?
