@@ -2,27 +2,32 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Running the Frontend Locally
+### Initial Setup & .env file
+1. Clone the repository:
+```
+git clone https://github.com/UW-Nexus-Dev-Team/uw-nexus-web.git
+```
+2. Install all dependencies: 
+```
+npm install
+```
+3. Create a .env file in the main directory
+```
+touch .env
+```
+4. Copy .env file contents from the NEXUS shared google drive and paste it into the newly created .env file
+- https://drive.google.com/file/d/1qN7lrPIjZ3qiX9qbrirysitb0Uej2Qxp/view?usp=sharing
 
-In the project directory, you can run:
+5. Download the _redirects file from the NEXUS shared google drive and place it inside the `public` folder in your project directory
+- https://drive.google.com/file/d/17bJgyrffH6qJSi8J6Ht1MUMEElXzpzqk/view?usp=sharing
 
-### `npm start`
+### Standard Use:
+1. Start your react app in development mode: 
+```
+netlify dev
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 ## Best Practices/Styling
 
