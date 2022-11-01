@@ -34,6 +34,12 @@ const ProjectRoles = ({
       fontSize: "12px",
     }),
 
+    menuList: (provided) => ({
+      ...provided,
+      height: 130
+    }),
+
+
     singleValue: (provided) => ({
       ...provided,
       fontSize: "12px",
@@ -146,6 +152,11 @@ const ProjectRoles = ({
     <div className={"roles-input-after"}>
 
     <p className="project-name-header-roles">What kind of people are you looking for? <span className="asterix">*</span></p>
+    <p className="project-roles-directions">
+      After selecting a skillset/tool, press enter to add it to that role. 
+      Once a role is completed press add roles at the bottom right to add it 
+      and fill out a new one if needed.
+    </p>
 
     <div className="roles-container">
       {renderRoles(projRoles)}
@@ -171,7 +182,8 @@ const ProjectRoles = ({
             onChange={(e) => setSkill(e.value)}
             options={selectOptions()}
             styles={selectBarStyling}
-            onKeyDown={handleSkillAddition}>
+            onKeyDown={handleSkillAddition}
+            maxMenuHeight={300}>
 
           </Select>
         </div>
@@ -192,7 +204,7 @@ const ProjectRoles = ({
         </div>
 
         <div onClick={updateRolls} className="add-role-wrapper">
-          <span className="add-role-text">Add Roles</span>
+          <span className="add-role-text">Add Role</span>
         </div>
       </div>  
     </div>
