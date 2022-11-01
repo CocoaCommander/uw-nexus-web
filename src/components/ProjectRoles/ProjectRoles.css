@@ -164,6 +164,12 @@
   display:none;
 }
 
+.project-roles-directions {
+  color: #C4C4C4;
+  font-size: 12px;
+  text-align: center;
+}
+
 @media only screen and (min-width: 850px) {
   .project-name-header-roles {
     font-size: 22px;
@@ -176,6 +182,11 @@
   .selections-skills-container {
     margin-top: 1%;
     margin-bottom: 1%;
+  }
+
+  .project-roles-directions {
+    font-size: 16px;
+    width: 70%;
   }
 }
 

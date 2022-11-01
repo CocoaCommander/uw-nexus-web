@@ -71,7 +71,6 @@ const ProjectListItem = ({
                 <div className='skills-wrapper'>
                   <RoleSkillElements/>
                 </div>
-
                 <Link className="proj-apply-link" to={`/apply/${project.title}/${role.title}`} state={{email: project.owner_email}}>
                   <button className='proj-apply-button'>Apply</button>
                 </Link>

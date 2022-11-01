@@ -17,7 +17,7 @@ const WelcomePage = () => {
         <p className="sub-text"> You can now begin searching projects.</p>
       </div>
 
-      <button className="start-search-button" onClick={() => {navigate('/')}}>Start Searching</button>
+      <button className="start-search-button" onClick={() => {navigate('/projects')}}>Start Searching</button>
 
     </div>
   )

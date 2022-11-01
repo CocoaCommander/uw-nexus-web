@@ -225,7 +225,7 @@ const ApplicationPage = (props) => {
           <form className="application-form">
           <div className="form-wrapper">
             <div className="field-set-app">
-              <label>Full Name</label>
+              <label>Full Name <span className="asterix-signup">*</span></label>
               <input className="sign-up-detail" 
                     type="text"
                     name="app-fullName" 
@@ -235,7 +235,7 @@ const ApplicationPage = (props) => {
             </div>
 
             <div className="field-set-app">
-              <label>Major</label>
+              <label>Major <span className="asterix-signup">*</span></label>
               <input className="sign-up-detail" 
                     type="text"
                     name="app-major" 
@@ -266,7 +266,7 @@ const ApplicationPage = (props) => {
             </div>
 
             <div className="field-set-app">
-              <label>Phone Number</label>
+              <label>Phone Number <span className="asterix-signup">*</span></label>
               <input className="sign-up-detail" 
                     type="tel"
                     name="phone-number" 

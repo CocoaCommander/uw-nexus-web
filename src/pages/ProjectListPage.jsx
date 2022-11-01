@@ -21,6 +21,12 @@ const ProjectListPage = () => {
         window.addEventListener('resize', reactToWindowResize);
     })
 
+    const sortProjects = (projects) => {
+        return projects.sort((a, b) => {
+            return new Date(b.duration.created_date) - new Date(a.duration.created_date);
+        })
+    } 
+
     return (
         <div className="project-list-page">
             <div className="create-project-btn-project-search-container">
@@ -44,9 +50,8 @@ const ProjectListPage = () => {
                     <ProjectFilters />
                 </div>
                 } */}
-
                 <ProjectList 
-                    listOfProjectData={listOfProjectData} 
+                    listOfProjectData={sortProjects(listOfProjectData)} 
                     setListOfProjectData={setListOfProjectData}
                     isLoading={isLoading}
                     setIsLoading={setIsLoading} />     

@@ -180,7 +180,7 @@ const SignUp = (props) => {
   const step2Content = (
   <div className="vertical-center-signup">
     <div className="center-pane">
-      <p className="interests-subtitle">SELECT UP TO 5 OF YOUR INTERESTS</p>
+      <p className="interests-subtitle">SELECT UP TO 5 INTERESTS</p>
       <p className="gen-info-title">Project Interests</p>
       <SelectionsGrid selectionType={selectionTypes[0]} onClick={handleInterestSelection}></SelectionsGrid>
     </div>
