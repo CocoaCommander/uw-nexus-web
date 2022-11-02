@@ -12,7 +12,7 @@ const ApplicationPage = (props) => {
 
   const [fullName, setFullName] = useState("");
   const [major, setMajor] = useState("");
-  const [graduationYear, setGraduationYear] = useState("");
+  const [graduationYear, setGraduationYear] = useState("2022");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [referral, setReferral] = useState("");
@@ -170,8 +170,9 @@ const ApplicationPage = (props) => {
   }
 
   const validateSubmission = () => {
+    console.log(`grad = ${graduationYear}`);
     return (graduationYear && email && referral && purpose && hoursDedicated && relevantExperience && 
-            relevantClasses && willMeet && resume && coverLetter);
+            relevantClasses && resume);
   }
 
   // fill out when backend implements functionality
@@ -186,7 +187,11 @@ const ApplicationPage = (props) => {
     }
 
     const resumeURL = await uploadFile(resume);
-    const coverLetterURL = await uploadFile(coverLetter);
+    let coverLetterURL = "";
+    if (coverLetter) {
+      coverLetterURL = await uploadFile(coverLetter);
+    }
+    
 
     const email_params = {
         to_name: fullName,
@@ -214,7 +219,6 @@ const ApplicationPage = (props) => {
       setErrorMsg("There was an error submitting your application. Please try again later");
     }
   }
-
 
   return (
 
@@ -266,7 +270,7 @@ const ApplicationPage = (props) => {
             </div>
 
             <div className="field-set-app">
-              <label>Phone Number <span className="asterix-signup">*</span></label>
+              <label>Phone Number</label>
               <input className="sign-up-detail" 
                     type="tel"
                     name="phone-number" 
@@ -355,7 +359,7 @@ const ApplicationPage = (props) => {
 
 
             <div className="field-set-app">
-              <label>Cover Letter <span className="asterix-signup">*</span></label>
+              <label>Cover Letter</label>
               <div name="cover-letter-upload-area" className="drop-zone"
                   onDragOver={handleDragFile}
                   onDrop={handleDropFile}
