@@ -95,7 +95,7 @@ const App = () => {
       if (response.ok) { // profile that matches user ID found
         const profileData = await response.json();
         setData(profileData);
-      } else if (response.status === 400) { // profile not yet created
+      } else if (response.status === 400) { // profile not yet created...
         navigate('/createProfileStart');
       }
     }
