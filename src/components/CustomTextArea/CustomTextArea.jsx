@@ -4,6 +4,8 @@ import "./CustomTextArea.css";
 const CustomTextArea = (props) => {
 
   let text = useSelector((state) => state[props.reducer]);
+  const value = props.value;
+  console.log(props);
 
   if (text) {
     text = text[props.name];
@@ -11,15 +13,6 @@ const CustomTextArea = (props) => {
 
   const handleChange = (e) => {
     props.onChange(e);
-  }
-
-  const returnCharacters = () => {
-    if (text) {
-      return text.replace(/\s+/g, '').length;
-    } else {
-      return 0
-    }
-    
   }
 
   return (
@@ -32,7 +25,7 @@ const CustomTextArea = (props) => {
             onChange={props.onChange ? handleChange : () => {}}
             maxLength={500}>
       </textarea>
-      <p className="word-count"> {returnCharacters()}/500</p>
+      <p className="word-count"> {value ? value.length : 0}/500</p>
     </div>
 
 

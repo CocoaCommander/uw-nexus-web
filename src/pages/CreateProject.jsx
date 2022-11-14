@@ -389,7 +389,6 @@ const CreateProject = ({
 
     return (
       <div className={"desktop-container-cp"} onClick={handleStepDecrease}>
-        <img className="logo" src={logo} alt="nexus logo"></img>
         <StepProgressBar
               startingStep={0}
               onSubmit={onFormSubmit}
