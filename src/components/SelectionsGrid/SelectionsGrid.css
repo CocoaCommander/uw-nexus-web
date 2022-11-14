@@ -41,7 +41,8 @@
   width: 100%;
   justify-content: flex-start;
   overflow: auto;
-  max-height: 80vh;
+  max-height: 60vh;
+  margin-top: 5vh;
 }
 
 ._2JvrO {

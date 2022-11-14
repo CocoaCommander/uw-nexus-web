@@ -204,7 +204,7 @@ const ProjectRoles = ({
         </div>
 
         <div onClick={updateRolls} className="add-role-wrapper">
-          <span className="add-role-text">Add Role</span>
+          <span className="add-role-text">Add Roles</span>
         </div>
       </div>  
     </div>
