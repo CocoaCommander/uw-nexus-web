@@ -160,9 +160,15 @@ h2 {
   font-weight: bold;
 }
 
+.home-button {
+  padding-top: 8.75px;
+  padding-bottom: 8.75px;
+}
+
 .find-project {
   background-color: #F05A28;
   color: #fff;
+  font-size: 20px;
 }
 
 .side-project {
