@@ -77,7 +77,7 @@ const Home = () => {
                         </div>
                     </Link>
                 </div>
-                <div className="copyright-home">Copyright 2020 - NEXUS Builders</div>
+                <div className="copyright-home">Copyright 2022 - NEXUS Builders</div>
                 <div className="footer" />
             </section>
         </>
