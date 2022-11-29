@@ -1,5 +1,5 @@
 import { SET_PROJECT_NAME, SET_PROJECT_DESC, SET_TEAM_SIZE, SET_PROJECT_DUR, SET_PROJECT_STATUS, ADD_PROJECT_CATEG, REMOVE_PROJECT_CATEG, CLEAR_DATA, INCREASE_STEP, DECREASE_STEP } from "./createProjectTypes";
-import { ADD_ROLE, ADD_SKILL, ADD_RESPONSIBILITY, ADD_LOCATION } from "./createProjectTypes";
+import { ADD_ROLE, ADD_SKILL, ADD_RESPONSIBILITY, ADD_LOCATION, SET_ERROR_MSG } from "./createProjectTypes";
 
 export const setProjName = (projName) => {
   return {
@@ -81,6 +81,13 @@ export const addLocation = (location) => {
 export const clearAll = () => {
   return {
     type: CLEAR_DATA,
+  }
+}
+
+export const setErrorMsg = (msg) => {
+  return {
+    type: SET_ERROR_MSG,
+    payload: msg
   }
 }
 

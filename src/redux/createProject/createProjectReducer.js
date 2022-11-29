@@ -1,5 +1,5 @@
 import { SET_PROJECT_NAME, SET_PROJECT_DESC, SET_TEAM_SIZE, SET_PROJECT_DUR, SET_PROJECT_STATUS, ADD_PROJECT_CATEG, REMOVE_PROJECT_CATEG, ADD_LOCATION, INCREASE_STEP, DECREASE_STEP } from "./createProjectTypes";
-import { ADD_ROLE, CLEAR_DATA } from "./createProjectTypes";
+import { ADD_ROLE, CLEAR_DATA, SET_ERROR_MSG } from "./createProjectTypes";
 
 const initialState = {
   projName: "",
@@ -10,6 +10,7 @@ const initialState = {
   projCategs: [],
   roles: [],
   location: "",
+  errorMsg: "",
   step: 1
 }
 
@@ -68,6 +69,11 @@ const createProjectReducer = (state = initialState, action) => {
     case DECREASE_STEP: return {
       ...state,
       step: state.step - 1
+    }
+
+    case SET_ERROR_MSG: return {
+      ...state,
+      errorMsg: action.payload
     }
 
     case CLEAR_DATA:

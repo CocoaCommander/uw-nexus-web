@@ -13,6 +13,8 @@ const ProjectCategories = (props) => {
 
   const dispatch = useDispatch();
 
+  const errorMsg = useSelector((state => state.createProj.errorMsg));
+
   useEffect(() => {
     const url = "/api/constants/interests";
 
@@ -83,11 +85,9 @@ const ProjectCategories = (props) => {
       </div>
       <p className="project-page-subtitle">(max 5 categories)</p>
 
-
-
-
       <ProjectSelectionsGrid selectionType={'projCategs'} onClick={handleCategorySelection} />
-      {/* <CustomTextBox className="sign-up-detail" onKeyPress={handleCategoryAddition}></CustomTextBox> */}
+
+      <p className="error-msg">{errorMsg}</p>
     </div>
   )
 }

@@ -164,7 +164,8 @@
 }
 
 .content-body {
-  width: 100%;
+  width: 90%;
+  margin-top: 5%;
   background-color: white;
   border: 2px solid white;
   border-radius: 15px;

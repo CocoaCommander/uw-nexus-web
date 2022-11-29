@@ -19,7 +19,6 @@
 
 .right-pane {
   background-color: white;
-  height: 100%;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -98,6 +97,8 @@
 .forgot-pass {
   font-size: 14px;
   color: #bbbbbb;
+  margin-left: auto;
+  margin-right: 4vw;
 }
 
 .desktop-form {
@@ -228,8 +229,7 @@ h2.right-pane-seperator span {
   }
 
   .email-textbox,
-  .password-textbox,
-  .forgot-pass {
+  .password-textbox {
     margin-left: 5vw;
   }
 
@@ -245,6 +245,10 @@ h2.right-pane-seperator span {
 
   .right-pane-footer {
     margin-bottom: 5vh;
+  }
+
+  .forgot-pass {
+    margin-right: 10vw;
   }
 
 }

@@ -59,8 +59,9 @@
 
 .finish-subtitle {
   color: #333333;
-  margin-top: 5%;
+  margin-top: 2%;
   align-self: center;
+  text-align: center;
 }
 
 .finish-buttons-wrapper {
@@ -71,7 +72,6 @@
   flex-direction: row;
   justify-content: space-between;
   height: 30%;
-  margin-bottom: 5vh;
 }
 
 .review-proj-text {
@@ -86,8 +86,9 @@
   }
 
   .proj-done-img {
-    width: 450px;
-    height: 500px;
+    object-fit: cover;
+    height: 100%;
+    width: 500px;
   }
 
   .finish-buttons-wrapper {

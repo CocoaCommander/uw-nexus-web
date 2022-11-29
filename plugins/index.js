@@ -3,7 +3,7 @@ module.exports = {
 
     netlifyConfig.redirects.push({
       from: "/api/*",
-      to: "https://uw-nexus-backend.herokuapp.com/api/:splat",
+      to: "https://uw-nexus-backend.onrender.com/api/:splat",
       status: 200
     });
   },

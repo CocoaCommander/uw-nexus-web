@@ -109,65 +109,6 @@ const CreateUser = (props) => {
     }
 };
 
-    // return (
-    //     <div className="desktop-container">
-    //       <div className="main-pane">
-    //         <img className="center-logo" src={logo} alt="nexus logo"></img>
-
-    //         <p className="sign-in">Sign Up</p>
-    //              <form className="create-user-form">
-    //               <div className="form-field">
-
-    //               <input className="create-user-field"
-    //                        type="text"
-    //                        name="first-name" 
-    //                        placeholder=" First Name"
-    //                        value={firstName}
-    //                        onChange={(e) => setFirstName(e.target.value)}
-    //                        onKeyDown={handleEnterKeypress}>
-    //                 </input>
-
-    //                 <input className="create-user-field"
-    //                        type="text"
-    //                        name="last-name" 
-    //                        placeholder=" Last Name"
-    //                        value={lastName}
-    //                        onChange={(e) => setLastName(e.target.value)}
-    //                        onKeyDown={handleEnterKeypress}>
-    //                 </input>
-
-    //                  <input className="create-user-field" 
-    //                        type="text"
-    //                        name="e-mail" 
-    //                        placeholder=" Email Address"
-    //                        value={email}
-    //                        onChange={(e) => setEmail(e.target.value)}
-    //                        onKeyDown={handleEnterKeypress}>
-    //                 </input>
-    //                 <input className="create-user-field"
-    //                        type="password"
-    //                        name="password" 
-    //                        placeholder=" Password"
-    //                        value={password}
-    //                        onChange={(e) => setPassword(e.target.value)}
-    //                        onKeyDown={handleEnterKeypress}>
-    //                 </input>
-    //               </div>
-
-    //             </form>
-    //             <p className="error-msg">{errorMsg}</p>
-
-                
-    //           {/* <button className="create-acc-button" type="submit" onClick={(e) => {handleSignUp(e)}}>Create Account</button> */}
-    //           <LoadingButton title="Create Account"
-    //                          className={"create-acc-button"}
-    //                          isLoading={isLoading}
-    //                          active={"create-acc-button-active"}
-    //                          onClick={(e) => {handleSignUp(e)}}/>
-    //       </div>
-    //     </div>
-    // );
-
     return (
       <div className="desktop-container">
         <div className="left-pane">
