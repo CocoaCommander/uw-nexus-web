@@ -1,0 +1,15 @@
+.search-container {
+  display: flex;
+  position: relative;
+  width: 100%;
+  max-height: 44px;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 16px;
+  width: 20px;
+  color: rgb(128, 128, 128);
+}
