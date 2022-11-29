@@ -19,6 +19,15 @@ option {
   font-size: 14px;
 }
 
+select {
+  appearance: none;
+  background-image: url("../../assets/dropdown-arrow.png");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1.5em;
+
+}
+
 .react-select-bar {
   width: 100%;
   height: 50px;

@@ -40,8 +40,6 @@
     flex-direction: column;
     width: 100%;
     justify-content: flex-start;
-    overflow: auto;
-    max-height: 80vh;
   }
   
   ._2JvrO {

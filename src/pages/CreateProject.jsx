@@ -6,7 +6,7 @@ import StepProgressBar from 'react-step-progress';
 import '../custom-react-step-progress.css';
 import "../CreateProject.css";
 import { setCampus, setMajor, setYear, setPassword } from "../redux/signUp/signUpActions";
-import { setProjName, setProjDesc, setTeamSize, setProjDur, setProjStatus, addLocation} from "../redux/createProject/createProjectActions";
+import { setProjName, setProjDesc, setTeamSize, setProjDur, setProjStatus, addLocation, setErrorMsg} from "../redux/createProject/createProjectActions";
 import { setSkillsList } from "../redux/serverContent/serverContentActions";
 import Cookies from 'universal-cookie';
 import CustomTextBox from "../components/CustomTextBox/CustomTextBox";
@@ -18,6 +18,10 @@ import ProjectRoles from "../components/ProjectRoles/ProjectRoles";
 import { useNavigate } from 'react-router-dom';
 import ReactTooltip from "react-tooltip";
 import { increaseStep, decreaseStep } from "../redux/createProject/createProjectActions";
+import ProjectName from "../components/ProjectName/ProjectName";
+import ProjectDescription from "../components/ProjectDescription/ProjectDescription";
+import ProjectTeamSize from "../components/ProjectTeamSize/ProjectTeamSize";
+import ProjectLocation from "../components/ProjectLocation/ProjectLocation";
 
 
 const CreateProject = ({
@@ -35,7 +39,6 @@ const CreateProject = ({
 
 
   const currentStep = useSelector((state) => state.createProj.step);
-  const [errorMsg, setErrorMsg] = useState("");
   
 
 
@@ -108,6 +111,7 @@ const CreateProject = ({
   // handle changes in General Information page
   const handleTextboxChange = (e) => {
     let value = e.target.value;
+    console.log(value);
     switch (e.target.name) {
       case "projName":
         dispatch(setProjName(value));
@@ -159,119 +163,18 @@ const CreateProject = ({
 
   // render content of General Information Page
   const step1Content = (
-    <div className="vertical-center">
-      <div className="center-pane">
-          <div className="header-icon-wrapper">
-            <p className="project-name-header">What is the name of your Project? <span className="asterix"> *</span></p>
-              <img data-for="main" data-tip={toolTipMsgs[0]} className={"question-icon"} src={questionIcon} alt="question icon"></img>
-              <ReactTooltip
-               id="main"
-               className="!important tooltip-text"
-               place="right"
-               type="light"
-               padding={"2px"}
-               border={true}/>
-
-
-          </div>
-
-          <div className="field-set">
-            <CustomTextBox className="sign-up-detail" name="projName" reducer="createProj" onChange={handleTextboxChange} placeholder={"E.g. Accessible Treatments"}></CustomTextBox>
-          </div>
-      </div>
-    </div>
-
+       <ProjectName handleTextboxChange={handleTextboxChange} toolTipMsg={toolTipMsgs[0]}/>
     )
   
   // render content of Project Interests Page
   const step2Content = (
-    <div className="vertical-center">
-      <div className="center-pane">
-          <div className="header-icon-wrapper">
-            <p className="project-name-header">How would you describe your Project? <span className="asterix"> *</span></p>
-            <img data-for="desc-tip" data-tip={toolTipMsgs[1]} className={"question-icon"} src={questionIcon} alt="question icon"></img>
-            <ReactTooltip
-               id="desc-tip"
-               className="!important tooltip-text"
-               place="right"
-               type="light"
-               padding={"2px"}
-               border={true}/>
-          </div>
-
-            <div className="field-set">
-              <CustomTextArea
-                className="proj-desc-area"
-                name="projDesc" 
-                reducer="createProj" 
-                onChange={handleTextboxChange} 
-                placeholder={`E.g. The main goal of our project is to find accessible treatments for people who may be unable to seek current treatment options either due to cost, distance, or other socioeconomic factors. We will be begin by analyzing data that provides us with this information and start brainstorming possible solutions to this issue. For this project we are looking at 4-5 hours  per week done in and outside of meetings.`}>
-              </CustomTextArea>
-            </div>
-      </div>
-    </div>
+    <ProjectDescription handleTextboxChange={handleTextboxChange} toolTipMsg={toolTipMsgs[1]}/>
 
   )
 
   // render content of Technical Skills Page
   const step3Content = (
-    <div className="vertical-center">
-      <div className="center-pane">
-        <p className="gen-info-title">Team Size</p>
-        <div className="drop-downs-container">
-          <div className="dropdown-wrapper">
-            <CustomDropdown 
-                            id="team-size"
-                            name="teamSize"
-                            reducer="createProj"
-                            options={["Small (6-10)", "Medium (11-15)", "Large (15+)"]}
-                            values={["Small", "Medium", "Large"]}
-                            placeholder={"Team Size"}
-                            onChange={handleSelectionChange}>
-            </CustomDropdown>
-            <span className="asterix"> *</span>
-          </div>
-
-          <div className="dropdown-wrapper">
-            <CustomDropdown 
-                            id="project-duration"
-                            name="projDur"
-                            reducer="createProj"
-                            options={["1-3 months", "3-6 months", "6-9 months", "More than 9 months"]}
-                            values={["1-3 months", "3-6 months", "6-9 months", "More than 9 months"]}
-                            placeholder={"Project Duration"}
-                            onChange={handleSelectionChange}>
-            </CustomDropdown>
-            <span className="asterix"> *</span>
-          </div>
-
-
-          <div className="dropdown-wrapper">
-            <CustomDropdown 
-                            id="project-status"
-                            name="projStatus"
-                            reducer="createProj"
-                            options={["New Project", "Ongoing Project"]}
-                            values={["New Project", "Ongoing Project"]}
-                            placeholder={"Project Status"}
-                            onChange={handleSelectionChange}>
-            </CustomDropdown>
-
-            <span className="asterix"> *</span>
-
-            <img data-for="desc-tip" data-tip={toolTipMsgs[2]} className={"question-icon-dropdown"} src={questionIcon} alt="question icon"></img>
-              <ReactTooltip
-                id="desc-tip"
-                className="!important tooltip-text"
-                place="right"
-                type="light"
-                padding={"2px"}
-                border={true}/>
-          </div>
-        </div>
-    </div>
-    </div>
-
+    <ProjectTeamSize handleSelectionChange={handleSelectionChange} toolTipMsg={toolTipMsgs[2]}/>
   )
 
   // render content of Resume Upload Page
@@ -282,10 +185,6 @@ const CreateProject = ({
     </div>
 
   )
-
-  // const handleCSSChange = () => {
-  //   setStyle("desktop-container-roles");
-  // }
   
   // render content of Review Page 
   const step5Content = (
@@ -293,29 +192,7 @@ const CreateProject = ({
   )
 
   const step6Content = (
-    <div className="vertical-center">
-      <div className="center-pane">
-        <p className="gen-info-title">Location</p>
-        <div className="header-icon-wrapper">
-          <p className="project-name-header">Where would your meetings be located? <span className="asterix"> *</span></p>
-          <img data-for="loc-tip" data-tip={toolTipMsgs[4]} className={"question-icon"} src={questionIcon} alt="question icon"></img>
-          <ReactTooltip
-               id="loc-tip"
-               className="!important tooltip-text"
-               place="right"
-               type="light"
-               padding={"2px"}
-               border={true}/>
-          
-        </div>
-        <p className="project-page-subtitle">(If the location is irregular, you may enter a general location such as the University of Washington.)</p>
-
-        <div className="field-set">
-            <CustomTextBox className="sign-up-detail" name="location" reducer="createProj" onChange={handleTextboxChange} placeholder={"Search Location"}></CustomTextBox>
-          </div>
-      </div>
-    </div>
-
+    <ProjectLocation handleTextboxChange={handleTextboxChange} toolTipMsg={toolTipMsgs[4]}/>
   )
 
   function step3Validator() {
@@ -323,7 +200,7 @@ const CreateProject = ({
       handleStepIncrease();
       return true;
     } else {
-      setErrorMsg("Please fill in all required fields.");
+      dispatch(setErrorMsg("Please fill in all required fields."));
       return false;
     }
   }
@@ -334,7 +211,7 @@ const CreateProject = ({
       handleStepIncrease();
       return true;
     } else {
-      setErrorMsg("Please choose atleast one category.")
+      dispatch(setErrorMsg("Please choose at least one category."));
       return false;
     }
   }
@@ -344,7 +221,7 @@ const CreateProject = ({
       handleStepIncrease();
       return true;
     } else {
-      setErrorMsg("Please add atleast one role.");
+      dispatch(setErrorMsg("Please add at least one role."));
       return false;
     }
   }
@@ -360,9 +237,9 @@ const CreateProject = ({
   async function onFormSubmit() {
     if (projLocation_valid.current) {
       navigate('/finishProject');
-      setErrorMsg("");
+      dispatch(setErrorMsg(""));
     } else {
-      setErrorMsg("Please enter your meeting location.");
+      dispatch(setErrorMsg("Please enter your meeting location."));
     }
 
   }
@@ -370,12 +247,13 @@ const CreateProject = ({
   const handleStepDecrease = (e) => {
     const target = e.target.className;
     if (target.includes("back-button-proj")) {
+      dispatch(setErrorMsg(""));
       dispatch(decreaseStep());
     }
   }
 
   const handleStepIncrease = () => {
-    setErrorMsg("");
+    dispatch(setErrorMsg(""));
     dispatch(increaseStep());
   }
 
@@ -409,7 +287,7 @@ const CreateProject = ({
                     if (valid) {
                       handleStepIncrease();
                     } else {
-                      setErrorMsg("Please enter your project name.");
+                      dispatch(setErrorMsg("Please enter your project name."));
                     }
                     return valid;
                   }
@@ -423,7 +301,7 @@ const CreateProject = ({
                     if (valid) {
                       handleStepIncrease();
                     } else {
-                      setErrorMsg("Please add a description of your project.");
+                      dispatch(setErrorMsg("Please add a description of your project."));
                     }
                     return valid
                   }
@@ -454,7 +332,7 @@ const CreateProject = ({
                 },
               ]}
               />
-              <p className="error-msg">{errorMsg}</p>
+              {/* <p className="error-msg">{errorMsg}</p> */}
       </div>
     );
 }

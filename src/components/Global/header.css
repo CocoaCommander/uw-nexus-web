@@ -187,6 +187,8 @@ Note: Beware of modifying this element as it can break the animations - you shou
         display: flex;
         align-items: center;
         background-color: white;
+        position: relative;
+        z-index: 10;
     }
 
     .header-desktop-items {

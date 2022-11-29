@@ -142,13 +142,16 @@ label {
   color: white;
   font-weight: bold;
   border: solid 0px;
+  height: 30%;
+  width: 100px;
 }
 
 .buttonsWrapper {
   display: inline-flex;
   width: 100%;
   margin-bottom: 1.5%;
-  margin-top: 10%;
+  min-height: 0;
+  margin-top: 200px;
 }
 
 .step-content {
@@ -218,9 +221,6 @@ label {
     display: none;
   }
 
-  .buttonsWrapper {
-    width: 95%;
-  }
 
   .interests-subtitle {
     color: #757575;
@@ -230,14 +230,8 @@ label {
     display: block;
   }
 
-  .desktop-container {
-    height: 800px;
-  }
-
-  .vertical-center-signup-review {
-    height: 34.5vw;
-    overflow-y: scroll;
-    overflow-x: hidden;
+  .login-button-sign-up {
+    margin-right: 2.5rem;
   }
 
 }

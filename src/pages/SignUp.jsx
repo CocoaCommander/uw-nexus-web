@@ -154,7 +154,7 @@ const SignUp = (props) => {
     if (selectedOptions.includes(selection)) {
       dispatch(removeSkill(selection));
     } else {
-      if (selectedOptions.length < 10) {
+      if (selectedOptions.length < 5) {
         dispatch(addSkill(selection));
       }
 
@@ -191,7 +191,7 @@ const SignUp = (props) => {
   const step3Content = (
     <div className="vertical-center-signup">
       <div className="center-pane">
-        <p className="interests-subtitle">SELECT UP TO 10 OF YOUR SKILLS</p>
+        <p className="interests-subtitle">SELECT UP TO 5 SKILLS</p>
         <p className="gen-info-title">Technical Skills</p>
         <SelectionsGrid selectionType={selectionTypes[1]} onClick={handleSkillSelection}></SelectionsGrid>
       </div>

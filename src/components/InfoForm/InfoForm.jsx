@@ -41,6 +41,18 @@ const InfoForm = (props) => {
       fontSize: "12px",
     }),
 
+    menuList: (provided) => ({
+      ...provided,
+      height: 130,
+      fontSize: "12px"
+    }),
+
+    placeholder: (provided) => ({
+      ...provided,
+      fontSize: "12px"
+    }),
+
+
     singleValue: (provided) => ({
       ...provided,
       fontSize: "12px",
@@ -48,6 +60,7 @@ const InfoForm = (props) => {
 
     dropdownIndicator: (provided) => ({
       ...provided,
+      backgroundImage: "",
       color: "black",
       padding: "0px",
       display: "flex",
@@ -64,7 +77,7 @@ const InfoForm = (props) => {
       <p className="error-msg-signup">{errorMsg}</p>
       <form>
         <div className="field-set">
-          <label>Full Name <span className="asterix-signup">*</span></label>
+          <label>First and Last Name <span className="asterix-signup">*</span></label>
           <input className="sign-up-detail" 
                 type="text"
                 name="fullName" 
@@ -106,7 +119,8 @@ const InfoForm = (props) => {
             defaultValue={major}
             onChange={handleChange}
             options={selectOptions()}
-            styles={selectBarStyling}>
+            styles={selectBarStyling}
+            >
 
           </Select>
         </div>

@@ -136,7 +136,7 @@ const ProjectReview = (props) => {
           <img className={"logo-rev"} src={logo} alt="nexus logo"></img>
         </div> */}
 
-        <div className="seperation">
+        {/* <div className="seperation"> */}
           <div className="content-body">
             <div className="name-keyword-wrapper">
               <p className="proj-new">New</p>
@@ -183,7 +183,7 @@ const ProjectReview = (props) => {
             />
 
           {/* <button className="review-button-rev" type="submit" onClick={redirectHomeScreen}>Publish</button> */}
-        </div>
+        {/* </div> */}
     </div>
 
 
