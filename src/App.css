@@ -249,7 +249,8 @@ main {
 
 .create-project-button {
   display: none;
-  padding: 10px 10px 10px 5px;
+  padding: 7px 10px 7px 5px;
+  border-radius: 5px;
 }
 
 .create-project-text {
@@ -332,11 +333,16 @@ main {
   display: flex;
 }
 
+.project-list-item-header h3 {
+  font-size: 24px;
+}
+
 .stat-item {
   color: #757575;
   display: flex;
   margin-right: 10px;
   margin-top: 5px;
+  margin-left: 10px;
 }
 
 .stat-item-icon {
@@ -349,7 +355,9 @@ main {
 
 .project-list-item-interests {
   margin-top: 10px;
+  margin-bottom: 25px;
   display: flex;
+  align-items: center;
 }
 
 .proj-item-interest {
@@ -358,7 +366,7 @@ main {
   margin-top: auto;
   margin-bottom: auto;
   background-color: #F6F6F8;
-  padding: 3px;
+  padding: 5px 7px 5px 7px;
   border-radius: 5px;
 }
 
@@ -369,7 +377,7 @@ main {
   border-width: 1px;
   border-radius: 10px;
   border-color: #E8E6E6;
-  padding: 5px;
+  padding: 15px 20px 15px 20px;
   margin-top: 10px;
 }
 
@@ -391,9 +399,10 @@ main {
   flex-grow: 0;
   border-radius: 5px;
   background-color: rgba(249, 130, 44, 0.4);
-  padding: 3px;
+  padding: 10px;
   margin-right: 10px;
   margin-top: 2px;
+  font-size: 14px;
 }
 
 .skills-wrapper {
@@ -437,19 +446,22 @@ main {
 }
 
 .proj-apply-button {
-  width: 55px;
-  height: 25px;
+  display: inline-flex;
+  width: 62px;
+  height: 30px;
   background-color: white;
   border: #F05A28 1px solid;
   padding: 5px;
   color: #F05A28;
   border-radius: 3px;
   font-weight: 600;
+  font-size: 14px;
+  border-width: 2.5px;
+  align-items: center;
+  justify-content: center;
 }
 
 .proj-apply-button:hover {
-  width: 55px;
-  height: 25px;
   background-color: #F05A28;
   border: #F05A28 1px solid;
   padding: 5px;
@@ -494,8 +506,8 @@ main {
       text-align: center;
       background-color: #F05A28;
       color: white;
-      font-weight: bold;
-      border-radius: 10px;
+      font-weight: 600;
+      border-radius: 5px;
       border: none;
     }
 
@@ -531,6 +543,7 @@ main {
     .project-list-item-top-row {
       display: flex;
       justify-content: space-between;
+      margin-bottom: 30px;
     }
 
     .divider-image {
