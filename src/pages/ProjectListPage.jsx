@@ -54,7 +54,7 @@ const ProjectListPage = () => {
                     listOfProjectData={sortProjects(listOfProjectData)} 
                     setListOfProjectData={setListOfProjectData}
                     isLoading={isLoading}
-                    setIsLoading={setIsLoading} />     
+                    setIsLoading={setIsLoading} />
             </div>
         </div>
     );

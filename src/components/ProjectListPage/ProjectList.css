@@ -1,0 +1,12 @@
+.navigation-buttons {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.prev-btn, .next-btn {
+    font-size: 14px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
