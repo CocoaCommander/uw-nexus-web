@@ -95,51 +95,51 @@ const EditProfile = (props) => {
         editCallback(false);
     }
 
-    const updateProfile = async(userInfo) => {
-      console.log("RUNNING UPDATE PROFILE ENDPOINT!!");
-      console.log(userInfo.profile_id);
-      const url = `/api/profile/update/${userInfo.profile_id}`;
+    const updateProfile = async (userInfo) => {
+        console.log("RUNNING UPDATE PROFILE ENDPOINT!!");
+        console.log(userInfo.profile_id);
+        const url = `/api/profile/update/${userInfo.profile_id}`;
 
-      let profileBody = new FormData();
+        let profileBody = new FormData();
 
-      console.log(userInfo.first_name);
+        console.log(userInfo.first_name);
 
-      profileBody.append("first_name", userInfo.first_name);
-      profileBody.append("last_name", userInfo.last_name);
-      profileBody.append("education", JSON.stringify({
-        "campus": userInfo.education.campus,
-        "year": userInfo.education.year,
-        "major": userInfo.education.major
-      }));
-      // profileBody.append("interests", JSON.stringify(newInterests));
-      // profileBody.append("skills", JSON.stringify(newSkills));
-      profileBody.append("bio", userInfo.education.bio);
+        profileBody.append("first_name", userInfo.first_name);
+        profileBody.append("last_name", userInfo.last_name);
+        profileBody.append("education", JSON.stringify({
+            "campus": userInfo.education.campus,
+            "year": userInfo.education.year,
+            "major": userInfo.education.major
+        }));
+        // profileBody.append("interests", JSON.stringify(newInterests));
+        // profileBody.append("skills", JSON.stringify(newSkills));
+        profileBody.append("bio", userInfo.education.bio);
 
-      const options = {
-        method: 'POST',
-        body: profileBody,
-        credentials: 'include'
-      }
+        const options = {
+            method: 'POST',
+            body: profileBody,
+            credentials: 'include'
+        }
 
-      const response = await fetch(url, options);
-      console.log(response);
+        const response = await fetch(url, options);
+        console.log(response);
 
 
-      //profileBody.append("file", resume);
+        //profileBody.append("file", resume);
 
-      const resp = await fetch(url, options)
+        const resp = await fetch(url, options)
     }
 
     const convertBase64ToPDF = () => {
-      var byteCharacters = window.atob(resume);
-      var byteNumbers = new Array(byteCharacters.length);
-      for (var i = 0; i < byteCharacters.length; i++) {
-        byteNumbers[i] = byteCharacters.charCodeAt(i);
-      }
-      var byteArray = new Uint8Array(byteNumbers);
-      var file = new Blob([byteArray], { type: 'application/pdf;base64' });
-      var fileURL = URL.createObjectURL(file);
-      window.open(fileURL);
+        var byteCharacters = window.atob(resume);
+        var byteNumbers = new Array(byteCharacters.length);
+        for (var i = 0; i < byteCharacters.length; i++) {
+            byteNumbers[i] = byteCharacters.charCodeAt(i);
+        }
+        var byteArray = new Uint8Array(byteNumbers);
+        var file = new Blob([byteArray], { type: 'application/pdf;base64' });
+        var fileURL = URL.createObjectURL(file);
+        window.open(fileURL);
     }
 
 
@@ -151,7 +151,10 @@ const EditProfile = (props) => {
                 <h3 className="finalize-edits-button" onClick={() => editCallback(false)}>Cancel</h3>
                 <h3 className="finalize-edits-button" onClick={handleEdit}>Done</h3>
             </div>
-            <img className="template-img" src={userPic} />
+            <div className="img-container">
+                <img className="template-img" src={userPic} />
+                <FontAwesomeIcon className="img-add-icon" icon={faPlus} size="2xl" onClick={() => { alert('idk how to do this'); }} />
+            </div>
             <div className="information-container">
                 <h2>General Information</h2>
                 <div>

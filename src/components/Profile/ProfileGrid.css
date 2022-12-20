@@ -71,6 +71,11 @@
 
 /* Individual Card Styling */
 
+.user-skills > h1,
+.user-project-interests > h1 {
+  font-size: 20px;
+}
+
 .bio-container {
   width: 110%; /* no idea how this worked but it works */
 }
