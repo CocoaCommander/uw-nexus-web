@@ -47,6 +47,7 @@ const Header = ({
     getProfile
 }) => {
     const [isMenuOpen, setMenuOpen] = useState(false);
+    const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
     const menuRef = useRef();
     const location = useLocation().pathname;
     const getUserProfile = () => {
@@ -71,7 +72,16 @@ const Header = ({
     const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
     const projectStep = useSelector((state) => state.createProj.step);
     const profileStep = useSelector((state) => state.signUp.step);
+    console.log(isMobileMenuOpen);
     if (isMobile) {
+        const handleMobileMenu = () => {
+            setMobileMenuOpen(!isMobileMenuOpen);
+        };
+
+        const closeMobileMenu = () => {
+            setMobileMenuOpen(false);
+        }
+
         if (location === '/createProfile' || location === '/createProject') {
             let maxSteps = 4;
             if (location === '/createProject') {
@@ -95,11 +105,11 @@ const Header = ({
 
         return (
             <>
-                <Menu width={250} customBurgerIcon={<FontAwesomeIcon icon={faBars} />} customCrossIcon={false}>
+                <Menu width={250} customBurgerIcon={<FontAwesomeIcon icon={faBars} />} customCrossIcon={false} isOpen={isMobileMenuOpen} onOpen={handleMobileMenu} onClose={handleMobileMenu}>
                     <FontAwesomeIcon className="menu-icon" icon={faBars} />
                     <div className="side-menu-container">
-                        <Link className={location === '/projects' ? 'side-menu-option-active' : 'side-menu-option'} to={"/projects"}>Discover Projects</Link>
-                        {isLoggedIn && <Link className={location === '/profile' ? 'side-menu-option-active' : 'side-menu-option'} to='/profile'>My Profile</Link>}
+                        <Link className={location === '/projects' ? 'side-menu-option-active' : 'side-menu-option'} to={"/projects"} onClick={closeMobileMenu}>Discover Projects</Link>
+                        {isLoggedIn && <Link className={location === '/profile' ? 'side-menu-option-active' : 'side-menu-option'} to='/profile' onClick={closeMobileMenu}>My Profile</Link>}
                         {/* {isLoggedIn ? <p className="profile-button" onClick={() => setMenuOpen(true)}>My Profile</p>: null} */}
                         <LoginButton />
                         {isLoggedIn ?
@@ -129,7 +139,7 @@ const Header = ({
                     <NavLink className="projects-button" to={"/projects"}>Discover Projects</NavLink>
                     {/* {isLoggedIn ? <p className="profile-button" onClick={() => setMenuOpen(true)}>My Profile</p>: null} */}
                     {isLoggedIn && <p className={location === '/profile' ? 'profile-button-active' : 'profile-button'} onClick={() => setMenuOpen(true)}>My Profile</p>}
-                    {isMenuOpen ? <ProfileModal userProfile={userProfile} menuRef={menuRef} getUserProfile={getUserProfile}/> : null}
+                    {isMenuOpen ? <ProfileModal userProfile={userProfile} menuRef={menuRef} menuCallback={setMenuOpen} getUserProfile={getUserProfile}/> : null}
                     <LoginButton />
                 </div>
             </div>

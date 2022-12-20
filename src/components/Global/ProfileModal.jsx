@@ -7,7 +7,7 @@ import { setLoggedIn } from "../../redux/userState/userStateActions";
 import Cookies from "universal-cookie";
 
 const ProfileModal = (props) => {
-    const { userProfile, menuRef } = props;
+    const { userProfile, menuRef, menuCallback } = props;
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -16,6 +16,7 @@ const ProfileModal = (props) => {
 
     const handleSignOut = async() => {
       if (isLoggedIn) {
+        menuCallback(false);
         const options = {
           method: 'DELETE'
         };
@@ -29,6 +30,7 @@ const ProfileModal = (props) => {
     }
 
     const getUserProfile = () => {
+      menuCallback(false);
       props.getUserProfile();
     }
 
