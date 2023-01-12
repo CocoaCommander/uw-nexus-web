@@ -1,12 +1,30 @@
 .navigation-buttons {
+    position: relative;
+    margin: auto;
+    margin-bottom: 20px;
     display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
 }
 
 .prev-btn, .next-btn {
-    font-size: 14px;
-    margin-left: 10px;
-    margin-right: 10px;
+    font-size: 16px;
+    border: none;
+    background-color: inherit;
+    color: rgb(124, 124, 124);
+    width: 36px;
+}
+
+.prev-btn:hover, .next-btn:hover {
+    color: black;
+}
+
+.current-page-text {
+    margin: 0px 15px 0px 15px;
+    width: 42px;
+}
+
+.navigation-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
 }

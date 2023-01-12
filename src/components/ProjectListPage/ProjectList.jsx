@@ -36,21 +36,27 @@ const ProjectList = ({
     let numProjects = listOfProjectData.length;
     let numPages = Math.ceil(numProjects / PROJECTS_PER_PAGE);
 
-    function increasePage() {
-        setPage(page + 1);
-        console.log("button working");
+    function changePage(next) {
+        if (next) {
+            setPage(page + 1);
+        } else {
+            setPage(page - 1);
+        }
     }
 
-    function decreasePage() {
-        setPage(page - 1);
-        console.log("button working");
+    const createPrevButton = () => {
+        if (page != 1) {
+            return <button className="prev-btn" onClick={() => changePage(false)}>Back</button>;
+        } else {
+            return <div className="prev-btn"></div>;
+        }
     }
 
-    // function checkInRange(i) {
-    //     if i > (PROJECTS_PER_PAGE * (page - 1)) && i <= (PROJECTS_PER_PAGE * page) {
-    //         print(i + " is in range");
-    //     }
-    // }
+    const createNextButton = () => {
+        if (page != numPages) {
+            return <button className="next-btn" onClick={() => changePage(true)}>Next</button>;
+        }
+    }
 
     return (
         <div className="project-list">
@@ -61,16 +67,14 @@ const ProjectList = ({
                             <ProjectListItem project={project} key={i} isLoading={isLoading} />
                         )
                     }
-                    
-                    // return (
-                    //     <ProjectListItem project={project} key={i} isLoading={isLoading} />
-                    // )
                 })
             }
-            <div className="navigation-buttons">
-                <button className="prev-btn" onClick={decreasePage}>Previous</button>
-                <p className="current-page-text">{page} of {numPages}</p>
-                <button className="next-btn" onClick={increasePage}>Next</button>
+            <div className="navigation-container">
+                <div className="navigation-buttons">
+                    {createPrevButton()}
+                    <p className="current-page-text">{page} of {numPages}</p>
+                    {createNextButton()}
+                </div>
             </div>
         </div>
     )
