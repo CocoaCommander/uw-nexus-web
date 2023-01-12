@@ -416,7 +416,7 @@ main {
 
 .small-skill-container {
   font-size: 14px;
-  padding: 4px;
+  padding: 8px;
 }
 
 .project-list-detail-logistics {
@@ -437,7 +437,7 @@ main {
   border-radius: 15px;
   margin-bottom: 15px;
   border-width: 1px;
-  padding: 15px;
+  padding: 20px;
 }
 
 .no-border {

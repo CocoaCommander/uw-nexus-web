@@ -12,14 +12,22 @@
 }
 
 .project-list-detail-description {
-
   margin-top: 15px;
   font-size: 18px;
 }
 
 .project-list-open-roles {
-  margin-top: 20px;
+  margin-top: 30px;
   font-size: 18px;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.project-list-detail-logistics-inner-text {
+  margin-right: 25px;
+}
+
+.project-list-detail-page {
+  margin-top: 20px;
+  margin-bottom: 30px;
 }

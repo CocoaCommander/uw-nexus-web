@@ -26,15 +26,18 @@ const ProjectListDetail = () => {
         return <p>Loading...</p>
     }
 
+    console.log( "this is the project:", project);
+
+    const projectInterests = project.interests ? project.interests.map(interest => <p className="proj-item-interest">{interest}</p>) : ""
+
     const projectRoles = project.roles ? project.roles.map(role => <ProjectListDetailRole role={role} duration={project.duration ? project.duration.length : ""} projDetails={{projectTitle: project.title, owner_email: project.owner_email}}/>) : [];
 
     return (
         <div className="project-list-detail-page">
             <h2 className="project-list-proj-title">{project.title}</h2>
-            <p className="project-list-interests-text">Project Interests:</p>
-
-            <div className="project-list-interests-container">
-
+            <div className="project-list-item-interests">
+                <p className="project-list-interests-text">Project Interests:</p>
+                {projectInterests}
             </div>
 
             <p className="project-list-detail-page-element">{project.categories ? "Key Words: " + project.categories.join(", ") : ""}</p>
