@@ -56,13 +56,24 @@ const ForgotPasswordBody = (props) => {
 
     const sendEmail = async () => {
 
-        const email_params = {
-            to_name: "Person X",
-            to_email: currEmail,
-            message: "<linktoreset>"
-        }
+        const url = "/api/emailServices/resetPassword";
 
-        const response = await emailjs.send("application_request", "account_pass_reset", email_params, `${process.env.REACT_APP_EMAIL_JS_API_KEY}`);
+        const email_params = {
+            to_name: "Person X", // get from api call that checks if user exists in db
+            to_email: currEmail,
+            reset_link: "<linktoreset>" // get from link generating api
+        }
+    
+        const reqOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(email_params),
+            credentials: 'include'
+        }
+    
+        const response = await fetch(url, reqOptions);
         if (response.status == 200) {
             buttonCallback(true);
         } else {
