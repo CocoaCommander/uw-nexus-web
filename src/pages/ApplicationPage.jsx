@@ -3,10 +3,7 @@ import "../ApplicationPage.css";
 import man from "../assets/human-man.png";
 import woman from "../assets/human-woman.png";
 import LoadingButton from "../components/LoadingButton/LoadingButton";
-import emailjs from "emailjs-com";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
-import storage from "../firebaseConfig.js";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 const ApplicationPage = (props) => {
 
@@ -24,6 +21,7 @@ const ApplicationPage = (props) => {
   const [resume, setResume] = useState(null);
   const [coverLetter, setCoverLetter] = useState(null);
   const [extraQuestions, setExtraQuestions] = useState("");
+
 
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
@@ -138,41 +136,27 @@ const ApplicationPage = (props) => {
     buttonRef2.current.click();
   }
 
-
-  const uploadFile = async(file) => {
-
-    return new Promise(function(resolve, reject) {
-
-      const storageRef = ref(storage, `/files/${file.name}`);
-      const uploadTask = uploadBytesResumable(storageRef, file);
-  
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-            const percent = Math.round(
-                (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-            );
-  
-            // update progress
-        },
-        (err) => {
-          console.log(err);
-          reject();
-        },
-        () => {
-            // download url
-                getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-                resolve(url);
-            });
-        }
-      );
-    })
-  }
-
   const validateSubmission = () => {
     console.log(`grad = ${graduationYear}`);
     return (graduationYear && email && referral && purpose && hoursDedicated && relevantExperience && 
             relevantClasses && resume);
+  }
+
+  const convertBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+
+      fileReader.onload = () => {
+        resolve(fileReader.result.substring(28));
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+
+    });
   }
 
   // fill out when backend implements functionality
@@ -186,12 +170,14 @@ const ApplicationPage = (props) => {
       return;
     }
 
-    const resumeURL = await uploadFile(resume);
-    let coverLetterURL = "";
+    const url = "/api/emailServices/submitApplication";
+
+    const resume_base64 = await convertBase64(resume);
+    let coverletter_base64 = "";
+
     if (coverLetter) {
-      coverLetterURL = await uploadFile(coverLetter);
+      coverletter_base64 = await convertBase64(coverLetter);
     }
-    
 
     const email_params = {
         to_name: fullName,
@@ -205,19 +191,30 @@ const ApplicationPage = (props) => {
         hours: hoursDedicated,
         relevantClasses: relevantClasses,
         willMeet: willMeet ? "Yes" : "No",
-        resume_link: resumeURL,
-        coverletter_link: coverLetterURL,
-        extraQuestions: extraQuestions
+        resume: resume_base64,
+        coverLetter: coverletter_base64,
+        extraQuestions: extraQuestions,
       }
 
-    const response = await emailjs.send("application_request", "proj_app_form", email_params, `${process.env.REACT_APP_EMAIL_JS_API_KEY}`);
-    setIsLoading(false);
-    if (response.status == 200) {
-      setErrorMsg("");
-      navigate("/projects");
-    } else {
-      setErrorMsg("There was an error submitting your application. Please try again later");
-    }
+      const reqOptions = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(email_params),
+        credentials: 'include'
+      }
+
+
+
+      const response = await fetch(url, reqOptions);
+      
+      if (response.status == 200) {
+          setErrorMsg("");
+          navigate("/projects");
+      } else {
+        setErrorMsg("There was an error submitting your application. Please try again later");
+      }
   }
 
   return (
