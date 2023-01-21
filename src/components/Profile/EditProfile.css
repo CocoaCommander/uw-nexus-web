@@ -80,6 +80,10 @@ body {
   justify-content: space-between;
 }
 
+.hidden-input {
+  display: none;
+}
+
 .img-add-icon {
   margin-left: -2rem;
   border-style: hidden;

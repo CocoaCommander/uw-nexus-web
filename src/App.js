@@ -23,9 +23,11 @@ import Cookies from 'universal-cookie';
 import { setLoggedIn, setUserID } from './redux/userState/userStateActions';
 import ApplicationPage from './pages/ApplicationPage';
 import { useLocation, useNavigate } from 'react-router-dom';
+import userPic from './assets/userpic.png';
 
 // static user info
 const USER_INFO = {
+  user_image: userPic,
   first_name: '',
   last_name: '',
   email: "",
@@ -64,6 +66,7 @@ const App = () => {
 
   const setData = (data, resumeData) => {
     let newData = {
+      user_image: userPic, // Replace with image endpoint
       first_name: data.first_name,
       last_name: data.last_name,
       email: data.email,
