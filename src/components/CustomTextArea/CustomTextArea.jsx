@@ -5,7 +5,6 @@ const CustomTextArea = (props) => {
 
   let text = useSelector((state) => state[props.reducer]);
   const value = props.value;
-  console.log(props);
 
   if (text) {
     text = text[props.name];
@@ -13,6 +12,16 @@ const CustomTextArea = (props) => {
 
   const handleChange = (e) => {
     props.onChange(e);
+  }
+
+  const getTextLength = () => {
+    if (text) {
+      return text.length;
+    } else if (value) {
+      return value.length;
+    } else {
+      return 0;
+    }
   }
 
   return (
@@ -25,7 +34,7 @@ const CustomTextArea = (props) => {
             onChange={props.onChange ? handleChange : () => {}}
             maxLength={500}>
       </textarea>
-      <p className="word-count"> {value ? value.length : 0}/500</p>
+      <p className="word-count"> {getTextLength()}/500</p>
     </div>
 
 
