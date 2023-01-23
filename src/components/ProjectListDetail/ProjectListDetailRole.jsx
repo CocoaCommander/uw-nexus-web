@@ -21,6 +21,7 @@ const ProjectListDetailRole = ({
               </div>
             </div>
 
+            <p className="skills-header">Skills</p>
             <ProjectListDetailRoleSkills skills={role.skill} /> 
             <p className="project-list-resp-title">Responsibilities</p>
             <p className="project-list-resp-text">{role.responsibilities}</p>
