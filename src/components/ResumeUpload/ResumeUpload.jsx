@@ -1,12 +1,13 @@
 import { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addResume } from "../../redux/signUp/signUpActions";
+import { addResume, setErrorMsg } from "../../redux/signUp/signUpActions";
 import "./ResumeUpload.css";
 
 const ResumeUpload = (props) => {
 
   const dispatch = useDispatch();
   const resume = useSelector((state) => state.signUp.resume);
+  const errorMsg = useSelector((state) => state.signUp.errorMsg);
 
 
   const renderPDF = () => {
@@ -17,16 +18,21 @@ const ResumeUpload = (props) => {
           <p>{resume.name}</p>
         </div>
       )
-      
     }
   }
 
+  // adds resume to global state if the file uploaded is a pdf <= 5 MB
   const onFileChange = (e) => {
-
-    console.log(e.target.files[0]);
-    dispatch(addResume(e.target.files[0]));
-    // const formData = new FormData();
-
+    const file = e.target.files[0];
+    if (file.type == "application/pdf") {
+      if (file.size > 5000000) {
+        dispatch(setErrorMsg("File is too big."));
+      }
+      dispatch(setErrorMsg(""));
+      dispatch(addResume(e.target.files[0]));
+    } else {
+      dispatch(setErrorMsg("Incorrect file format. Please upload a pdf file"));
+    }
   }
 
   const submitResume = () => {
@@ -39,7 +45,9 @@ const ResumeUpload = (props) => {
   return(
 
     <div className="col-container">
-      <p className="resume-text">Uploading a resume and/or cover letter are incredibly helpful for <br></br> project owners to get a better idea of your skills and qualities</p>
+      <p className="resume-text">Uploading a resume and/or cover letter are incredibly helpful for 
+        <br></br> project owners to get a better idea of your skills and qualities
+        <br></br> Please submit a pdf below (Max file size: 5 MB)</p>
       <div className="main-container">
         <div className="res-container">
 
@@ -52,6 +60,7 @@ const ResumeUpload = (props) => {
         </div>
 
         {renderPDF()}
+        <p className="error-msg-signup">{errorMsg}</p>
             
       </div>
     </div>
