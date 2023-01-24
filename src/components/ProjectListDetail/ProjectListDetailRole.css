@@ -30,18 +30,24 @@
 .project-list-skills-container {
   display: flex;
   align-items: center;
-  padding: 5px;
+  padding: 5px 0px 5px 0px;
   margin-top: 10px;
 }
 
 .project-list-resp-title {
   font-size: 14px;
   font-weight: 600;
-  margin-top: 10px;
+  margin-top: 18px;
 }
 
 .project-list-resp-text {
   font-size: 14px;
+  margin-top: 10px;
+}
+
+.skills-header {
+  font-size: 14px;
+  font-weight: bold;
   margin-top: 10px;
 }
 

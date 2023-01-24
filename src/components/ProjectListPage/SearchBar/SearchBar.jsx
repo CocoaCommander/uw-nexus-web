@@ -1,5 +1,8 @@
 import { useEffect } from "react";
 import getData from "../../../logic/getData";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import "./searchBar.css";
 
 const SearchBar = ({
     setListOfProjectData,
@@ -25,14 +28,17 @@ const SearchBar = ({
             {/* <i className="search-icon">
                 <SearchIcon />
             </i> */}
-            <input 
-            id="SearchBar" 
-            placeholder="Search projects..." 
-            className="search-bar"/>
+            <div class="search-container">
+                <FontAwesomeIcon class="search-icon" icon={faMagnifyingGlass} />
+                <input
+                id="SearchBar"
+                placeholder="Search projects..."
+                className="search-bar"/>
+            </div>
             {/* <div className="search-filter-icon">
                 <FilterIcon />
             </div> */}
-            
+
         </>
     )
 }
