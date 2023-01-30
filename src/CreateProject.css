@@ -52,35 +52,38 @@ label {
 }
 
 .login-button-proj {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 125px;
   border: solid 2px #f05a28;
-  color: #f05a28;
   border-radius: 5px;
   background-color: white;
-  height: 35px;
-  width: 100px;
   text-align: center;
   font-weight: bold;
-  margin-left: auto;
-  margin-right: 10px;
+  font-size: 16px;
+  color: #f05a28;
 }
 
 .login-button-proj:hover {
   background-color: #f05a28;
   color: white;
-  font-weight: bold;
-  border: solid 0px;
 }
 
 .back-button-proj {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 85px;
   border: solid 2px #8A8888;
-  color: #8A8888;
   border-radius: 5px;
   background-color: white;
-  height: 35px;
-  width: 100px;
+  color: #8A8888;
   text-align: center;
   font-weight: bold;
-  margin-left: 10px;
+  font-size: 16px;
 }
 
 .back-button-proj-hidden {
@@ -90,8 +93,6 @@ label {
 .back-button-proj:hover {
   background-color: #8A8888;
   color: white;
-  font-weight: bold;
-  border: solid 0px;
 }
 
 .buttonsWrapper-cp {
@@ -213,10 +214,18 @@ label {
   }
 
   .back-button-proj {
-    margin-left: 2.5rem;
+    height: 50px;
+    width: 200px;
+    border-radius: 10px;
+    font-size: 20px;
+    margin-right: 2.5rem;
   }
 
   .login-button-proj {
+    height: 50px;
+    width: 200px;
+    border-radius: 10px;
+    font-size: 20px;
     margin-right: 2.5rem;
   }
 }

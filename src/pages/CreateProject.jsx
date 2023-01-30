@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import logo from "../assets/Logo.png";
-import StepProgressBar from 'react-step-progress';
+import StepProgressBar from '@gboksm11/react-step-progress';
 import '../custom-react-step-progress.css';
 import "../CreateProject.css";
 import { setCampus, setMajor, setYear, setPassword } from "../redux/signUp/signUpActions";
@@ -275,6 +275,7 @@ const CreateProject = ({
               secondaryBtnClass={currentStep == 1 ? "back-button-proj-hidden" : "back-button-proj"}
               buttonWrapperClass="buttonsWrapper-cp"
               labelClass="progress-labels"
+              previousBtnName="Back"
               submitBtnName="Next"
 
               steps={[
@@ -282,6 +283,7 @@ const CreateProject = ({
                   label: 'Project Name',
                   name: 'step 1',
                   content: step1Content,
+                  skippable: false,
                   validator: () => {
                     const valid = s1_valid.current.length > 0;
                     if (valid) {
@@ -296,6 +298,7 @@ const CreateProject = ({
                   label: 'Project Description',
                   name: 'step 2',
                   content: step2Content,
+                  skippable: false,
                   validator: () => {
                     const valid = s2_valid.current.length > 0;
                     if (valid) {
@@ -310,24 +313,28 @@ const CreateProject = ({
                   label: 'Team Size',
                   name: 'step 3',
                   content: step3Content,
+                  skippable: false,
                   validator: step3Validator
                 },
                 {
                   label: 'Category',
                   name: 'step 4',
                   content: step4Content,
+                  skippable: false,
                   validator: step4Validator
                 },
                 {
                   label: 'Roles',
                   name: 'step 5',
                   content: step5Content,
+                  skippable: false,
                   validator: step5Validator
                 },
                 {
                   label: 'Location',
                   name: 'step 6',
                   content: step6Content,
+                  skippable: false,
                   validator: step6Validator
                 },
               ]}
