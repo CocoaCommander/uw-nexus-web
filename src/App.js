@@ -59,6 +59,12 @@ const App = () => {
       headerDesktopDOM.style.filter = 'brightness(100%)';
     }
   }
+  
+  if (location === '/profile' || location.includes('/projects')) {
+    document.querySelector("html").style.backgroundColor = '#F6F6F8';
+  } else {
+    document.querySelector('html').style.backgroundColor = 'white';
+  }
 
   const navigate = useNavigate();
 
@@ -143,7 +149,7 @@ const App = () => {
       <Header isMobile={isMobile} userProfile={userProfile} getProfile={getUserProfile}/>
       <div className='app'>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home />}/>
           <Route path='/projects' element={<ProjectListPage />} />
           <Route path='/projects/:projectId' element={<ProjectListDetail />} />
           <Route path='/createProject' element={<CreateProject isMobile={isMobile}/>} />

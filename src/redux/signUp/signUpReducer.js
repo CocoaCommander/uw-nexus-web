@@ -1,4 +1,4 @@
-import { SET_FULL_NAME, SET_YEAR, SET_MAJOR, SET_CAMPUS, ADD_INTEREST, REMOVE_INTEREST, ADD_SKILL, REMOVE_SKILL, ADD_RESUME, INCREASE_STEP, DECREASE_STEP, SET_ERROR_MSG} from "./signUpTypes";
+import { SET_FULL_NAME, SET_YEAR, SET_MAJOR, SET_CAMPUS, ADD_INTEREST, REMOVE_INTEREST, ADD_SKILL, REMOVE_SKILL, ADD_RESUME, INCREASE_STEP, DECREASE_STEP, SET_ERROR_MSG, SET_STEP} from "./signUpTypes";
 import { SET_EMAIL, SET_PASSWORD, CLEAR_DATA } from "./signUpTypes";
 
 const initialState = {
@@ -80,6 +80,11 @@ const signUpReducer = (state = initialState, action) => {
     case DECREASE_STEP: return {
       ...state,
       step: state.step - 1
+    }
+
+    case SET_STEP: return {
+      ...state,
+      step: action.payload
     }
 
     case SET_ERROR_MSG: return {

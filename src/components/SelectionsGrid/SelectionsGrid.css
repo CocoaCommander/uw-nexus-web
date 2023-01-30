@@ -12,7 +12,7 @@
   flex-direction: row;
   flex: 40% 0 0;
   height: 50px;
-  border: solid 1px black;
+  border: solid 1px #757575;
   color: #757575;
   flex-wrap: nowrap;
 }
@@ -28,7 +28,7 @@
   flex-direction: row;
   flex: 40% 0 0;
   height: 50px;
-  border: solid 1px black;
+  border: solid 0px;
   color: #757575;
   flex-wrap: nowrap;
   background-color: #f05a28;
