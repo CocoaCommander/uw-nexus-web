@@ -1,18 +1,17 @@
 import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import logo from "../assets/Logo.png";
-import StepProgressBar from 'react-step-progress';
+import StepProgressBar from '@gboksm11/react-step-progress';
 import '../custom-react-step-progress.css';
 import "../SignUp.css";
 import InfoForm from "../components/InfoForm/InfoForm";
 import SelectionsGrid from "../components/SelectionsGrid/SelectionsGrid";
 import ResumeUpload from "../components/ResumeUpload/ResumeUpload";
 import ReviewPage from "../components/ReviewPage/ReviewPage";
-import { setCampus, setFullName, setMajor, setYear, addInterest, removeInterest, addSkill, removeSkill, setEmail, setPassword, decreaseStep, increaseStep, setErrorMsg } from "../redux/signUp/signUpActions";
+import { setCampus, setFullName, setMajor, setYear, addInterest, removeInterest, addSkill, removeSkill, setStep, setPassword, decreaseStep, increaseStep, setErrorMsg } from "../redux/signUp/signUpActions";
 import { setInterestsList, setSkillsList, setMajorsList } from "../redux/serverContent/serverContentActions";
 import Cookies from 'universal-cookie';
 import { useLocation, useNavigate } from "react-router-dom";
-import { setStep } from "../redux/signUp/signUpActions";
 
 
 const SignUp = (props) => {
@@ -39,6 +38,7 @@ const SignUp = (props) => {
 
   const [accessToken2, setaccessToken2] = useState(null);
 
+  const progressBar = useRef();
   const progress = useRef();
 
   const name_valid = useRef(fullName);
@@ -161,6 +161,13 @@ const SignUp = (props) => {
     }
   }
 
+  const setProgressStep = (step) => {
+    if (progressBar.current) {
+      dispatch(setStep(step));
+      progressBar.current.setStep(step);
+    }
+  }
+
   // render content of General Information Page
   const step1Content = (
     <div className="vertical-center-signup">
@@ -211,7 +218,7 @@ const SignUp = (props) => {
     <div className="vertical-center-signup-review">
       <div className="center-pane">
         <p className="gen-info-title">Review</p>
-        <ReviewPage></ReviewPage>
+        <ReviewPage setStep={setProgressStep}></ReviewPage>
       </div>
     </div>
   )
@@ -305,6 +312,7 @@ const SignUp = (props) => {
   }
 
   const handleStepIncrease = () => {
+    console.log("increasing step");
     dispatch(increaseStep());
   }
 
@@ -314,21 +322,26 @@ const SignUp = (props) => {
     return (
       <div ref={progress} className="desktop-container" onClick={handleStepDecrease}>
         <StepProgressBar
+              ref={progressBar}
               startingStep={0}
               onSubmit={onFormSubmit}
               stepClass="step-indicator-wrapper"
               primaryBtnClass={isLoading ? "loader-wheel" : "login-button-sign-up"}
               secondaryBtnClass= {currentStep == 1 ? "back-button-proj-hidden" : "back-button-proj"}
+              previousBtnName="Back"
               buttonWrapperClass="buttonsWrapper"
               labelClass="progress-labels"
+              skipBtnClass="skip-btn"
+              skipNextWrapperClass="skip-next-wrapper"
 
               steps={[
                 {
                   label: 'General Information',
                   name: 'step 1',
                   content: step1Content,
+                  skippable: false,
                   validator: () => {
-                    console.log("validating...");
+                    dispatch(setErrorMsg(""));
                     const isValid = name_valid.current.length > 0 && year_valid.current.length > 0 && major_valid.current.length > 0 && campus_valid.current.length > 0;
                     if (isValid) {
                       handleStepIncrease();
@@ -341,24 +354,28 @@ const SignUp = (props) => {
                   label: 'Project Interests',
                   name: 'step 2',
                   content: step2Content,
+                  skippable: true,
                   validator: step2Validator
                 },
                 {
                   label: 'Technical Skills',
                   name: 'step 3',
                   content: step3Content,
+                  skippable: true,
                   validator: step3Validator
                 },
                 {
                   label: 'Resume',
                   name: 'step 4',
                   content: step4Content,
+                  skippable: true,
                   validator: step4Validator
                 },
                 {
                   label: 'Review',
                   name: 'step 5',
                   content: step5Content,
+                  skippable: false,
                   validator: step3Validator
                 }
               ]}

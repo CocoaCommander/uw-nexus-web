@@ -1,4 +1,4 @@
-import { SET_FULL_NAME, SET_YEAR, SET_MAJOR, SET_CAMPUS, ADD_INTEREST, REMOVE_INTEREST, ADD_SKILL, REMOVE_SKILL, ADD_RESUME, INCREASE_STEP, DECREASE_STEP} from "./signUpTypes";
+import { SET_FULL_NAME, SET_YEAR, SET_MAJOR, SET_CAMPUS, ADD_INTEREST, REMOVE_INTEREST, ADD_SKILL, REMOVE_SKILL, ADD_RESUME, INCREASE_STEP, DECREASE_STEP, SET_STEP} from "./signUpTypes";
 import { SET_EMAIL, SET_PASSWORD, CLEAR_DATA, SET_ERROR_MSG } from "./signUpTypes";
 export const setFullName = (fullName) => {
   return {
@@ -86,6 +86,13 @@ export const increaseStep = () => {
 export const decreaseStep = () => {
   return {
     type: DECREASE_STEP,
+  }
+}
+
+export const setStep = (step) => {
+  return {
+    type: SET_STEP,
+    payload: step
   }
 }
 

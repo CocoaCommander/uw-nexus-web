@@ -98,15 +98,42 @@ label {
 }
 
 .login-button-sign-up {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 125px;
   border: solid 2px #f05a28;
-  color: #f05a28;
   border-radius: 5px;
   background-color: white;
-  height: 30%;
-  width: 100px;
   text-align: center;
   font-weight: bold;
+  font-size: 16px;
+  color: #f05a28;
+}
+
+.login-button-sign-up:hover {
+  background-color: #f05a28;
+  color: white;
+}
+
+.skip-btn {
+  color: #BBBBBB;
+  font-size: 18px;
+  margin-right: 10%;
+}
+
+.skip-btn:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.skip-next-wrapper {
+  display: flex;
+  align-items: center;
   margin-left: auto;
+  justify-content: flex-end;
+  min-width: 15vw;
 }
 
 .loader-wheel {
@@ -135,15 +162,6 @@ label {
   100% {
     transform: rotate(360deg);
   }
-}
-
-.login-button-sign-up:hover {
-  background-color: #f05a28;
-  color: white;
-  font-weight: bold;
-  border: solid 0px;
-  height: 30%;
-  width: 100px;
 }
 
 .buttonsWrapper {
@@ -203,7 +221,6 @@ label {
   display:none;
 }
 
-
 @media only screen and (min-width: 850px) {
   .logo {
     display: block;
@@ -221,6 +238,10 @@ label {
     display: none;
   }
 
+  .skip-next-wrapper {
+    min-width: 30vw;
+  }
+
 
   .interests-subtitle {
     color: #757575;
@@ -231,7 +252,16 @@ label {
   }
 
   .login-button-sign-up {
+    height: 50px;
+    width: 200px;
+    border-radius: 10px;
+    font-size: 20px;
     margin-right: 2.5rem;
+  }
+
+  .skip-btn {
+    font-size: 20px;
+    margin-right: 10%;
   }
 
 }

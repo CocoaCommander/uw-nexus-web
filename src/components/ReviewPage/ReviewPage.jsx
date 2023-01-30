@@ -1,6 +1,7 @@
-import { useSelector } from "react-redux";
+import { useSelector} from "react-redux";
 import "./ReviewPage.css";
 import editIcon from "../../assets/icons/edit-icon.png";
+import { setStep } from "../../redux/signUp/signUpActions";
 
 const ReviewPage = (props) => {
 
@@ -26,6 +27,10 @@ const ReviewPage = (props) => {
     }
   }
 
+  const handleJumpSection = (step) => {
+    props.setStep(step);
+  }
+
   return (
     <div className="review-container">
 
@@ -34,7 +39,7 @@ const ReviewPage = (props) => {
       <div className="sub-section">
         <div className="subtitle">
           <p className="subtitle-text">Sign Up</p>
-          <img className="edit-icon" src={editIcon} alt="edit icon"></img>
+          <img className="edit-icon" onClick={() => handleJumpSection(1)} src={editIcon} alt="edit icon"></img>
         </div>
         <p className="info-field">Name: {fullName}</p>
         <p className="info-field">Year: {year}</p>
@@ -45,7 +50,7 @@ const ReviewPage = (props) => {
       <div className="sub-section">
         <div className="subtitle">
           <p className="subtitle-text">Project Interests</p>
-          <img className="edit-icon" src={editIcon} alt="edit icon"></img>
+          <img className="edit-icon" onClick={() => handleJumpSection(2)} src={editIcon} alt="edit icon"></img>
         </div>
 
         <div className="selections-container">
@@ -57,7 +62,7 @@ const ReviewPage = (props) => {
       <div className="sub-section">
         <div className="subtitle">
           <p className="subtitle-text">Technical Skills</p>
-          <img className="edit-icon" src={editIcon} alt="edit icon"></img>
+          <img className="edit-icon" onClick={() => handleJumpSection(3)} src={editIcon} alt="edit icon"></img>
 
         </div>
 
@@ -70,7 +75,7 @@ const ReviewPage = (props) => {
       <div className="sub-section">
         <div className="subtitle">
           <p className="subtitle-text">Resume</p>
-          <img className="edit-icon" src={editIcon} alt="edit icon"></img>
+          <img className="edit-icon" onClick={() => handleJumpSection(4)} src={editIcon} alt="edit icon"></img>
 
         </div>
 
