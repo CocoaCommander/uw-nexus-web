@@ -60,7 +60,7 @@ const App = () => {
     }
   }
   
-  if (location === '/profile' || location.includes('/projects')) {
+  if (location === '/profile' || location.includes('/projects') || location.includes('apply')) {
     document.querySelector("html").style.backgroundColor = '#F6F6F8';
   } else {
     document.querySelector('html').style.backgroundColor = 'white';
