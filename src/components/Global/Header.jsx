@@ -53,6 +53,8 @@ const Header = ({
     const getUserProfile = () => {
       getProfile();
     }
+
+    const isSignUpFlow = location == '/createProfile' || location == '/createProfileStart';
     
     // Set up clicking event for dropdown user accounts and modals
     useEffect(() => {
@@ -136,9 +138,9 @@ const Header = ({
                     </div>
                 </Link>
                 <div className="header-desktop-items">
-                    <NavLink className="projects-button" to={"/projects"}>Discover Projects</NavLink>
+                    {!isSignUpFlow && <NavLink className="projects-button" to={"/projects"}>Discover Projects</NavLink>}
                     {/* {isLoggedIn ? <p className="profile-button" onClick={() => setMenuOpen(true)}>My Profile</p>: null} */}
-                    {isLoggedIn && <p className={location === '/profile' ? 'profile-button-active' : 'profile-button'} onClick={() => setMenuOpen(true)}>My Profile</p>}
+                    {isLoggedIn && !isSignUpFlow && <p className={location === '/profile' ? 'profile-button-active' : 'profile-button'} onClick={() => setMenuOpen(true)}>My Profile</p>}
                     {isMenuOpen ? <ProfileModal userProfile={userProfile} menuRef={menuRef} menuCallback={setMenuOpen} getUserProfile={getUserProfile}/> : null}
                     <LoginButton />
                 </div>

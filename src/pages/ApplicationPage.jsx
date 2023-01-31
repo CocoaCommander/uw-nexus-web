@@ -219,6 +219,7 @@ const ApplicationPage = (props) => {
 
   return (
 
+    <div>
       <div className="center-pane-app">
         <p className="app-form-title">Application Form</p>
         <div className="col-seperator">
@@ -390,9 +391,12 @@ const ApplicationPage = (props) => {
               isLoading={isLoading}
               onClick={submitApplication}
         />
-        {/* <div className="apply-button" onClick={submitApplication}>Apply</div> */}
-        
       </div>
+
+      <div className="app-page-footer" />
+
+    </div>
+      
   );
 
 }

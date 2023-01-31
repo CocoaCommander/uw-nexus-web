@@ -11,9 +11,7 @@ a:link, a:visited, a:hover, a:active{
   text-decoration: none;
 }
 
-html {
-  background-color: #F6F6F8;
-}
+
 
 body {
   overflow-x: hidden;

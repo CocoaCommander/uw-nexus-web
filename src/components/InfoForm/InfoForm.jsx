@@ -16,11 +16,11 @@ const InfoForm = (props) => {
   const fullName = useSelector((state) => state.signUp.fullName);
   // const email = useSelector((state) => state.signUp.email);
   // const password = useSelector((state) => state.signUp.password);
-  // const year = useSelector((state) => state.signUp.year);
+  const year = useSelector((state) => state.signUp.year);
   const major = useSelector((state) => state.signUp.major);
   const majorsList = useSelector((state) => state.serverContent.majorsList);
   const errorMsg = useSelector((state) => state.signUp.errorMsg);
-  // const campus = useSelector((state) => state.signUp.campus);
+  const campus = useSelector((state) => state.signUp.campus);
 
   const selectOptions = () => {
     return majorsList.map(major => {
@@ -94,6 +94,7 @@ const InfoForm = (props) => {
                   name="year"
                   id="select-year"
                   onChange={handleChange}
+                  value={year}
                   >
             <option value="" disabled selected>E.g. Sophomore</option>
             <option value="Freshman">Freshman</option>
@@ -106,17 +107,10 @@ const InfoForm = (props) => {
 
         <div className="field-set">
           <label>Major / Intended Major <span className="asterix-signup">*</span></label>
-          {/* <input className="sign-up-detail" 
-                type="text"
-                name="major" 
-                placeholder=" E.g. Bioengineering"
-                value={major}
-                onChange={handleChange}>
-          </input> */}
           <Select className="react-select-bar"
             name="major"
             placeholder="E.g. Bioengineering"
-            defaultValue={major}
+            value={selectOptions().find(item => item.value == major)}
             onChange={handleChange}
             options={selectOptions()}
             styles={selectBarStyling}
@@ -131,6 +125,7 @@ const InfoForm = (props) => {
                   name="campus"
                   id="select-campus"
                   onChange={handleChange}
+                  value={campus}
                   >
             <option value="" disabled selected>E.g. Seattle, Tacoma, Bothell</option>
             <option value="Seattle">Seattle</option>
