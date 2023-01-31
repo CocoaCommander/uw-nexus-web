@@ -80,6 +80,10 @@ body {
   justify-content: space-between;
 }
 
+.hidden-input {
+  display: none;
+}
+
 .img-add-icon {
   margin-left: -2rem;
   border-style: hidden;
@@ -98,6 +102,34 @@ body {
   flex-wrap: wrap;
   gap: 20px;
   width: 70vw;
+}
+
+.pic-modal {
+  position: absolute;
+  display: flex;
+  top: 225px;
+  left: 25%;
+  width: 50%;
+  /* padding: 2rem 6rem; */
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 2px 4px 10px rgb(0 0 0 / 25%);
+  text-align: center;
+}
+
+.pic-modal-contents {
+  display: flex;
+  flex-direction: column;
+}
+
+.pic-modal-button {
+    padding: 1rem 6rem;
+    border: 1px solid #8A8888;
+    border-radius: 10px;
+}
+
+.pic-modal-button:hover {
+  cursor: pointer;
 }
 
 .skills-projects-container ~ .skills-projects-container {

@@ -3,9 +3,12 @@ import userPic from '../../assets/userpic.png';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFile, faPlus } from '@fortawesome/free-solid-svg-icons';
+import EditPictureModal from './EditPictureModal';
 
 const EditProfile = (props) => {
     const { userInfo, editCallback } = props;
+    const [showPicModal, setShowPicModal] = useState(false);
+    const [newUserImage, setNewUserImage] = useState(userInfo.user_image);
     const [newFirstName, setNewFirstName] = useState(userInfo.first_name);
     const [newLastName, setNewLastName] = useState(userInfo.last_name);
     const [newClassStanding, setNewClassStanding] = useState(userInfo.education.year);
@@ -17,7 +20,10 @@ const EditProfile = (props) => {
     const [newInterests, setNewInterests] = useState(userInfo.education.interests);
     const [isInterestAddIconClicked, setInterestAddIconClicked] = useState(false);
 
+    console.log(userInfo);
+
     // General Information
+    const userImage = userInfo.user_image;
     const firstName = userInfo.first_name;
     const lastName = userInfo.last_name;
     const classStanding = userInfo.education.year;
@@ -81,6 +87,7 @@ const EditProfile = (props) => {
         event.preventDefault();
 
         // General Information
+        userInfo.userImage = newUserImage.length === 0 ? userInfo.userImage : newUserImage;
         userInfo.first_name = newFirstName.length === 0 ? userInfo.first_name : newFirstName;
         userInfo.last_name = newLastName.length === 0 ? userInfo.last_name : newLastName;
         userInfo.education.year = newClassStanding.length === 0 ? userInfo.education.year : newClassStanding;
@@ -88,7 +95,7 @@ const EditProfile = (props) => {
         userInfo.education.campus = newCampus.length === 0 ? userInfo.education.campus : newCampus;
 
         // Biography
-        userInfo.education.bio = newBio.length === 0 ? oldBio : newBio;
+        userInfo.education.bio = newBio === undefined || newBio.length === 0 ? oldBio : newBio;
 
         updateProfile(userInfo);
 
@@ -131,20 +138,25 @@ const EditProfile = (props) => {
     }
 
     const convertBase64ToPDF = () => {
-        var byteCharacters = window.atob(resume);
-        var byteNumbers = new Array(byteCharacters.length);
-        for (var i = 0; i < byteCharacters.length; i++) {
-            byteNumbers[i] = byteCharacters.charCodeAt(i);
+        if (resume === 'No resume found') {
+            alert('You do not have a resume.');
+        } else {
+            var byteCharacters = window.atob(resume);
+            var byteNumbers = new Array(byteCharacters.length);
+            for (var i = 0; i < byteCharacters.length; i++) {
+                byteNumbers[i] = byteCharacters.charCodeAt(i);
+            }
+            var byteArray = new Uint8Array(byteNumbers);
+            var file = new Blob([byteArray], { type: 'application/pdf;base64' });
+            var fileURL = URL.createObjectURL(file);
+            window.open(fileURL);
         }
-        var byteArray = new Uint8Array(byteNumbers);
-        var file = new Blob([byteArray], { type: 'application/pdf;base64' });
-        var fileURL = URL.createObjectURL(file);
-        window.open(fileURL);
     }
 
 
     return (
         <div className="edit-profile-container">
+            <EditPictureModal newUserImage={newUserImage} showPicModal={showPicModal} picModalCallback={setShowPicModal} userImageCallback={setNewUserImage} />
             {/* {addSkillsModal} */}
             {/* {addInterestsModal} */}
             <div className="finalize-edits-container">
@@ -152,8 +164,8 @@ const EditProfile = (props) => {
                 <h3 className="finalize-edits-button" onClick={handleEdit}>Done</h3>
             </div>
             <div className="img-container">
-                <img className="template-img" src={userPic} />
-                <FontAwesomeIcon className="img-add-icon" icon={faPlus} size="2xl" onClick={() => { alert('idk how to do this'); }} />
+                <img className="template-img" src={newUserImage} />
+                <FontAwesomeIcon className="img-add-icon" icon={faPlus} size="2xl" onClick={() => setShowPicModal(true)} />
             </div>
             <div className="information-container">
                 <h2>General Information</h2>

@@ -6,6 +6,8 @@ import { useSelector } from "react-redux";
 import { TailSpin } from "react-loader-spinner";
 import "../Profile.css";
 
+import userPic from '../assets/userpic.png'; // Remove once image endpoints are created
+
 const Profile = (props) => {
     const { userProfile, userCallback } = props;
     const [isEditing, setIsEditing] = useState(false);
@@ -50,6 +52,7 @@ const Profile = (props) => {
 
     const setData = (data, resumeData) => {
       let newData = {
+        user_image: userPic, // Replace with image endpoint
         first_name: data.first_name,
         last_name: data.last_name,
         education: {
