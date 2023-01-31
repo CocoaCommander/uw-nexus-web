@@ -1,11 +1,13 @@
 import './EditProfile.css';
 import userPic from '../../assets/userpic.png';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFile, faPlus } from '@fortawesome/free-solid-svg-icons';
+import EditPictureModal from './EditPictureModal';
 
 const EditProfile = (props) => {
     const { userInfo, editCallback } = props;
+    const [showPicModal, setShowPicModal] = useState(false);
     const [newUserImage, setNewUserImage] = useState(userInfo.user_image);
     const [newFirstName, setNewFirstName] = useState(userInfo.first_name);
     const [newLastName, setNewLastName] = useState(userInfo.last_name);
@@ -17,7 +19,8 @@ const EditProfile = (props) => {
     const [isSkillAddIconClicked, setSkillAddIconClicked] = useState(false);
     const [newInterests, setNewInterests] = useState(userInfo.education.interests);
     const [isInterestAddIconClicked, setInterestAddIconClicked] = useState(false);
-    const picRef = useRef();
+
+    console.log(userInfo);
 
     // General Information
     const userImage = userInfo.user_image;
@@ -153,6 +156,7 @@ const EditProfile = (props) => {
 
     return (
         <div className="edit-profile-container">
+            <EditPictureModal newUserImage={newUserImage} showPicModal={showPicModal} picModalCallback={setShowPicModal} userImageCallback={setNewUserImage} />
             {/* {addSkillsModal} */}
             {/* {addInterestsModal} */}
             <div className="finalize-edits-container">
@@ -161,8 +165,7 @@ const EditProfile = (props) => {
             </div>
             <div className="img-container">
                 <img className="template-img" src={newUserImage} />
-                <input className="hidden-input" type="file" accept="image/png, image/jpeg, image/jpg" onChange={(e) => {console.log(e.target.files[0].name); setNewUserImage(e.target.files[0].name)}} ref={picRef}/>
-                <FontAwesomeIcon className="img-add-icon" icon={faPlus} size="2xl" onClick={() => {picRef.current.click()}} />
+                <FontAwesomeIcon className="img-add-icon" icon={faPlus} size="2xl" onClick={() => setShowPicModal(true)} />
             </div>
             <div className="information-container">
                 <h2>General Information</h2>
