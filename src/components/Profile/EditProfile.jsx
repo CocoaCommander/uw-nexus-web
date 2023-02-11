@@ -4,10 +4,13 @@ import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFile, faPlus } from '@fortawesome/free-solid-svg-icons';
 import EditPictureModal from './EditPictureModal';
+import EditInterestsModal from './EditInterestsModal';
+import Modal from 'react-bootstrap/Modal';
 
 const EditProfile = (props) => {
     const { userInfo, editCallback } = props;
     const [showPicModal, setShowPicModal] = useState(false);
+    const [showInterestsModal, setShowInterestsModal] = useState(false);
     const [newUserImage, setNewUserImage] = useState(userInfo.user_image);
     const [newFirstName, setNewFirstName] = useState(userInfo.first_name);
     const [newLastName, setNewLastName] = useState(userInfo.last_name);
@@ -157,6 +160,7 @@ const EditProfile = (props) => {
     return (
         <div className="edit-profile-container">
             <EditPictureModal newUserImage={newUserImage} showPicModal={showPicModal} picModalCallback={setShowPicModal} userImageCallback={setNewUserImage} />
+            <EditInterestsModal showInterestsModal={showInterestsModal} interestsModalCallback={setShowInterestsModal} />
             {/* {addSkillsModal} */}
             {/* {addInterestsModal} */}
             <div className="finalize-edits-container">
@@ -184,14 +188,13 @@ const EditProfile = (props) => {
                 </div>
                 <div className="header-container">
                     <h2>Technical Skills</h2>
-                    {skillsComponent}
                 </div>
                 <div className="skills-projects-container">
                     {technicalSkillsArray}
                 </div>
                 <div className="header-container">
                     <h2>Project Interests</h2>
-                    {interestsComponent}
+                    <FontAwesomeIcon className="add-icon" icon={faPlus} size="2xl" onClick={() => {setShowInterestsModal(true)}} />
                 </div>
                 <div className="skills-projects-container">
                     {projectInterestsArray}
@@ -237,8 +240,8 @@ const ResumeAddIcon = () => {
 
 // No functionality for now
 // Temp functions
-const CardAddIcon = () => {
-    return <FontAwesomeIcon className="add-icon" icon={faPlus} size="2xl" onClick={() => { alert('implement later!'); }} />
+const CardAddIcon = ({ setIsAddIconClicked }) => {
+    return <FontAwesomeIcon className="add-icon" icon={faPlus} size="2xl" onClick={() => {alert('implement later!')}} />
 }
 
 // const CardAddIcon = (props) => {
@@ -248,9 +251,10 @@ const CardAddIcon = () => {
 
 // const AddItemModal = (props) => {
 //     const { isAddIconClicked } = props;
+//     console.log("The add icon prop is currently", {isAddIconClicked});
 
 //     return (
-//         <Modal show={isAddIconClicked}>
+//         <Modal >
 //             <Modal.Header closeButton>
 //                 <Modal.Title>Modal heading</Modal.Title>
 //             </Modal.Header>

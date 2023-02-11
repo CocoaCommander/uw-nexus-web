@@ -135,6 +135,74 @@ body {
 .skills-projects-container ~ .skills-projects-container {
   margin-bottom: 5vh;
 }
+
+.skills-modal {
+  position: absolute;
+  display: flex;
+  top: 32%;
+  left: 20%;
+  right: 20%;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 2px 4px 10px rgb(0 0 0 / 25%);
+  text-align: center;
+}
+
+.interests-modal-header {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 20px;
+}
+
+.interests-container {
+  display: flex;
+  width: 90%;
+  align-self: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.interest-button {
+  border: 1.75px solid #757575;
+  font-size: 14px;
+  width: 40%;
+  text-align: left;
+  padding-left: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: 5px 5px 5px 5px;
+  color: #696868;
+  border-radius: 5px;
+}
+
+.interest-button:hover, .clicked-interest {
+  background-color: #F27348;
+  border: 1.75px #F27348 solid;
+  color: white;
+}
+
+.save-interests {
+  border: 2px solid #F05A28;
+  width: 150px;
+  margin: 20px;
+  align-self: flex-end;
+  font-size: 16px;
+  color: #F05A28;
+  border-radius: 5px;
+  padding: 10px 0 10px 0;
+}
+
+.save-interests:hover {
+  background-color: #F05A28;
+  color: white;
+}
+
+.exit-interests {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
 @media (max-width: 768px) {}
 
 /* FUTURE MOBILE STUFF */
