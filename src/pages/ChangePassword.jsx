@@ -1,10 +1,16 @@
 import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import ForgotPasswordBody from '../components/ForgotPassword/ForgotPasswordBody';
 
 const ChangePassword = () => {
     const [currPassOne, setCurrPassOne] = useState('');
     const [currPassTwo, setCurrPassTwo] = useState('');
     const [isButtonClicked, setButtonClicked] = useState(false);
+
+    const [searchParams, setSearchParams] = useSearchParams();
+    const resetToken = searchParams.get("token");
+
+    const [errorMsg, setErrorMsg] = useState("");
 
     const forgotPasswordDetails = {
         currPassOne: currPassOne,
@@ -18,9 +24,14 @@ const ChangePassword = () => {
         formLabel: 'Enter your password here:',
         inputPlaceholder: 'New Password',
         inputPlaceholderTwo: 'Confirm Password',
-        errorMessage: 'Passwords do not match.',
-        buttonText: 'Save'
+        errorMessage: errorMsg,
+        buttonText: 'Save',
+        token: resetToken,
     };
+
+    const handleError = (errorMsg) => {
+        setErrorMsg(errorMsg);
+    }
 
     if (isButtonClicked) {
         forgotPasswordDetails.header = 'Password changed';
@@ -29,7 +40,7 @@ const ChangePassword = () => {
         forgotPasswordDetails.buttonText = 'Continue';
         document.getElementsByClassName('change-password-input-container')[0].style.display = 'none';
     }
-    return <ForgotPasswordBody forgotPasswordDetails={forgotPasswordDetails} buttonCallback={setButtonClicked} />;
+    return <ForgotPasswordBody forgotPasswordDetails={forgotPasswordDetails} buttonCallback={setButtonClicked} handleError={handleError}/>;
 }
 
 export default ChangePassword;

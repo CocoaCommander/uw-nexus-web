@@ -160,7 +160,7 @@ const App = () => {
           <Route path='/reviewProject' element={<ProjectReview/>} email={userProfile.email}/>
           <Route path='/signUp' element={<CreateUser onLogin={handleFirstLogin}/>}/>
           <Route path='/forgotPassword' element={<ForgotPassword />} />
-          <Route path='/changePassword' element={<ChangePassword />} />
+          <Route path='/resetPassword' element={<ChangePassword />} />
           <Route path='/login' element={<DesktopLogin onLogin={handleFirstLogin}/>}/>
           <Route path='/profile' element={<Profile isMobile={isMobile} userProfile={userProfile} userCallback={(data) => setUserProfile(data)} />}/>
           <Route path='/createProfileStart' element={<SignUpStart/>}/>
