@@ -99,11 +99,13 @@
   color: #bbbbbb;
   margin-left: auto;
   margin-right: 4vw;
+  font-weight: bold;
 }
 
 .desktop-form {
   margin-left: 3vw;
 }
+
 
 .login-button {
   height: 40px;
@@ -239,12 +241,16 @@ h2.right-pane-seperator span {
     margin-right: 25vw;
   }
 
+  .sign-in {
+    margin-top: 3vh;
+  }
+
   .or-hr {
     width: 30vw;
   }
 
   .right-pane-footer {
-    margin-bottom: 5vh;
+    margin-top: auto;
   }
 
   .forgot-pass {

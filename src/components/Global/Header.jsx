@@ -11,7 +11,9 @@ import CreateProjectHeader from "./CreateProjectHeader.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
-const LoginButton = () => {
+const LoginButton = ({
+    isMobile
+}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
@@ -36,7 +38,7 @@ const LoginButton = () => {
 
     return (
         <button onClick={handleClick} className={"login-button-header"}>
-            {isLoggedIn ? `Log out` : `Join the NEXUS Network`}
+            {isLoggedIn ? `Log out` : (isMobile ? `Join NEXUS` : `Join the NEXUS Network`)}
         </button>
     )
 }
@@ -84,7 +86,9 @@ const Header = ({
             setMobileMenuOpen(false);
         }
 
-        if (location === '/createProfile' || location === '/createProject') {
+        if (location === '/createProfile' || location === '/createProject' || location === '/finishProject' 
+            || location == '/reviewProject' || location == '/createProfileStart' || location == '/welcomePage'
+            || location == '/login' || location == '/signUp') {
             let maxSteps = 4;
             if (location === '/createProject') {
                 maxSteps = 6;
@@ -99,36 +103,56 @@ const Header = ({
                             </div>
                         </Link>
 
-                        <p className={step <= maxSteps ? 'step-counter' : 'step-counter-hidden'}>Step {location === '/createProfile' ? profileStep : projectStep} of {maxSteps}</p>
+                        {!(location == '/signUp' || location == '/login') && <p className={step <= maxSteps ? 'step-counter' : 'step-counter-hidden'}>Step {location === '/createProfile' ? profileStep : projectStep} of {maxSteps}</p>}
                     </div>
                 </>
             )
         }
 
-        return (
-            <>
-                <Menu width={250} customBurgerIcon={<FontAwesomeIcon icon={faBars} />} customCrossIcon={false} isOpen={isMobileMenuOpen} onOpen={handleMobileMenu} onClose={handleMobileMenu}>
-                    <FontAwesomeIcon className="menu-icon" icon={faBars} />
-                    <div className="side-menu-container">
-                        <Link className={location === '/projects' ? 'side-menu-option-active' : 'side-menu-option'} to={"/projects"} onClick={closeMobileMenu}>Discover Projects</Link>
-                        {isLoggedIn && <Link className={location === '/profile' ? 'side-menu-option-active' : 'side-menu-option'} to='/profile' onClick={closeMobileMenu}>My Profile</Link>}
-                        {/* {isLoggedIn ? <p className="profile-button" onClick={() => setMenuOpen(true)}>My Profile</p>: null} */}
-                        <LoginButton />
-                        {isLoggedIn ?
-                            <CreateProjectHeader className="header-create-project" /> :
-                            null}
-                    </div>
-
-                </Menu>
-                <div className="flex">
-                    <Link to={"/"}>
-                        <div className="logo-header">
-                            <img src={logo} alt="Nexus Logo" className="" />
+        else if (location == '/') {
+            return (
+                <>
+                    <div className="mh-home">
+                        <Link to={"/"}>
+                            <img src={logo} alt="Nexus Logo" className="mh-home-logo" />
+                        </Link>
+                        <div className="mh-home-items">
+                            {!isSignUpFlow && <NavLink className="projects-button" to={"/projects"}>Discover Projects</NavLink>}
+                            {/* {isLoggedIn ? <p className="profile-button" onClick={() => setMenuOpen(true)}>My Profile</p>: null} */}
+                            {isLoggedIn && !isSignUpFlow && <p className={location === '/profile' ? 'profile-button-active' : 'profile-button'} onClick={() => setMenuOpen(true)}>My Profile</p>}
+                            {isMenuOpen ? <ProfileModal userProfile={userProfile} menuRef={menuRef} menuCallback={setMenuOpen} getUserProfile={getUserProfile}/> : null}
+                            <LoginButton isMobile={isMobile}/>
                         </div>
-                    </Link>
-                </div>
-            </>
-        );
+                    </div>
+                </>
+            )
+        } else {
+            return (
+                <>
+                    <Menu width={250} customBurgerIcon={<FontAwesomeIcon icon={faBars} />} customCrossIcon={false} isOpen={isMobileMenuOpen} onOpen={handleMobileMenu} onClose={handleMobileMenu}>
+                        <FontAwesomeIcon className="menu-icon" icon={faBars} />
+                        <div className="side-menu-container">
+                            <Link className={location === '/projects' ? 'side-menu-option-active' : 'side-menu-option'} to={"/projects"} onClick={closeMobileMenu}>Discover Projects</Link>
+                            {isLoggedIn && <Link className={location === '/profile' ? 'side-menu-option-active' : 'side-menu-option'} to='/profile' onClick={closeMobileMenu}>My Profile</Link>}
+                            <LoginButton />
+                            {isLoggedIn ?
+                                <CreateProjectHeader className="header-create-project" /> :
+                                null}
+                        </div>
+    
+                    </Menu>
+                    <div className="flex">
+                        <Link to={"/"}>
+                            <div className="logo-header">
+                                <img src={logo} alt="Nexus Logo" className="" />
+                            </div>
+                        </Link>
+                    </div>
+                </>
+            );
+        }
+
+
     } else {
         return (
             <div className="header-desktop">
