@@ -5,7 +5,6 @@ const SelectionsGrid = (props) => {
 
   const selectedOptions = useSelector((state) => state.signUp[props.selectionType]);
   const list = useSelector((state) => state.serverContent[props.selectionType + "List"]);
-  //const list =  ["ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!", "ghaith the goat!"];
 
   const handleOnClick = (e) => {
     props.onClick(e, selectedOptions);
@@ -14,7 +13,6 @@ const SelectionsGrid = (props) => {
   const generateGrid = () => {
     let grid = [];
 
-    console.log(props.selections);
     if (list) {
 
       let selections = list.map((selection) => 
