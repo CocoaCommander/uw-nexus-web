@@ -77,7 +77,7 @@ const InfoForm = (props) => {
       <p className="error-msg-signup">{errorMsg}</p>
       <form>
         <div className="field-set">
-          <label>First and Last Name <span className="asterix-signup">*</span></label>
+          <label>Full Name<span className="asterix-signup">*</span></label>
           <input className="sign-up-detail" 
                 type="text"
                 name="fullName" 

@@ -64,6 +64,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 5vh;
 }
 
 .community {
@@ -164,6 +165,14 @@ h2 {
   padding-bottom: 8.75px;
 }
 
+.discover-text {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 2vh;
+  margin-bottom: 3vh;
+}
+
 .find-project {
   background-color: #F05A28;
   color: #fff;
@@ -184,9 +193,30 @@ h2 {
   text-align: center;
   font-weight: 600;
   font-style: italic;
-  font-size: 20px;
-  width: 50%;
+  font-size: 16px;
+  width: 85%;
 }
+
+.what-we-do-text {
+  text-align: center;
+  font-weight: bold;
+  font-size: 26px;
+  padding: 25px;
+}
+
+.two-ppl-home-img {
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+}
+
+.nexus-network-subtitle {
+  text-align: center;
+  font-weight: bold;
+  font-size: 26px;
+  padding: 25px;
+  margin-top: 5vh;
+}
+
 .footer-links {
   padding-top: 10px;
   width: 100%;
@@ -572,5 +602,14 @@ main {
 
     .role-title {
       white-space: nowrap;
+    }
+
+    .find-project-center-wrapper {
+      margin-top: 0vh;
+    }
+
+    .tag-line {
+      width: 50%;
+      font-size: 20px;
     }
 }

@@ -152,7 +152,7 @@ const App = () => {
       <Header isMobile={isMobile} userProfile={userProfile} getProfile={getUserProfile}/>
       <div className='app'>
         <Routes>
-          <Route path="/" element={<Home />}/>
+          <Route path="/" element={<Home isMobile={isMobile}/>}/>
           <Route path='/projects' element={<ProjectListPage />} />
           <Route path='/projects/:projectId' element={<ProjectListDetail />} />
           <Route path='/createProject' element={<CreateProject isMobile={isMobile}/>} />

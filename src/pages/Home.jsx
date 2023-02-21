@@ -4,14 +4,16 @@ import logo from "../assets/Logo.png";
 import dividerImage from "../assets/divider.png";
 import peopleImage from "../assets/twoPpl.png";
 
-const Home = () => {
+const Home = ({
+    isMobile
+    }) => {
     const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
     return (
         <>
             <section className="home-section">
                 <div className="find-project-center-wrapper">
-                    <h1>Find Your Next Passion Project</h1>
-                    <h2>Discover 100+ self-motivated students on the NEXUS Network</h2>
+                    {isMobile ? <h1>Find Your Next <br/>Passion Project</h1> : <h1>Find Your Next Passion Project</h1>}
+                    {!isMobile && <h2>Discover 100+ self-motivated students on the NEXUS Network</h2>}
                     <Link to={"/projects"} className={"home-button-container"}>
                         <div className={"find-project home-button"}>
                             Find Your Project
@@ -25,7 +27,7 @@ const Home = () => {
                     <img className="divider-image" src={dividerImage} alt="website divider"></img>
                 </div>
 
-                <h2>What we do here at NEXUS</h2>
+                {isMobile ? <p className="discover-text">Discover 100+ self-motivated students on the NEXUS Network</p>  : <p className="what-we-do-text">What we do here at NEXUS</p>}
             </section>
             <section className="home-section">
                 <div className="home-card-container">
@@ -44,12 +46,13 @@ const Home = () => {
                 </div>
             </section>
             <section className="home-section">
-                <h2>The NEXUS Network</h2>
+                <p className="nexus-network-subtitle">The NEXUS Network</p>
                 <p className="tag-line">Join a community of self-motivated and driven students. Find a teammate or explore side project opportunities. Let&#39;s fuel your future!</p>
+                {isMobile && <img className="two-ppl-home-img" src={peopleImage}></img>}
             </section>
-            <div className="community">
+            { !isMobile && <div className="community">
 
-            </div>
+            </div>}
             <section className="home-section">
                 <div className="company-tag">
                     <div className="logo-small">

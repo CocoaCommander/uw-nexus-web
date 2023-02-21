@@ -109,24 +109,25 @@ const Header = ({
             )
         }
 
-        else if (location == '/') {
-            return (
-                <>
-                    <div className="mh-home">
-                        <Link to={"/"}>
-                            <img src={logo} alt="Nexus Logo" className="mh-home-logo" />
-                        </Link>
-                        <div className="mh-home-items">
-                            {!isSignUpFlow && <NavLink className="projects-button" to={"/projects"}>Discover Projects</NavLink>}
-                            {/* {isLoggedIn ? <p className="profile-button" onClick={() => setMenuOpen(true)}>My Profile</p>: null} */}
-                            {isLoggedIn && !isSignUpFlow && <p className={location === '/profile' ? 'profile-button-active' : 'profile-button'} onClick={() => setMenuOpen(true)}>My Profile</p>}
-                            {isMenuOpen ? <ProfileModal userProfile={userProfile} menuRef={menuRef} menuCallback={setMenuOpen} getUserProfile={getUserProfile}/> : null}
-                            <LoginButton isMobile={isMobile}/>
-                        </div>
-                    </div>
-                </>
-            )
-        } else {
+        // else if (location == '/') {
+        //     return (
+        //         <>
+        //             <div className="mh-home">
+        //                 <Link to={"/"}>
+        //                     <img src={logo} alt="Nexus Logo" className="mh-home-logo" />
+        //                 </Link>
+        //                 <div className="mh-home-items">
+        //                     {!isSignUpFlow && <NavLink className="projects-button" to={"/projects"}>Discover Projects</NavLink>}
+        //                     {/* {isLoggedIn ? <p className="profile-button" onClick={() => setMenuOpen(true)}>My Profile</p>: null} */}
+        //                     {isLoggedIn && !isSignUpFlow && <p className={location === '/profile' ? 'profile-button-active' : 'profile-button'} onClick={() => setMenuOpen(true)}>My Profile</p>}
+        //                     {isMenuOpen ? <ProfileModal userProfile={userProfile} menuRef={menuRef} menuCallback={setMenuOpen} getUserProfile={getUserProfile}/> : null}
+        //                     <LoginButton isMobile={isMobile}/>
+        //                 </div>
+        //             </div>
+        //         </>
+        //     )
+        // } 
+        else {
             return (
                 <>
                     <Menu width={250} customBurgerIcon={<FontAwesomeIcon icon={faBars} />} customCrossIcon={false} isOpen={isMobileMenuOpen} onOpen={handleMobileMenu} onClose={handleMobileMenu}>
