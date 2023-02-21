@@ -4,13 +4,16 @@ import man from "../assets/human-man.png";
 import woman from "../assets/human-woman.png";
 import LoadingButton from "../components/LoadingButton/LoadingButton";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
+import ApplicationConfirmationPage from '../components/ApplicationPage/ApplicationConfirmationPage'
 
 const ApplicationPage = (props) => {
+  console.log('props', props)
+  const { userProfile } = props
 
-  const [fullName, setFullName] = useState("");
-  const [major, setMajor] = useState("");
+  const [fullName, setFullName] = useState(`${userProfile.first_name} ${userProfile.last_name}`);
+  const [major, setMajor] = useState(userProfile.education.major);
   const [graduationYear, setGraduationYear] = useState("2022");
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(userProfile.email);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [referral, setReferral] = useState("");
   const [purpose, setPurpose] = useState("");
@@ -18,10 +21,10 @@ const ApplicationPage = (props) => {
   const [relevantExperience, setRelevantExperience] = useState("");
   const [relevantClasses, setRelevantClasses] = useState("");
   const [willMeet, setWillMeet] = useState(false);
-  const [resume, setResume] = useState(null);
+  const [resume, setResume] = useState(userProfile.resume_file_id);
   const [coverLetter, setCoverLetter] = useState(null);
   const [extraQuestions, setExtraQuestions] = useState("");
-
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
@@ -159,6 +162,21 @@ const ApplicationPage = (props) => {
     });
   }
 
+  const applicationSummary = (isSubmitted)? {
+    to_name: fullName,
+    proj_name: params.projectName,
+    position: params.projectRole,
+    proj_email: location.state.email,
+    major: major,
+    year: graduationYear,
+    purpose: purpose,
+    experience: relevantExperience,
+    hours: hoursDedicated,
+    relevantClasses: relevantClasses,
+    willMeet: willMeet ? "Yes" : "No",
+    extraQuestions: extraQuestions
+  }: null;
+  console.log('summary', applicationSummary)
   // fill out when backend implements functionality
   const submitApplication = async(e) => {
     e.preventDefault();
@@ -208,17 +226,24 @@ const ApplicationPage = (props) => {
 
 
       const response = await fetch(url, reqOptions);
+
       
       if (response.status == 200) {
           setErrorMsg("");
           navigate("/projects");
+          setIsSubmitted(true)
       } else {
         setErrorMsg("There was an error submitting your application. Please try again later");
       }
   }
 
-  return (
+  
+   
 
+  
+  return (isSubmitted)? 
+  <ApplicationConfirmationPage summary={applicationSummary}/> :
+  (
     <div>
       <div className="center-pane-app">
         <p className="app-form-title">Application Form</p>
@@ -389,10 +414,10 @@ const ApplicationPage = (props) => {
               className={"apply-button"}
               active={"apply-button-active"}
               isLoading={isLoading}
-              onClick={submitApplication}
+              //onClick={submitApplication}
+              onClick={() =>setIsSubmitted(true)}
         />
       </div>
-
       <div className="app-page-footer" />
 
     </div>

@@ -1,0 +1,71 @@
+.center-pane-app {
+  background-color: white;
+  padding: 2%;
+  border-radius: 10px;
+  margin-top: 3%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.confirmation-box {
+  padding-bottom: 0%;
+  text-align: center;
+  padding-top: 10%;
+  background-color: #ffffff; 
+  border-radius: 10px; 
+  padding: 20px;
+  width:100%; 
+}
+
+
+.application-summary-table {
+  margin-top: 2rem;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+
+.application-summary-table td {
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #e9e9e9;
+  text-align: left;
+  font-size: medium;
+}
+
+.application-summary-table th {
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  /* background-color: #f7f7f7; */
+  font-weight: bold;
+  font-size: large;
+  width:40%;
+}
+
+.app-page-footer {
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  width: 100%;
+  height: 20rem;
+  margin-top: 10vh;
+  background-image: url(../../assets/app-page-footer.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media only screen and (min-width: 700px) {
+  .application-summary-table td {
+    padding: 0.5rem 1rem;
+    font-size: small;
+  }
+
+  app-page-footer {
+    height: 30rem;
+    overflow: visible;
+  }
+}

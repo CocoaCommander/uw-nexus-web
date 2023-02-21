@@ -166,7 +166,7 @@ const App = () => {
           <Route path='/createProfileStart' element={<SignUpStart/>}/>
           <Route path='/createProfile' element={<SignUp onCreateProfile={onCreateProfile}/>}/>
           <Route path='/welcomePage' element={<WelcomePage/>}/>
-          <Route path='/apply/:projectName/:projectRole' element={<ApplicationPage/>}/>
+          <Route path='/apply/:projectName/:projectRole' element={<ApplicationPage userProfile={userProfile}/>}/>
         </Routes>
       </div>
     </>
