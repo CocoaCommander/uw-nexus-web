@@ -4,7 +4,7 @@ import man from "../assets/human-man.png";
 import woman from "../assets/human-woman.png";
 import LoadingButton from "../components/LoadingButton/LoadingButton";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
-import ApplicationConfirmationPage from '../components/ApplicationPage/ApplicationConfirmationPage'
+import ApplicationConfirmationPage from '../components/ApplicationConfirmation/ApplicationConfirmationPage'
 
 const ApplicationPage = (props) => {
   console.log('props', props)
