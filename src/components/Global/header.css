@@ -170,6 +170,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .create-project-header {
     display: block;
     margin-top: 50vh;
+    padding: 0.5rem 1rem;
 }
 
 .create-project-header-container {
