@@ -1,6 +1,8 @@
 import './EditProfile.css';
 import Modal from 'react-bootstrap/Modal';
 import { useRef } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faX } from '@fortawesome/free-solid-svg-icons';
 import userPic from '../../assets/userpic.png';
 
 const EditPictureModal = (props) => {
@@ -23,15 +25,15 @@ const EditPictureModal = (props) => {
 
     return (
         <Modal className="pic-modal" show={showPicModal}>
-            <Modal.Header>
+            <Modal.Header className='pic-modal-header'>
                 <img className='template-img' src={newUserImage} />
-                <p onClick={() => picModalCallback(false)}>Click to close</p>
+                <FontAwesomeIcon icon={faX} size='2xl' className='pic-modal-x' onClick={() => picModalCallback(false)}>Click to close</FontAwesomeIcon>
             </Modal.Header>
 
             <Modal.Body className="pic-modal-contents">
                 <input className="hidden-input" type="file" accept="image/*" onChange={handleReader} ref={picRef} />
-                <p className='pic-modal-button' onClick={() => picRef.current.click()}>Choose from library</p>
-                <p className='pic-modal-button' onClick={() => userImageCallback(userPic)}>Remove current photo</p>
+                <p className='loading-button' onClick={() => picRef.current.click()}>Choose from library</p>
+                <p className='loading-button' onClick={() => userImageCallback(userPic)}>Remove photo</p>
             </Modal.Body>
         </Modal>
     );
