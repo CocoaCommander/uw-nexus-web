@@ -4,13 +4,14 @@ import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFile, faPlus } from '@fortawesome/free-solid-svg-icons';
 import EditPictureModal from './EditPictureModal';
-import EditInterestsModal from './EditInterestsModal';
+import EditElementsModal from './EditElementsModal';
 import Modal from 'react-bootstrap/Modal';
 
 const EditProfile = (props) => {
     const { userInfo, editCallback } = props;
     const [showPicModal, setShowPicModal] = useState(false);
-    const [showInterestsModal, setShowInterestsModal] = useState(false);
+    const [showElementsModal, setShowElementsModal] = useState(false);
+    const [isInterestModal, setInterestModal] = useState(false);
     const [newUserImage, setNewUserImage] = useState(userInfo.user_image);
     const [newFirstName, setNewFirstName] = useState(userInfo.first_name);
     const [newLastName, setNewLastName] = useState(userInfo.last_name);
@@ -156,13 +157,10 @@ const EditProfile = (props) => {
         }
     }
 
-
     return (
         <div className="edit-profile-container">
             <EditPictureModal newUserImage={newUserImage} showPicModal={showPicModal} picModalCallback={setShowPicModal} userImageCallback={setNewUserImage} />
-            <EditInterestsModal showInterestsModal={showInterestsModal} interestsModalCallback={setShowInterestsModal} />
-            {/* {addSkillsModal} */}
-            {/* {addInterestsModal} */}
+            <EditElementsModal showElementsModal={showElementsModal} elementsModalCallback={setShowElementsModal} projectInterests={projectInterests} technicalSkills={technicalSkills} isInterestModal={isInterestModal} />
             <div className="finalize-edits-container">
                 <h3 className="finalize-edits-button" onClick={() => editCallback(false)}>Cancel</h3>
                 <h3 className="finalize-edits-button" onClick={handleEdit}>Done</h3>
@@ -188,13 +186,20 @@ const EditProfile = (props) => {
                 </div>
                 <div className="header-container">
                     <h2>Technical Skills</h2>
+                    <FontAwesomeIcon className="add-icon" icon={faPlus} size="2xl" onClick={async () => {
+                        setShowElementsModal(true)
+                        setInterestModal(false)
+                    }} />
                 </div>
                 <div className="skills-projects-container">
                     {technicalSkillsArray}
                 </div>
                 <div className="header-container">
                     <h2>Project Interests</h2>
-                    <FontAwesomeIcon className="add-icon" icon={faPlus} size="2xl" onClick={() => {setShowInterestsModal(true)}} />
+                    <FontAwesomeIcon className="add-icon" icon={faPlus} size="2xl" onClick={async () => {
+                        setShowElementsModal(true)
+                        setInterestModal(true)
+                    }} />
                 </div>
                 <div className="skills-projects-container">
                     {projectInterestsArray}
