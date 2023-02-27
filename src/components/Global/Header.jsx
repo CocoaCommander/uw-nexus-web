@@ -135,7 +135,7 @@ const Header = ({
                         <div className="side-menu-container">
                             <Link className={location === '/projects' ? 'side-menu-option-active' : 'side-menu-option'} to={"/projects"} onClick={closeMobileMenu}>Discover Projects</Link>
                             {isLoggedIn && <Link className={location === '/profile' ? 'side-menu-option-active' : 'side-menu-option'} to='/profile' onClick={closeMobileMenu}>My Profile</Link>}
-                            <LoginButton />
+                            <LoginButton isMobile={isMobile} />
                             {isLoggedIn ?
                                 <CreateProjectHeader className="header-create-project" /> :
                                 null}
