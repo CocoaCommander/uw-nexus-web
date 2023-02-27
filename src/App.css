@@ -320,6 +320,7 @@ main {
   display: flex;
   align-items: center;
   width: 100%;
+  margin-bottom: 30px;
 }
 
 .project-list-item-container,
@@ -360,7 +361,7 @@ main {
 }
 
 .project-list-item-container {
-  width: 100%;
+  width: 90vw;
   margin-bottom: 3vh;
 }
 
@@ -385,19 +386,20 @@ main {
 }
 
 .stat-item > p {
-  font-size: 12px;
+  font-size: 8px;
 }
 
 .project-list-item-interests {
   margin-top: 10px;
   margin-bottom: 25px;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  gap: 10px;
 }
 
 .proj-item-interest {
-  margin-left: 10px;
-  font-size: 14px;
+  font-size: 8px;
   margin-top: auto;
   margin-bottom: auto;
   background-color: #F6F6F8;
@@ -434,10 +436,10 @@ main {
   flex-grow: 0;
   border-radius: 5px;
   background-color: rgba(249, 130, 44, 0.4);
-  padding: 10px;
+  padding: 5px;
   margin-right: 10px;
   margin-top: 2px;
-  font-size: 14px;
+  font-size: 8px;
 }
 
 .skills-wrapper {
@@ -547,7 +549,6 @@ main {
     }
 
     .create-project-btn-project-search-container {
-      margin-bottom: 30px;
       margin-top: 15px;
     }
 
@@ -563,6 +564,10 @@ main {
       align-items: center;
     }
 
+    .stat-item > p {
+      font-size: 12px;
+    }
+
     input#SearchBar {
       flex-grow: 2;
       margin-bottom: 0;
@@ -572,7 +577,12 @@ main {
       width: 100%;
     }
 
+    .proj-item-interest {
+      font-size: 14px;
+    }
+
     .project-list-item-container {
+      width: 100%;
       padding: 20px;
     }
 
@@ -580,6 +590,11 @@ main {
       display: flex;
       justify-content: space-between;
       margin-bottom: 30px;
+    }
+
+    .skill-container {
+      font-size: 14px;
+      padding: 10px;
     }
 
     .divider-image {
