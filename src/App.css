@@ -386,6 +386,7 @@ main {
 }
 
 .stat-item > p {
+  color: #757575;
   font-size: 8px;
 }
 
