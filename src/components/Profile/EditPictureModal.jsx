@@ -1,25 +1,39 @@
 import './EditProfile.css';
 import Modal from 'react-bootstrap/Modal';
 import { useRef } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faX } from '@fortawesome/free-solid-svg-icons';
 import userPic from '../../assets/userpic.png';
 
 const EditPictureModal = (props) => {
     const { newUserImage, showPicModal, picModalCallback, userImageCallback } = props;
     const picRef = useRef();
 
-    console.log('hi')
+    const handleReader = (e) => {
+        const reader = new FileReader();
+        const file = e.target.files[0];
+
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            // console.log('Successfully uploaded! Result: ', reader.result);
+            userImageCallback(reader.result);
+        };
+        reader.onerror = (error) => {
+            console.log('Error: ', error);
+        };
+    }
 
     return (
         <Modal className="pic-modal" show={showPicModal}>
-            <Modal.Header>
+            <Modal.Header className='pic-modal-header'>
                 <img className='template-img' src={newUserImage} />
-                <p onClick={() => picModalCallback(false)}>Click to close</p>
+                <FontAwesomeIcon icon={faX} size='2xl' className='pic-modal-x' onClick={() => picModalCallback(false)}>Click to close</FontAwesomeIcon>
             </Modal.Header>
 
             <Modal.Body className="pic-modal-contents">
-                <input className="hidden-input" type="file" accept="image/png, image/jpeg, image/jpg" onChange={(e) => { console.log(e.target.files[0].name); userImageCallback(e.target.files[0].name) }} ref={picRef} />
-                <p className='pic-modal-button' onClick={() => console.log(picRef.current.click())}>Choose from library</p>
-                <p className='pic-modal-button' onClick={() => userImageCallback(userPic)}>Remove current photo</p>
+                <input className="hidden-input" type="file" accept="image/*" onChange={handleReader} ref={picRef} />
+                <p className='loading-button' onClick={() => picRef.current.click()}>Choose from library</p>
+                <p className='loading-button' onClick={() => userImageCallback(userPic)}>Remove photo</p>
             </Modal.Body>
         </Modal>
     );

@@ -20,7 +20,7 @@ const EditProfile = (props) => {
     const [newInterests, setNewInterests] = useState(userInfo.education.interests);
     const [isInterestAddIconClicked, setInterestAddIconClicked] = useState(false);
 
-    console.log(userInfo);
+    console.log(userInfo.user_image);
 
     // General Information
     const userImage = userInfo.user_image;

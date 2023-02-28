@@ -123,7 +123,7 @@ const CreateUser = (props) => {
         <div className="right-pane">
           <div className="right-pane-center">
             <div className="right-pane-sign-in">
-              <p className="sign-in">SIGN UP</p>
+              <p className="sign-in">Sign Up</p>
               <form className="desktop-form">
                 <div className="form-field">
                   <input className="email-textbox"
