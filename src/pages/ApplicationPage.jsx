@@ -176,7 +176,8 @@ const ApplicationPage = (props) => {
     willMeet: willMeet ? "Yes" : "No",
     extraQuestions: extraQuestions
   }: null;
-  console.log('summary', applicationSummary)
+
+
   // fill out when backend implements functionality
   const submitApplication = async(e) => {
     e.preventDefault();
