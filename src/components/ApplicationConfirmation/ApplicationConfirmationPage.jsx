@@ -38,51 +38,51 @@ const ConfirmationPage = (props) => {
             <tbody>
               <tr>
                 <th>Name</th>
-                <td>{to_name}</td>
+                <td><span>{to_name}</span></td>
               </tr>
               <tr>
                 <th>Project Name</th>
-                <td>{proj_name}</td>
+                <td><span>{proj_name}</span></td>
               </tr>
               <tr>
                 <th>Position</th>
-                <td>{position}</td>
+                <td><span>{position}</span></td>
               </tr>
               <tr>
                 <th>Project Email</th>
-                <td>{proj_email}</td>
+                <td><span>{proj_email}</span></td>
               </tr>
               <tr>
                 <th>Major</th>
-                <td>{major}</td>
+                <td><span>{major}</span></td>
               </tr>
               <tr>
                 <th>Graduation Year</th>
-                <td>{year}</td>
+                <td><span>{year}</span></td>
               </tr>
               <tr>
                 <th>Purpose</th>
-                <td>{purpose}</td>
+                <td><span>{purpose}</span></td>
               </tr>
               <tr>
                 <th>Relevant Experience</th>
-                <td>{experience}</td>
+                <td><span>{experience}</span></td>
               </tr>
               <tr>
                 <th>Hours Dedicated</th>
-                <td>{hours}</td>
+                <td><span>{hours}</span></td>
               </tr>
               <tr>
                 <th>Relevant Classes</th>
-                <td>{relevantClasses}</td>
+                <td><span>{relevantClasses}</span></td>
               </tr>
               <tr>
                 <th>Will Meet</th>
-                <td>{willMeet ? "Yes" : "No"}</td>
+                <td><span>{willMeet ? "Yes" : "No"}</span></td>
               </tr>
               <tr>
                 <th>Extra Questions</th>
-                <td>{extraQuestions}</td>
+                <td><span>{extraQuestions}</span></td>
               </tr>
             </tbody>
           </table>

@@ -415,8 +415,8 @@ const ApplicationPage = (props) => {
               className={"apply-button"}
               active={"apply-button-active"}
               isLoading={isLoading}
-              onClick={submitApplication}
-              //onClick={() =>setIsSubmitted(true)}
+              //onClick={submitApplication}
+              onClick={() =>setIsSubmitted(true)}
         />
       </div>
       <div className="app-page-footer" />
