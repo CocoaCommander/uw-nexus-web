@@ -1,7 +1,11 @@
 import React from 'react';
 import './ApplicationConfirmationPage.css';
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 
 const ConfirmationPage = (props) => {
+
+  const navigate = useNavigate();
+
   const {
     to_name,
     proj_name,
@@ -87,6 +91,8 @@ const ConfirmationPage = (props) => {
             </tbody>
           </table>
         </div>
+
+        <button onClick={() => navigate("/projects")} className={"apply-button"}>Home</button>
 
       </div>
       <div className="app-page-footer" />

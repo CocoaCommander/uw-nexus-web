@@ -21,6 +21,64 @@
   width:100%; 
 }
 
+.apply-button {
+  width: 100px;
+  height: 40px;
+  border: 1px solid #f05a28;
+  border-radius: 7px;
+  color: #f05a28;
+  text-align: center;
+  font-weight: bold;
+  line-height: 40px;
+  align-self: flex-end;
+  margin-top: 3%;
+  font-size: 14px;
+}
+
+.apply-button:hover {
+  width: 100px;
+  height: 40px;
+  border: 1px solid #f05a28;
+  border-radius: 7px;
+  color: white;
+  background-color: #f05a28;
+  text-align: center;
+  font-weight: bold;
+  line-height: 40px;
+  align-self: flex-end;
+  font-size: 14px;
+}
+
+.apply-button-active {
+  width: 100px;
+  height: 40px;
+  border: 1px solid #f05a28;
+  border-radius: 7px;
+  color: white;
+  background-color: #f05a28;
+  text-align: center;
+  font-weight: bold;
+  line-height: 40px;
+  align-self: flex-end;
+  font-size: 14px;
+  margin-top: 3%;
+}
+
+
+.apply-button {
+  width: 20vw;
+}
+
+
+.apply-button:hover {
+  width: 20vw;
+}
+
+.apply-button-active {
+  width: 20vw;
+}
+
+
 
 .application-summary-table {
   margin-top: 2rem;

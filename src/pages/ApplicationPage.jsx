@@ -231,7 +231,7 @@ const ApplicationPage = (props) => {
       
       if (response.status == 200) {
           setErrorMsg("");
-          navigate("/projects");
+          // navigate("/projects");
           setIsSubmitted(true)
       } else {
         setErrorMsg("There was an error submitting your application. Please try again later");
@@ -415,8 +415,8 @@ const ApplicationPage = (props) => {
               className={"apply-button"}
               active={"apply-button-active"}
               isLoading={isLoading}
-              //onClick={submitApplication}
-              onClick={() =>setIsSubmitted(true)}
+              onClick={submitApplication}
+              // onClick={() =>setIsSubmitted(true)}
         />
       </div>
       <div className="app-page-footer" />
