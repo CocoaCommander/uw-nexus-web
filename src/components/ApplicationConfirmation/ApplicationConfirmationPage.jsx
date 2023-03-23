@@ -92,7 +92,7 @@ const ConfirmationPage = (props) => {
           </table>
         </div>
 
-        <button onClick={() => navigate("/projects")} className={"apply-button"}>Home</button>
+        <button onClick={() => navigate("/projects")} className={"apply-button"}>Return to Projects</button>
 
       </div>
       <div className="app-page-footer" />

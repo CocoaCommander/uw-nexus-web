@@ -4,10 +4,11 @@ import man from "../assets/human-man.png";
 import woman from "../assets/human-woman.png";
 import LoadingButton from "../components/LoadingButton/LoadingButton";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
+import { isValidEmail, isValidPhoneNumber } from "../logic/inputValidation";
 import ApplicationConfirmationPage from '../components/ApplicationConfirmation/ApplicationConfirmationPage'
 
 const ApplicationPage = (props) => {
-  console.log('props', props)
+  
   const { userProfile } = props
 
   const [fullName, setFullName] = useState(`${userProfile.first_name} ${userProfile.last_name}`);
@@ -140,9 +141,16 @@ const ApplicationPage = (props) => {
   }
 
   const validateSubmission = () => {
-    console.log(`grad = ${graduationYear}`);
-    return (graduationYear && email && referral && purpose && hoursDedicated && relevantExperience && 
-            relevantClasses && resume);
+    return (
+      graduationYear && 
+      email && 
+      referral && 
+      purpose && 
+      hoursDedicated && 
+      relevantExperience && 
+      relevantClasses && 
+      resume
+    );
   }
 
   const convertBase64 = (file) => {
@@ -183,9 +191,26 @@ const ApplicationPage = (props) => {
   const submitApplication = async(e) => {
     e.preventDefault();
     setIsLoading(true);
+    setErrorMsg("")
 
     if (!validateSubmission()) {
       setErrorMsg("Please fill all required fields.");
+      setIsLoading(false);
+      return;
+    }
+
+    const phoneIsValid = isValidPhoneNumber(phoneNumber) || phoneNumber === ""
+    const emailIsValid = document.getElementById("email-input").validity.valid;
+    console.log('email: ', emailIsValid, 'phone: ', phoneIsValid)
+
+    if (!emailIsValid) {
+      setErrorMsg("Invalid Email Address");
+      setIsLoading(false);
+      return;
+    }  
+
+    if (!phoneIsValid) {
+      setErrorMsg("Invalid Phone Number.");
       setIsLoading(false);
       return;
     }
@@ -203,6 +228,7 @@ const ApplicationPage = (props) => {
         to_name: fullName,
         proj_name: params.projectName,
         position: params.projectRole,
+        proj_email: location.state.email,
         major: major,
         year: graduationYear,
         purpose: purpose,
@@ -286,7 +312,8 @@ const ApplicationPage = (props) => {
             <div className="field-set-app">
               <label>Email Address <span className="asterix-signup">*</span></label>
               <input className="sign-up-detail" 
-                    type="Email"
+                    type="email"
+                    id="email-input"
                     name="app-email" 
                     value={email}
                     onChange={handleChange}>
@@ -297,6 +324,7 @@ const ApplicationPage = (props) => {
               <label>Phone Number</label>
               <input className="sign-up-detail" 
                     type="tel"
+                    id="phone-input"
                     name="phone-number" 
                     value={phoneNumber}
                     onChange={handleChange}>
@@ -415,8 +443,7 @@ const ApplicationPage = (props) => {
               className={"apply-button"}
               active={"apply-button-active"}
               isLoading={isLoading}
-              //onClick={submitApplication}
-              onClick={() =>setIsSubmitted(true)}
+              onClick={submitApplication}
         />
       </div>
       <div className="app-page-footer" />
