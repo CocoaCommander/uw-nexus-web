@@ -100,8 +100,6 @@
   word-wrap: break-word;
 }
 
-span { word-wrap: break-word; }
-
 .application-summary-table th {
   padding: 1rem 2rem;
   border-bottom: 1px solid #ddd;
@@ -124,13 +122,17 @@ span { word-wrap: break-word; }
   background-size: cover;
 }
 
-@media only screen and (min-width: 700px) {
+@media only screen and (max-width: 700px) {
   .application-summary-table td {
     padding: 0.5rem 1rem;
     font-size: small;
   }
 
-  app-page-footer {
+  .application-summary-table th {
+    vertical-align: top;
+  }
+
+  .app-page-footer {
     height: 30rem;
     overflow: visible;
   }

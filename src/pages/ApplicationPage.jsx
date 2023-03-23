@@ -167,6 +167,7 @@ const ApplicationPage = (props) => {
     proj_name: params.projectName,
     position: params.projectRole,
     proj_email: location.state.email,
+    app_email: email,
     major: major,
     year: graduationYear,
     purpose: purpose,
@@ -202,7 +203,6 @@ const ApplicationPage = (props) => {
         to_name: fullName,
         proj_name: params.projectName,
         position: params.projectRole,
-        proj_email: location.state.email,
         major: major,
         year: graduationYear,
         purpose: purpose,
@@ -415,8 +415,8 @@ const ApplicationPage = (props) => {
               className={"apply-button"}
               active={"apply-button-active"}
               isLoading={isLoading}
-              onClick={submitApplication}
-              // onClick={() =>setIsSubmitted(true)}
+              //onClick={submitApplication}
+              onClick={() =>setIsSubmitted(true)}
         />
       </div>
       <div className="app-page-footer" />

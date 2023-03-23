@@ -10,7 +10,7 @@ const ConfirmationPage = (props) => {
     to_name,
     proj_name,
     position,
-    proj_email,
+    app_email,
     major,
     year,
     purpose,
@@ -53,8 +53,8 @@ const ConfirmationPage = (props) => {
                 <td><span>{position}</span></td>
               </tr>
               <tr>
-                <th>Project Email</th>
-                <td><span>{proj_email}</span></td>
+                <th>Email</th>
+                <td><span>{app_email}</span></td>
               </tr>
               <tr>
                 <th>Major</th>
