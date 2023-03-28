@@ -20,12 +20,6 @@ const ProjectListItem = ({
 
     console.log(project.owner_email);
 
-    const handleProjectApply = (projName, role) => {
-      navigate('/apply', {
-        projName: projName,
-        role: role
-      });
-    }
 
 
     switch(project.size) {
@@ -41,9 +35,17 @@ const ProjectListItem = ({
     }
     const roleElements = project.roles.map((role, i) => {
 
+      const handleApplyButton = (e) => {
+        if (role.isFilled) {
+          e.preventDefault();
+        }
+      }
+
         const RoleSkillElements = () => {
           const [isExpanded, setExpanded] = useState(false);
           const skillRef = useRef(null);
+
+
 
           const renderedSkills = role.skill.map((skill, i) => {
             return (
@@ -71,8 +73,11 @@ const ProjectListItem = ({
                 <div className='skills-wrapper'>
                   <RoleSkillElements/>
                 </div>
-                <Link className="proj-apply-link" to={`/apply/${project.title}/${role.title}`} state={{email: project.owner_email}}>
-                  <button className='proj-apply-button'>Apply</button>
+                <Link className="proj-apply-link" 
+                      to={`/apply/${project.title}/${role.title}`} 
+                      state={{email: project.owner_email}}
+                      onClick={handleApplyButton}>
+                  <button className={role.isFilled ? 'proj-apply-button-disabled' : 'proj-apply-button'}>Apply</button>
                 </Link>
 
             </div>
