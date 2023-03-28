@@ -19,6 +19,7 @@ import SignUpStart from './pages/SignUpStart';
 import ForgotPassword from './pages/ForgotPassword';
 import ChangePassword from './pages/ChangePassword';
 import WelcomePage from './pages/WelcomePage';
+import EditProject from './pages/EditProject';
 import Cookies from 'universal-cookie';
 import { setLoggedIn, setUserID } from './redux/userState/userStateActions';
 import ApplicationPage from './pages/ApplicationPage';
@@ -157,6 +158,7 @@ const App = () => {
           <Route path='/projects/:projectId' element={<ProjectListDetail />} />
           <Route path='/createProject' element={<CreateProject isMobile={isMobile}/>} />
           <Route path='/finishProject' element={<ProjectFinish email={userProfile.email}/>}/>
+          <Route path='/editProject/:projectId' element={<EditProject userProfile={userProfile}/>}/>
           <Route path='/reviewProject' element={<ProjectReview/>} email={userProfile.email}/>
           <Route path='/signUp' element={<CreateUser onLogin={handleFirstLogin}/>}/>
           <Route path='/forgotPassword' element={<ForgotPassword />} />

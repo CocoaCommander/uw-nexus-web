@@ -180,6 +180,7 @@ const ApplicationPage = (props) => {
     }
 
     const email_params = {
+        projectId: location.state.projectId,
         to_name: fullName,
         proj_name: params.projectName,
         position: params.projectRole,

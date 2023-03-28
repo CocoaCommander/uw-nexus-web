@@ -26,11 +26,13 @@ const ProjectListDetail = () => {
         return <p>Loading...</p>
     }
 
-    console.log( "this is the project:", project);
-
     const projectInterests = project.interests ? project.interests.map(interest => <p className="proj-item-interest">{interest}</p>) : ""
 
-    const projectRoles = project.roles ? project.roles.map(role => <ProjectListDetailRole role={role} duration={project.duration ? project.duration.length : ""} projDetails={{projectTitle: project.title, owner_email: project.owner_email}}/>) : [];
+    const projectRoles = project.roles ? project.roles.map(role => 
+    <ProjectListDetailRole 
+        role={role} 
+        duration={project.duration ? project.duration.length : ""} 
+        projDetails={{projectId: project._id, projectTitle: project.title, owner_email: project.owner_email}}/>) : [];
 
     return (
         <div className="project-list-detail-page">

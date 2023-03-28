@@ -1,0 +1,41 @@
+.mark-button {
+    display: inline-flex;
+    width: 130px;
+    height: 30px;
+    background-color: white;
+    border: #F05A28 1px solid;
+    padding: 5px;
+    color: #F05A28;
+    border-radius: 3px;
+    font-weight: 600;
+    font-size: 14px;
+    border-width: 2.5px;
+    align-items: center;
+    justify-content: center;
+}
+
+.mark-button:hover {
+    background-color: #F05A28;
+    color: white;
+}
+
+.save-changes-btn {
+    height: 40px;
+    width: 200px;
+    font-size: large;
+    border: solid 2px #f05a28;
+    background-color: white;
+    color: #f05a28;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+    margin-top: 10vh;
+}
+
+.save-changes-btn:hover {
+    background-color: #f05a28;
+    color: white;
+    font-weight: bold;
+  }
