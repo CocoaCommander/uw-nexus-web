@@ -231,11 +231,7 @@
   }
 
   .user-summary {
-    padding-bottom: 3rem;
-    flex-direction: column;
     gap: 2rem;
-    align-items: center;
-    text-align: center;
   }
 
   .bio-container > .bio-header,
@@ -244,8 +240,8 @@
   }
 
   .user-summary>img {
-    width: 20vw;
-    height: 20vw;
+    width: 25vw;
+    height: 25vw;
   }
 
   .summary-flexbox>p:not(:first-child) {

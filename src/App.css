@@ -323,6 +323,11 @@ main {
   margin-bottom: 30px;
 }
 
+.project-list-item-interests > p:first-child,
+.role-title {
+  font-size: 12px;
+}
+
 .project-list-item-container,
 .filter-container,
 .project-list-detail-page {
@@ -366,11 +371,12 @@ main {
 }
 
 .project-list-item-stats {
+  margin-top: 10px;
   display: flex;
 }
 
 .project-list-item-header h3 {
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .stat-item {
@@ -551,6 +557,10 @@ main {
     .home-card-container > .people-img:nth-of-type(2) {
       margin-left: 5vw;
     }
+    
+    .project-list-item-stats {
+      margin-top: 0;
+    }
 
     .create-project-button {
       display: block;
@@ -561,6 +571,11 @@ main {
       font-weight: 600;
       border-radius: 5px;
       border: none;
+    }
+
+    .project-list-item-interests > p:first-child,
+    .role-title {
+      font-size: 16px;
     }
 
     .create-project-btn-project-search-container {
@@ -614,6 +629,10 @@ main {
 
     .divider-image {
       height: 30rem;
+    }
+
+    .project-list-item-header h3 {
+      font-size: 24px;
     }
 
     .people-img {

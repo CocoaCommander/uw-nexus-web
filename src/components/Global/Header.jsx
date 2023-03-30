@@ -8,8 +8,7 @@ import Cookies from "universal-cookie";
 import { useEffect, useState, useRef } from 'react';
 import ProfileModal from './ProfileModal.jsx';
 import CreateProjectHeader from "./CreateProjectHeader.jsx";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import menuIcon from '../../assets/menu-icon.png';
 
 const LoginButton = ({
     isMobile
@@ -130,8 +129,8 @@ const Header = ({
         else {
             return (
                 <>
-                    <Menu width={250} customBurgerIcon={<FontAwesomeIcon icon={faBars} />} customCrossIcon={false} isOpen={isMobileMenuOpen} onOpen={handleMobileMenu} onClose={handleMobileMenu}>
-                        <FontAwesomeIcon className="menu-icon" icon={faBars} />
+                    <Menu width={250} customBurgerIcon={<img src={menuIcon} />} customCrossIcon={false} isOpen={isMobileMenuOpen} onOpen={handleMobileMenu} onClose={handleMobileMenu}>
+                        <img className="menu-icon" src={menuIcon} />
                         <div className="side-menu-container">
                             <Link className={location === '/projects' ? 'side-menu-option-active' : 'side-menu-option'} to={"/projects"} onClick={closeMobileMenu}>Discover Projects</Link>
                             {isLoggedIn && <Link className={location === '/profile' ? 'side-menu-option-active' : 'side-menu-option'} to='/profile' onClick={closeMobileMenu}>My Profile</Link>}
