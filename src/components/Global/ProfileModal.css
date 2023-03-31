@@ -16,6 +16,12 @@
     margin-top: 10px;
 }
 
+.user-pic {
+    width: 10vw;
+    height: 10vw;
+    border-radius: 50%;
+}
+
 .user-name {
     font-size: 18px;
     font-weight: 700;

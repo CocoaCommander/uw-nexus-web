@@ -1,6 +1,6 @@
 import './ProfileModal.css';
 import { Link, useNavigate } from 'react-router-dom';
-import userPic from '../../assets/userpic.png';
+import DefaultPic from '../../assets/userpic.png';
 import Modal from 'react-bootstrap/Modal';
 import { useSelector, useDispatch } from 'react-redux';
 import { setLoggedIn } from "../../redux/userState/userStateActions";
@@ -10,7 +10,7 @@ const ProfileModal = (props) => {
     const { userProfile, menuRef, menuCallback } = props;
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
+    const userProfilePic = userProfile.user_image;
     const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
     const SIGN_OUT = `/api/auth/signOut`;
 
@@ -37,7 +37,7 @@ const ProfileModal = (props) => {
     return (
         <Modal.Dialog className="entire-modal" ref={menuRef}>
             <Modal.Header>
-                <img className="user-pic" src={userPic} />
+                <img className="user-pic" src={userProfilePic ? userProfilePic : DefaultPic} />
             </Modal.Header>
 
             <Modal.Body className="user-info">
