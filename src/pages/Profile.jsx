@@ -50,40 +50,10 @@ const Profile = (props) => {
         fetchData();
     }, [userProfile]);
 
-    const setData = (data, resumeData) => {
-      let newData = {
-        user_image: userPic, // Replace with image endpoint
-        first_name: data.first_name,
-        last_name: data.last_name,
-        education: {
-          campus: data.education.campus,
-          year: data.education.year,
-          major: data.education.major,
-          interests: data.interests,
-          skills: data.skills,
-          bio: data.bio,
-          resume_file_id: resumeData.pdf,
-          private: data.private,
-        },
-        profile_id: data._id,
-      }
-      userCallback(newData);
-    }
-
     let profileLayout = <ProfileGrid userInfo={userProfile} editCallback={setIsEditing} resume={resume} hasResume={hasResume}/>;
     if (isEditing) {
         profileLayout = <EditProfile userInfo={userProfile} editCallback={setIsEditing} resume={resume} hasResume={hasResume}/>;
     }
-
-      // if (isLoading) {
-      //   console.log("LOADING");
-      //   return (
-      //   <div className="loading-screen">
-      //     <TailSpin color="#f05a28" height={100} width={100} ariaLabel="Loading"></TailSpin>
-      //   </div>
-
-      //   )
-      // }
 
     return (
         <div>

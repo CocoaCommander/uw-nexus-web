@@ -1,26 +1,24 @@
 import './EditProfile.css';
 import Modal from 'react-bootstrap/Modal';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faX } from '@fortawesome/free-solid-svg-icons';
 import userPic from '../../assets/userpic.png';
 
 const EditPictureModal = (props) => {
-    const { newUserImage, showPicModal, picModalCallback, userImageCallback } = props;
+    const { newUserImage, showPicModal, picModalCallback, userImageCallback, deleteImageCallback } = props;
+    const [errMessage, setErrMessage] = useState("");
     const picRef = useRef();
 
     const handleReader = (e) => {
         const reader = new FileReader();
         const file = e.target.files[0];
 
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-            // console.log('Successfully uploaded! Result: ', reader.result);
-            userImageCallback(reader.result);
-        };
-        reader.onerror = (error) => {
-            console.log('Error: ', error);
-        };
+        if (file.type == 'image/jpeg' || file.type == 'image/jpg' || file.type == 'image/png') {
+            userImageCallback(file);
+        } else {  // invalid file type
+            setErrMessage("Invalid image format. Supported types: jpg, jpeg, png");
+        }
     }
 
     return (
@@ -33,8 +31,10 @@ const EditPictureModal = (props) => {
             <Modal.Body className="pic-modal-contents">
                 <input className="hidden-input" type="file" accept="image/*" onChange={handleReader} ref={picRef} />
                 <p className='loading-button' onClick={() => picRef.current.click()}>Choose from library</p>
-                <p className='loading-button' onClick={() => userImageCallback(userPic)}>Remove photo</p>
+                <p className='loading-button' onClick={deleteImageCallback}>Remove photo</p>
             </Modal.Body>
+
+            <p className='error-msg'>{errMessage}</p>
         </Modal>
     );
 }

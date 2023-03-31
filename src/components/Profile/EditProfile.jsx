@@ -9,6 +9,7 @@ const EditProfile = (props) => {
     const { userInfo, editCallback } = props;
     const [showPicModal, setShowPicModal] = useState(false);
     const [newUserImage, setNewUserImage] = useState(userInfo.user_image);
+    const [newImageFile, setNewImageFile] = useState();
     const [newFirstName, setNewFirstName] = useState(userInfo.first_name);
     const [newLastName, setNewLastName] = useState(userInfo.last_name);
     const [newClassStanding, setNewClassStanding] = useState(userInfo.education.year);
@@ -20,7 +21,6 @@ const EditProfile = (props) => {
     const [newInterests, setNewInterests] = useState(userInfo.education.interests);
     const [isInterestAddIconClicked, setInterestAddIconClicked] = useState(false);
 
-    console.log(userInfo.user_image);
 
     // General Information
     const userImage = userInfo.user_image;
@@ -87,7 +87,7 @@ const EditProfile = (props) => {
         event.preventDefault();
 
         // General Information
-        userInfo.userImage = newUserImage.length === 0 ? userInfo.userImage : newUserImage;
+        userInfo.user_image = newUserImage.length === 0 ? userInfo.userImage : newUserImage;
         userInfo.first_name = newFirstName.length === 0 ? userInfo.first_name : newFirstName;
         userInfo.last_name = newLastName.length === 0 ? userInfo.last_name : newLastName;
         userInfo.education.year = newClassStanding.length === 0 ? userInfo.education.year : newClassStanding;
@@ -98,18 +98,15 @@ const EditProfile = (props) => {
         userInfo.education.bio = newBio === undefined || newBio.length === 0 ? oldBio : newBio;
 
         updateProfile(userInfo);
+        uploadNewImage(newImageFile);
 
         editCallback(false);
     }
 
     const updateProfile = async (userInfo) => {
-        console.log("RUNNING UPDATE PROFILE ENDPOINT!!");
-        console.log(userInfo.profile_id);
         const url = `/api/profile/update/${userInfo.profile_id}`;
 
         let profileBody = new FormData();
-
-        console.log(userInfo.first_name);
 
         profileBody.append("first_name", userInfo.first_name);
         profileBody.append("last_name", userInfo.last_name);
@@ -129,12 +126,54 @@ const EditProfile = (props) => {
         }
 
         const response = await fetch(url, options);
-        console.log(response);
 
 
         //profileBody.append("file", resume);
 
-        const resp = await fetch(url, options)
+        //const resp = await fetch(url, options)
+    }
+
+    const updateUserImage = (file) => {
+        setNewImageFile(file);
+        const reader = new FileReader();
+
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            setNewUserImage(reader.result)
+        };
+        reader.onerror = (error) => {
+            console.log('Error: ', error);
+        };
+    }
+
+    const uploadNewImage = async(newImage) => {
+        const user_id = window.localStorage.getItem("nxs-id");
+        const url = `/api/profile/photo/${user_id}`;
+
+        const imageBody = new FormData();
+        imageBody.append('file', newImage);
+
+        const options = {
+            method: 'POST',
+            body: imageBody,
+            credentials: 'include',
+
+        }
+
+        const response = await fetch(url, options);
+    }
+
+    const deleteUserImage = async() => {
+        const user_id = window.localStorage.getItem("nxs-id");
+        const url = `/api/profile/photo/${user_id}`;
+
+        const options = {
+            method: 'DELETE',
+            credentials: 'include',
+        }
+
+        const response = await fetch(url, options);
+        setNewUserImage(userPic);
     }
 
     const convertBase64ToPDF = () => {
@@ -156,7 +195,7 @@ const EditProfile = (props) => {
 
     return (
         <div className="edit-profile-container">
-            <EditPictureModal newUserImage={newUserImage} showPicModal={showPicModal} picModalCallback={setShowPicModal} userImageCallback={setNewUserImage} />
+            <EditPictureModal newUserImage={newUserImage} showPicModal={showPicModal} picModalCallback={setShowPicModal} userImageCallback={updateUserImage} deleteImageCallback={deleteUserImage}/>
             {/* {addSkillsModal} */}
             {/* {addInterestsModal} */}
             <div className="finalize-edits-container">
