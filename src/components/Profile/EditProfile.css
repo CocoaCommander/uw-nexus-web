@@ -77,6 +77,10 @@ body {
   border-radius: 5px;
 }
 
+.form-input::placeholder {
+  color: black;
+}
+
 .header-container {
   display: flex;
   justify-content: space-between;
