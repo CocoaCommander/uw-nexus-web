@@ -12,9 +12,10 @@
 }
 
 .iterations-logo-header {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     margin-left: 5vw;
+    margin-top: 2vh;
 }
 
 .step-counter {
@@ -130,6 +131,10 @@ Note: Beware of modifying this element as it can break the animations - you shou
     color: grey;
 }
 
+.projects-button, .profile-button {
+    font-size: 12px;
+}
+
 .profile-button:hover,
 .profile-button-active:hover {
     cursor: pointer;
@@ -155,15 +160,17 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 .login-button-header {
     padding: 0.25rem 1rem;
-    margin-top: 10px;
     cursor: pointer;
-    width: 199px;
-    height: 54px;
+    width: 125px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 14px;
 }
 
 .create-project-header {
     display: block;
     margin-top: 50vh;
+    padding: 0.5rem 1rem;
 }
 
 .create-project-header-container {
@@ -174,6 +181,32 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 .create-project-header-container p {
     color: white;
+}
+
+.mh-home {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    position: relative;
+    z-index: 10;
+    background-color: #F6F6F8;
+    margin-bottom: 7vh;
+}
+
+.mh-home-logo {
+    max-height: 10vh;
+    max-width: 20vw;
+    margin-left: 5vw;
+}
+
+.mh-home-items {
+    display: flex;
+    flex: 0.9;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 5%;
 }
 
 /* desktop view */
@@ -199,6 +232,11 @@ Note: Beware of modifying this element as it can break the animations - you shou
         margin-left: auto;
         margin-right: 5%;
     }
+
+    .profile-button {
+        font-size: 16px;
+    }
+
 
     .login-button-header {
         margin-top: 0;

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import emailjs from "emailjs-com";
 
 const ForgotPasswordBody = (props) => {
-    const { forgotPasswordDetails, buttonCallback } = props;
+    const { forgotPasswordDetails, buttonCallback, handleError } = props;
     const {
         currEmail,
         setCurrEmail,
@@ -20,16 +20,17 @@ const ForgotPasswordBody = (props) => {
         inputPlaceholder,
         inputPlaceholderTwo, // for password confirmation
         errorMessage,
-        buttonText
+        buttonText,
+        token
     } = forgotPasswordDetails;
     const isEmail = formType === 'email';
-    const [error, setError] = useState(false);
+    const [error, setError] = useState("");
 
     const handleEmailClick = () => {
         if (currEmail.length === 0) {
-            setError(true);
+            handleError('No users found');
         } else {
-            setError(false);
+            handleError('');
             buttonCallback(true);
             sendEmail(); // sending password reset link to email should be here
         }
@@ -37,44 +38,64 @@ const ForgotPasswordBody = (props) => {
 
     const handlePasswordClick = () => {
         if (currPassOne !== currPassTwo || currPassOne.length === 0) {
-            setError(true);
+            handleError('Passwords do not match.');
         } else {
-            setError(false);
-            buttonCallback(true);
+            handleError("");
+            resetPassword();
         }
     };
 
-    const verifyEmail = () => {
+    const verifyEmail = async() => {
         // verifies the email entered is an existing account
-        // returns user name
+        // returns user nam
+
+
     }
 
-    const getResetLink = () => {
-        // returns link to password change page
+    const resetPassword = async() => {
+        const url = `/api/auth/resetPassword?token=${token}`;
+
+        const body = {
+            new_password: currPassOne
+        }
+
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
+        };
+
+        const response = await fetch(url, requestOptions);
+
+        if (response.status == 400 || response.status == 500) {
+            const res = await response.json();
+            handleError(res.message);
+        } else {
+            buttonCallback(true);
+        }
+
+
     }
 
 
     const sendEmail = async () => {
 
-        const url = "/api/emailServices/resetPassword";
+        const url = "/api/auth/resetPassword";
 
-        const email_params = {
-            to_name: "Person X", // get from api call that checks if user exists in db
-            to_email: currEmail,
-            reset_link: "<linktoreset>" // get from link generating api
+        const body = {
+            email: currEmail
         }
-    
-        const reqOptions = {
+
+        const requestOptions = {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(email_params),
-            credentials: 'include'
-        }
-    
-        const response = await fetch(url, reqOptions);
-        if (response.status == 200) {
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
+        };
+
+        const response = await fetch(url, requestOptions);
+
+
+        if (response.status != 500) {
             buttonCallback(true);
         } else {
             console.log("error sending email");
@@ -98,7 +119,7 @@ const ForgotPasswordBody = (props) => {
                     </div>
                 }
             </form>
-            {error ? <p className='forgot-password-error'>{errorMessage}</p> : null}
+            {errorMessage ? <p className='forgot-password-error'>{errorMessage}</p> : null}
             {buttonText === 'Continue' ?
                 <Link className='forgot-password-button' to='/login'>{buttonText}</Link> :
                 <button className='forgot-password-button' onClick={isEmail ? handleEmailClick : handlePasswordClick}>{buttonText}</button>

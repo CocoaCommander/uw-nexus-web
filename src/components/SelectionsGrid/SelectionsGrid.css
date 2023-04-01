@@ -10,24 +10,25 @@
 .selection {
   display: flex;
   flex-direction: row;
-  flex: 40% 0 0;
-  height: 50px;
+  flex: 45% 0 0;
+  height: 45px;
   border: solid 1px #757575;
   color: #757575;
   flex-wrap: nowrap;
 }
 
 .selection-text {
-  margin-top: auto;
-  margin-bottom: auto;
-  margin-left: 5%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  color: #757575;
 }
 
 .selected {
   display: flex;
   flex-direction: row;
-  flex: 40% 0 0;
-  height: 50px;
+  flex: 45% 0 0;
+  height: 45px;
   border: solid 0px;
   color: #757575;
   flex-wrap: nowrap;
@@ -97,6 +98,11 @@
 
   .grid {
     padding: 3%;
+  }
+
+  .selection-text {
+    margin-left: 5%;
+    margin-right: none;
   }
 
 }

@@ -14,3 +14,9 @@
   width: 20px;
   color: rgb(128, 128, 128);
 }
+
+@media (max-width: 768px) {
+  .search-container {
+    margin-left: 0;
+  }
+}

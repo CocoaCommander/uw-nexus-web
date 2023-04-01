@@ -7,6 +7,7 @@ const ForgotPassword = () => {
   const [isButtonClicked, setButtonClicked] = useState(false);
   const rootDOM = document.getElementById('root');
   const headerDesktopDOM = document.getElementsByClassName('header-desktop')[0];
+  const [errorMsg, setErrorMsg] = useState("");
   
   if (isButtonClicked) {
     rootDOM.style.backdropFilter = 'brightness(40%)';
@@ -24,13 +25,18 @@ const ForgotPassword = () => {
     formType: 'email',
     formLabel: 'Enter your email here:',
     inputPlaceholder: 'Email Address',
-    errorMessage: 'No users found.',
+    errorMessage: errorMsg,
     buttonText: 'Send'
   };
 
+  const handleError = (errorMsg) => {
+    console.log("hi");
+    setErrorMsg(errorMsg);
+}
+
   return (
     <div>
-      <ForgotPasswordBody forgotPasswordDetails={forgotPasswordDetails} buttonCallback={setButtonClicked} />
+      <ForgotPasswordBody forgotPasswordDetails={forgotPasswordDetails} buttonCallback={setButtonClicked} handleError={handleError}/>
       <SentEmailModal isButtonClicked={isButtonClicked} buttonCallback={setButtonClicked} />
     </div>
   );

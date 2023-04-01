@@ -48,12 +48,16 @@
   border-radius: 5px;
   margin-top: 2%;
   box-sizing: border-box;
+  background-color: white;
+  color: black;
 }
-
-
 
 option {
   font-size: 14px;
+}
+
+option:disabled {
+  color: #757575;
 }
 
 .text-area-style {

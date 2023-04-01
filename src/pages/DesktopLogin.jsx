@@ -85,7 +85,7 @@ const DesktopLogin = (props) => {
       <div className="right-pane">
         <div className="right-pane-center">
           <div className="right-pane-sign-in">
-            <p className="sign-in">SIGN IN</p>
+            <p className="sign-in">Sign In</p>
             <form className="desktop-form">
               <div className="form-field">
                 <input className="email-textbox"
@@ -111,7 +111,11 @@ const DesktopLogin = (props) => {
 
           </button> */}
 
-          <LoadingButton title="Login" isLoading={isLoading} onClick={(e) => handleSignIn(e)}></LoadingButton>
+          <LoadingButton
+           title="Login"
+           isLoading={isLoading} 
+           onClick={(e) => handleSignIn(e)}
+           />
 
         </div>
         <div className="or-separator">
