@@ -2,7 +2,6 @@ const ProjectListDetailRoleSkills = ({
     skills
 }) => {
 
-    console.log(skills);
     return (
         <div>
             <p className="project-list-skills-text">Skills</p>

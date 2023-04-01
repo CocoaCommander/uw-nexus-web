@@ -4,13 +4,17 @@ import man from "../assets/human-man.png";
 import woman from "../assets/human-woman.png";
 import LoadingButton from "../components/LoadingButton/LoadingButton";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
+import { isValidEmail, isValidPhoneNumber } from "../logic/inputValidation";
+import ApplicationConfirmationPage from '../components/ApplicationConfirmation/ApplicationConfirmationPage'
 
 const ApplicationPage = (props) => {
+  
+  const { userProfile } = props
 
-  const [fullName, setFullName] = useState("");
-  const [major, setMajor] = useState("");
+  const [fullName, setFullName] = useState(`${userProfile.first_name} ${userProfile.last_name}`);
+  const [major, setMajor] = useState(userProfile.education.major);
   const [graduationYear, setGraduationYear] = useState("2022");
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(userProfile.email);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [referral, setReferral] = useState("");
   const [purpose, setPurpose] = useState("");
@@ -18,10 +22,10 @@ const ApplicationPage = (props) => {
   const [relevantExperience, setRelevantExperience] = useState("");
   const [relevantClasses, setRelevantClasses] = useState("");
   const [willMeet, setWillMeet] = useState(false);
-  const [resume, setResume] = useState(null);
+  const [resume, setResume] = useState(userProfile.resume_file_id);
   const [coverLetter, setCoverLetter] = useState(null);
   const [extraQuestions, setExtraQuestions] = useState("");
-
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
@@ -137,9 +141,16 @@ const ApplicationPage = (props) => {
   }
 
   const validateSubmission = () => {
-    console.log(`grad = ${graduationYear}`);
-    return (graduationYear && email && referral && purpose && hoursDedicated && relevantExperience && 
-            relevantClasses && resume);
+    return (
+      graduationYear && 
+      email && 
+      referral && 
+      purpose && 
+      hoursDedicated && 
+      relevantExperience && 
+      relevantClasses && 
+      resume
+    );
   }
 
   const convertBase64 = (file) => {
@@ -159,13 +170,47 @@ const ApplicationPage = (props) => {
     });
   }
 
+  const applicationSummary = (isSubmitted)? {
+    to_name: fullName,
+    proj_name: params.projectName,
+    position: params.projectRole,
+    proj_email: location.state.email,
+    app_email: email,
+    major: major,
+    year: graduationYear,
+    purpose: purpose,
+    experience: relevantExperience,
+    hours: hoursDedicated,
+    relevantClasses: relevantClasses,
+    willMeet: willMeet ? "Yes" : "No",
+    extraQuestions: extraQuestions
+  }: null;
+
+
   // fill out when backend implements functionality
   const submitApplication = async(e) => {
     e.preventDefault();
     setIsLoading(true);
+    setErrorMsg("")
 
     if (!validateSubmission()) {
       setErrorMsg("Please fill all required fields.");
+      setIsLoading(false);
+      return;
+    }
+
+    const phoneIsValid = isValidPhoneNumber(phoneNumber) || phoneNumber === ""
+    const emailIsValid = document.getElementById("email-input").validity.valid;
+    console.log('email: ', emailIsValid, 'phone: ', phoneIsValid)
+
+    if (!emailIsValid) {
+      setErrorMsg("Invalid Email Address");
+      setIsLoading(false);
+      return;
+    }  
+
+    if (!phoneIsValid) {
+      setErrorMsg("Invalid Phone Number.");
       setIsLoading(false);
       return;
     }
@@ -180,6 +225,7 @@ const ApplicationPage = (props) => {
     }
 
     const email_params = {
+        projectId: location.state.projectId,
         to_name: fullName,
         proj_name: params.projectName,
         position: params.projectRole,
@@ -208,17 +254,24 @@ const ApplicationPage = (props) => {
 
 
       const response = await fetch(url, reqOptions);
+
       
       if (response.status == 200) {
           setErrorMsg("");
-          navigate("/projects");
+          // navigate("/projects");
+          setIsSubmitted(true)
       } else {
         setErrorMsg("There was an error submitting your application. Please try again later");
       }
   }
 
-  return (
+  
+   
 
+  
+  return (isSubmitted)? 
+  <ApplicationConfirmationPage summary={applicationSummary}/> :
+  (
     <div>
       <div className="center-pane-app">
         <p className="app-form-title">Application Form</p>
@@ -260,7 +313,8 @@ const ApplicationPage = (props) => {
             <div className="field-set-app">
               <label>Email Address <span className="asterix-signup">*</span></label>
               <input className="sign-up-detail" 
-                    type="Email"
+                    type="email"
+                    id="email-input"
                     name="app-email" 
                     value={email}
                     onChange={handleChange}>
@@ -271,6 +325,7 @@ const ApplicationPage = (props) => {
               <label>Phone Number</label>
               <input className="sign-up-detail" 
                     type="tel"
+                    id="phone-input"
                     name="phone-number" 
                     value={phoneNumber}
                     onChange={handleChange}>
@@ -392,7 +447,6 @@ const ApplicationPage = (props) => {
               onClick={submitApplication}
         />
       </div>
-
       <div className="app-page-footer" />
 
     </div>

@@ -1,5 +1,5 @@
 import './ProfileGrid.css';
-import userPic from '../../assets/userpic.png';
+import DefaultPic from '../../assets/userpic.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faFile } from '@fortawesome/free-solid-svg-icons';
 import { TailSpin } from "react-loader-spinner";
@@ -10,6 +10,7 @@ const ProfileGrid = (props) => {
 
     // First container
     const fullName = userInfo.first_name + ' ' + userInfo.last_name;
+    const userProfilePic = userInfo.user_image;
     const email = userInfo.email; // this is static static for now
     const campus = userInfo.education.campus;
     const classStanding = userInfo.education.year;
@@ -59,7 +60,7 @@ const ProfileGrid = (props) => {
         <div className="profile-grid-container">
             <div className="grid-column">
                 <div className="user-summary">
-                    <img src={userPic} />
+                    <img src={userProfilePic ? userProfilePic : DefaultPic} />
                     <div className='bio-container'>
                         <div className="bio-header">
                             <h1 className="item-header">{fullName}</h1>

@@ -43,9 +43,9 @@ body {
 }
 
 .template-img {
-  width: 100px;
+  width: 150px;
   border: 1px black;
-  height: 100px;
+  height: 150px;
   border-radius: 50%;
   max-height: none;
 }
