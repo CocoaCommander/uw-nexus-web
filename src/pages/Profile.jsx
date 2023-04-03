@@ -28,7 +28,6 @@ const Profile = (props) => {
           credentials: 'include'
         }
 
-        console.log(isLoading);
         // const profileResponse = await fetch(url, options);
         // if (profileResponse.ok) {
           // const profileData = await profileResponse.json();
@@ -52,7 +51,7 @@ const Profile = (props) => {
 
     let profileLayout = <ProfileGrid userInfo={userProfile} editCallback={setIsEditing} resume={resume} hasResume={hasResume}/>;
     if (isEditing) {
-        profileLayout = <EditProfile userInfo={userProfile} editCallback={setIsEditing} resume={resume} hasResume={hasResume}/>;
+        profileLayout = <EditProfile userInfo={userProfile} editCallback={setIsEditing} resume={resume} hasResume={hasResume} editResumeCallback={setResume}/>;
     }
 
     return (

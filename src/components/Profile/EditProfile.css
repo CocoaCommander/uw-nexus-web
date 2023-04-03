@@ -79,6 +79,10 @@ body {
   border-radius: 5px;
 }
 
+.form-input::placeholder {
+  color: black;
+}
+
 .header-container {
   display: flex;
   justify-content: space-between;
@@ -171,6 +175,96 @@ body {
 .skills-projects-container ~ .skills-projects-container {
   margin-bottom: 5vh;
 }
+
+.elements-modal {
+  position: absolute;
+  display: flex;
+  top: 32%;
+  left: 20%;
+  right: 20%;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 2px 4px 10px rgb(0 0 0 / 25%);
+  text-align: center;
+  outline: 2px solid;
+}
+
+.elements-modal-header {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 20px;
+}
+
+.elements-container {
+  display: flex;
+  width: 90%;
+  align-self: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.element-button {
+  border: 1.75px solid #757575;
+  font-size: 14px;
+  width: 40%;
+  text-align: left;
+  padding-left: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: 5px 5px 5px 5px;
+  color: #696868;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.clicked-element {
+  background-color: #F27348;
+  border: 1.75px #F27348 solid;
+  color: white;
+}
+
+.element-text {
+  position: relative;
+  left: 0px;
+}
+
+.hidden {
+  display: none;
+}
+
+.check-circle-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+.save-elements {
+  border: 2px solid #F05A28;
+  width: 150px;
+  margin: 20px;
+  align-self: flex-end;
+  font-size: 16px;
+  color: #F05A28;
+  border-radius: 5px;
+  padding: 10px 0 10px 0;
+}
+
+.save-elements:hover {
+  background-color: #F05A28;
+  color: white;
+}
+
+.exit-elements {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+  padding-right: 10px;
+}
+
 @media (max-width: 768px) {}
 
 /* FUTURE MOBILE STUFF */
