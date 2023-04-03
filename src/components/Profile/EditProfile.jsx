@@ -1,6 +1,6 @@
 import './EditProfile.css';
 import userPic from '../../assets/userpic.png';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFile, faPlus } from '@fortawesome/free-solid-svg-icons';
 import EditPictureModal from './EditPictureModal';
@@ -8,7 +8,7 @@ import EditElementsModal from './EditElementsModal';
 import Modal from 'react-bootstrap/Modal';
 
 const EditProfile = (props) => {
-    const { userInfo, editCallback } = props;
+    const { userInfo, editCallback, editResumeCallback } = props;
     const [showPicModal, setShowPicModal] = useState(false);
     const [showElementsModal, setShowElementsModal] = useState(false);
     const [isInterestModal, setInterestModal] = useState(false);
@@ -24,7 +24,8 @@ const EditProfile = (props) => {
     const [isSkillAddIconClicked, setSkillAddIconClicked] = useState(false);
     const [newInterests, setNewInterests] = useState(userInfo.education.interests);
     const [isInterestAddIconClicked, setInterestAddIconClicked] = useState(false);
-
+    const [newResume, setNewResume] = useState();
+    const [resumeErrMsg, setResumeErrMsg] = useState('');
 
     // General Information
     const userImage = userInfo.user_image;
@@ -69,7 +70,7 @@ const EditProfile = (props) => {
 
     // Resume
     const resume = props.resume;
-    const resumeComponent = <ResumeAddIcon />;
+    const resumeComponent = <ResumeAddIcon handleResumeEdit={(e) => handleResumeEdit(e)}/>
 
     // Technical Skills
     const technicalSkills = userInfo.education.skills;
@@ -87,7 +88,7 @@ const EditProfile = (props) => {
     const interestsComponent = <CardAddIcon setIsAddIconClicked={setInterestAddIconClicked} />;
     // const addInterestsModal = <AddItemModal isAddIconClicked={isInterestAddIconClicked} />;
 
-    const handleEdit = (event) => {
+    const handleEdit = async(event) => {
         event.preventDefault();
 
         // General Information
@@ -97,12 +98,29 @@ const EditProfile = (props) => {
         userInfo.education.year = newClassStanding.length === 0 ? userInfo.education.year : newClassStanding;
         userInfo.education.major = newMajor.length === 0 ? userInfo.education.major : newMajor;
         userInfo.education.campus = newCampus.length === 0 ? userInfo.education.campus : newCampus;
+        userInfo.education.interests = newInterests.length === 0 ? userInfo.education.interests : newInterests;
+        userInfo.education.skills = newSkills.length === 0 ? userInfo.education.skills : newSkills;
 
         // Biography
         userInfo.education.bio = newBio === undefined || newBio.length === 0 ? oldBio : newBio;
 
-        updateProfile(userInfo);
-        uploadNewImage(newImageFile);
+
+
+        await updateProfile(userInfo);
+        await uploadNewImage(newImageFile);
+        if (newResume) {
+            const reader = new FileReader();
+
+            reader.readAsDataURL(newResume);
+            reader.onload = () => {
+                editResumeCallback(reader.result.substring(28));
+            };
+            reader.onerror = (error) => {
+                console.log('Error: ', error);
+            };
+
+        }
+
 
         editCallback(false);
     }
@@ -117,11 +135,14 @@ const EditProfile = (props) => {
         profileBody.append("education", JSON.stringify({
             "campus": userInfo.education.campus,
             "year": userInfo.education.year,
-            "major": userInfo.education.major
+            "major": userInfo.education.major,
         }));
-        // profileBody.append("interests", JSON.stringify(newInterests));
-        // profileBody.append("skills", JSON.stringify(newSkills));
+        profileBody.append("interests", JSON.stringify(userInfo.education.interests));
+        profileBody.append("skills", JSON.stringify(userInfo.education.skills));
         profileBody.append("bio", userInfo.education.bio);
+        if (newResume) {
+            profileBody.append("file", newResume);
+        }
 
         const options = {
             method: 'POST',
@@ -180,27 +201,55 @@ const EditProfile = (props) => {
         setNewUserImage(userPic);
     }
 
-    const convertBase64ToPDF = () => {
+    const convertBase64ToPDF = (resume) => {
         if (resume === 'No resume found') {
-            alert('You do not have a resume.');
+            alert('You do not have a resume uploaded.');
         } else {
-            var byteCharacters = window.atob(resume);
-            var byteNumbers = new Array(byteCharacters.length);
-            for (var i = 0; i < byteCharacters.length; i++) {
-                byteNumbers[i] = byteCharacters.charCodeAt(i);
+            if (newResume) {
+                window.open(URL.createObjectURL(newResume))
+            } else {
+                var byteCharacters = window.atob(resume);
+                var byteNumbers = new Array(byteCharacters.length);
+                for (var i = 0; i < byteCharacters.length; i++) {
+                    byteNumbers[i] = byteCharacters.charCodeAt(i);
+                }
+                var byteArray = new Uint8Array(byteNumbers);
+                var file = new Blob([byteArray], { type: 'application/pdf;base64' });
+                var fileURL = URL.createObjectURL(file);
+                window.open(fileURL);
             }
-            var byteArray = new Uint8Array(byteNumbers);
-            var file = new Blob([byteArray], { type: 'application/pdf;base64' });
-            var fileURL = URL.createObjectURL(file);
-            window.open(fileURL);
+
+        }
+    }
+
+    const saveElementsCallback = (isInterestsModal, newElements) => {
+        if (isInterestsModal) {
+            userInfo.education.interests = newElements;
+        } else {
+            userInfo.education.skills = newElements;
+        }
+        
+        isInterestsModal ? setNewInterests(newElements) : setNewSkills(newElements);
+
+    }
+
+    const handleResumeEdit = (e) => {
+        const file = e.target.files[0];
+        if (file.type == "application/pdf") {
+          if (file.size > 5000000) {
+            setResumeErrMsg("File is too big.");
+          }
+          setResumeErrMsg("");
+          setNewResume(file);
+        } else {
+            setResumeErrMsg("Incorrect file format. Please upload a pdf file");
         }
     }
 
     return (
         <div className="edit-profile-container">
             <EditPictureModal newUserImage={newUserImage} showPicModal={showPicModal} picModalCallback={setShowPicModal} userImageCallback={updateUserImage} deleteImageCallback={deleteUserImage}/>
-            {/* {addSkillsModal} */}
-            {/* {addInterestsModal} */}
+            <EditElementsModal showElementsModal={showElementsModal} elementsModalCallback={setShowElementsModal} projectInterests={projectInterests} technicalSkills={technicalSkills} isInterestModal={isInterestModal} saveElementsCallback={saveElementsCallback} />
             <div className="finalize-edits-container">
                 <h3 className="finalize-edits-button" onClick={() => editCallback(false)}>Cancel</h3>
                 <h3 className="finalize-edits-button" onClick={handleEdit}>Done</h3>
@@ -222,7 +271,8 @@ const EditProfile = (props) => {
                 </div>
                 <div className="edit-resume-body">
                     <FontAwesomeIcon className="resume-icon" icon={faFile} size="2xl" />
-                    {resume ? <p className="resume-link" onClick={convertBase64ToPDF}>View Resume</p> : <p className='no-resume-text'>No resume found.</p>}
+                    {resume ? <p className="resume-link" onClick={() => convertBase64ToPDF(newResume ? newResume : resume)}>View Resume</p> : <p className='no-resume-text'>No resume found.</p>}
+                    <p className='error-msg'>{resumeErrMsg}</p>
                 </div>
                 <div className="header-container">
                     <h2>Technical Skills</h2>
@@ -279,8 +329,15 @@ const Biography = (props) => {
     )
 }
 
-const ResumeAddIcon = () => {
-    return <FontAwesomeIcon className="add-icon" icon={faPlus} size="2xl" onClick={() => { alert('idk how to do this'); }} />
+const ResumeAddIcon = (props) => {
+    const buttonRef = useRef(null);
+    const handleResumeEdit = props.handleResumeEdit;
+    return (
+    <>
+        <FontAwesomeIcon className="add-icon" icon={faPlus} size="2xl" onClick={() => buttonRef.current.click()} />
+        <input ref={buttonRef} className={"file-button"} type={"file"} onChange={(e) => handleResumeEdit(e)}></input>
+    </>);
+
 }
 
 // No functionality for now
