@@ -7,12 +7,13 @@ import { setLoggedIn } from "../../redux/userState/userStateActions";
 import Cookies from "universal-cookie";
 import { useEffect, useState, useRef } from 'react';
 import ProfileModal from './ProfileModal.jsx';
-import CreateProjectHeader from "./CreateProjectHeader.jsx";
+// import CreateProjectHeader from "./CreateProjectHeader.jsx";
 import menuIcon from '../../assets/menu-icon.png';
 import dropdownIcon from '../../assets/dropdown-arrow.png';
 
 const LoginButton = ({
-    isMobile
+    isMobile,
+    closeMobileMenu
 }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -32,8 +33,9 @@ const LoginButton = ({
             dispatch(setLoggedIn(false));
             navigate('/');
         } else {
-            navigate('/login')
+            navigate('/login');
         }
+        closeMobileMenu();
     }
 
     return (
@@ -80,10 +82,16 @@ const Header = ({
     console.log(isMobileMenuOpen);
     if (isMobile) {
         const handleMobileMenu = () => {
+            if (isMobileMenuOpen) {
+                document.body.style.overflow = 'auto';
+            } else {
+                document.body.style.overflow = 'hidden';
+            }
             setMobileMenuOpen(!isMobileMenuOpen);
         };
 
         const closeMobileMenu = () => {
+            document.body.style.overflow = 'auto';
             setMobileMenuOpen(false);
         }
 
@@ -158,10 +166,10 @@ const Header = ({
                                 </div> :
                                 null
                             }
-                            <LoginButton isMobile={isMobile} />
-                            {isLoggedIn ?
+                            <LoginButton isMobile={isMobile} closeMobileMenu={closeMobileMenu} />
+                            {/* {isLoggedIn ?
                                 <CreateProjectHeader className="header-create-project" /> :
-                                null}
+                                null} */}
                         </div>
 
                     </Menu>
