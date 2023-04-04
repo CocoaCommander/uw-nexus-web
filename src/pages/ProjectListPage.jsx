@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import CreateProjectButton from "../components/ProjectListPage/CreateProjectButton";
+import CreateProjectHeader from '../components/Global/CreateProjectHeader';
 import ProjectList from "../components/ProjectListPage/ProjectList";
 import SearchBar from "../components/ProjectListPage/SearchBar/SearchBar";
 
@@ -55,6 +56,7 @@ const ProjectListPage = () => {
                     setListOfProjectData={setListOfProjectData}
                     isLoading={isLoading}
                     setIsLoading={setIsLoading} />
+                <CreateProjectHeader />
             </div>
         </div>
     );

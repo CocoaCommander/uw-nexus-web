@@ -3,10 +3,6 @@ h2 {
   text-align: start;
 }
 
-body {
-  overflow-y: scroll !important; /* i hate react bootstrap modal */
-}
-
 .edit-profile-container {
   display: flex;
   flex-direction: column;

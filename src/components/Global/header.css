@@ -131,7 +131,8 @@ Note: Beware of modifying this element as it can break the animations - you shou
     color: grey;
 }
 
-.projects-button, .profile-button {
+.projects-button,
+.profile-button {
     font-size: 12px;
 }
 
@@ -150,15 +151,15 @@ Note: Beware of modifying this element as it can break the animations - you shou
     border: solid 2px #f05a28;
     background-color: #f05a28;
     color: white;
-    border-radius: 10px;
     height: 30px;
-    width: 175px;
     font-weight: bold;
     font-size: 16px;
     padding: 1rem 1rem;
 }
 
 .login-button-header {
+    position: absolute;
+    top: 90vh;
     padding: 0.25rem 1rem;
     cursor: pointer;
     width: 125px;
@@ -168,9 +169,16 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 
 .create-project-header {
+    position: sticky;
+    right: 5vw;
+    top: 84vh;
+    height: 25px;
+    width: 25px;
     display: block;
     margin-top: 50vh;
-    padding: 0.5rem 1rem;
+    border-radius: 50%;
+    padding: 1rem 1rem;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2)
 }
 
 .create-project-header-container {
@@ -209,6 +217,42 @@ Note: Beware of modifying this element as it can break the animations - you shou
     margin-right: 5%;
 }
 
+.projects-dropdown-container:hover,
+.projects-filter-container:hover {
+    cursor: pointer;
+}
+
+.projects-dropdown-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px auto;
+}
+
+.projects-dropdown {
+    display: inline;
+}
+
+.projects-filter-container {
+    margin-bottom: 10px;
+}
+
+.projects-filter {
+    margin-left: 25px;
+    font-size: 16px;
+}
+
+/* do state later ... i guess */
+.projects-filter:hover,
+.projects-filter:checked {
+    cursor: pointer;
+    color: orange;
+}
+
+/* hide radio button */
+input.projects-filter-button[type="radio"] {
+    visibility: hidden;
+}
+
 /* desktop view */
 @media only screen and (min-width: 850px) {
     .bm-item {
@@ -238,18 +282,9 @@ Note: Beware of modifying this element as it can break the animations - you shou
     }
 
 
-    .login-button-header {
-        margin-top: 0;
-        border: solid 2px #f05a28;
-        color: white;
-        background-color: #f05a28;
-        border-radius: 10px;
-        height: 30%;
-        width: 225px;
-        font-weight: bold;
-        padding: 1rem 1rem;
-        margin-left: 10px;
-        cursor: pointer;
+    .login-button-header,
+    .create-project-header {
+        display: none;
     }
 
     .login-button-header:hover {

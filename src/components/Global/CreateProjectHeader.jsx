@@ -11,7 +11,7 @@ const CreateProjectHeader = ({
             <Link to={"/createProject"} className="create-project-header">
                 <div className="create-project-header-container">
                     <PlusIcon className=''/>
-                    <p>Create a Project</p>
+                    <p className='create-project-text'>Create a Project</p>
                 </div>
             </Link>
         </>
