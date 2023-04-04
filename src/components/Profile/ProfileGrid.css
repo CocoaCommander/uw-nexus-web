@@ -86,6 +86,12 @@
   gap: 4rem;
 }
 
+.user-summary > img {
+  width: 8vw;
+  height: 8vw;
+  border-radius: 50%;
+}
+
 .summary-flexbox {
   margin-top: 10px;
   display: flex;

@@ -71,25 +71,33 @@ const App = () => {
 
   const navigate = useNavigate();
 
-  const setData = (data, resumeData) => {
+  const setData = (profileData, profileImage) => {
     let newData = {
-      user_image: userPic, // Replace with image endpoint
-      first_name: data.first_name,
-      last_name: data.last_name,
-      email: data.email,
+      user_image: profileImage ? profileImage : userProfile.user_image, // Replace with image endpoint
+      first_name: profileData.first_name,
+      last_name: profileData.last_name,
+      email: profileData.email,
       education: {
-        campus: data.education.campus,
-        year: data.education.year,
-        major: data.education.major,
-        interests: data.interests,
-        skills: data.skills,
-        bio: data.bio,
-        resume_file_id: data.resume_file_id,
-        private: data.private,
+        campus: profileData.education.campus,
+        year: profileData.education.year,
+        major: profileData.education.major,
+        interests: profileData.interests,
+        skills: profileData.skills,
+        bio: profileData.bio,
+        resume_file_id: profileData.resume_file_id,
+        private: profileData.private,
       },
-      profile_id: data._id,
+      profile_id: profileData._id,
     }
     setUserProfile(newData);
+  }
+
+  const updateUserImage = (img) => {
+    setUserProfile(oldState => {
+      return ({
+        ...oldState, user_image: img}
+        );
+    });
   }
 
   const getUserProfile = async(email) => {
@@ -104,11 +112,41 @@ const App = () => {
       const response = await fetch(url, requestOptions);
       if (response.ok) { // profile that matches user ID found
         const profileData = await response.json();
-        setData(profileData);
+        const profileImage = await getUserProfilePicture();
+        setData(profileData, profileImage);
       } else if (response.status === 400) { // profile not yet created...
         navigate('/createProfileStart');
       }
     }
+  }
+
+  const getUserProfilePicture = async() => {
+    const user_id = window.localStorage.getItem("nxs-id");
+    if (user_id) { // user is logged in
+      const url = `/api/profile/photo/${user_id}`;
+      const requestOptions = {
+        method: 'GET',
+        credentials: 'include'
+      };
+
+      const response = await fetch(url, requestOptions);
+      if (response.ok) { // profile that matches user ID found
+        const base64img = `data:${response.headers.get("Content-Type")};base64,` + _arrayBufferToBase64(await response.arrayBuffer());
+        return base64img;
+      } else {
+        return userPic;
+      }
+    }
+  }
+
+  function _arrayBufferToBase64( buffer ) {
+    var binary = '';
+    var bytes = new Uint8Array( buffer );
+    var len = bytes.byteLength;
+    for (var i = 0; i < len; i++) {
+       binary += String.fromCharCode( bytes[ i ] );
+    }
+    return window.btoa( binary );
   }
 
   const handleFirstLogin = (email) => {
@@ -131,7 +169,7 @@ const App = () => {
     }
     window.addEventListener('resize', reactToWindowResize);
 
-    console.log("rerendering");
+
     // Check if user is signed in
     const cookie = new Cookies();
     const jwt_token = cookie.get("fr-accessToken");
@@ -139,7 +177,6 @@ const App = () => {
       dispatch(setLoggedIn(true));
       dispatch(setUserID(window.localStorage.getItem("nxs-id")));
     } else {
-      console.log("no cookie");
       dispatch(setLoggedIn(false));
     }
   });
@@ -158,7 +195,7 @@ const App = () => {
           <Route path='/projects/:projectId' element={<ProjectListDetail />} />
           <Route path='/createProject' element={<CreateProject isMobile={isMobile}/>} />
           <Route path='/finishProject' element={<ProjectFinish email={userProfile.email}/>}/>
-          <Route path='/editProject/:projectId' element={<EditProject userProfile={userProfile}/>}/>
+          {/* <Route path='/editProject/:projectId' element={<EditProject userProfile={userProfile}/>}/> */}
           <Route path='/reviewProject' element={<ProjectReview/>} email={userProfile.email}/>
           <Route path='/signUp' element={<CreateUser onLogin={handleFirstLogin}/>}/>
           <Route path='/forgotPassword' element={<ForgotPassword />} />
@@ -168,7 +205,7 @@ const App = () => {
           <Route path='/createProfileStart' element={<SignUpStart/>}/>
           <Route path='/createProfile' element={<SignUp onCreateProfile={onCreateProfile}/>}/>
           <Route path='/welcomePage' element={<WelcomePage/>}/>
-          <Route path='/apply/:projectName/:projectRole' element={<ApplicationPage/>}/>
+          <Route path='/apply/:projectName/:projectRole' element={<ApplicationPage userProfile={userProfile}/>}/>
         </Routes>
       </div>
     </>
