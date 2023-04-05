@@ -7,7 +7,6 @@ import { setLoggedIn } from "../../redux/userState/userStateActions";
 import Cookies from "universal-cookie";
 import { useEffect, useState, useRef } from 'react';
 import ProfileModal from './ProfileModal.jsx';
-// import CreateProjectHeader from "./CreateProjectHeader.jsx";
 import menuIcon from '../../assets/menu-icon.png';
 import dropdownIcon from '../../assets/dropdown-arrow.png';
 
@@ -145,13 +144,13 @@ const Header = ({
                             <Link className={location === '/projects' ? 'side-menu-option-active' : 'side-menu-option'} to={"/projects"} onClick={closeMobileMenu}>Discover Projects</Link>
                             {isLoggedIn && <Link className={location === '/profile' ? 'side-menu-option-active' : 'side-menu-option'} to='/profile' onClick={closeMobileMenu}>My Profile</Link>}
                             <div className="projects-dropdown-container" onClick={() => setProjDropdownClicked(!isProjDropdownClicked)}>
-                                <p className="projects-dropdown">Projects</p>
+                                {/* <p className="projects-dropdown">Projects</p>
                                 {isProjDropdownClicked ?
                                     <p className="projects-dropdown">&or;</p> :
                                     <p className="projects-dropdown">&#62;</p>
-                                }
+                                } */}
                             </div>
-                            {isProjDropdownClicked ?
+                            {/* {isProjDropdownClicked ?
                                 <div className="projects-filter-container">
                                     <input className="projects-filter-button" type="radio" id="all" name="project-filter" value="All" checked />
                                     <label className="projects-filter" htmlFor="all">All</label>
@@ -165,7 +164,7 @@ const Header = ({
                                     <label className="projects-filter" htmlFor="declined">Declined</label>
                                 </div> :
                                 null
-                            }
+                            } */}
                             <LoginButton isMobile={isMobile} closeMobileMenu={closeMobileMenu} />
                             {/* {isLoggedIn ?
                                 <CreateProjectHeader className="header-create-project" /> :
