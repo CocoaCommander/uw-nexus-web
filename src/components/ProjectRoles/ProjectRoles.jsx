@@ -8,7 +8,7 @@ import Select from "react-select";
 
 const ProjectRoles = ({
 
-  }) => {
+}) => {
 
   const [currentRole, setRole] = useState("");
   const [skill, setSkill] = useState("");
@@ -68,7 +68,7 @@ const ProjectRoles = ({
 
   const selectOptions = () => {
     return skills.map(skill => {
-      return {value: skill, label: skill}
+      return { value: skill, label: skill }
     })
   }
 
@@ -99,7 +99,7 @@ const ProjectRoles = ({
       setResp("");
     }
   }
-  
+
 
   const renderSkills = (skills) => {
     return skills.map((skill) => <div className="selection-proj-roles-2">
@@ -108,7 +108,7 @@ const ProjectRoles = ({
   }
 
   const renderRoleSkill = (role) => {
-    let res = role.skill.map((skill) => 
+    let res = role.skill.map((skill) =>
       <div className="selection-proj-roles">
         <p>{skill}</p>
       </div>
@@ -119,43 +119,38 @@ const ProjectRoles = ({
 
   const renderResponsibilities = (resp) => {
     const lines = resp.trim().split("\n");
-    return lines.map((line) => <p className="resp-line">{line}<br/></p>);
+    return lines.map((line) => <p className="resp-line">{line}<br /></p>);
 
   }
 
   const renderRoles = (roles) => {
     if (roles) {
-      
-      return roles.map((role) => 
-      <div className="roles-block">
-        <div className="role-name-container">
-          <label className="roles-label">Role</label>
-          <p className="role-name">{role.role}</p>
-        </div>
 
-        <div className="selections-container-cp">
-          {renderRoleSkill(role)}
-        </div>
+      return roles.map((role) =>
+        <div className="roles-block">
+          <div className="role-name-container">
+            <label className="roles-label">Role</label>
+            <p className="role-name">{role.role}</p>
+          </div>
 
-        <div className="resp-container">
-          <label className="roles-label">Responsibilities</label>
-          {renderResponsibilities(role.responsibilities)}
+          <div className="selections-container-cp">
+            {renderRoleSkill(role)}
+          </div>
+
+          <div className="resp-container">
+            <label className="roles-label">Responsibilities</label>
+            {renderResponsibilities(role.responsibilities)}
+          </div>
         </div>
-      </div>
       )
-    } 
+    }
   }
 
-  return(
+  return (
     <div className="center-pane">
       <p className="gen-info-title">Roles</p>
       <div className={"roles-input-after"}>
         <p className="project-name-header-roles">What kind of people are you looking for? <span className="asterix">*</span></p>
-        <p className="project-roles-directions">
-          After selecting a skillset/tool, press enter to add it to that role. 
-          Once a role is completed press add roles at the bottom right to add it 
-          and fill out a new one if needed.
-        </p>
 
         <div className="roles-container">
           {renderRoles(projRoles)}
@@ -163,42 +158,48 @@ const ProjectRoles = ({
 
         <div className="roles-input-container">
           <div className="field-set-cp">
-            <label className="roles-label">Roles</label>
-            <CustomTextBox value={currentRole} onChange={(e) => {setRole(e.target.value)}} className="sign-up-detail" placeholder={"Roles that you are looking for"}></CustomTextBox>
+            <label className="roles-label">Role</label>
+            <CustomTextBox value={currentRole} onChange={(e) => { setRole(e.target.value) }} className="sign-up-detail" placeholder={"Roles that you are looking for"}></CustomTextBox>
           </div>
 
           <div className="field-set-cp">
             <label className="roles-label">Skillsets / Tools</label>
-              <Select className="react-select-bar"
-                name="skillset"
-                placeholder="Qualifications of the role"
-                defaultValue={skill}
-                onChange={(e) => setSkill(e.value)}
-                options={selectOptions()}
-                styles={selectBarStyling}
-                onKeyDown={handleSkillAddition}
-                maxMenuHeight={300}>
-              </Select>
-            </div>
+            <Select className="react-select-bar"
+              name="skillset"
+              placeholder="Qualifications of the role"
+              defaultValue={skill}
+              onChange={(e) => setSkill(e.value)}
+              options={selectOptions()}
+              styles={selectBarStyling}
+              onKeyDown={handleSkillAddition}
+              maxMenuHeight={300}>
+            </Select>
+          </div>
 
-            <div className="selections-skills-container">
-              {renderSkills(currentSkills)}
-            </div>
+          <div className="selections-skills-container">
+            {renderSkills(currentSkills)}
+          </div>
 
-            <div className="resp-set">
-              <label className="roles-label">Responsibilities</label>
-              <CustomTextArea 
-                  value={resp}
-                  className="resp-text-area"
-                  placeholder={"What reponsibilities this role will uphold"}
-                  onChange={(e) => {setResp(e.target.value)}}
-                  />
-            </div>
+          <p className="project-roles-directions">
+            After selecting a skillset/tool, press enter to add it to that role.
+            Once a role is completed, press "Add Role" at the bottom right to add it
+            and fill out a new one if needed.
+          </p>
 
-            <div onClick={updateRolls} className="add-role-wrapper">
-              <span className="add-role-text">Add Role</span>
-            </div>
-        </div>  
+          <div className="resp-set">
+            <label className="roles-label">Responsibilities</label>
+            <CustomTextArea
+              value={resp}
+              className="resp-text-area"
+              placeholder={"What reponsibilities this role will uphold"}
+              onChange={(e) => { setResp(e.target.value) }}
+            />
+          </div>
+
+          <div onClick={updateRolls} className="add-role-wrapper">
+            <span className="add-role-text">Add Role</span>
+          </div>
+        </div>
       </div>
       <p className="error-msg">{errorMsg}</p>
     </div>

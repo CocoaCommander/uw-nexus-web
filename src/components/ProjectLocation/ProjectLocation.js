@@ -30,7 +30,7 @@ const ProjectLocation = ({
             <p className="project-page-subtitle">(If the location is irregular, you may enter a general location such as the University of Washington.)</p>
     
             <div className="field-set">
-                <CustomTextBox className="sign-up-detail" name="location" reducer="createProj" onChange={handleTextboxChange} placeholder={"Search Location"}></CustomTextBox>
+                <CustomTextBox className="sign-up-detail" name="location" reducer="createProj" onChange={handleTextboxChange} placeholder={"Enter a location..."}></CustomTextBox>
                 </div>
             </div>
             <p className="error-msg">{errorMsg}</p>
