@@ -220,7 +220,7 @@ h2.right-pane-seperator span {
   color: #757575;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 850px) {
   .left-pane {
     display: none;
   }
