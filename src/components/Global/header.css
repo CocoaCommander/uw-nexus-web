@@ -281,8 +281,12 @@ input.projects-filter-button[type="radio"] {
         font-size: 16px;
     }
 
+    .login-button-header {
+        position: relative;
+        top: 0;
+        width: auto;
+    }
 
-    .login-button-header,
     .create-project-header {
         display: none;
     }
