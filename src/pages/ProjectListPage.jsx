@@ -56,7 +56,7 @@ const ProjectListPage = () => {
                     setListOfProjectData={setListOfProjectData}
                     isLoading={isLoading}
                     setIsLoading={setIsLoading} />
-                <CreateProjectHeader />
+                {isLoggedIn ? <CreateProjectHeader /> : null}
             </div>
         </div>
     );
