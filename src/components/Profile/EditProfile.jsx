@@ -34,7 +34,6 @@ const EditProfile = (props) => {
     const classStanding = userInfo.education.year;
     const major = userInfo.education.major;
     const campus = userInfo.education.campus;
-    const oldBio = userInfo.education.bio; // needed for empty biography edge case
     const generalInfo = [firstName, lastName, classStanding, major, campus];
     const generalInfoArray = generalInfo.map((item, index) => {
         let header = '';
@@ -64,6 +63,10 @@ const EditProfile = (props) => {
         }
         return <GeneralInfoItem userInfoItem={item} header={header} inputName={inputName} callback={callback} key={index} />
     })
+
+    document.body.style.cssText = 'overflow: auto !important'; 
+    // might break some scrolling behavior, at the moment i experience none
+    // needed for the Modal popup
 
     // Biography
     const biography = <Biography userBio={newBio} callback={setNewBio} />;
@@ -102,7 +105,7 @@ const EditProfile = (props) => {
         userInfo.education.skills = newSkills.length === 0 ? userInfo.education.skills : newSkills;
 
         // Biography
-        userInfo.education.bio = newBio === undefined || newBio.length === 0 ? oldBio : newBio;
+        userInfo.education.bio = newBio === undefined || newBio.trim().length === 0 ? 'This user has no bio.' : newBio;
 
 
 
