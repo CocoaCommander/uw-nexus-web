@@ -1,9 +1,8 @@
-/* General Styling HOW DO I USE NORMAL CSS */
+/* General Styling */
 .edit-profile-icon {
   cursor: pointer;
 }
 
-/* "grid" lmao */
 .profile-grid-container {
   margin-top: 10px;
   display: flex;
@@ -87,8 +86,8 @@
 }
 
 .user-summary > img {
-  width: 8vw;
-  height: 8vw;
+  width: 15vw;
+  height: 15vw;
   border-radius: 50%;
 }
 
@@ -126,6 +125,10 @@
 
 .resume-body {
   display: flex;
+}
+
+.user-skills {
+  margin-bottom: 15px; /* spacing at the bottom */
 }
 
 .project-row {
@@ -167,7 +170,8 @@
   background: rgba(249, 130, 44, 0.6)
 }
 
-@media (max-width: 768px) {
+/* tablet */
+@media (max-width: 850px) {
   .profile-grid-container {
     flex-direction: column;
   }
@@ -195,6 +199,14 @@
     width: 80vw;
   }
 
+  .user-skills {
+    margin-bottom: 0; /* not the bottom anymore */
+  }
+
+  .user-project-interests {
+    margin-bottom: 15px; /* spacing at the bottom */
+  }
+
   /* Short bois */
   .project-categories-container {
     height: 300px;
@@ -204,11 +216,6 @@
     flex-direction: row;
     gap: 30px;
   }
-
-  /* .project-categories-container,
-  .user-project-interests {
-    width: 35vw;
-  } */
 
   .project-categories {
     gap: 15px;
@@ -260,7 +267,7 @@
     margin-bottom: auto;
   }
 
-  .edit-profile-icon { /* extremely hacky do not recommend */
+  .edit-profile-icon {
     position: absolute;
     top: 125px;
     right: 10vw;
