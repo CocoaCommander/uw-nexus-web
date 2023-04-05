@@ -159,7 +159,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 .login-button-header {
     position: absolute;
-    top: 90vh;
+    top: 75vh;
     padding: 0.25rem 1rem;
     cursor: pointer;
     width: 125px;
@@ -251,6 +251,13 @@ Note: Beware of modifying this element as it can break the animations - you shou
 /* hide radio button */
 input.projects-filter-button[type="radio"] {
     visibility: hidden;
+}
+
+/* tablet / smaller desktop */
+@media only screen and (min-width: 395px) {
+    .login-button-header {
+        top: 90vh;
+    }
 }
 
 /* desktop view */
