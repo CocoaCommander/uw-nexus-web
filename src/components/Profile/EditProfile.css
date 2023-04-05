@@ -1,4 +1,4 @@
-/* General Styling HOW DO I USE NORMAL CSS */
+/* General Styling */
 h2 {
   text-align: start;
 }
@@ -115,7 +115,6 @@ h2 {
   width: 72.5vw;
   left: 10%;
   margin-left: 25px;
-  /* padding: 2rem 6rem; */
   background-color: white;
   border-radius: 10px;
   box-shadow: 2px 4px 10px rgb(0 0 0 / 25%);
@@ -261,7 +260,8 @@ h2 {
   padding-right: 10px;
 }
 
+/* tablet */
 @media (max-width: 768px) {}
 
-/* FUTURE MOBILE STUFF */
+/* mobile */
 @media (max-width: 375px) {}
