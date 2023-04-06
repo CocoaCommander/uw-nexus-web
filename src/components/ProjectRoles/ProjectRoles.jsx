@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import CustomTextBox from "../CustomTextBox/CustomTextBox";
-import { addRole } from "../../redux/createProject/createProjectActions";
+import { addRole, setErrorMsg } from "../../redux/createProject/createProjectActions";
 import "./ProjectRoles.css"
 import CustomTextArea from "../CustomTextArea/CustomTextArea";
 import Select from "react-select";
@@ -73,8 +73,8 @@ const ProjectRoles = ({
   }
 
   const handleSkillAddition = (e) => {
-    console.log(e);
-    if (e.key === 'Enter' && currentSkills.length < 5 && skill.length > 0) {
+    const alreadyExists = currentSkills.findIndex(s => s == skill) != -1;
+    if (e.key === 'Enter' && currentSkills.length < 5 && skill.length > 0 && !alreadyExists) {
       setSkills(prev => {
         return [...prev, skill]
       })
@@ -84,20 +84,30 @@ const ProjectRoles = ({
 
 
   const updateRolls = () => {
-    if (currentRole.length > 0 && currentSkills.length > 0 && resp.length > 0) {
-      const newRole = {
-        title: currentRole,
-        role: currentRole,
-        skill: currentSkills,
-        responsibilities: resp,
-      }
-
-      //props.onAdd();
-      dispatch(addRole(newRole));
-      setRole("");
-      setSkills([]);
-      setResp("");
+    if (currentRole.length == 0) {
+      dispatch(setErrorMsg("Please enter the role you are looking for."));
+      return;
+    } else if (currentSkills.length == 0) {
+      dispatch(setErrorMsg("Please add a skill / tool for your role."));
+      return;
+    } else if (resp.length == 0) {
+      dispatch(setErrorMsg("Please enter the responsibilities for your role."));
+      return;
     }
+
+    const newRole = {
+      title: currentRole,
+      role: currentRole,
+      skill: currentSkills,
+      responsibilities: resp,
+    }
+
+    //props.onAdd();
+    dispatch(addRole(newRole));
+    setRole("");
+    setSkills([]);
+    setResp("");
+    dispatch(setErrorMsg(""));
   }
 
 
@@ -159,11 +169,18 @@ const ProjectRoles = ({
         <div className="roles-input-container">
           <div className="field-set-cp">
             <label className="roles-label">Role</label>
-            <CustomTextBox value={currentRole} onChange={(e) => { setRole(e.target.value) }} className="sign-up-detail" placeholder={"Roles that you are looking for"}></CustomTextBox>
+            <CustomTextBox value={currentRole} onChange={(e) => { setRole(e.target.value) }} className="sign-up-detail" placeholder={"Role that you are looking for"}></CustomTextBox>
           </div>
 
           <div className="field-set-cp">
             <label className="roles-label">Skillsets / Tools</label>
+
+            <p className="project-roles-directions">
+            After selecting a skillset/tool, press enter to add it to that role.
+            Once a role is completed, press "Add Role" at the bottom right to add it
+            and fill out a new one if needed.
+            </p>
+
             <Select className="react-select-bar"
               name="skillset"
               placeholder="Qualifications of the role"
@@ -180,12 +197,6 @@ const ProjectRoles = ({
             {renderSkills(currentSkills)}
           </div>
 
-          <p className="project-roles-directions">
-            After selecting a skillset/tool, press enter to add it to that role.
-            Once a role is completed, press "Add Role" at the bottom right to add it
-            and fill out a new one if needed.
-          </p>
-
           <div className="resp-set">
             <label className="roles-label">Responsibilities</label>
             <CustomTextArea
@@ -201,7 +212,7 @@ const ProjectRoles = ({
           </div>
         </div>
       </div>
-      <p className="error-msg">{errorMsg}</p>
+      <p className="error-msg-roles">{errorMsg}</p>
     </div>
   )
 }

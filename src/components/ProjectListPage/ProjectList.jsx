@@ -15,11 +15,15 @@ const ProjectList = ({
 
     const [page, setPage] = useState(1);
 
-    console.log(ALL_PROJECTS);
-
     useEffect(() => {
         getData(setIsLoading, ALL_PROJECTS, setListOfProjectData);
     }, [setIsLoading, ALL_PROJECTS, setListOfProjectData]);
+
+    useEffect(() => {
+        if (listOfProjectData.length != 0) {
+            setPage(1);
+        }
+    }, [listOfProjectData])
 
     if (isLoading) {
         return <p>Loading...</p>
@@ -62,7 +66,7 @@ const ProjectList = ({
         <div className="project-list">
             {
                 listOfProjectData.map((project, i) => {
-                    if (i > (PROJECTS_PER_PAGE * (page - 1)) && i <= (PROJECTS_PER_PAGE * page)) {
+                    if ((i + 1) > (PROJECTS_PER_PAGE * (page - 1)) && (i + 1) <= (PROJECTS_PER_PAGE * page)) {
                         return (
                             <ProjectListItem project={project} key={i} isLoading={isLoading} />
                         )

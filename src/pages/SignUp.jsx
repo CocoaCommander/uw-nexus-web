@@ -8,7 +8,7 @@ import InfoForm from "../components/InfoForm/InfoForm";
 import SelectionsGrid from "../components/SelectionsGrid/SelectionsGrid";
 import ResumeUpload from "../components/ResumeUpload/ResumeUpload";
 import ReviewPage from "../components/ReviewPage/ReviewPage";
-import { setCampus, setFullName, setMajor, setYear, addInterest, removeInterest, addSkill, removeSkill, setStep, setPassword, decreaseStep, increaseStep, setErrorMsg } from "../redux/signUp/signUpActions";
+import { setCampus, setFullName, setMajor, setYear, addInterest, removeInterest, addSkill, removeSkill, setStep, setPassword, decreaseStep, increaseStep, setErrorMsg, clearAll } from "../redux/signUp/signUpActions";
 import { setInterestsList, setSkillsList, setMajorsList } from "../redux/serverContent/serverContentActions";
 import Cookies from 'universal-cookie';
 import { useLocation, useNavigate } from "react-router-dom";
@@ -296,6 +296,7 @@ const SignUp = (props) => {
     const respJson = await response.json();
     window.localStorage.setItem(userID, respJson.profile_id);
     props.onCreateProfile(respJson.profile_id);
+    dispatch(clearAll());
     setIsLoading(false);
     navigate('/welcomePage');
   } else {
@@ -312,7 +313,6 @@ const SignUp = (props) => {
   }
 
   const handleStepIncrease = () => {
-    console.log("increasing step");
     dispatch(increaseStep());
   }
 
