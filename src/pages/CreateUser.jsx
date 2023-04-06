@@ -38,6 +38,10 @@ const CreateUser = (props) => {
       return;
     } else if (lastName.length === 0) {
       setErrorMsg("Please enter your last name.");
+      return;
+    } else if (!document.getElementById("email-input").validity.valid) {
+      setErrorMsg("Please enter a valid email.")
+      return;
     }
 
     setIsLoading(true);
@@ -143,8 +147,9 @@ const CreateUser = (props) => {
                       </input>
 
                     <input className="email-textbox"
-                      type="text"
+                      type="email"
                       name="e-mail"
+                      id="email-input"
                       placeholder=" Email Address"
                       onChange={(e) => setEmail(e.target.value)}
                       onKeyDown={(e) => handleKeypress(e)}>
