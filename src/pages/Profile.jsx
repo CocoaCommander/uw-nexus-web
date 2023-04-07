@@ -16,6 +16,12 @@ const Profile = (props) => {
     const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
     const [hasResume, setHasResume] = useState(false);
     const [resume, setResume] = useState(null);
+
+    const handleResumeEdit = (resume) => {
+      setResume(resume);
+      setHasResume(true);
+    }
+    
     
     useEffect(() => {
       const fetchData = async() => {
@@ -28,9 +34,7 @@ const Profile = (props) => {
           credentials: 'include'
         }
 
-        // const profileResponse = await fetch(url, options);
-        // if (profileResponse.ok) {
-          // const profileData = await profileResponse.json();
+
           if (userProfile.education.resume_file_id) {
             setHasResume(true);
             const resumeUrl = `/api/profile/resume/${userProfile.education.resume_file_id}`;
@@ -42,6 +46,7 @@ const Profile = (props) => {
               console.log(`Could not fetch user resume! Error = ${resumeResponse.status}`);
             }
           } else {
+            console.log("hi");
             setResume("No resume found");
             setHasResume(false);
           }
@@ -51,7 +56,7 @@ const Profile = (props) => {
 
     let profileLayout = <ProfileGrid userInfo={userProfile} editCallback={setIsEditing} resume={resume} hasResume={hasResume}/>;
     if (isEditing) {
-        profileLayout = <EditProfile userInfo={userProfile} editCallback={setIsEditing} resume={resume} hasResume={hasResume} editResumeCallback={setResume}/>;
+        profileLayout = <EditProfile userInfo={userProfile} editCallback={setIsEditing} resume={resume} hasResume={hasResume} editResumeCallback={handleResumeEdit}/>;
     }
 
     return (

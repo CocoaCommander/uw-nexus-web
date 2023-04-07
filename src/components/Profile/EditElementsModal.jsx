@@ -70,18 +70,25 @@ const EditElementsModal = (props) => {
         if (isInterestModal) {
             if (selectedInterests.includes(clickedElement)) {
                 setSelectedInterests(prevInterests => prevInterests.filter(i => i != clickedElement));
-            } else {
+                e.target.classList.toggle('clicked-element');
+                e.target.querySelector('.circle-check').classList.toggle('hidden');
+                
+            } else if (selectedInterests.length < 5) {
                 setSelectedInterests(prevInterests => [...prevInterests, clickedElement]);
+                e.target.classList.toggle('clicked-element');
+                e.target.querySelector('.circle-check').classList.toggle('hidden');
             }
         } else {
             if (selectedSkills.includes(clickedElement)) {
                 setSelectedSkills(prevSkills => prevSkills.filter(s => s != clickedElement));
-            } else {
+                e.target.classList.toggle('clicked-element');
+                e.target.querySelector('.circle-check').classList.toggle('hidden');
+            } else if (selectedSkills.length < 5) {
                 setSelectedSkills(prevSkills => [...prevSkills, clickedElement])
+                e.target.classList.toggle('clicked-element');
+                e.target.querySelector('.circle-check').classList.toggle('hidden');
             }
         }
-        e.target.classList.toggle('clicked-element');
-        e.target.querySelector('.circle-check').classList.toggle('hidden');
     }
 
     const handleSave = () => {

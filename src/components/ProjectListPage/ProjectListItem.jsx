@@ -7,7 +7,8 @@ import { useState, useRef } from 'react';
 
 const ProjectListItem = ({
     project,
-    isLoading
+    isLoading,
+    isLoggedIn
 }) => {
     const navigate = useNavigate();
     if (isLoading) {
@@ -17,10 +18,6 @@ const ProjectListItem = ({
     }
 
     let projectSize = "";
-
-    console.log(project.owner_email);
-
-
 
     switch(project.size) {
         case 'Small':
@@ -36,9 +33,17 @@ const ProjectListItem = ({
     const roleElements = project.roles.map((role, i) => {
 
       const handleApplyButton = (e) => {
+        
         if (role.isFilled) {
           e.preventDefault();
+          return;
         }
+
+        if (!isLoggedIn) {
+          e.preventDefault();
+          navigate('/login');
+        }
+        
       }
 
         const RoleSkillElements = () => {
@@ -77,7 +82,7 @@ const ProjectListItem = ({
                       to={`/apply/${project.title}/${role.title}`} 
                       state={{email: project.owner_email}}
                       onClick={handleApplyButton}>
-                  <button className={role.isFilled ? 'proj-apply-button-disabled' : 'proj-apply-button'}>Apply</button>
+                  <button className={role.isFilled ? 'proj-apply-button-disabled' : 'proj-apply-button'}>{role.isFilled ? `Filled` : `Apply`}</button>
                 </Link>
 
             </div>

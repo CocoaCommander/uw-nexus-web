@@ -169,16 +169,17 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 
 .create-project-header {
-    position: sticky;
-    right: 5vw;
-    top: 84vh;
+    position: fixed;
+    bottom: 3vh;
+    right: 6vw;
+    margin-left: auto;
     height: 25px;
     width: 25px;
     display: block;
-    margin: 50vh 0 auto auto;
     border-radius: 50%;
     padding: 1rem 1rem;
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2)
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    z-index: 5;
 }
 
 .create-project-header-container {
@@ -254,9 +255,9 @@ input.projects-filter-button[type="radio"] {
 }
 
 /* tablet / smaller desktop */
-@media only screen and (min-width: 395px) {
+@media only screen and (min-width: 450px) {
     .login-button-header {
-        top: 90vh;
+        top: 85vh;
     }
 }
 

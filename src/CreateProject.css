@@ -128,6 +128,7 @@ label {
   color: #C4C4C4;
   font-size: 16px;
   margin-top: 1%;
+  text-align: center;
 }
 
 .header-icon-wrapper {
@@ -172,6 +173,7 @@ label {
 
 .tooltip-text{
   width: 200px;
+  opacity: 1;
 }
 
 .dropdown-wrapper {

@@ -109,13 +109,20 @@ const EditProfile = (props) => {
 
 
 
-        await updateProfile(userInfo);
+        const new_resume_file_id = await updateProfile(userInfo);
+
+        userInfo.education.resume_file_id = new_resume_file_id;
+        console.log(new_resume_file_id);
+        console.log(userInfo);
+
         await uploadNewImage(newImageFile);
+
         if (newResume) {
             const reader = new FileReader();
 
             reader.readAsDataURL(newResume);
             reader.onload = () => {
+                console.log('doing the callback ting');
                 editResumeCallback(reader.result.substring(28));
             };
             reader.onerror = (error) => {
@@ -154,6 +161,8 @@ const EditProfile = (props) => {
         }
 
         const response = await fetch(url, options);
+        const newProfile = await response.json();
+        return newProfile.profile.resume_file_id;
 
 
         //profileBody.append("file", resume);
@@ -209,6 +218,7 @@ const EditProfile = (props) => {
             alert('You do not have a resume uploaded.');
         } else {
             if (newResume) {
+                console.log("new res uploaded");
                 window.open(URL.createObjectURL(newResume))
             } else {
                 var byteCharacters = window.atob(resume);
@@ -249,6 +259,15 @@ const EditProfile = (props) => {
         }
     }
 
+    const renderResumeText = () => {
+        console.log(newResume);
+        if (resume == 'No resume found' && newResume == null) {
+            return (<p className='no-resume-text'>{resume}</p>);
+        } else {
+            return (<p className="resume-link" onClick={() => convertBase64ToPDF(newResume ? newResume : resume)}>View Resume</p>);
+        }
+    }
+
     return (
         <div className="edit-profile-container">
             <EditPictureModal newUserImage={newUserImage} showPicModal={showPicModal} picModalCallback={setShowPicModal} userImageCallback={updateUserImage} deleteImageCallback={deleteUserImage}/>
@@ -274,8 +293,8 @@ const EditProfile = (props) => {
                 </div>
                 <div className="edit-resume-body">
                     <FontAwesomeIcon className="resume-icon" icon={faFile} size="2xl" />
-                    {resume ? <p className="resume-link" onClick={() => convertBase64ToPDF(newResume ? newResume : resume)}>View Resume</p> : <p className='no-resume-text'>No resume found.</p>}
-                    <p className='error-msg'>{resumeErrMsg}</p>
+                    {console.log(`resumeeee = ${resume}`)}
+                    {renderResumeText()}
                 </div>
                 <div className="header-container">
                     <h2>Technical Skills</h2>

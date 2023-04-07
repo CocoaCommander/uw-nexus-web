@@ -7,7 +7,8 @@ const ProjectList = ({
     listOfProjectData,
     setListOfProjectData,
     isLoading,
-    setIsLoading
+    setIsLoading,
+    isLoggedIn
 }) => {
 
     const ALL_PROJECTS = `/api/project/allProjects`;
@@ -31,7 +32,7 @@ const ProjectList = ({
 
     if (listOfProjectData.length === 0) {
         return (
-            <div>
+            <div className="no-projects-found-container">
                 No Projects Found.
             </div>
         )
@@ -68,7 +69,7 @@ const ProjectList = ({
                 listOfProjectData.map((project, i) => {
                     if ((i + 1) > (PROJECTS_PER_PAGE * (page - 1)) && (i + 1) <= (PROJECTS_PER_PAGE * page)) {
                         return (
-                            <ProjectListItem project={project} key={i} isLoading={isLoading} />
+                            <ProjectListItem project={project} key={i} isLoading={isLoading} isLoggedIn={isLoggedIn}/>
                         )
                     }
                 })

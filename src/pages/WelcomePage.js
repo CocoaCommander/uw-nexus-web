@@ -4,16 +4,18 @@ import "../WelcomePage.css";
 
 
 
-const WelcomePage = () => {
+const WelcomePage = ({
+  userProfile
+}) => {
 
   const navigate = useNavigate();
-  const firstName = useSelector((state) => state.signUp.fullName).split(" ")[0];
+  const firstName = userProfile.first_name;
 
   return (
     <div className="welcome-center-text">
       <div className="welcome-text-wrapper">
         
-        <p className="welcome-text">  Welcome <span className="welcome-name">{firstName}</span>,</p>
+        <p className="welcome-text">  Welcome <span className="welcome-name">{firstName}</span></p>
         <p className="sub-text"> You can now begin searching projects.</p>
       </div>
 
