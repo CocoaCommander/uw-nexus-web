@@ -36,7 +36,7 @@ const ConfirmationPage = (props) => {
 
         <div className="confirmation-box">
           <h1>Application Submitted!</h1>
-          <p>Thank you for submitting your application. We will review it and get back to you soon.</p>
+          <p>Thank you for submitting your application. The project owners will review your application and get back to you via email.</p>
           <h2>Summary</h2>
           <table className="application-summary-table">
             <tbody>
