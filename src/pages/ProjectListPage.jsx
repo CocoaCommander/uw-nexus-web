@@ -55,9 +55,10 @@ const ProjectListPage = () => {
                     listOfProjectData={sortProjects(listOfProjectData)} 
                     setListOfProjectData={setListOfProjectData}
                     isLoading={isLoading}
-                    setIsLoading={setIsLoading} />
-                {isLoggedIn ? <CreateProjectHeader /> : null}
+                    setIsLoading={setIsLoading} 
+                    isLoggedIn={isLoggedIn}/>
             </div>
+            {isLoggedIn ? <CreateProjectHeader /> : null}
         </div>
     );
 }

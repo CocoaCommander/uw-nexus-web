@@ -94,6 +94,7 @@ const Header = ({
             setMobileMenuOpen(false);
         }
 
+        // THIS IS SO SPAGETTI, FIX LATER
         if (location === '/createProfile' || location === '/createProject' || location === '/finishProject'
             || location == '/reviewProject' || location == '/createProfileStart' || location == '/welcomePage'
             || location == '/login' || location == '/signUp') {
@@ -111,7 +112,7 @@ const Header = ({
                             </div>
                         </Link>
 
-                        {!(location == '/signUp' || location == '/login') && <p className={step <= maxSteps ? 'step-counter' : 'step-counter-hidden'}>Step {location === '/createProfile' ? profileStep : projectStep} of {maxSteps}</p>}
+                        {!(location == '/signUp' || location == '/login' || location == '/welcomePage') && <p className={step <= maxSteps ? 'step-counter' : 'step-counter-hidden'}>Step {location === '/createProfile' ? profileStep : projectStep} of {maxSteps}</p>}
                     </div>
                 </>
             )

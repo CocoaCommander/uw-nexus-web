@@ -14,7 +14,7 @@ const ProjectDescription = ({
         <div className="vertical-center">
             <div className="center-pane">
                 <div className="header-icon-wrapper">
-                    <p className="project-name-header">How would you describe your Project? <span className="asterix"> *</span></p>
+                    <p className="project-name-header">How would you describe your project? <span className="asterix"> *</span></p>
                     <img data-for="desc-tip" data-tip={toolTipMsg} className={"question-icon"} src={questionIcon} alt="question icon"></img>
                     <ReactTooltip
                         id="desc-tip"

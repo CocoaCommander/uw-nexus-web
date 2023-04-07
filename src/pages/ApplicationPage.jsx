@@ -141,6 +141,14 @@ const ApplicationPage = (props) => {
   }
 
   const validateSubmission = () => {
+    console.log(graduationYear);
+    console.log(email);
+    console.log(referral);
+    console.log(purpose);
+    console.log(hoursDedicated);
+    console.log(relevantExperience);
+    console.log(relevantExperience);
+    console.log(resume);
     return (
       graduationYear && 
       email && 

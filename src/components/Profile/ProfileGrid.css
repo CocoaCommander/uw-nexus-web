@@ -85,10 +85,16 @@
   gap: 4rem;
 }
 
-.user-summary > img {
+/* .user-pic-wrapper {
   width: 15vw;
   height: 15vw;
+  position: relative;
   border-radius: 50%;
+  overflow: hidden;
+} */
+
+.user-summary > img {
+  clip-path: circle();
 }
 
 .summary-flexbox {

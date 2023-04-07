@@ -48,8 +48,7 @@ const CreateProject = ({
     `Project description helps users understand what the project goals, purposes, and probelm to tackle are. 
     Other information you can include can be time commitment as as well as your overall project plan.`,
     `A new project is one that starts from scratch, while an ongoing project means the project already has existing members.`,
-    `Project category helps users understand the field of studies where your project could fall under.
-    Good examples are 'healthcare', 'AI', 'politics', and 'international studies'.`, 
+    `Project category helps users understand the field of studies where your project could fall under.`, 
     `Project location helps users understand where the location of meetings will be. 
     Good examples if in person are “HUB 160”, “MEB 123” or if meeting virtually “remote”. `,
   ];

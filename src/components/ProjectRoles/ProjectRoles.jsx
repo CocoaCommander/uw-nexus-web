@@ -176,7 +176,7 @@ const ProjectRoles = ({
             <label className="roles-label">Skillsets / Tools</label>
 
             <p className="project-roles-directions">
-            After selecting a skillset/tool, press enter to add it to that role.
+            After selecting a skillset/tool, press enter/return to add it to that role.
             Once a role is completed, press "Add Role" at the bottom right to add it
             and fill out a new one if needed.
             </p>
