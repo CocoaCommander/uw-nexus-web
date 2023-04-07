@@ -10,6 +10,7 @@ import ApplicationConfirmationPage from '../components/ApplicationConfirmation/A
 const ApplicationPage = (props) => {
   
   const { userProfile } = props
+  console.log(userProfile)
 
   const [fullName, setFullName] = useState(`${userProfile.first_name} ${userProfile.last_name}`);
   const [major, setMajor] = useState(userProfile.education.major);
@@ -22,7 +23,7 @@ const ApplicationPage = (props) => {
   const [relevantExperience, setRelevantExperience] = useState("");
   const [relevantClasses, setRelevantClasses] = useState("");
   const [willMeet, setWillMeet] = useState(false);
-  const [resume, setResume] = useState(userProfile.resume_file_id);
+  const [resume, setResume] = useState(userProfile.resume);
   const [coverLetter, setCoverLetter] = useState(null);
   const [extraQuestions, setExtraQuestions] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -108,7 +109,7 @@ const ApplicationPage = (props) => {
     e.preventDefault();
     e.stopPropagation();
     for (let file of e.dataTransfer.files) {
-      if (file.type !== "image/png" || file.type !== "image/jpg" || file.type !== "application/pdf") {
+      if (file.type !== "application/pdf") {
         if (e.target.name === "resume-upload-area") {
           setResume(file);
         } else {
@@ -121,13 +122,13 @@ const ApplicationPage = (props) => {
   }
 
   const onFileChange = (e) => {
+    const file = e.target.files[0];
     if (e.target.name === "resume-button") {
-      setResume(e.target.files[0]);
-      const file = e.target.files[0];
+      setResume(file);
       new FileReader().readAsDataURL(file);
-      console.log(e.target.files[0]);
-    } else {
-      setCoverLetter(e.target.files[0]);
+      console.log(file);
+    } else if (e.target.name === "cover-letter-button") {
+      setCoverLetter(file);
     }
 
   }
@@ -223,6 +224,12 @@ const ApplicationPage = (props) => {
       return;
     }
 
+    if (resume.type !== "application/pdf") {
+      setErrorMsg("Please upload your resume as a PDF")
+      setIsLoading(false);
+      return;
+    }
+
     const url = "/api/emailServices/submitApplication";
 
     const resume_base64 = await convertBase64(resume);
@@ -273,7 +280,11 @@ const ApplicationPage = (props) => {
       }
   }
 
-  
+  const resumeMessage = (resume) => {
+    if (!resume) return <></>;
+    if (resume.type !== 'application/pdf') return <><br/>Please upload a pdf</>;
+    else return <></>;
+  }
    
 
   
@@ -407,7 +418,7 @@ const ApplicationPage = (props) => {
             </div>
 
             <div className="field-set-app">
-              <label>Resume <span className="asterix-signup">*</span></label>
+              <label>Resume <span className="asterix-signup">* {resumeMessage(resume)}</span> </label>
               <div name="resume-upload-area" className="drop-zone"
                   onDragOver={handleDragFile}
                   onDrop={handleDropFile}
