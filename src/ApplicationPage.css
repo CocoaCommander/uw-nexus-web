@@ -52,6 +52,11 @@
   color: black;
 }
 
+.asterix-app {
+  color: red;
+  vertical-align: super;
+}
+
 option {
   font-size: 14px;
 }

@@ -424,7 +424,7 @@ const ApplicationPage = (props) => {
                   onDragOver={handleDragFile}
                   onDrop={handleDropFile}
               >
-                {resume ? <p className="browse-text" onClick={() => submitResume()}>{resume.name}</p> : <p className="browse-text" onClick={() => {submitResume()}}>Browse Resume <span className="drop-text">or just drop it here</span></p>}
+                {resume ? <p className="browse-text" onClick={() => submitResume()}>{resume.name}</p> : <p className="browse-text" onClick={() => {submitResume()}}>Browse Resume <span className="asterix-app">*</span> <span className="drop-text">or just drop it here</span></p>}
 
                 <input name="resume-button" ref={buttonRef} className={"file-button"} type={"file"} onChange={onFileChange}></input>
               </div>
