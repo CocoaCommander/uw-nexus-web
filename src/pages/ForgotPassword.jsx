@@ -30,7 +30,6 @@ const ForgotPassword = () => {
   };
 
   const handleError = (errorMsg) => {
-    console.log("hi");
     setErrorMsg(errorMsg);
 }
 

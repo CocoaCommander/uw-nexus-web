@@ -9,8 +9,7 @@ import ApplicationConfirmationPage from '../components/ApplicationConfirmation/A
 
 const ApplicationPage = (props) => {
   
-  const { userProfile } = props
-  console.log(userProfile)
+  const { userProfile, isMobile } = props
 
   const [fullName, setFullName] = useState(`${userProfile.first_name} ${userProfile.last_name}`);
   const [major, setMajor] = useState(userProfile.education.major);
@@ -115,8 +114,6 @@ const ApplicationPage = (props) => {
         } else {
           setCoverLetter(file)
         }
-      } else {
-        console.log("invalid file format");
       }
     }
   }
@@ -126,7 +123,6 @@ const ApplicationPage = (props) => {
     if (e.target.name === "resume-button") {
       setResume(file);
       new FileReader().readAsDataURL(file);
-      console.log(file);
     } else if (e.target.name === "cover-letter-button") {
       setCoverLetter(file);
     }
@@ -142,15 +138,9 @@ const ApplicationPage = (props) => {
   }
 
   const validateSubmission = () => {
-    console.log(graduationYear);
-    console.log(email);
-    console.log(referral);
-    console.log(purpose);
-    console.log(hoursDedicated);
-    console.log(relevantExperience);
-    console.log(relevantExperience);
-    console.log(resume);
     return (
+      fullName &&
+      major &&
       graduationYear && 
       email && 
       referral && 
@@ -160,6 +150,25 @@ const ApplicationPage = (props) => {
       relevantClasses && 
       resume
     );
+  }
+
+  const handleErrorMsg = () => {
+    let err = "";
+    if (!fullName) {
+      err = "Please enter your full name.";
+    } else if (!major) {
+      err = "Please enter your major.";
+    } else if (!graduationYear) {
+      err = "Please enter your graduation year";
+    } else if (!email) {
+      err = "Please enter your email";
+    }  else if (!referral || !purpose || !hoursDedicated || relevantClasses || relevantExperience) {
+      err = "Please fill in the required fields above."
+    } else if (!resume) {
+      err = "Please attach your resume";
+    }  
+
+    setErrorMsg(err);
   }
 
   const convertBase64 = (file) => {
@@ -203,14 +212,13 @@ const ApplicationPage = (props) => {
     setErrorMsg("")
 
     if (!validateSubmission()) {
-      setErrorMsg("Please fill all required fields.");
+      handleErrorMsg();
       setIsLoading(false);
       return;
     }
 
     const phoneIsValid = isValidPhoneNumber(phoneNumber) || phoneNumber === ""
     const emailIsValid = document.getElementById("email-input").validity.valid;
-    console.log('email: ', emailIsValid, 'phone: ', phoneIsValid)
 
     if (!emailIsValid) {
       setErrorMsg("Invalid Email Address");
@@ -279,17 +287,11 @@ const ApplicationPage = (props) => {
         setErrorMsg("There was an error submitting your application. Please try again later");
       }
   }
-
-  const resumeMessage = (resume) => {
-    if (!resume) return <></>;
-    if (resume.type !== 'application/pdf') return <><br/>Please upload a pdf</>;
-    else return <></>;
-  }
    
 
   
   return (isSubmitted)? 
-  <ApplicationConfirmationPage summary={applicationSummary}/> :
+  <ApplicationConfirmationPage summary={applicationSummary} isMobile={isMobile}/> :
   (
     <div>
       <div className="center-pane-app">
@@ -418,7 +420,6 @@ const ApplicationPage = (props) => {
             </div>
 
             <div className="field-set-app">
-              <label>Resume <span className="asterix-signup">* {resumeMessage(resume)}</span> </label>
               <div name="resume-upload-area" className="drop-zone"
                   onDragOver={handleDragFile}
                   onDrop={handleDropFile}
@@ -466,7 +467,7 @@ const ApplicationPage = (props) => {
               onClick={submitApplication}
         />
       </div>
-      <div className="app-page-footer" />
+      {!isMobile && <div className="app-page-footer" />}
 
     </div>
       

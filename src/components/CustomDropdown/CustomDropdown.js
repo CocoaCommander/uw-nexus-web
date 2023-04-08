@@ -15,7 +15,6 @@ const CustomDropdown = (props) => {
       options.push(<option key={props.options[i]} value={props.values[i]}>{props.options[i]}</option>)
     }
     options.unshift(<option value="" disabled selected>{props.placeholder}</option>)
-    console.log(options);
     return options;
   }
 

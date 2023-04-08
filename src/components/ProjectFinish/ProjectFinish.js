@@ -33,9 +33,6 @@ const ProjectFinish = (props) => {
     const jwt_token = cookie.get("fr-accessToken");
     if (jwt_token) {
       setaccessToken2(jwt_token);
-      console.log("already authenticated!");
-    } else {
-      console.log("not authenticated");
     }
   }, []);
 
@@ -72,7 +69,6 @@ const ProjectFinish = (props) => {
       categories: projCategs
     }
 
-    console.log("sending " + createProjInfo);
     const requestOptions = {
       method: 'POST',
       headers: {'Authorization': `Bearer ${accessToken2}`, 'Content-Type': 'application/json'},
@@ -81,13 +77,6 @@ const ProjectFinish = (props) => {
     };
 
     let response = await fetch(url, requestOptions);
-
-    if (response.ok) {
-      console.log("success");
-    } else {
-      console.log(response.statusText);
-    }
-    console.log(response);
   }
 
   return (

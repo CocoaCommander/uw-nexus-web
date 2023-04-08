@@ -17,7 +17,6 @@ const SearchBar = ({
         searchBarElement.addEventListener('keydown', e => {
             if (e.code === 'Enter') {
                 const searchTerm = SEARCH_ENDPOINT + searchBarElement.value;
-                console.log(searchTerm);
                 getData(setIsLoading, searchTerm, setListOfProjectData);
             }
         })

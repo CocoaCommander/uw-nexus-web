@@ -7,8 +7,6 @@ import "./InfoForm.css";
 
 const InfoForm = (props) => {
 
-  console.log(`infoform prop = ${props.err}`)
-
   const handleChange = (e) => {
     props.onChange(e);
   }

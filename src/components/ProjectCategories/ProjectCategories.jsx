@@ -32,7 +32,6 @@ const ProjectCategories = (props) => {
       .then(response => response.json())
       .then(data => dispatch(setProjCategsList(data)))
       .catch((error) => {
-        console.log(error);
       });
   }, [dispatch]);
 
@@ -58,7 +57,6 @@ const ProjectCategories = (props) => {
   }
 
   const renderCategories = (categories) => {
-    console.log(categories.length);
     return categories.map((categ) => <div className="selection-proj-categories">
       <p>{categ}</p>
     </div>)

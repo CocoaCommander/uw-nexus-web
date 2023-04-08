@@ -96,10 +96,9 @@ const CreateProject = ({
       .then(response => response.json())
       .then(data => dispatch(setSkillsList(data)))
       .catch((error) => {
-        console.log(error);
+        {}
       })
     } else {
-      console.log("not authenticated");
       navigate('/');
     }
 
@@ -110,7 +109,6 @@ const CreateProject = ({
   // handle changes in General Information page
   const handleTextboxChange = (e) => {
     let value = e.target.value;
-    console.log(value);
     switch (e.target.name) {
       case "projName":
         dispatch(setProjName(value));
@@ -143,7 +141,6 @@ const CreateProject = ({
   // handle changes in interest selections in Project Interests Page
   const handleSelectionChange = (e) => {
     let value = e.target.value;
-    console.log("selected " + value);
     switch(e.target.name) {
       case "teamSize":
         dispatch(setTeamSize(value));
@@ -206,7 +203,6 @@ const CreateProject = ({
 
   function step4Validator() {
     if (projCategs_valid.current.length > 0) {
-      console.log(projCategs_valid.current);
       handleStepIncrease();
       return true;
     } else {
@@ -226,7 +222,6 @@ const CreateProject = ({
   }
 
   function step6Validator() {
-    console.log(projLocation_valid.current);
     if (projLocation_valid.current) {
       handleStepIncrease();
       return true;

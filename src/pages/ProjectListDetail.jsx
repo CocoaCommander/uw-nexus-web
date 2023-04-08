@@ -16,8 +16,6 @@ const ProjectListDetail = () => {
 
     const THIS_PROJECT = `/api/project/${params.projectId}`;
 
-    console.log(params.projectId);
-
     useEffect(() => {
         getData(setIsLoading, THIS_PROJECT, setProject);
     }, [THIS_PROJECT]);

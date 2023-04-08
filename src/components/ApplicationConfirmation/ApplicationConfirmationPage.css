@@ -21,8 +21,8 @@
   width:100%; 
 }
 
-.apply-button {
-  width: 100px;
+.app-confirm-button {
+  width: 160px;
   height: 40px;
   border: 1px solid #f05a28;
   border-radius: 7px;
@@ -33,9 +33,10 @@
   align-self: flex-end;
   margin-top: 3%;
   font-size: 14px;
+  background-color: white;
 }
 
-.apply-button:hover {
+.app-confirm-button:hover {
   width: 100px;
   height: 40px;
   border: 1px solid #f05a28;

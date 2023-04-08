@@ -103,7 +103,6 @@ const CreateUser = (props) => {
       cookie.set('fr-accessToken', "loggedin", {maxAge: 24 * 60 * 60, path: "/"});
       window.localStorage.setItem("nxs-id", session.id);
       dispatch(setLoggedIn(true));
-      console.log(cookie);
     }
   }
 

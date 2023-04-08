@@ -112,7 +112,6 @@ const App = () => {
       const response = await fetch(url, requestOptions);
       if (response.ok) { // profile that matches user ID found
         const profileData = await response.json();
-        console.log(profileData);
         const profileImage = await getUserProfilePicture();
         setData(profileData, profileImage);
       } else if (response.status === 400) { // profile not yet created...
@@ -159,7 +158,6 @@ const App = () => {
     const cookie = new Cookies();
     const jwt_token = cookie.get("fr-accessToken");
     if (jwt_token) {
-      console.log("GETTING PROFILE AGAIN!");
       getUserProfile();
     }
   }, [profileID])
@@ -206,7 +204,7 @@ const App = () => {
           <Route path='/createProfileStart' element={<SignUpStart/>}/>
           <Route path='/createProfile' element={<SignUp onCreateProfile={onCreateProfile}/>}/>
           <Route path='/welcomePage' element={<WelcomePage userProfile={userProfile}/>}/>
-          <Route path='/apply/:projectName/:projectRole' element={<ApplicationPage userProfile={userProfile}/>}/>
+          <Route path='/apply/:projectName/:projectRole' element={<ApplicationPage userProfile={userProfile} isMobile={isMobile}/>}/>
         </Routes>
       </div>
     </>

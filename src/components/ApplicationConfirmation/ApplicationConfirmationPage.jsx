@@ -18,8 +18,10 @@ const ConfirmationPage = (props) => {
     hours,
     relevantClasses,
     willMeet,
-    extraQuestions
+    extraQuestions,
   } = props.summary;
+
+  const isMobile = props.isMobile;
 
   function scrollToTop() {
     window.scrollTo({
@@ -92,10 +94,10 @@ const ConfirmationPage = (props) => {
           </table>
         </div>
 
-        <button onClick={() => navigate("/projects")} className={"apply-button"}>Return to Projects</button>
+        <button onClick={() => navigate("/projects")} className={"app-confirm-button"}>Return to Projects</button>
 
       </div>
-      <div className="app-page-footer" />
+      {!isMobile && <div className="app-page-footer" />}
     </div>
   );
 };
