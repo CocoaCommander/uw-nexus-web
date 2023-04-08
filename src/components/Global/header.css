@@ -170,8 +170,8 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 .create-project-header {
     position: fixed;
-    bottom: 3vh;
-    right: 6vw;
+    bottom: 6vh;
+    right: 7vw;
     margin-left: auto;
     height: 25px;
     width: 25px;
