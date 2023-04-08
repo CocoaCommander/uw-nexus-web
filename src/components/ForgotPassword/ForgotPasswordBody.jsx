@@ -97,8 +97,6 @@ const ForgotPasswordBody = (props) => {
 
         if (response.status != 500) {
             buttonCallback(true);
-        } else {
-            console.log("error sending email");
         }
     }
 

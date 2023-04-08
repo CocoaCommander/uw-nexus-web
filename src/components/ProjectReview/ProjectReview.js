@@ -32,9 +32,6 @@ const ProjectReview = (props) => {
     const jwt_token = cookie.get("fr-accessToken");
     if (jwt_token) {
       setaccessToken2(jwt_token);
-      console.log("already authenticated!");
-    } else {
-      console.log("not authenticated");
     }
   }, []);
 
@@ -63,7 +60,6 @@ const ProjectReview = (props) => {
       categories: projCategs
     }
 
-    console.log("sending " + accessToken2);
     const requestOptions = {
       method: 'POST',
       headers: {'Authorization': `Bearer ${accessToken2}`, 'Content-Type': 'application/json'},
@@ -78,10 +74,8 @@ const ProjectReview = (props) => {
       setIsLoading(false);
       navigate('/projects');
     } else {
-      console.log(response.statusText);
       setIsLoading(false);
     }
-    console.log(response);
   }
 
   const renderRoles = (roles) => {
@@ -117,13 +111,11 @@ const ProjectReview = (props) => {
   }
 
   const renderRoleSkill = (role) => {
-    console.log("for role = " + role + " skills = " + role.skill);
     let res = role.skill.map((skill) => 
       <div className="selection-rev">
         <p>{skill}</p>
       </div>
     )
-    console.log(res);
     return res;
   }
 

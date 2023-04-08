@@ -123,7 +123,6 @@ const ProjectRoles = ({
         <p>{skill}</p>
       </div>
     )
-    console.log(res);
     return res;
   }
 

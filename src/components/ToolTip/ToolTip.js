@@ -3,7 +3,6 @@ import "./ToolTip.css";
 
 
 const ToolTip = (props) => {
-  console.log("props = " + props.display);
   if (props.display) {
     return (
       <div>

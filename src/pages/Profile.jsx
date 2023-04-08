@@ -42,11 +42,8 @@ const Profile = (props) => {
             if (resumeResponse.ok) {
               const resumeData = await resumeResponse.json();
               setResume(resumeData.pdf);
-            } else {
-              console.log(`Could not fetch user resume! Error = ${resumeResponse.status}`);
             }
           } else {
-            console.log("hi");
             setResume("No resume found");
             setHasResume(false);
           }

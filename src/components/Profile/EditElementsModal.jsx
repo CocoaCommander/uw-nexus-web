@@ -18,14 +18,12 @@ const EditElementsModal = (props) => {
         .then(response => response.json())
         .then(data => setSkillsList(data))
         .catch((error) => {
-          console.log(error);
         });
         
         fetch(interestsUrl)
         .then(response => response.json())
         .then(data => setInterestsList(data))
         .catch((error) => {
-          console.log(error);
         });
 
     }, [])

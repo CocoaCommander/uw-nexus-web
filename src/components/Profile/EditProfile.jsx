@@ -112,9 +112,6 @@ const EditProfile = (props) => {
         const new_resume_file_id = await updateProfile(userInfo);
 
         userInfo.education.resume_file_id = new_resume_file_id;
-        console.log(new_resume_file_id);
-        console.log(userInfo);
-
         await uploadNewImage(newImageFile);
 
         if (newResume) {
@@ -122,11 +119,9 @@ const EditProfile = (props) => {
 
             reader.readAsDataURL(newResume);
             reader.onload = () => {
-                console.log('doing the callback ting');
                 editResumeCallback(reader.result.substring(28));
             };
             reader.onerror = (error) => {
-                console.log('Error: ', error);
             };
 
         }
@@ -179,7 +174,6 @@ const EditProfile = (props) => {
             setNewUserImage(reader.result)
         };
         reader.onerror = (error) => {
-            console.log('Error: ', error);
         };
     }
 
@@ -218,7 +212,6 @@ const EditProfile = (props) => {
             alert('You do not have a resume uploaded.');
         } else {
             if (newResume) {
-                console.log("new res uploaded");
                 window.open(URL.createObjectURL(newResume))
             } else {
                 var byteCharacters = window.atob(resume);
@@ -260,7 +253,6 @@ const EditProfile = (props) => {
     }
 
     const renderResumeText = () => {
-        console.log(newResume);
         if (resume == 'No resume found' && newResume == null) {
             return (<p className='no-resume-text'>{resume}</p>);
         } else {
@@ -293,7 +285,6 @@ const EditProfile = (props) => {
                 </div>
                 <div className="edit-resume-body">
                     <FontAwesomeIcon className="resume-icon" icon={faFile} size="2xl" />
-                    {console.log(`resumeeee = ${resume}`)}
                     {renderResumeText()}
                 </div>
                 <div className="header-container">
@@ -367,28 +358,6 @@ const ResumeAddIcon = (props) => {
 const CardAddIcon = ({ setIsAddIconClicked }) => {
     return <FontAwesomeIcon className="add-icon" icon={faPlus} size="2xl" onClick={() => {alert('implement later!')}} />
 }
-
-// const CardAddIcon = (props) => {
-//     const { setIsAddIconClicked } = props;
-//     return <FontAwesomeIcon className="add-icon" icon={faPlus} size="2xl" onClick={() => { setIsAddIconClicked(true); }} />;
-// }
-
-// const AddItemModal = (props) => {
-//     const { isAddIconClicked } = props;
-//     console.log("The add icon prop is currently", {isAddIconClicked});
-
-//     return (
-//         <Modal >
-//             <Modal.Header closeButton>
-//                 <Modal.Title>Modal heading</Modal.Title>
-//             </Modal.Header>
-//             <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-//             <Modal.Footer>
-
-//             </Modal.Footer>
-//         </Modal>
-//     )
-// }
 
 const ProjectItem = (props) => {
     const { item, isSkill } = props;

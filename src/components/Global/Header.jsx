@@ -24,7 +24,6 @@ const LoginButton = ({
                 method: 'DELETE'
             }
             await fetch(SIGN_OUT, options);
-            console.log("removing cookie!");
             const prevCookie = new Cookies();
             prevCookie.remove("fr-accessToken", { path: '/' });
             window.localStorage.removeItem("nxs-id");
@@ -78,7 +77,6 @@ const Header = ({
     const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
     const projectStep = useSelector((state) => state.createProj.step);
     const profileStep = useSelector((state) => state.signUp.step);
-    console.log(isMobileMenuOpen);
     if (isMobile) {
         const handleMobileMenu = () => {
             if (isMobileMenuOpen) {

@@ -74,20 +74,20 @@ const SignUp = (props) => {
     .then(response => response.json())
     .then(data => dispatch(setInterestsList(data)))
     .catch((error) => {
-      console.log(error);
+      {}
     })
 
     fetch(url2)
     .then(response => response.json())
     .then(data => dispatch(setSkillsList(data)))
     .catch((error) => {
-      console.log(error);
+      {}
     });
 
     fetch(url3)
       .then(response => response.json())
       .then(data => dispatch(setMajorsList(data)))
-      .catch(error => console.log(error))
+      .catch(error => {})
 
     setEmail(location.state.email);
 
@@ -301,7 +301,6 @@ const SignUp = (props) => {
     navigate('/welcomePage');
   } else {
     setIsLoading(false);
-    console.log(response.statusText);
   }
   }
 

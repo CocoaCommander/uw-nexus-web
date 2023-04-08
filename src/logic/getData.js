@@ -3,7 +3,7 @@ export const getData = (setIsLoading, endpoint, setData) => {
     fetch(endpoint)
         .then(res => res.json())
         .then(data => setData(data))
-        .catch(err => console.log(err))
+        .catch(err => {})
         .finally(() => setIsLoading(false));
 }
 
@@ -24,14 +24,13 @@ export const postData = (setIsLoading, setData, url, data) => {
         referrerPolicy: 'no-referrer', 
         body: JSON.stringify(body) 
     }
-    console.log(options);
+
     fetch(url, options)
         .then(res => res.json())
         .then(data => {
-            console.log(data);
             setData(data);
         })
-        .catch(err => console.log(err))
+        .catch(err => {})
         .finally(setIsLoading(false));
   }
   

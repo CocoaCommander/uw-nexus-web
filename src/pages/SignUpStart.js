@@ -22,7 +22,7 @@ const SignUpStart = (props) => {
     fetch(userUrl, requestOptions)
       .then(res => res.json())
       .then(data => setEmail(data.email))
-      .catch(err => console.log(err))
+      .catch(err => {})
   }, []);
 
   return (

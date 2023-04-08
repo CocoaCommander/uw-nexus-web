@@ -41,18 +41,14 @@ const EditProject = ({
             setProject(project);
             setOpenRoles(project.roles.filter(role => !role.isFilled));
             setClosedRoles(project.roles.filter(role => role.isFilled));
-        } else {
-            console.log(response.error);
         }
     }
 
     const handleRoleStatus = (clickedRole) => {
-        console.log(clickedRole);
         if (clickedRole.isFilled) {
             setClosedRoles(closedRoles.filter(role => role.title != clickedRole.title));
             clickedRole.isFilled = false;
             setOpenRoles(prev => [...prev, clickedRole]);
-            console.log(clickedRole);
         } else {
             setOpenRoles(openRoles.filter(role => role.title != clickedRole.title));
             clickedRole.isFilled = true;
@@ -91,8 +87,6 @@ const EditProject = ({
             roles: openRoles.concat(closedRoles)
         }
 
-        console.log(payload);
-
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -103,8 +97,6 @@ const EditProject = ({
         const response = await fetch(url, requestOptions);
         if (response.ok) {
             navigate('/projects');
-        } else {
-            console.log(response.error);
         }
     }
 
