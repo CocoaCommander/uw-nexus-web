@@ -4,7 +4,7 @@ import CreateProjectButton from "../components/ProjectListPage/CreateProjectButt
 import CreateProjectHeader from '../components/Global/CreateProjectHeader';
 import ProjectList from "../components/ProjectListPage/ProjectList";
 import SearchBar from "../components/ProjectListPage/SearchBar/SearchBar";
-
+import ProjectFilters from '../components/ProjectFilters/ProjectFilters'
 
 const ProjectListPage = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -30,17 +30,7 @@ const ProjectListPage = () => {
         })
     } 
 
-    const toggleFilter = (type, value) => {
-        setFilters(prevFilters => {
-            const newFilters = { ...prevFilters };
-            if (newFilters[type].includes(value)) {
-                newFilters[type] = newFilters[type].filter(v => v !== value);
-            } else {
-                newFilters[type].push(value);
-            }
-            return newFilters;
-        });
-    };
+    
     
     const filterProjects = (projects) => {
         if (filters.duration.length === 0 && filters.size.length === 0) 
@@ -53,7 +43,7 @@ const ProjectListPage = () => {
         });
     };
 
-
+    console.log(isFiltersOpen)
 
     return (
         <div className="project-list-page">
@@ -70,16 +60,26 @@ const ProjectListPage = () => {
                         setListOfProjectData={setListOfProjectData}
                         setIsLoading={setIsLoading} />
                 {/* </div> */}
-                <button className="proj-apply-button" onClick={() => setIsFiltersOpen(true)}>Filter</button>
+                
+                <button 
+                    type="button"
+                    className="filter-projects-button" 
+                    onClick={() => {
+                        console.log("called")
+                        setIsFiltersOpen(() => true)
+                    }}
+                >
+                    Filter
+                </button>
 
             </div>
             <div className="project-list-and-filter-container">
-                {/* {
-                    !isMobile && 
-                <div className="container-item">
-                    <ProjectFilters />
-                </div>
-                } */}
+                {
+                    isFiltersOpen && 
+                    <div className="container-item">
+                        <ProjectFilters setFilters={setFilters} />
+                    </div> 
+                }
                 <ProjectList 
                     listOfProjectData={sortProjects(filterProjects(listOfProjectData))} 
                     setListOfProjectData={setListOfProjectData}
