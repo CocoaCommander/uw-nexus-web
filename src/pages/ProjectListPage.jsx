@@ -10,6 +10,8 @@ const ProjectListPage = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [listOfProjectData, setListOfProjectData] = useState([]);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 450);
+    const [isFiltersOpen, setIsFiltersOpen] = useState(false);
+    const [filters, setFilters] = useState({ size: [], duration: [] });
     const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
 
     useEffect(() => {
@@ -28,6 +30,31 @@ const ProjectListPage = () => {
         })
     } 
 
+    const toggleFilter = (type, value) => {
+        setFilters(prevFilters => {
+            const newFilters = { ...prevFilters };
+            if (newFilters[type].includes(value)) {
+                newFilters[type] = newFilters[type].filter(v => v !== value);
+            } else {
+                newFilters[type].push(value);
+            }
+            return newFilters;
+        });
+    };
+    
+    const filterProjects = (projects) => {
+        if (filters.duration.length === 0 && filters.size.length === 0) 
+            return projects;
+    
+        return projects.filter(project => {
+            const sizeFilter = filters.size.length === 0 || filters.size.includes(project.size);
+            const durationFilter = filters.duration.length === 0 || filters.duration.includes(project.duration);
+            return sizeFilter && durationFilter;
+        });
+    };
+
+
+
     return (
         <div className="project-list-page">
             <div className="create-project-btn-project-search-container">
@@ -43,6 +70,8 @@ const ProjectListPage = () => {
                         setListOfProjectData={setListOfProjectData}
                         setIsLoading={setIsLoading} />
                 {/* </div> */}
+                <button className="proj-apply-button" onClick={() => setIsFiltersOpen(true)}>Filter</button>
+
             </div>
             <div className="project-list-and-filter-container">
                 {/* {
@@ -52,7 +81,7 @@ const ProjectListPage = () => {
                 </div>
                 } */}
                 <ProjectList 
-                    listOfProjectData={sortProjects(listOfProjectData)} 
+                    listOfProjectData={sortProjects(filterProjects(listOfProjectData))} 
                     setListOfProjectData={setListOfProjectData}
                     isLoading={isLoading}
                     setIsLoading={setIsLoading} 
