@@ -184,6 +184,19 @@ h2 {
   font-size: 20px;
 }
 
+.filter-projects-button {
+  background-color: #F05A28;
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  margin-left: 10px;
+  height: 40px;
+  width: auto;
+  padding: 10px;
+}
+
 .side-project {
   background-color: rgba(240, 90, 40, 0.26);
   color: #F05A28;
@@ -269,6 +282,7 @@ p {
 
 .project-list-and-filter-container {
   display: flex;
+  flex-direction: column;
 }
 
 main {
