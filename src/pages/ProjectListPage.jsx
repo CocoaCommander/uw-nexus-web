@@ -14,6 +14,7 @@ const ProjectListPage = () => {
     const [filters, setFilters] = useState({ size: [], duration: [] });
     const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
 
+    console.log(listOfProjectData)
     useEffect(() => {
     }, [listOfProjectData]);
 
@@ -38,7 +39,7 @@ const ProjectListPage = () => {
     
         return projects.filter(project => {
             const sizeFilter = filters.size.length === 0 || filters.size.includes(project.size);
-            const durationFilter = filters.duration.length === 0 || filters.duration.includes(project.duration);
+            const durationFilter = filters.duration.length === 0 || filters.duration.includes(project.duration.length);
             return sizeFilter && durationFilter;
         });
     };
@@ -66,7 +67,7 @@ const ProjectListPage = () => {
                     className="filter-projects-button" 
                     onClick={() => {
                         console.log("called")
-                        setIsFiltersOpen(() => true)
+                        setIsFiltersOpen((p) => !p)
                     }}
                 >
                     Filter

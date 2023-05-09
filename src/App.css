@@ -184,18 +184,6 @@ h2 {
   font-size: 20px;
 }
 
-.filter-projects-button {
-  background-color: #F05A28;
-  color: #fff;
-  font-size: 15px;
-  font-weight: bold;
-  border-radius: 5px;
-  border: none;
-  margin-left: 10px;
-  height: 40px;
-  width: auto;
-  padding: 10px;
-}
 
 .side-project {
   background-color: rgba(240, 90, 40, 0.26);
@@ -509,6 +497,29 @@ main {
   border: none;
   margin-top: 5px;
 }
+
+.filter-projects-button {
+  border-radius: 5px;
+  margin-left: 10px;
+  height: 40px;
+  width: auto;
+  padding: 10px;
+  display: inline-flex;
+  background-color: white;
+  border: #F05A28 1px solid;
+  color: #F05A28;
+  font-weight: 600;
+  font-size: 16px;
+  border-width: 2.5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.filter-projects-button:hover {
+  background-color: #F05A28;
+  color: white;
+}
+
 
 .proj-apply-button,
 .proj-apply-button-disabled {

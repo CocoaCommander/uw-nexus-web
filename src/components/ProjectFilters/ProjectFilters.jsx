@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import './ProjectFilters.css'
+import {ReactComponent as TimeIcon} from '../../assets/icons/time-icon.svg';
+import {ReactComponent as LocationIcon} from '../../assets/icons/location-icon.svg';
+import {ReactComponent as PersonIcon} from '../../assets/icons/person-icon.svg';
 
 
-function ProjectFilters({ setFilters, filters }) {
+
+const ProjectFilters = ({ setFilters, filters }) => {
   const [sizeFilters, setSizeFilters] = useState({
-    micro: false,
-    small: false,
-    medium: false,
-    large: false,
+    Micro: false,
+    Small: false,
+    Medium: false,
+    Large: false,
   });
 
   const [durationFilters, setDurationFilters] = useState({
-    '3 months': false,
-    '6 months': false,
-    '9 months': false,
+    '1-3 months': false,
+    '3-6 months': false,
+    '6-9 months': false,
     'more than 9 months': false,
   });
 
@@ -71,7 +75,10 @@ function ProjectFilters({ setFilters, filters }) {
   return (
     <div className="project-filters-container">
       <div className="filter-column">
-        <div className="filter-type">Size</div>
+        <div className="filter-type">
+            <PersonIcon/> 
+            <span className="filter-name">Size</span>
+        </div>
         {Object.keys(sizeFilters).map((size) => (
           <div key={size}>
             <input
@@ -86,7 +93,10 @@ function ProjectFilters({ setFilters, filters }) {
         ))}
       </div>
       <div className="filter-column">
-        <div className="filter-type">Duration</div>
+        <div className="filter-type">
+            <TimeIcon/> 
+            <span className="filter-name">Duration</span>
+        </div>
         {Object.keys(durationFilters).map((duration) => (
           <div key={duration}>
             <input
@@ -101,9 +111,13 @@ function ProjectFilters({ setFilters, filters }) {
         ))}
       </div>
       <div className="filter-column">
-        <div className="filter-type">Location</div>
+        <div className="filter-type">
+            <LocationIcon/> 
+            <span className="filter-name">Location</span>
+        </div>
         <input
           type="text"
+          className="location-filter"
           value={locationFilter}
           onChange={(e) => setLocationFilter(e.target.value)}
         />
@@ -112,7 +126,7 @@ function ProjectFilters({ setFilters, filters }) {
             Clear All
           </button>
           <button onClick={applyFilters} className="apply-filters-button">
-            Apply Filters
+            Apply 
           </button>
         </div>
       </div>
