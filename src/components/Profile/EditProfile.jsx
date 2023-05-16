@@ -64,7 +64,7 @@ const EditProfile = (props) => {
         return <GeneralInfoItem userInfoItem={item} header={header} inputName={inputName} callback={callback} key={index} />
     })
 
-    document.body.style.cssText = 'overflow: auto !important'; 
+    document.body.style.cssText = 'overflow: auto !important';
     // might break some scrolling behavior, at the moment i experience none
     // needed for the Modal popup
 
@@ -73,7 +73,7 @@ const EditProfile = (props) => {
 
     // Resume
     const resume = props.resume;
-    const resumeComponent = <ResumeAddIcon handleResumeEdit={(e) => handleResumeEdit(e)}/>
+    const resumeComponent = <ResumeAddIcon handleResumeEdit={(e) => handleResumeEdit(e)} />
 
     // Technical Skills
     const technicalSkills = userInfo.education.skills;
@@ -91,7 +91,7 @@ const EditProfile = (props) => {
     const interestsComponent = <CardAddIcon setIsAddIconClicked={setInterestAddIconClicked} />;
     // const addInterestsModal = <AddItemModal isAddIconClicked={isInterestAddIconClicked} />;
 
-    const handleEdit = async(event) => {
+    const handleEdit = async (event) => {
         event.preventDefault();
 
         // General Information
@@ -177,7 +177,7 @@ const EditProfile = (props) => {
         };
     }
 
-    const uploadNewImage = async(newImage) => {
+    const uploadNewImage = async (newImage) => {
         const user_id = window.localStorage.getItem("nxs-id");
         const url = `/api/profile/photo/${user_id}`;
 
@@ -194,7 +194,7 @@ const EditProfile = (props) => {
         const response = await fetch(url, options);
     }
 
-    const deleteUserImage = async() => {
+    const deleteUserImage = async () => {
         const user_id = window.localStorage.getItem("nxs-id");
         const url = `/api/profile/photo/${user_id}`;
 
@@ -234,7 +234,7 @@ const EditProfile = (props) => {
         } else {
             userInfo.education.skills = newElements;
         }
-        
+
         isInterestsModal ? setNewInterests(newElements) : setNewSkills(newElements);
 
     }
@@ -242,13 +242,16 @@ const EditProfile = (props) => {
     const handleResumeEdit = (e) => {
         const file = e.target.files[0];
         if (file.type == "application/pdf") {
-          if (file.size > 5000000) {
-            setResumeErrMsg("File is too big.");
-          }
-          setResumeErrMsg("");
-          setNewResume(file);
+            if (file.size > 5000000) {
+                alert('File is too big.');
+                // setResumeErrMsg("File is too big.");
+            } else {
+                //   setResumeErrMsg("");
+                setNewResume(file);
+            }
         } else {
-            setResumeErrMsg("Incorrect file format. Please upload a pdf file");
+            alert('Incorrect file format. Please upload a pdf file.');
+            // setResumeErrMsg("Incorrect file format. Please upload a pdf file");
         }
     }
 
@@ -262,7 +265,7 @@ const EditProfile = (props) => {
 
     return (
         <div className="edit-profile-container">
-            <EditPictureModal newUserImage={newUserImage} showPicModal={showPicModal} picModalCallback={setShowPicModal} userImageCallback={updateUserImage} deleteImageCallback={deleteUserImage}/>
+            <EditPictureModal newUserImage={newUserImage} showPicModal={showPicModal} picModalCallback={setShowPicModal} userImageCallback={updateUserImage} deleteImageCallback={deleteUserImage} />
             <EditElementsModal showElementsModal={showElementsModal} elementsModalCallback={setShowElementsModal} projectInterests={projectInterests} technicalSkills={technicalSkills} isInterestModal={isInterestModal} saveElementsCallback={saveElementsCallback} />
             <div className="finalize-edits-container">
                 <h3 className="finalize-edits-button" onClick={() => editCallback(false)}>Cancel</h3>
@@ -346,17 +349,17 @@ const ResumeAddIcon = (props) => {
     const buttonRef = useRef(null);
     const handleResumeEdit = props.handleResumeEdit;
     return (
-    <>
-        <FontAwesomeIcon className="add-icon" icon={faPlus} size="2xl" onClick={() => buttonRef.current.click()} />
-        <input ref={buttonRef} className={"file-button"} type={"file"} onChange={(e) => handleResumeEdit(e)}></input>
-    </>);
+        <>
+            <FontAwesomeIcon className="add-icon" icon={faPlus} size="2xl" onClick={() => buttonRef.current.click()} />
+            <input ref={buttonRef} className={"file-button"} type={"file"} onChange={(e) => handleResumeEdit(e)}></input>
+        </>);
 
 }
 
 // No functionality for now
 // Temp functions
 const CardAddIcon = ({ setIsAddIconClicked }) => {
-    return <FontAwesomeIcon className="add-icon" icon={faPlus} size="2xl" onClick={() => {alert('implement later!')}} />
+    return <FontAwesomeIcon className="add-icon" icon={faPlus} size="2xl" onClick={() => { alert('implement later!') }} />
 }
 
 const ProjectItem = (props) => {
