@@ -11,7 +11,7 @@ const ProjectListPage = () => {
     const [listOfProjectData, setListOfProjectData] = useState([]);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 450);
     const [isFiltersOpen, setIsFiltersOpen] = useState(false);
-    const [filters, setFilters] = useState({ size: [], duration: [] });
+    const [filters, setFilters] = useState({ size: [], duration: [], location: "" });
     const isLoggedIn = useSelector((state) => state.userState.isLoggedIn);
 
     console.log(listOfProjectData)
@@ -46,7 +46,6 @@ const ProjectListPage = () => {
         });
     };
 
-    console.log(isFiltersOpen)
 
     return (
         <div className="project-list-page">
