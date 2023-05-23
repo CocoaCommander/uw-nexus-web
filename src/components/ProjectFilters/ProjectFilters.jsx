@@ -44,6 +44,8 @@ const ProjectFilters = ({ setFilters, filters }) => {
         ...prevFilters,
         [value]: !prevFilters[value],
       }));
+    } else if (type === "location") {
+      setLocationFilter(value);
     }
   };
 
