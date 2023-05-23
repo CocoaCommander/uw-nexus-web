@@ -5,9 +5,7 @@ import ProjectListDetail from './pages/ProjectListDetail';
 import ProjectListPage from './pages/ProjectListPage';
 import Home from './pages/Home';
 import { useEffect, useState } from 'react';
-import { useDispatch, 
-  useSelector 
-} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CreateProject from './pages/CreateProject';
 import ProjectFinish from './components/ProjectFinish/ProjectFinish';
 import ProjectReview from './components/ProjectReview/ProjectReview';
