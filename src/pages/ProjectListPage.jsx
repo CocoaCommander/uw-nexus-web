@@ -34,13 +34,15 @@ const ProjectListPage = () => {
     
     
     const filterProjects = (projects) => {
-        if (filters.duration.length === 0 && filters.size.length === 0) 
+        console.log(filters)
+        if (filters.duration.length === 0 && filters.size.length === 0 && filters.location === "") 
             return projects;
     
         return projects.filter(project => {
             const sizeFilter = filters.size.length === 0 || filters.size.includes(project.size);
             const durationFilter = filters.duration.length === 0 || filters.duration.includes(project.duration.length);
-            return sizeFilter && durationFilter;
+            const locationFilter = filters.location === "" || project.location.toLowerCase().includes(filters.location.toLowerCase())
+            return sizeFilter && durationFilter && locationFilter;
         });
     };
 
