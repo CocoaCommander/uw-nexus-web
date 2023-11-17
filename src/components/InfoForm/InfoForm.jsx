@@ -99,6 +99,7 @@ const InfoForm = (props) => {
             <option value="Sophomore">Sophomore</option>
             <option value="Junior">Junior</option>
             <option value="Senior">Senior</option>
+ 	          <option value="Graduate">Graduate Student</option>
           </select>
         </div>
 
